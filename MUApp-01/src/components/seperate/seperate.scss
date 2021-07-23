@@ -1,0 +1,19 @@
+@import '../../styles/color/variables.scss';
+
+.seperate {
+    position: relative;
+
+    .space-title-div {
+        height          : 1px;
+        background-color: #C4C4C4;
+        position        : absolute;
+        top             : 2px
+    }
+
+    .space-title-div-child {
+        height          : 4px;
+        background-color: $primary--color1;
+        position        : absolute;
+        z-index         : 9;
+    }
+}
