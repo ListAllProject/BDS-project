@@ -1,10 +1,13 @@
-import React, { Component } from "react";
+import React, { Component, CSSProperties } from "react";
 import PropTypes from "prop-types";
 import "./seperate.scss";
+import { Input } from "antd";
 
 interface Props {
-  widthPar: number;
-  widthChil: number;
+  widthPar: number ;
+  widthChil: number ;
+  style?: CSSProperties;
+  className?: string;
 }
 
 export class Seperate extends Component<Props, any> {
@@ -14,7 +17,10 @@ export class Seperate extends Component<Props, any> {
 
   render() {
     return (
-      <div className="seperate">
+      <div
+        style={{ ...this.props.style }}
+        className={`seperate ${this.props.className ?? ""}`}
+      >
         <div
           style={{
             width: this.props.widthPar,
