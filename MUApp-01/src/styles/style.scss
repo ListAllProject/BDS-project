@@ -1,10 +1,10 @@
 // @import 'reset';
-@import "variables.scss";
+@import "./variables.scss";
 // @import '~antd/dist/antd.css';
 //  @import '~antd/dist/antd.dark.less';
-@import "dropdown.scss";
-//  @import 'button.scss';
-@import "input.scss";
+@import "./dropdown.scss";
+@import './button.scss';
+@import "./input.scss";
 //  @import 'checkbox.scss';
 //  @import 'sider.scss';
 //  @import 'date.scss';

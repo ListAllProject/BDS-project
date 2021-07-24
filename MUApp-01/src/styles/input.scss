@@ -1,4 +1,4 @@
-@import 'variables';
+@import './variables';
 
 @mixin hover() {
     border-color: rgba($primary--color, .4);
