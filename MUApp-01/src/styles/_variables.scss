@@ -1,0 +1,85 @@
+/*******************************
+         Site Settings
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+$font-name: 'Lato' !default;
+$font-family: $font-name,
+'Helvetica Neue',
+Arial,
+Helvetica,
+sans-serif !default;
+
+/*-------------------
+
+      Base Sizes
+--------------------*/
+
+/* This is the single variable that controls them all */
+$em-size: 14px;
+
+/*-------------------
+     Breakpoints
+--------------------*/
+$mobile-breakpoint: 320px !default;
+$tablet-breakpoint: 768px !default;
+$computer-breakpoint: 992px !default;
+$large-monitor-breakpoint: 1200px !default;
+$widescreen-monitor-breakpoint: 1920px !default;
+
+/*-------------------
+    Derived Values
+--------------------*/
+
+/* Rendered Scrollbar Width */
+$scrollbar-width: 17px;
+
+/* Responsive */
+$largest-mobile-screen: ($tablet-breakpoint - 1px);
+$largest-tablet-screen: ($computer-breakpoint - 1px);
+$largest-small-monitor: ($large-monitor-breakpoint - 1px);
+$largest-large-monitor: ($widescreen-monitor-breakpoint - 1px);
+
+
+
+$primary--color:#f0b90b;
+$secondary--color: #42ca8b;
+// $background--color: #1a1c1e; 
+$background--color: #1e1e1e;
+$container-bg: darken($background--color, 2);
+// $container-bg: #1e1e1e; 
+$text--color: #9ca1a5;
+$text--color-light: #dcdcdc; //#e4e6eb
+$text--color-dark: #000000;
+$danger--color: rgb(206, 50, 50);
+$border-color: rgba(255, 255, 255, 0.2);
+
+$bg--hover: #40464b;
+// $bg--active: #09365f;
+$bg--active: #5d5741;
+
+$header--color: #12161c;
+$menu--color: #1E2126;
+$menu--color-hover: #272a2f;
+
+$siderbar--color: #0b0e11;
+$siderbar--selected: rgba(255, 255, 255, 0.09);
+$siderbar--submenu: rgba(111, 111, 111, 0.14);
+$siderbar--menutiem-hover: rgba(255, 255, 255, 0.12);
+$background--hover : #fafafa;
+
+$dropdown-bg:#1E2126;
+$dropdown-hover: rgba(255, 255, 255, 0.12);
+$dropdown-active: rgba(255, 255, 255, 0.12);
+$list-active: rgba(255, 255, 255, 0.12);
+$list-hover: rgba(255, 255, 255, 0.10);
+
+$command-bg: #1e1e1e;
+
+$default-hover: rgba(255, 255, 255, 0.04);
+$button-hover: rgba(255, 255, 255, 0.12);
+
+$border-color-2:  #484747;

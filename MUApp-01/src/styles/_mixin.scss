@@ -1,0 +1,14 @@
+@mixin limit-text-size($width) {
+    // display: inline-block;
+    width: $width;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+  
+  @mixin touch-screen() {
+    @media (hover: none) and (pointer: coarse) {
+      @content;
+    }
+  }
+  

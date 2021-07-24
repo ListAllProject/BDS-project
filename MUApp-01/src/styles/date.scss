@@ -1,0 +1,58 @@
+@import 'variables';
+
+.ant-picker:hover {
+    border-color: rgba($color:$primary--color, $alpha: 0.6);
+
+}
+
+.ant-picker-focused {
+    border-color: $primary--color;
+}
+
+.ant-picker-range .ant-picker-active-bar {
+    background: $primary--color;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-start .ant-picker-cell-inner,
+.ant-picker-cell-in-view.ant-picker-cell-range-end .ant-picker-cell-inner {
+    background: rgba($color:$primary--color, $alpha: 0.6);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    border-color: rgba($color:$primary--color, $alpha: 0.6);
+}
+
+.ant-picker-header-view button:hover {
+    color: $primary--color;
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-start:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-end:not(.ant-picker-cell-in-range):not(.ant-picker-cell-range-start):not(.ant-picker-cell-range-end)::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-start.ant-picker-cell-range-start-single::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-end.ant-picker-cell-range-end-single::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover:not(.ant-picker-cell-in-range)::after {
+    border-top-color: rgba($color:$primary--color, $alpha: 0.4);
+    border-bottom-color: rgba($color:$primary--color, $alpha: 0.4);
+}
+
+tr>.ant-picker-cell-in-view.ant-picker-cell-range-hover:first-child::after,
+tr>.ant-picker-cell-in-view.ant-picker-cell-range-hover-end:first-child::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-edge-start:not(.ant-picker-cell-range-hover-edge-start-near-range)::after,
+.ant-picker-cell-in-view.ant-picker-cell-range-hover-start::after {
+
+    border-left-color: rgba($color:$primary--color, $alpha: 0.4);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-in-range::before {
+    background: rgba($color:$primary--color, $alpha: 0.08);
+}
+
+.ant-picker-today-btn {
+    color: $primary--color;
+}
+
+.ant-picker-today-btn:hover{
+    color: darken($color: $primary--color, $amount: 0.2);
+
+}

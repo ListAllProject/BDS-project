@@ -1,0 +1,60 @@
+@import 'variables';
+
+.ant-btn.ant-btn-primary {
+    background-color: $primary--color;
+    color: $text--color-dark;
+    font-weight: 600;
+    border: unset;
+}
+
+.ant-btn:active,
+.ant-btn.active,
+.ant-btn:hover,
+.ant-btn:focus {
+    color: $primary--color;
+    border-color: rgba($primary--color, .8);
+}
+
+.ant-btn:active,
+.ant-btn.active,
+.ant-btn:hover,
+.ant-btn:focus {
+    &.ant-btn-primary {
+        color: white;
+        border-color: white;
+    }
+}
+
+.ant-radio-button-wrapper:hover {
+    color: $primary--color;
+
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled) {
+    color: $primary--color;
+    border-color: $primary--color;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)::before,
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover::before {
+    background-color: $primary--color;
+}
+
+.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):first-child {
+    border-color: $primary--color;
+}
+
+
+// Pagiantion button
+.ant-pagination-prev:focus .ant-pagination-item-link,
+.ant-pagination-next:focus .ant-pagination-item-link,
+.ant-pagination-prev:hover .ant-pagination-item-link,
+.ant-pagination-next:hover .ant-pagination-item-link {
+    color: $primary--color;
+    border-color: $primary--color;
+}
+
+.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-link-icon, .ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-link-icon {
+   color: $primary--color;
+}

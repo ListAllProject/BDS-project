@@ -1,0 +1,48 @@
+@import "variables";
+
+.ant-dropdown-menu {
+    background-color: $menu--color;
+    padding: 0 !important;
+
+    .ant-list-item {
+        padding: 15px;
+
+        &:hover {
+            background-color: $menu--color-hover;
+
+            color: $primary--color;
+
+            .title {
+                color: $primary--color !important;
+            }
+        }
+    }
+}
+
+.ant-menu-item:hover,
+.ant-menu-item-active,
+.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-submenu-active,
+.ant-menu-submenu-title:hover {
+    color: $primary--color;
+}
+.ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after,
+.ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after,
+.ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after,
+.ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after,
+.ant-menu-submenu-vertical > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before,
+.ant-menu-submenu-vertical-left > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before,
+.ant-menu-submenu-vertical-right > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before,
+.ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before {
+    background: -webkit-gradient(linear, left top, right top, from($primary--color), to($primary--color));
+    background: linear-gradient(to right, $primary--color, $primary--color);
+}
+
+.ant-menu-root.ant-menu-vertical {
+    background-color: $menu--color;
+}
+
+.ant-dropdown-menu-submenu-popup > .ant-dropdown-menu,
+.ant-dropdown-menu-submenu-popup ul {
+    margin: 0;
+}

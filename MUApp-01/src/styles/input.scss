@@ -1,0 +1,90 @@
+@import 'variables';
+
+@mixin hover() {
+    border-color: rgba($primary--color, .4);
+    outline: rgba($primary--color, .4);
+
+}
+
+@mixin focus() {
+    outline: rgba($primary--color, .8);
+    border-color: rgba($primary--color, .8);
+    box-shadow: unset;
+}
+
+@mixin active-bg() {
+    background-color:  $dropdown-active ;//rgba($primary--color, .2);
+}
+
+.ant-row.ant-form-item{
+    outline: unset;
+}
+
+.ant-input-affix-wrapper,
+.ant-input {
+    &:hover {
+        @include hover();
+    }
+
+    &:focus,
+    &.ant-input-affix-wrapper-focused {
+        @include focus();
+    }
+}
+
+.ant-form-item-control-input, .ant-input-number:focus, .ant-input-number-focused{
+    @include focus(); 
+}
+
+.ant-input-number:hover {
+    @include hover(); 
+}
+
+.ant-select:not(.ant-select-disabled):hover .ant-select-selector {
+    @include hover();
+}
+
+.ant-select:not(.ant-select-disabled):focus .ant-select-selector {
+    @include focus();
+}
+
+.ant-select-selector:focus {
+    @include focus();
+}
+
+.ant-select-focused.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    @include focus();
+}
+
+.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+    @include active-bg();
+}
+
+
+// remove webkit autofill background
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-internal-autofill-selected,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    border: unset;
+    -webkit-text-fill-color: $text--color !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgba($background--color, 0) inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+    background-color: $background--color !important;
+    border-radius: 0 !important;
+    caret-color: white;
+}
+
+.ant-pagination-options-quick-jumper input:hover {
+    @include hover(); 
+}
+
+.ant-pagination-options-quick-jumper input:focus, .ant-pagination-options-quick-jumper input-focused { 
+    @include focus();
+}
