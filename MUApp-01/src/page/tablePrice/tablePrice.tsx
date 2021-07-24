@@ -14,6 +14,7 @@ import {
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import Slider from "react-slick";
+import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
 
 const settings = {
@@ -24,7 +25,7 @@ const settings = {
   focusOnSelect: true,
   // autoplay: true,
   autoplaySpeed: 3000,
-  
+
   responsive: [
     {
       breakpoint: 1024,
@@ -138,7 +139,6 @@ const columns = [
     key: "name",
 
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -158,7 +158,6 @@ const columns = [
     dataIndex: "age",
     key: "age",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -177,7 +176,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "1",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -195,7 +193,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "2",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -213,7 +210,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "3",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -231,7 +227,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "4",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -249,7 +244,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "5",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -267,7 +261,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "6",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -285,7 +278,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "7",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -303,7 +295,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "8",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -321,7 +312,6 @@ const columns = [
     width: "calc(100% / 12)",
     key: "9",
     render: (text: string, obj: objData) => {
-      console.log(text, obj);
       return {
         props: {
           style: {
@@ -541,6 +531,75 @@ const data = [
   },
 ];
 
+const dataSlide2: JSX.Element[] = [
+  <div className="cirle-ratio-selected">
+    <CircularProgressbarWithChildren strokeWidth={2} value={50}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: -55,
+          color: "#BB8E4C",
+          fontWeight: 500,
+          fontSize: 13,
+        }}
+      >
+        <span style={{ marginBottom: 2 }}>S1.01</span>
+        <img src={iconHome} />
+        <span style={{ marginTop: 2 }}>
+          22<span style={{ color: "#E0E0E0" }}>/38</span>
+        </span>
+      </div>
+    </CircularProgressbarWithChildren>
+  </div>,
+  ...(arr.map((e) => {
+    return (
+      <div className="cirle-ratio">
+        <CircularProgressbarWithChildren strokeWidth={2} value={e}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: -55,
+              color: "#BB8E4C",
+              fontWeight: 500,
+              fontSize: 13,
+            }}
+          >
+            <span style={{ marginBottom: 4 }}>S1.01</span>
+            <img src={iconHome} />
+            <span style={{ marginTop: 4 }}>
+              22<span style={{ color: "#E0E0E0" }}>/38</span>
+            </span>
+          </div>
+        </CircularProgressbarWithChildren>
+      </div>
+    );
+  }))
+];
+
+
+const dataSlide1 = [
+  <div className="box">
+    <img src={imgSlider1} />
+  </div>,
+  <div className="box">
+    <img src={imgSlider2} />
+  </div>,
+  <div className="box">
+    <img src={imgSlider3} />
+  </div>,
+  <div className="box-selected">
+    <img src={imgSlider1} />
+  </div>,
+  <div className="box">
+    <img src={imgSlider2} />
+  </div>,
+  <div className="box">
+    <img src={imgSlider3} />
+  </div>,
+];
+
 export const TablePrice = () => {
   return (
     <div className="container-table-price">
@@ -558,78 +617,24 @@ export const TablePrice = () => {
         <div className="slide-container-1">
           <div className="wrap-slider">
             <div style={{ padding: 20, marginTop: 20 }}>
-              <Slider {...settings}>
-                <div className="box">
-                  <img src={imgSlider1} />
-                </div>
-                <div className="box">
-                  <img src={imgSlider2} />
-                </div>
-                <div className="box">
-                  <img src={imgSlider3} />
-                </div>
-                <div className="box-selected">
-                  <img src={imgSlider1} />
-                </div>
-                <div className="box">
-                  <img src={imgSlider2} />
-                </div>
-                <div className="box">
-                  <img src={imgSlider3} />
-                </div>
-              </Slider>
+              <CustomSlider
+                classPreviousArrow={"fal fa-chevron-left previous-arrow"}
+                classNextArrow={"fal fa-chevron-right next-arrow"}
+                components={dataSlide1}
+                settings={settings}
+              />
             </div>
           </div>
         </div>
         <div className="slide-container-2">
           <div className="space-table-price"></div>
           <div className="content">
-            <Slider {...settings2}>
-              <div className="cirle-ratio-selected">
-                <CircularProgressbarWithChildren strokeWidth={2} value={50}>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      marginTop: -55,
-                      color: "#BB8E4C",
-                      fontWeight: 500,
-                      fontSize: 13,
-                    }}
-                  >
-                    <span style={{ marginBottom: 2 }}>S1.01</span>
-                    <img src={iconHome} />
-                    <span style={{ marginTop: 2 }}>
-                      22<span style={{ color: "#E0E0E0" }}>/38</span>
-                    </span>
-                  </div>
-                </CircularProgressbarWithChildren>
-              </div>
-              {arr.map((e) => {
-                return (
-                  <div className="cirle-ratio">
-                    <CircularProgressbarWithChildren strokeWidth={2} value={e}>
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "column",
-                          marginTop: -55,
-                          color: "#BB8E4C",
-                          fontWeight: 500,
-                          fontSize: 13,
-                        }}
-                      >
-                        <span style={{ marginBottom: 4 }}>S1.01</span>
-                        <img src={iconHome} />
-                        <span style={{ marginTop: 4 }}>
-                          22<span style={{ color: "#E0E0E0" }}>/38</span>
-                        </span>
-                      </div>
-                    </CircularProgressbarWithChildren>
-                  </div>
-                );
-              })}
-            </Slider>
+            <CustomSlider
+              classPreviousArrow={"fal fa-chevron-left previous-arrow"}
+              classNextArrow={"fal fa-chevron-right next-arrow"}
+              components={dataSlide2}
+              settings={settings2}
+            />
           </div>
           <div className="circle-note">
             <NoteInfor />
