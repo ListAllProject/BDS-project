@@ -1,28 +1,32 @@
-@import 'variables';
+@import "./color/variables.scss";
 
+.ant-slider-rail {
+  background-color: $gray--color;
+}
 .ant-slider-track {
-    background-color: rgba($primary--color, .6);
+  background-color: rgba($yellow--color, 1);
 }
 
 .ant-slider-handle {
-    border-color: rgba($primary--color, .6);
+  border-color: $yellow--color;
+  background-color: $yellow--color;
 }
 
 .ant-slider-dot-active {
-    border-color: rgba($primary--color, .6); 
+  border-color: $yellow--color;
 }
 
 .ant-slider-handle.ant-tooltip-open {
-    border-color: rgba($primary--color, .8);
+  border-color: rgba($primary--color1, 0.8);
 }
 
 .ant-slider:hover {
-    .ant-slider-track {
-        background-color: rgba($primary--color, .8);
-    }
+  .ant-slider-track {
+    background-color: rgba($primary--color1, 0.8);
+  }
 
-    .ant-slider-handle,
-    .ant-slider-handle:not(.ant-tooltip-open) {
-        border-color: rgba($primary--color, .8);
-    }
+  .ant-slider-handle,
+  .ant-slider-handle:not(.ant-tooltip-open) {
+    border-color: rgba($primary--color1, 0.8);
+  }
 }

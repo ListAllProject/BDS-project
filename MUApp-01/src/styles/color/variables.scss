@@ -1,4 +1,6 @@
 $primary--color1: #be9355;
+$yellow--color: #e7af43;
+$gray--color: #c4c4c4;
 $primary--color2: #011769;
 
 $button-bgr-color: radial-gradient(
@@ -14,7 +16,11 @@ $button-bgr-color: radial-gradient(
   /* other formats include: 'woff2', 'truetype, 'opentype',
                               'embedded-opentype', and 'svg' */
 }
-$button-bgr-color: linear-gradient(to right, rgba(227,171,67,1) 0%, rgba(200,148,69,1) 100%);
+$button-bgr-color: linear-gradient(
+  to right,
+  rgba(227, 171, 67, 1) 0%,
+  rgba(200, 148, 69, 1) 100%
+);
 
 html {
   body {

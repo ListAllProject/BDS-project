@@ -1,10 +1,7 @@
 import React from "react";
 import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
-import { HeaderWrap } from "../../../layout/header/header";
-import { FooterWrap } from "../../../layout/footer/footer";
-import banner_1 from "../../assets/images/banner_1.png";
-import "../home.scss";
-import { Seperate } from "../../../components/seperate/seperate";
+import "./home.scss";
+import { Seperate } from "../../components/seperate/seperate";
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;

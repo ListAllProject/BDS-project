@@ -1,8 +1,7 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import { Home } from "./page/home/home";
 import "./assets/fontawesome-pro-5.13.0-web/css/all.min.css";
-
 import {
   BrowserRouter as Router,
   Switch,

@@ -3,11 +3,25 @@
 @mixin center-container {
   max-width: 1340px;
   margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.slick-dots.slick-dots-bottom {
+  margin: auto;
+}
+
+.home {
+  .slick-track {
+    // width: 100vw !important;
+  }
 }
 
 .container {
   margin: 4% 0px;
   text-align: center;
+  // max-width: 1080px;
   h1 {
     color: $primary--color1;
     font-weight: bold;
@@ -38,6 +52,7 @@
     text-align: center;
     padding: 0px 3%;
     color: #ffffff;
+    border-color: transparent;
     i {
       margin-right: 10px;
     }
@@ -64,6 +79,30 @@
       text-align: center;
 
       color: #000000;
+    }
+
+    .col-contain-item {
+      // border: 1px solid springgreen;
+
+      padding: 20px;
+      border-radius: 6px;
+
+      &:hover {
+        box-shadow: 0px 0px 8px rgb(149, 149, 149);
+      }
+    }
+
+    .about_us_details {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 27px;
+
+      text-align: center;
+      text-transform: uppercase;
+
+      color: #be9355;
+
+      margin-top: 4%;
     }
   }
 }
