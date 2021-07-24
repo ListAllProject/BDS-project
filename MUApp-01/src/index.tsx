@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+// import 'styles/style.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+//import { variables } from 'styles/_variables'; color: variables.primaryColor
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,6 +12,11 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+{/* <BrowserRouter>
+<HistoryWithRoute />
+<App />
+</BrowserRouter>, document.getElementById('root')); */}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,0 +1,266 @@
+@import '../../styles/color/variables.scss';
+
+// .btn-arrow {
+//     height          : 40px;
+//     width           : 40px;
+//     border-radius   : 100%;
+//     background-color: $primary--color1;
+//     text-align      : center;
+//     display         : flex;
+//     flex-direction  : column;
+//     justify-content : center;
+//     color           : #FFFFFF;
+//     cursor          : pointer;
+// }
+
+.container-table-price {
+    padding: 20px 0px;
+
+    .title-page {
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items    : center;
+
+
+        h2 {
+            color    : $primary--color1;
+            font-size: 28px;
+        }
+    }
+
+
+
+    .btn-left {
+        display        : flex;
+        flex-direction : column;
+        align-items    : center;
+        justify-content: center;
+
+
+    }
+
+    .slide-container-1,
+    .slide-container-2 {
+        .slick-list {
+            margin: 0px 30px;
+        }
+
+        .slick-prev,
+        .slick-next {
+            background-color: $primary--color1;
+            height          : 40px;
+            width           : 40px;
+            border-radius   : 100%;
+            display         : flex !important;
+            align-items     : center;
+            justify-content : center;
+        }
+
+        .box {
+            display        : flex !important;
+            align-items    : center;
+            justify-content: center;
+            border         : 1px solid #C4C4C4;
+            width          : auto !important;
+            height         : 160px;
+            margin         : 10px 10px;
+            min-width      : 120px
+        }
+    }
+
+
+    .slide-container-1 {
+        margin-top: 10px;
+        padding   : 20px;
+    }
+
+    @media only screen and (max-width: 991px) {
+        .wrap-slider {
+            max-width: 100% !important;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .wrap-slider {
+            max-width: 962px !important;
+        }
+    }
+
+
+    @media only screen and (min-width: 1200px) {
+        .wrap-slider {
+            max-width: 1050px !important;
+        }
+    }
+
+
+    .slide-container-1 .wrap-slider,
+    .slide-container-2 .wrap-slider {
+        padding     : 15px 0px;
+        width       : 100%;
+        margin-right: auto;
+        margin-left : auto;
+    }
+
+    .slide-container-1 .wrap-items,
+    .slide-container-2 .wrap-items {
+        display        : flex !important;
+        flex-direction : row;
+        justify-content: center;
+
+        .box {
+            display        : flex;
+            flex-direction : column;
+            align-items    : center;
+            justify-content: center;
+            border         : 1px solid #C4C4C4;
+            width          : 160px;
+            height         : 160px;
+            margin         : 10px 10px;
+            flex-grow      : 1;
+            flex-basis     : auto;
+        }
+    }
+
+    .slide-container-2 {
+
+        padding     : 15px 15px;
+        width       : 100%;
+        margin-right: auto;
+        margin-left : auto;
+
+        .space-table-price {
+            width           : 100%;
+            height          : 1px;
+            background-color: $primary--color1;
+            margin          : 10px 0px;
+        }
+
+        .slick-list {
+            margin: 0px 50px;
+        }
+
+        .slick-prev,
+        .slick-next {
+            background-color: $primary--color1;
+            height          : 40px;
+            width           : 40px;
+            border-radius   : 100%;
+
+        }
+    }
+
+    @media only screen and (max-width: 991px) {
+        .slide-container-2 {
+            max-width: 100% !important;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .slide-container-2 {
+            max-width: 962px !important;
+        }
+    }
+
+    @media only screen and (min-width: 1200px) {
+        .slide-container-2 {
+            max-width: 1340px !important;
+        }
+
+        .box {
+            width: 230px !important;
+        }
+    }
+
+    .circle-note {
+        .wrap-btn-note {
+            height          : 65px;
+            width           : 65px;
+            border-radius   : 100%;
+            background-color: $primary--color1;
+            font-size       : 13px;
+            font-weight     : 500;
+            color           : white;
+            padding         : 5px;
+            position        : relative;
+            cursor          : pointer;
+            z-index         : 9;
+
+            .circle-child {
+                position     : absolute;
+                height       : 55px;
+                width        : 55px;
+                border       : 2px solid white;
+                border-radius: 100%;
+                text-align   : center;
+                padding      : 4px;
+                font-size    : 13px;
+                user-select  : none;
+            }
+
+
+        }
+
+        .square-content {
+            z-index         : 1;
+            opacity         : 0;
+            top             : -72px;
+            left            : 33px;
+            position        : absolute;
+            padding         : 10px 30px 10px 50px;
+            border          : 2px solid $primary--color1;
+            border-radius   : 10px;
+            display         : flex;
+            flex-direction  : row;
+            width           : fit-content;
+            font-size       : 13px;
+            color           : #2D3B85;
+            background-color: white !important;
+            white-space     : nowrap;
+
+            .ct-status,
+            .ct-amount {
+                margin-left   : 40px;
+                display       : flex;
+                flex-direction: column;
+                font-weight   : 500;
+
+                .st-title {
+                    border-bottom: 2px solid #EBEBEB;
+                    padding      : 10px 37px;
+                    text-overflow: ellipsis;
+                }
+
+                .st-item {
+                    padding      : 8px;
+                    text-overflow: ellipsis;
+
+                }
+            }
+
+            .ct-amount {
+                margin-left: 0;
+
+                .st-item {
+                    text-align: center;
+                }
+            }
+
+            .space-div {
+                height          : auto;
+                width           : 2px;
+                background-color: #EBEBEB;
+            }
+        }
+
+
+
+
+    }
+
+
+
+
+
+}

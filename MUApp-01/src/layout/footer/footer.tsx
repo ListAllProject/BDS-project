@@ -1,15 +1,18 @@
 import { Input } from 'antd';
 import React from 'react';
+import bgrFooter from "../../assets/images/Group44.png";
 import "./footer.scss";
 
 
 export const FooterWrap = () => {
     return (
-        <div className="container-footer">
-            <div className="text-top">
+        <div className="container-footer" style={{
+            backgroundImage: `url(${bgrFooter})`, backgroundRepeat: "repeat-x", backgroundPositionY: "bottom",
+        }}>
+            <div className="text-top" >
                 Thông tin Chính xác - Minh bạch - Đa dạng - Tiết kiệm và Đầy đủ ưu đãi
             </div>
-            <div className="wrap-footer-content">
+            <div className="wrap-footer-content" >
                 <div className="top-content">
                     <span className="title">BEESKY ONLINE – SÀN GIAO DỊCH TMĐT BẤT ĐỘNG SẢN HÀNG ĐẦU VIỆT NAM</span>
                     <span className="description">
