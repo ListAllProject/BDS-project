@@ -49,13 +49,13 @@ $primary--color:#f0b90b;
 $secondary--color: #42ca8b;
 // $background--color: #1a1c1e; 
 $background--color: #1e1e1e;
-$container-bg: darken($background--color, 2);
 // $container-bg: #1e1e1e; 
 $text--color: #9ca1a5;
 $text--color-light: #dcdcdc; //#e4e6eb
 $text--color-dark: #000000;
 $danger--color: rgb(206, 50, 50);
 $border-color: rgba(255, 255, 255, 0.2);
+$container-bg: darken($text--color-light, 2);
 
 $bg--hover: #40464b;
 // $bg--active: #09365f;

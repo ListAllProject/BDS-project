@@ -16,6 +16,27 @@
 .container-table-price {
     padding: 20px 0px;
 
+    .wrap-responsive {}
+
+    @media only screen and (max-width: 991px) {
+        .wrap-slider {
+            max-width: 100% !important;
+        }
+    }
+
+    @media only screen and (min-width: 992px) {
+        .wrap-slider {
+            max-width: 962px !important;
+        }
+    }
+
+
+    @media only screen and (min-width: 1200px) {
+        .wrap-slider {
+            max-width: 1050px !important;
+        }
+    }
+
     .title-page {
         display        : flex;
         flex-direction : column;
@@ -23,9 +44,11 @@
         align-items    : center;
 
 
+
         h2 {
-            color    : $primary--color1;
-            font-size: 28px;
+            color      : $primary--color1;
+            font-size  : 24px;
+            font-weight: 700;
         }
     }
 
@@ -57,15 +80,24 @@
             justify-content : center;
         }
 
+        .box-selected,
         .box {
             display        : flex !important;
             align-items    : center;
             justify-content: center;
-            border         : 1px solid #C4C4C4;
             width          : auto !important;
             height         : 160px;
             margin         : 10px 10px;
             min-width      : 120px
+        }
+
+        .box-selected {
+            border: 2px solid #011769;
+        }
+
+        .box {
+            border: 2px solid #C4C4C4;
+
         }
     }
 
@@ -75,24 +107,7 @@
         padding   : 20px;
     }
 
-    @media only screen and (max-width: 991px) {
-        .wrap-slider {
-            max-width: 100% !important;
-        }
-    }
 
-    @media only screen and (min-width: 992px) {
-        .wrap-slider {
-            max-width: 962px !important;
-        }
-    }
-
-
-    @media only screen and (min-width: 1200px) {
-        .wrap-slider {
-            max-width: 1050px !important;
-        }
-    }
 
 
     .slide-container-1 .wrap-slider,
@@ -103,32 +118,37 @@
         margin-left : auto;
     }
 
-    .slide-container-1 .wrap-items,
-    .slide-container-2 .wrap-items {
-        display        : flex !important;
-        flex-direction : row;
-        justify-content: center;
+    // .slide-container-1 .wrap-items,
+    // .slide-container-2 .wrap-items {
+    //     display        : flex !important;
+    //     flex-direction : row;
+    //     justify-content: center;
 
-        .box {
-            display        : flex;
-            flex-direction : column;
-            align-items    : center;
-            justify-content: center;
-            border         : 1px solid #C4C4C4;
-            width          : 160px;
-            height         : 160px;
-            margin         : 10px 10px;
-            flex-grow      : 1;
-            flex-basis     : auto;
-        }
-    }
+    //     .box {
+    //         display        : flex;
+    //         flex-direction : column;
+    //         align-items    : center;
+    //         justify-content: center;
+    //         border         : 1px solid #C4C4C4;
+    //         width          : 160px;
+    //         height         : 160px;
+    //         margin         : 10px 10px;
+    //         flex-grow      : 1;
+    //         flex-basis     : auto;
+    //     }
+    // }
 
     .slide-container-2 {
 
-        padding     : 15px 15px;
+        padding     : 0px 15px 30px 15px;
         width       : 100%;
         margin-right: auto;
         margin-left : auto;
+
+        .content {
+            margin-top: 30px;
+            padding   : 20px 100px;
+        }
 
         .space-table-price {
             width           : 100%;
@@ -137,8 +157,42 @@
             margin          : 10px 0px;
         }
 
+        .slick-disabled {
+            opacity: 0;
+        }
+
+        .cirle-ratio-selected,
+        .cirle-ratio {
+            display        : flex !important;
+            justify-content: center;
+            width          : 105px !important;
+            margin         : auto;
+
+            .CircularProgressbar .CircularProgressbar-trail {
+                stroke: #E0E0E0;
+            }
+
+            .CircularProgressbar .CircularProgressbar-path {
+                stroke: #DDBC78;
+            }
+        }
+
+        .cirle-ratio-selected .CircularProgressbar {
+            background-color: #FFF0D2;
+            border-radius   : 100%;
+            box-shadow      : 0px 0px 16px #DDBC78 !important;
+            margin          : 15px 0px;
+        }
+
+        .cirle-ratio .CircularProgressbar {
+            background-color: #ffffff;
+            border-radius   : 100%;
+            margin          : 15px 0px;
+
+        }
+
         .slick-list {
-            margin: 0px 50px;
+            margin: 0px 20px;
         }
 
         .slick-prev,
@@ -154,12 +208,18 @@
     @media only screen and (max-width: 991px) {
         .slide-container-2 {
             max-width: 100% !important;
+
+            .content {
+                padding: 20px;
+            }
         }
     }
 
     @media only screen and (min-width: 992px) {
         .slide-container-2 {
             max-width: 962px !important;
+
+
         }
     }
 
@@ -203,7 +263,7 @@
         }
 
         .square-content {
-            z-index         : 1;
+            z-index         : 3;
             opacity         : 0;
             top             : -72px;
             left            : 33px;
@@ -257,6 +317,17 @@
 
 
 
+    }
+
+    .wrap-table {
+        .ant-table-thead>tr>th {
+            background-color: #BE9355 !important;
+            text-align      : center;
+        }
+
+        .ant-table-row {
+            height: 96px;
+        }
     }
 
 

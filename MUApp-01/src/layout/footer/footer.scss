@@ -101,12 +101,19 @@
     @media only screen and (max-width: 900px) {
         .wrap-footer-content {
             max-width: 100% !important;
+
         }
     }
 
     @media only screen and (min-width: 992px) {
         .wrap-footer-content {
             max-width: 830px !important;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+        .wrap-footer-content .midle-content {
+            flex-direction: column;
         }
     }
 
