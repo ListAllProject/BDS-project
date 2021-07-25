@@ -12,7 +12,7 @@ export const BestSell = () => {
   const [form] = Form.useForm();
   return (
     <>
-      <div className="container">
+      <div className="homepage-container">
         <h1>Các dự án đang bán tại BeeSky</h1>
         <Seperate
           widthPar={350}
@@ -40,8 +40,11 @@ export const BestSell = () => {
                 description: "Khu căn hộ cao cấp liền kề Vinhomes Riverside",
               },
             ].map((item) => (
-              <Col className="item-col" span={7} key={item.link}>
-                <img src={item.link} style={{ width: "100%" }} />
+              <Col className="item-col" key={item.link}>
+                <img
+                  src={item.link}
+                  style={{ width: "100%", height: "200px" }}
+                />
                 <p className="item_title">{item.name}</p>
                 <p className="item_description">{item.description}</p>
               </Col>

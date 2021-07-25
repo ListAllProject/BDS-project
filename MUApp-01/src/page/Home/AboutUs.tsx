@@ -10,7 +10,7 @@ export const AboutUs = () => {
   const [form] = Form.useForm();
   return (
     <>
-      <div className="container">
+      <div className="homepage-container">
         <h1>Về BeeSky Online</h1>
         <Seperate
           widthPar={350}
@@ -54,7 +54,7 @@ export const AboutUs = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            marginTop: 40,
+            marginTop: 60,
           }}
         >
           <Button className="submit-btn" size="large" style={{}}>

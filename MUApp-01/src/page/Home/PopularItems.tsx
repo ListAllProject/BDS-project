@@ -43,7 +43,7 @@ const data = [
 export const PopularItems = () => {
   return (
     <>
-      <div className="container">
+      <div className="homepage-container">
         <h1>Bất động sản nổi bật</h1>
         <Seperate
           widthPar={350}

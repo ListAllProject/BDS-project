@@ -11,13 +11,9 @@ export const SearchingForm = () => {
   const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
   return (
     <>
-      <div className="container center-container">
+      <div className="homepage-container center-container">
         <h1>TÌM KIẾM</h1>
-        <Seperate
-          widthPar={350}
-          widthChil={80}
-          style={{ marginBottom: "2%" }}
-        />
+        <Seperate widthPar={350} widthChil={80} />
         <p className="intro-line">
           Chọn các tiêu chí để tìm kiếm dự án bạn mong muốn
         </p>
