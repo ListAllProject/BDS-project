@@ -1,7 +1,6 @@
 @import '../../styles/color/variables.scss';
 
 .container-footer {
-    margin-top      : 100px;
     background-color: rgb(56, 56, 56);
 
     .text-top {
@@ -105,6 +104,16 @@
     //     }
     // }
 
+
+
+
+
+    @media only screen and (max-width: 700px) {
+        .wrap-footer-content .midle-content {
+            flex-direction: column;
+        }
+    }
+
     @media only screen and (max-width: 1109px) {
         .wrap-footer-content {
             max-width: 100% !important;
@@ -116,16 +125,5 @@
             max-width: 1110px !important;
         }
     }
-
-    @media only screen and (max-width: 600px) {
-        .wrap-footer-content .midle-content {
-            flex-direction: column;
-        }
-    }
-
-
-   
-
-
 
 }

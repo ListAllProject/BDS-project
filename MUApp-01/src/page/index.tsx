@@ -6,6 +6,8 @@ import { TablePrice } from "./tablePrice/tablePrice";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Home } from "./home/home";
+import { Detail } from "./detail/detail";
+import { Selling } from "./selling/selling";
 
 export const Index = () => {
   return (
@@ -13,8 +15,14 @@ export const Index = () => {
       <HeaderWrap />
       <Router>
         <Switch>
+          <Route exact path="/selling">
+            <Selling />
+          </Route>
           <Route exact path="/table-price">
             <TablePrice />
+          </Route>
+          <Route exact path="/product-detail">
+            <Detail />
           </Route>
           <Route path="/">
             <Home />

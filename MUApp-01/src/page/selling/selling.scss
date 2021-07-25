@@ -1,0 +1,58 @@
+@import '../../styles/color/variables.scss';
+
+.container-selling {
+    padding: 20px 0px;
+    width  : 100%;
+
+
+    .wrap-content-selling {
+        padding     : 15px 15px;
+        width       : 100%;
+        margin-right: auto;
+        margin-left : auto;
+    }
+
+    @media only screen and (max-width: 1109px) {
+        .wrap-content-selling {
+            max-width: 100% !important;
+        }
+    }
+
+    @media only screen and (min-width: 1110px) {
+        .wrap-content-selling {
+            max-width: 1110px !important;
+        }
+    }
+
+    .title-selling {
+        display        : flex;
+        flex-direction : column;
+        justify-content: center;
+        align-items    : center;
+
+
+
+        h2 {
+            color      : $primary--color1;
+            font-size  : 24px;
+            font-weight: 700;
+        }
+    }
+
+    .searching-box-sell {
+        margin-top   : 40px;
+        padding      : 40px 30px ;
+        // border       : 1px solid black;
+        border-radius: 16px;
+        box-shadow   : 0px 0px 16px rgba(0, 0, 0, 0.12);
+        background   : #FFFFFF;
+
+        .searching_form_label_slider {
+            .ant-col.ant-form-item-label {
+                padding-left: 12px;
+                text-align  : left;
+                font-weight : 600;
+            }
+        }
+    }
+}
