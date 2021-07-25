@@ -128,7 +128,7 @@
 
 
     .slide-container-1 {
-        margin-top: 10px;
+        margin-top   : 10px;
         // padding   : 0px 20px;
     }
 
@@ -310,6 +310,7 @@
             color           : #2D3B85;
             background-color: white !important;
             white-space     : nowrap;
+            display         : none;
 
             .ct-status,
             .ct-amount {
@@ -355,6 +356,10 @@
         .ant-table-thead>tr>th {
             background-color: #BE9355 !important;
             text-align      : center;
+            color           : white;
+            word-spacing    : 9999px;
+            padding-top     : 5px;
+            padding-bottom  : 5px;
         }
 
         .ant-table-row {

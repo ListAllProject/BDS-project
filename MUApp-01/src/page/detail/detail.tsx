@@ -11,6 +11,8 @@ import "./detail.scss";
 import CustomSlider from "../../components/slider/slider";
 
 export const Detail = () => {
+
+
   const imageList: JSX.Element[] = [
     <img src={RoomImage1} alt="Room 01" />,
     <img src={S11Image} alt="Room 01" />,

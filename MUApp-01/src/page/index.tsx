@@ -14,25 +14,21 @@ export const Index = () => {
   return (
     <>
       <HeaderWrap />
-      <Router>
-        <Switch>
-          <Route exact path="/projects">
-            <Projects />
-          </Route>
-          <Route exact path="/selling">
-            <Selling />
-          </Route>
-          <Route exact path="/table-price">
-            <TablePrice />
-          </Route>
-          <Route exact path="/product-detail">
-            <Detail />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path="/projects">
+          <Projects />
+        </Route>
+        <Route exact path="/selling">
+          <Selling />
+        </Route>
+        <Route exact path="/table-price">
+          <TablePrice />
+        </Route>
+        <Route path="/product-detail" component={Detail}></Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
       <FooterWrap />
     </>
   );
