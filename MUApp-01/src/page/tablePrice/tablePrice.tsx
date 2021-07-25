@@ -18,7 +18,7 @@ import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
 
 const settings = {
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
@@ -28,14 +28,14 @@ const settings = {
 
   responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 992,
       settings: {
         slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToScroll: 1,
       },
     },
     {
-      breakpoint: 600,
+      breakpoint: 670,
       settings: {
         slidesToShow: 2,
         slidesToScroll: 1,
@@ -73,7 +73,7 @@ const settings2 = {
 
   responsive: [
     {
-      breakpoint: 1024,
+      breakpoint: 992,
       settings: {
         slidesToShow: 4,
         slidesToScroll: 3,
@@ -94,16 +94,16 @@ const settings2 = {
       },
     },
   ],
-  nextArrow: (
-    <span>
-      <i className="far fa-chevron-left"></i>
-    </span>
-  ),
-  prevArrow: (
-    <span style={{ color: "white" }}>
-      <i className="far fa-chevron-right"></i>
-    </span>
-  ),
+  // nextArrow: (
+  //   <span>
+  //     <i className="far fa-chevron-left"></i>
+  //   </span>
+  // ),
+  // prevArrow: (
+  //   <span style={{ color: "white" }}>
+  //     <i className="far fa-chevron-right"></i>
+  //   </span>
+  // ),
 };
 
 interface objData {
@@ -616,7 +616,7 @@ export const TablePrice = () => {
         </div>
         <div className="slide-container-1">
           <div className="wrap-slider">
-            <div style={{ padding: 20, marginTop: 20 }}>
+            <div style={{ padding: "0px 20px" }}>
               <CustomSlider
                 classPreviousArrow={"fal fa-chevron-left previous-arrow"}
                 classNextArrow={"fal fa-chevron-right next-arrow"}

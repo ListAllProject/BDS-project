@@ -34,11 +34,11 @@
     }
 
     .next-arrow {
-        right: -35px;
+        right: -25px;
     }
 
     .previous-arrow {
-        left: -35px;
+        left: -25px;
 
     }
 
@@ -59,7 +59,7 @@
 
     @media only screen and (min-width: 1200px) {
         .wrap-slider {
-            max-width: 1050px !important;
+            max-width: 900px !important;
         }
     }
 
@@ -108,13 +108,13 @@
 
         .box-selected,
         .box {
-            display        : flex !important;
-            align-items    : center;
-            justify-content: center;
+            display           : flex !important;
+            align-items       : center;
+            justify-content   : center;
             // width          : auto !important;
-            height         : 160px;
-            width          : 160px;
-            margin         : 10px 10px;
+            height            : 160px;
+            width             : 160px !important;
+            margin            : auto
         }
 
         .box-selected {
@@ -123,14 +123,13 @@
 
         .box {
             border: 2px solid #C4C4C4;
-
         }
     }
 
 
     .slide-container-1 {
         margin-top: 10px;
-        padding   : 20px;
+        // padding   : 0px 20px;
     }
 
 
@@ -138,7 +137,7 @@
 
     .slide-container-1 .wrap-slider,
     .slide-container-2 .wrap-slider {
-        padding     : 15px 0px;
+        padding     : 75px 20px 40px 20px;
         width       : 100%;
         margin-right: auto;
         margin-left : auto;
@@ -166,21 +165,19 @@
 
     .slide-container-2 {
 
-        padding     : 0px 15px 30px 15px;
+        padding     : 0px 15px;
         width       : 100%;
         margin-right: auto;
         margin-left : auto;
 
         .content {
-            margin-top: 30px;
-            padding   : 20px 100px;
+            padding: 25px 70px;
         }
 
         .space-table-price {
             width           : 100%;
             height          : 1px;
             background-color: $primary--color1;
-            margin          : 10px 0px;
         }
 
         .slick-disabled {
@@ -235,6 +232,13 @@
         .slide-container-2 {
             max-width: 100% !important;
 
+
+        }
+    }
+
+    @media only screen and (max-width: 1110px) {
+        .slide-container-2 {
+
             .content {
                 padding: 20px;
             }
@@ -259,6 +263,9 @@
     }
 
     .circle-note {
+        padding-bottom: 20px;
+        margin-top    : -25px;
+
         .wrap-btn-note {
             height          : 65px;
             width           : 65px;
