@@ -17,7 +17,7 @@ export const Home = () => {
             <div>
               <h3
                 style={{
-                  height: "500px",
+                  // height: "500px",
                   color: "#fff",
                   lineHeight: "160px",
                   textAlign: "center",
@@ -31,13 +31,15 @@ export const Home = () => {
         </Carousel>
       </div>
 
-      <SearchingForm />
+      <div className="home-container">
+        <SearchingForm />
 
-      <BestSell />
+        <BestSell />
 
-      <PopularItems />
+        <PopularItems />
 
-      <AboutUs />
+        <AboutUs />
+      </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ import bathroom from "../../assets/images/bath.png";
 import square_meter from "../../assets/images/square_meter.png";
 import direction from "../../assets/images/direction.png";
 import bed from "../../assets/images/bed.png";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Divider, Row } from "antd";
 
 interface Props {
   img_url: string;
@@ -40,12 +40,14 @@ export const ProductItem: FC<Props> = ({
 
       <p className="product_name">{product_name}</p>
       <Row className="detail-info-with-icon__container">
-        <Col span={1}></Col>
-        <Col span={5} className="detail-info-with-icon__item">
+        <Col xxl={2} xl={1} lg={1}></Col>
+        <Col xxl={5} xl={5} lg={5} className="detail-info-with-icon__item">
           <img src={bed} className="icon" /> {bedrooms}PN
         </Col>
         <Col
-          span={8}
+          xxl={7}
+          xl={8}
+          lg={9}
           style={{
             display: "flex",
             alignItems: "center",
@@ -58,15 +60,23 @@ export const ProductItem: FC<Props> = ({
             <i className="fas fa-info-circle" style={{ marginLeft: 5 }}></i>
           </div>
         </Col>
-        <Col span={4} className="detail-info-with-icon__item">
+        <Col xxl={4} xl={4} lg={3} className="detail-info-with-icon__item">
           <img src={bathroom} className="icon" />
           {bathrooms}
         </Col>
-        <Col span={6} className="detail-info-with-icon__item">
+        <Col
+          xxl={6}
+          xl={6}
+          lg={6}
+          md={6}
+          className="detail-info-with-icon__item"
+        >
           <img src={direction} className="icon" />
           {direct}
         </Col>
       </Row>
+
+      <Divider type="horizontal" />
 
       <p className="price-title">
         Giá niêm yết <i className="fas fa-info-circle"></i>

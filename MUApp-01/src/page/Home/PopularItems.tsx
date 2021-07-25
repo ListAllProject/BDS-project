@@ -51,10 +51,10 @@ export const PopularItems = () => {
           style={{ marginBottom: "3%" }}
         />
 
-        <div className="project-container">
-          <Row gutter={34}>
+        <div className="project-container popular-items">
+          <Row className="popular-items__row">
             {data.map((item, index) => (
-              <Col span={8} key={index} className="col-contain-item">
+              <Col span={7} key={index} className="col-contain-item">
                 <ProductItem
                   img_url={item.img_url}
                   product_name={item.product_name}

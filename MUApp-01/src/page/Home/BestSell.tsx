@@ -21,7 +21,7 @@ export const BestSell = () => {
         />
 
         <div className="project-container">
-          <Row gutter={34}>
+          <Row className="item-row" gutter={0}>
             {[
               {
                 link: lang_apec_golden_palaceson,
@@ -40,7 +40,7 @@ export const BestSell = () => {
                 description: "Khu căn hộ cao cấp liền kề Vinhomes Riverside",
               },
             ].map((item) => (
-              <Col span={8} key={item.link}>
+              <Col className="item-col" span={7} key={item.link}>
                 <img src={item.link} style={{ width: "100%" }} />
                 <p className="item_title">{item.name}</p>
                 <p className="item_description">{item.description}</p>

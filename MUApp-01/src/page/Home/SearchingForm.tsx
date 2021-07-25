@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
 import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
@@ -8,6 +8,7 @@ const { Option } = Select;
 
 export const SearchingForm = () => {
   const [form] = Form.useForm();
+  const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
   return (
     <>
       <div className="container center-container">
@@ -57,13 +58,44 @@ export const SearchingForm = () => {
             </Row>
             <Row gutter={16}>
               <Col span={8}>
-                <Form.Item name="price">
-                  <Slider range defaultValue={[20, 50]} />
+                <Form.Item
+                  name="price"
+                  label="Khoảng giá"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  className="searching_form_label_slider"
+                >
+                  <Slider
+                    onChange={(value) => setSliderValue(value)}
+                    range
+                    tooltipVisible={false}
+                    defaultValue={[0, 50]}
+                    value={sliderValue}
+                    marks={{
+                      [sliderValue[0]]: {
+                        style: {
+                          color: "#000000",
+                        },
+                        label: <strong>{sliderValue[0]} tỷ</strong>,
+                      },
+                      [sliderValue[1]]: {
+                        style: {
+                          color: "#000000",
+                        },
+                        label: <strong>{sliderValue[1]} tỷ</strong>,
+                      },
+                    }}
+                  />
                 </Form.Item>
               </Col>
               <Col span={8}>
                 <Form.Item name="project_kind">
-                  <Select style={{ width: "100%" }} placeholder="Loại dự án">
+                  <Select
+                    style={{ width: "100%", marginTop: "17px" }}
+                    placeholder="Loại dự án"
+                  >
                     <Option value="1">HCM</Option>
                     <Option value="2">Dak Lak</Option>
                     <Option value="3">Nghe An</Option>
@@ -76,7 +108,7 @@ export const SearchingForm = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                marginTop: 20,
+                // marginTop: 20,
               }}
             >
               <Button size="large" className="submit-btn">
