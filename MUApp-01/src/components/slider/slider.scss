@@ -1,11 +1,11 @@
 @import '../../styles/color/variables.scss';
 
-.container {
+.container-slider {
   height  : fit-content;
   position: relative;
   width   : 100%;
 
   .slick-next {
-    display: none !important;
+    // display: none !important;
   }
 }

@@ -3,7 +3,9 @@ import { Component } from "react";
 import Slider, { Settings } from "react-slick";
 import "./slider.scss";
 
-interface state {}
+interface state {
+  indexBox: number;
+}
 interface props {
   settings?: Settings;
   components?: JSX.Element[];
@@ -13,7 +15,7 @@ interface props {
 }
 
 export default class CustomArrows extends Component<props, state> {
-  slider: any;
+  slider: Slider | undefined | null;
   element!: JSX.Element[];
   setting: Settings;
 
@@ -28,12 +30,16 @@ export default class CustomArrows extends Component<props, state> {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+    this.state = {
+      indexBox: 0,
+    };
   }
   next() {
-    this.slider.slickNext();
+    this.slider?.slickNext();
   }
+
   previous() {
-    this.slider.slickPrev();
+    this.slider?.slickPrev();
   }
   render() {
     // const settings = {
@@ -43,13 +49,33 @@ export default class CustomArrows extends Component<props, state> {
     //   slidesToShow: this.props?.slidesToShow || 1,
     //   slidesToScroll: this.props?.slidesToScroll || 1,
     // };
-    const { className, components, classNextArrow,classPreviousArrow, settings } = this.props;
+    const {
+      className,
+      components,
+      classNextArrow,
+      classPreviousArrow,
+      settings,
+    } = this.props;
 
     return (
-      <div className="container">
-        <i className={classNextArrow} onClick={this.previous}></i>
+      <div className="container-slider">
+        <i
+          style={{ cursor: "pointer" }}
+          className={classPreviousArrow}
+          onClick={this.previous}
+        ></i>
         <span className="component-list">
           <Slider
+            // onReInit={() => console.log(11)}
+            // afterChange={(e) => console.log(e)}
+            // onEdge={(e) => {
+            //   console.log(e);
+            // }}
+            beforeChange={(cur, next) => {
+              if (cur < next) {
+                
+              }
+            }}
             {...{ ...this.setting, ...settings }}
             ref={(c) => (this.slider = c)}
           >
@@ -58,7 +84,11 @@ export default class CustomArrows extends Component<props, state> {
             })}
           </Slider>
         </span>
-        <i className={classPreviousArrow} onClick={this.next}></i>
+        <i
+          style={{ cursor: "pointer" }}
+          className={classNextArrow}
+          onClick={this.next}
+        ></i>
       </div>
     );
   }
