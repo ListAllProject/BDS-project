@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.login-container{
+.forgot-password-container{
   width: 540px;
   border-radius: 16px;
   background-color: white;
@@ -36,11 +36,14 @@
       background-color: $primary--color1;
       width: 80px;
       height: 3px;
-      margin-top: 16px;
+      margin-top: 10px;
+    }
+
+    .note {
+      margin-top: 20px;
     }
 
     .body {
-      margin-top: 5px;
       width: 100%;
 
       .ant-input-affix-wrapper {
@@ -48,7 +51,10 @@
         border-bottom: 1px solid $primary--color1;
         border-radius: 0px;
         line-height: 40px;
-        margin-top: 10px;
+      }
+
+      .ant-input-affix-wrapper-focused {
+        border: 0px solid white;
       }
 
       i {
@@ -56,20 +62,12 @@
       }
     }
 
-    .additional-action {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-      line-height: 20px;
-    }
-    
     .footer {
       display: flex;
       flex-flow: column;
       align-items: center;
 
-      .login-button {
+      .send-button {
         margin-top: 20px;
         width: 168px;
         height: 40px;
@@ -80,28 +78,6 @@
         align-items: center;
         border-radius: 6px;
         font-weight: 600;
-      }
-
-      .social-login {
-        margin-top: 20px;
-
-        .social-logo {
-          display: flex;
-          justify-content: center;
-
-          img {
-            width: 30px;
-            height: 30px;
-            margin: 15px;
-          }
-        }
-      }
-
-      .note {
-        a {
-          text-decoration: underline;
-          color: $primary--color1;
-        }
       }
     }
   }  

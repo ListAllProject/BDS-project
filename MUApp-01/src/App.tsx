@@ -10,9 +10,9 @@ import {
   useRouteMatch,
   useParams,
 } from "react-router-dom";
-import { Forgetpassw } from "./page/authentication/forgetpassw/forgetpassw";
+import { Forgotpassw } from "./page/authentication/forgotpassw/forgotpassw";
 import { Login } from "./page/authentication/login/login";
-import { Logout } from "./page/authentication/logout/logout";
+import { Register } from "./page/authentication/register/register";
 import { Index } from "./page";
 
 function App() {
@@ -20,13 +20,13 @@ function App() {
     <Router>
       <Switch>
         <Route path="/forget-password">
-          <Forgetpassw />
+          <Forgotpassw />
         </Route>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/logout">
-          <Logout />
+          <Register />
         </Route>
         <Route path="/">
           <Index />

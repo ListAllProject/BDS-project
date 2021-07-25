@@ -1,0 +1,11 @@
+@import '../../styles/color/variables.scss';
+
+.container {
+  height  : fit-content;
+  position: relative;
+  width   : 100%;
+
+  .slick-next {
+    display: none !important;
+  }
+}
