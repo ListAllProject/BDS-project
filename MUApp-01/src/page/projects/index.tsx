@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
 // import "../home/home.scss";
-import "./selling.scss";
+import "./projects.scss";
 import { Seperate } from "../../components/seperate/seperate";
 import room1 from "../../assets/images/room_1.png";
 import room2 from "../../assets/images/room-2.png";
@@ -163,7 +163,7 @@ const data = [
   },
 ];
 
-export const Selling = () => {
+export const Projects = () => {
   const [form] = Form.useForm();
 
   const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
@@ -179,7 +179,7 @@ export const Selling = () => {
         // }}
       >
         <div className="title-selling">
-          <h2>BẤT ĐỘNG SẢN ĐANG BÁN</h2>
+          <h2>DỰ ÁN</h2>
           <Seperate widthChil={80} widthPar={357} />
         </div>
         <div className="searching-box-sell">

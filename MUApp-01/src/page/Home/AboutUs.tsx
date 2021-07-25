@@ -57,7 +57,7 @@ export const AboutUs = () => {
             marginTop: 60,
           }}
         >
-          <Button className="submit-btn" size="large" style={{}}>
+          <Button className="primary-btn" size="large" style={{}}>
             TÌM HIỂU THÊM
           </Button>
         </Row>

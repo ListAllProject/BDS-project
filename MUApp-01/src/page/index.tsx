@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
+import { Projects } from "./projects";
 
 export const Index = () => {
   return (
@@ -15,6 +16,9 @@ export const Index = () => {
       <HeaderWrap />
       <Router>
         <Switch>
+          <Route exact path="/projects">
+            <Projects />
+          </Route>
           <Route exact path="/selling">
             <Selling />
           </Route>

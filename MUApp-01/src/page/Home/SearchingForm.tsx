@@ -107,7 +107,7 @@ export const SearchingForm = () => {
                 // marginTop: 20,
               }}
             >
-              <Button size="large" className="submit-btn">
+              <Button size="large" className="primary-btn">
                 <i className="fas fa-search"></i> TÌM KIẾM
               </Button>
             </Row>
