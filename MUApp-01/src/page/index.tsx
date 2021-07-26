@@ -9,6 +9,7 @@ import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects";
+import { Blog } from "./blog/blog";
 
 export const Index = () => {
   return (
@@ -23,6 +24,9 @@ export const Index = () => {
         </Route>
         <Route exact path="/table-price">
           <TablePrice />
+        </Route>
+        <Route exact path="/tin-tuc">
+          <Blog />
         </Route>
         <Route path="/product-detail" component={Detail}></Route>
         <Route path="/">

@@ -99,10 +99,16 @@ export const HeaderWrap = () => {
               HỖ TRỢ <i className="fas fa-caret-down"></i>
             </span>
 
-            <span className="item-text">
+            <NavLink
+              to={{
+                pathname: "/tin-tuc",
+              }}
+              className="item-text"
+              activeClassName={"item-text-selected"}
+            >
               TIN TỨC
               {/* <i   className="fas fa-caret-down"></i> */}
-            </span>
+            </NavLink>
           </div>
 
           <div className="right">
@@ -205,10 +211,14 @@ export const HeaderWrap = () => {
 
           <span className="tab-item">HỖ TRỢ</span>
 
-          <span className="tab-item">
+          <NavLink
+            to={{
+              pathname: "/tin-tuc",
+            }}
+            className="tab-item"
+          >
             TIN TỨC
-            {/* <i   className="fas fa-caret-down"></i> */}
-          </span>
+          </NavLink>
 
           <NavLink className="tab-item" to="/table-price">
             <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
