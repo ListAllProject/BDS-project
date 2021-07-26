@@ -29,17 +29,19 @@ export default class CustomArrows extends Component<props, state> {
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
+      arrows: false,
     };
     this.state = {
       indexBox: 0,
     };
   }
+
   next() {
-    this.slider?.slickNext();
+    this.slider?.slickGoTo(this.state.indexBox + 1);
   }
 
   previous() {
-    this.slider?.slickPrev();
+    this.slider?.slickGoTo(this.state.indexBox - 1);
   }
   render() {
     // const settings = {
@@ -67,14 +69,13 @@ export default class CustomArrows extends Component<props, state> {
         <span className="component-list">
           <Slider
             // onReInit={() => console.log(11)}
-            // afterChange={(e) => console.log(e)}
             // onEdge={(e) => {
             //   console.log(e);
             // }}
             beforeChange={(cur, next) => {
-              if (cur < next) {
-                
-              }
+              this.setState({
+                indexBox: next,
+              });
             }}
             {...{ ...this.setting, ...settings }}
             ref={(c) => (this.slider = c)}

@@ -61,8 +61,6 @@ const settings = {
   ),
 };
 
-let arr = [10, 20, 30, 40, 50, 60, 70, 80];
-
 const settings2 = {
   infinite: false,
   speed: 500,
@@ -94,17 +92,9 @@ const settings2 = {
       },
     },
   ],
-  // nextArrow: (
-  //   <span>
-  //     <i className="far fa-chevron-left"></i>
-  //   </span>
-  // ),
-  // prevArrow: (
-  //   <span style={{ color: "white" }}>
-  //     <i className="far fa-chevron-right"></i>
-  //   </span>
-  // ),
 };
+
+let arr = [10, 20, 30, 40, 50, 60, 70, 80];
 
 interface objData {
   key: string;
@@ -126,6 +116,9 @@ const columns = [
           style: {
             background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
             textAlign: "center",
+            color: "#011769",
+            fontWeight: "bold",
+            lineHeight: "21px"
           },
         },
         children: <div>{text}</div>,
@@ -149,8 +142,6 @@ const columns = [
         children: <div>{text}</div>,
       };
     },
-
-    // fixed: "left",
   },
   {
     title: "02 1PN+1 TN   42,9",
@@ -222,7 +213,7 @@ const columns = [
     },
   },
   {
-    title: "06 3PN TB-TN 75,6 (75,1)",
+    title: "06 3PN TB-TN 75,6(75,1)",
     dataIndex: "address",
     width: "calc(100% / 12)",
     key: "4",
@@ -239,7 +230,7 @@ const columns = [
     },
   },
   {
-    title: "8A 2PN+1 ĐB-TB 63,3 (62,9)",
+    title: "8A 2PN+1 ĐB-TB 63,3(62,9)",
     dataIndex: "address",
     width: "calc(100% / 12)",
     key: "5",
@@ -256,7 +247,7 @@ const columns = [
     },
   },
   {
-    title: "08 2PN+1 ĐB 54,1 (53,7)",
+    title: "08 2PN+1 ĐB 54,1(53,7)",
     dataIndex: "address",
     width: "calc(100% / 12)",
     key: "6",
@@ -273,7 +264,7 @@ const columns = [
     },
   },
   {
-    title: "9 2PN+1 ĐB 54,8 (54,3)",
+    title: "9 2PN+1 ĐB 54,8(54,3)",
     dataIndex: "address",
     width: "calc(100% / 12)",
     key: "7",
@@ -307,7 +298,7 @@ const columns = [
     },
   },
   {
-    title: "11 2PN+1 ĐB-TB 63,4 (63)",
+    title: "11 2PN+1 ĐB-TB 63,4(63)",
     dataIndex: "address",
     width: "calc(100% / 12)",
     key: "9",
@@ -552,7 +543,7 @@ const dataSlide2: JSX.Element[] = [
       </div>
     </CircularProgressbarWithChildren>
   </div>,
-  ...(arr.map((e) => {
+  ...arr.map((e) => {
     return (
       <div className="cirle-ratio">
         <CircularProgressbarWithChildren strokeWidth={2} value={e}>
@@ -575,9 +566,8 @@ const dataSlide2: JSX.Element[] = [
         </CircularProgressbarWithChildren>
       </div>
     );
-  }))
+  }),
 ];
-
 
 const dataSlide1 = [
   <div className="box">
@@ -671,9 +661,11 @@ class NoteInfor extends Component<any, state> {
       if (this.state.show) {
         this.refss.style.opacity = "0";
         this.refss.style.transition = "400ms";
+        this.refss.style.display = "none";
       } else {
         this.refss.style.opacity = "1";
         this.refss.style.transition = "400ms";
+        this.refss.style.display = "flex";
       }
     }
 
