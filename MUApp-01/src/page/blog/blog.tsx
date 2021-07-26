@@ -184,13 +184,7 @@ export const Blog = () => {
           style={{ display: "flex", justifyContent: "center", marginTop: 40 }}
         >
           <span
-            style={{
-              padding: "9px 43px",
-              background: `linear-gradient(91.13deg, #e3ab43 0%, #c79345 100%)`,
-              borderRadius: 6,
-              color: "white",
-              fontWeight: 600
-            }}
+           className="btn-loadmore"
           >
             Xem Thêm <i className="fas fa-sort-down"></i>
           </span>
