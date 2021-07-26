@@ -9,12 +9,16 @@ import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects";
+import { News } from "./news/news";
 
 export const Index = () => {
   return (
     <>
       <HeaderWrap />
       <Switch>
+        <Route exact path="/tin-tuc">
+          <News />
+        </Route>
         <Route exact path="/projects">
           <Projects />
         </Route>
