@@ -1,4 +1,4 @@
-import React, { Component, useRef, useState } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import "./tablePrice.scss";
 import { Button, Carousel, Progress, Table } from "antd";
 import imgSlider1 from "../../assets/images/5.png";
@@ -78,7 +78,7 @@ const settings2 = {
       },
     },
     {
-      breakpoint: 600,
+      breakpoint: 670,
       settings: {
         slidesToShow: 3,
         slidesToScroll: 1,
@@ -118,7 +118,7 @@ const columns = [
             textAlign: "center",
             color: "#011769",
             fontWeight: "bold",
-            lineHeight: "21px"
+            lineHeight: "21px",
           },
         },
         children: <div>{text}</div>,
@@ -591,6 +591,33 @@ const dataSlide1 = [
 ];
 
 export const TablePrice = () => {
+  const [numberSlider1, setNumberSlider1] = useState(4);
+  const [numberSlider2, setNumberSlider2] = useState(5);
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 992) {
+        setNumberSlider1(3);
+        setNumberSlider2(4);
+      } else if (window.innerWidth < 670) {
+        setNumberSlider1(2);
+        setNumberSlider2(3);
+      } else if (window.innerWidth < 480) {
+        setNumberSlider1(1);
+        setNumberSlider2(2);
+      } else {
+        setNumberSlider1(4);
+        setNumberSlider2(5);
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="container-table-price">
       <div
@@ -612,6 +639,7 @@ export const TablePrice = () => {
                 classNextArrow={"fal fa-chevron-right next-arrow"}
                 components={dataSlide1}
                 settings={settings}
+                showNum={numberSlider1}
               />
             </div>
           </div>
@@ -624,6 +652,7 @@ export const TablePrice = () => {
               classNextArrow={"fal fa-chevron-right next-arrow"}
               components={dataSlide2}
               settings={settings2}
+              showNum={numberSlider2}
             />
           </div>
           <div className="circle-note">

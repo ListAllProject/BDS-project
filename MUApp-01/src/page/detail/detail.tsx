@@ -10,9 +10,11 @@ import BackgroundGradientImage from "../../assets/images/background-gradient.png
 import "./detail.scss";
 import CustomSlider from "../../components/slider/slider";
 
+const settings = {
+  infinite: true,
+};
+
 export const Detail = () => {
-
-
   const imageList: JSX.Element[] = [
     <img src={RoomImage1} alt="Room 01" />,
     <img src={S11Image} alt="Room 01" />,
@@ -48,6 +50,8 @@ export const Detail = () => {
                 classNextArrow="fal fa-chevron-circle-right next-arrow"
                 components={imageList}
                 classPreviousArrow="fal fa-chevron-circle-left previous-arrow"
+                showNum={0}
+                settings={settings}
               ></CustomSlider>
             </div>
             <div className="additional-action">
