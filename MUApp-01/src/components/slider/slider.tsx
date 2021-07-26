@@ -8,10 +8,11 @@ interface state {
 }
 interface props {
   settings?: Settings;
-  components?: JSX.Element[];
+  components: JSX.Element[];
   className?: string;
   classNextArrow: string;
   classPreviousArrow: string;
+  showNum: number;
 }
 
 export default class CustomArrows extends Component<props, state> {
@@ -57,13 +58,20 @@ export default class CustomArrows extends Component<props, state> {
       classNextArrow,
       classPreviousArrow,
       settings,
+      showNum,
     } = this.props;
 
+    let sizeDisable = components.length - this.props.showNum;
     return (
       <div className="container-slider">
         <i
           style={{ cursor: "pointer" }}
-          className={classPreviousArrow}
+          className={
+            classPreviousArrow +
+            `${
+              this.state.indexBox === 0 && !settings?.infinite ? " disable" : ""
+            }`
+          }
           onClick={this.previous}
         ></i>
         <span className="component-list">
@@ -80,14 +88,21 @@ export default class CustomArrows extends Component<props, state> {
             {...{ ...this.setting, ...settings }}
             ref={(c) => (this.slider = c)}
           >
-            {this.props.components?.map((e) => {
+            {components?.map((e) => {
               return e;
             })}
           </Slider>
         </span>
         <i
           style={{ cursor: "pointer" }}
-          className={classNextArrow}
+          className={
+            classNextArrow +
+            `${
+              this.state.indexBox === sizeDisable && !settings?.infinite
+                ? " disable"
+                : ""
+            }`
+          }
           onClick={this.next}
         ></i>
       </div>

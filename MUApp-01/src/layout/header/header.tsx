@@ -12,25 +12,6 @@ interface Size {
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
 
-  //   useEffect(() => {
-  //     function handleResize() {
-  //       // Set window width/height to state
-  //       if (window.innerWidth) {
-  //         if (window.innerWidth < 900) {
-  //           setVisible(true);
-  //         } else {
-  //           setVisible(false);
-  //         }
-  //       }
-  //     }
-
-  //     window.addEventListener("resize", handleResize);
-  //     // Call handler right away so state gets updated with initial window size
-  //     handleResize();
-  //     // Remove event listener on cleanup
-  //     return () => window.removeEventListener("resize", handleResize);
-  //   }, []);
-
   return (
     <div className="container-header">
       <div className="logo">
