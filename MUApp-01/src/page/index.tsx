@@ -9,7 +9,7 @@ import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects";
-import { Blog } from "./blog/blog";
+import { Blog } from "./blogs/blogs";
 import { News } from "./news/news";
 
 export const Index = () => {
@@ -20,19 +20,19 @@ export const Index = () => {
         <Route exact path="/tin-tuc">
           <News />
         </Route>
-        <Route exact path="/projects">
+        <Route exact path="/du-an">
           <Projects />
         </Route>
-        <Route exact path="/selling">
+        <Route exact path="/dang-ban">
           <Selling />
         </Route>
-        <Route exact path="/table-price">
+        <Route exact path="/bang-gia-truc-tuyen">
           <TablePrice />
         </Route>
-        <Route exact path="/tin-tuc">
+        <Route exact path="/danh-sach-tin-tuc">
           <Blog />
         </Route>
-        <Route path="/product-detail" component={Detail}></Route>
+        <Route path="/chi-tiet-du-an" component={Detail}></Route>
         <Route path="/">
           <Home />
         </Route>

@@ -76,7 +76,7 @@ export const HeaderWrap = () => {
 
             <NavLink
               to={{
-                pathname: "/selling",
+                pathname: "/dang-ban",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
@@ -88,7 +88,7 @@ export const HeaderWrap = () => {
             </span>
             <NavLink
               to={{
-                pathname: "/projects",
+                pathname: "/du-an",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
@@ -101,7 +101,7 @@ export const HeaderWrap = () => {
 
             <NavLink
               to={{
-                pathname: "/tin-tuc",
+                pathname: "/danh-sach-tin-tuc",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
@@ -113,7 +113,7 @@ export const HeaderWrap = () => {
 
           <div className="right">
             <div className="wrap-right-content">
-              <Link to="/table-price">
+              <Link to="/bang-gia-truc-tuyen">
                 <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
               </Link>
               <Link
@@ -191,7 +191,7 @@ export const HeaderWrap = () => {
 
           <NavLink
             to={{
-              pathname: "/selling",
+              pathname: "/dang-ban",
             }}
             className="tab-item"
           >
@@ -202,7 +202,7 @@ export const HeaderWrap = () => {
 
           <NavLink
             to={{
-              pathname: "/projects",
+              pathname: "/du-an",
             }}
             className="tab-item"
           >
@@ -213,14 +213,14 @@ export const HeaderWrap = () => {
 
           <NavLink
             to={{
-              pathname: "/tin-tuc",
+              pathname: "/danh-sach-tin-tuc",
             }}
             className="tab-item"
           >
             TIN TỨC
           </NavLink>
 
-          <NavLink className="tab-item" to="/table-price">
+          <NavLink className="tab-item" to="/bang-gia-truc-tuyen">
             <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
           </NavLink>
 

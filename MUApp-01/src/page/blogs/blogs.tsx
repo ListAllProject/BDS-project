@@ -1,5 +1,5 @@
 import React from "react";
-import "./blog.scss";
+import "./blogs.scss";
 import topimg from "../../assets/images/bgr-blog.jpg";
 import imgTop1 from "../../assets/images/img-top2.png";
 import imgTop2 from "../../assets/images/img-top3.png";
