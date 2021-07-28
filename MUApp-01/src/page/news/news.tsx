@@ -20,23 +20,25 @@ export const News = () => {
             bậc nhất tại trung tâm phía Đông Hà Nội.
           </p>
         </Col>
-        <Col xxl={4} xl={4} lg={4} className="popuplar-news">
+        <Col span={4} className="popuplar-news">
           <p className="popuplar-news__title">Tin tức nổi bật</p>
 
-          {[1, 2, 3, 4].map((item) => (
-            <div className="popuplar-news__item">
-              <img src={news_1} alt="sm-imageaa" className="news-sm-image" />
-              <div className="news-item">
-                <p className="sm-news-title">
-                  Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao
-                  la
-                </p>
-                <p className="news-datetime">
-                  <i className="far fa-clock"></i> Thứ 2, 08/07/2019
-                </p>
-              </div>
-            </div>
-          ))}
+          <Row className="popuplar-news__container">
+            {[1, 2, 3, 4].map((item) => (
+              <Col span={24} className="popuplar-news__item">
+                <img src={news_1} alt="sm-imageaa" className="news-sm-image" />
+                <div className="news-item">
+                  <p className="sm-news-title">
+                    Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh
+                    bao la
+                  </p>
+                  <p className="news-datetime">
+                    <i className="far fa-clock"></i> Thứ 2, 08/07/2019
+                  </p>
+                </div>
+              </Col>
+            ))}
+          </Row>
         </Col>
       </Row>
     </div>
