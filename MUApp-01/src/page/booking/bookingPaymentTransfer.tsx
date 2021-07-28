@@ -72,7 +72,7 @@ export const BookingPaymentTransfer = () => {
               <Upload
                 listType="picture"
                 {...props}>
-                <ButtonCustom onClick={() => {}} text="Chọn file" />
+                <ButtonCustom style={{padding: "5px 43px"}}  onClick={() => {}} text="Chọn file" />
               </Upload>
             }></Input>
             <div style={{ position: 'absolute', top: '14px', left: '0px', color: '#999999', width: 'calc(100% - 110px)', textOverflow: 'ellipsis', whiteSpace: 'nowrap', overflow: 'hidden' }}>
@@ -81,13 +81,13 @@ export const BookingPaymentTransfer = () => {
           </div>
 
           <div className="submit-button">
-            <ButtonCustom onClick={() => {}} text="Xác nhận" />
+            <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {}} text="Xác nhận" />
           </div>
         </div> {/* End of Page */}
 
         <BookingInformation></BookingInformation>
         <div className="submit-button-replace">
-          <ButtonCustom onClick={() => {}} text="Xác nhận" />
+          <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {}} text="Xác nhận" />
         </div>
       </div>
     </div>

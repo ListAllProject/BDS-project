@@ -165,10 +165,11 @@ export const Detail = () => {
               />
               <ButtonCustom
                 style={{
-                  background: "white",
+                  background: "unset",
                   width: "44.5%",
                   color: "#E1A943",
                   border: "1px solid #E1A943",
+                  backgroundColor: "unset"
                 }}
                 text="Tính thử giá"
                 onClick={() => null}

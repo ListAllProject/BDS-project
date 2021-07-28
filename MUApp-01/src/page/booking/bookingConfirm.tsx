@@ -1,13 +1,14 @@
 import { BookingInformation } from "./bookingInformation";
 import "./booking.scss";
-import { Input, Form, Select } from "antd";
+import { Input, Form, Select, Button } from "antd";
 import ButtonCustom from "../../components/buttonCustom/buttonCustom";
 import { FormInstance } from "antd/lib/form";
 import React from "react";
 const { Option } = Select;
 
 const onSubmit = () => {
-  console.log("aaaa", formRef.current);
+  // window.history.pushState(null, "", "/")
+  // console.log("aaaa", formRef.current);
   formRef.current?.submit();
 };
 
@@ -43,7 +44,11 @@ export const BookingConfirm = () => {
           {/* Form input */}
           <Form ref={formRef} layout="vertical">
             <div className="booking-confirm-form-row">
-              <Form.Item label="Họ tên">
+              <Form.Item
+                label="Họ tên "
+                name="name"
+                rules={[{ required: true, message: "Vui lòng nhập họ tên!" }]}
+              >
                 <Input placeholder="Tên người booking" />
               </Form.Item>
               <Form.Item style={{}} label="Số CMND/ CCCD/ Hộ chiếu">
@@ -52,7 +57,16 @@ export const BookingConfirm = () => {
             </div>
 
             <div className="booking-confirm-form-row">
-              <Form.Item label="Số điện thoại">
+              <Form.Item
+                label="Số điện thoại "
+                name="phone-number"
+                rules={[
+                  {
+                    required: true,
+                    message: "Vui lòng nhập nhập số điện thoại!",
+                  },
+                ]}
+              >
                 <Input placeholder="Nhập số điện thoại" />
               </Form.Item>
               <Form.Item label="Email">
@@ -99,6 +113,13 @@ export const BookingConfirm = () => {
             <Form.Item
               style={{ marginTop: "20px" }}
               label="Phương thức thanh toán"
+              name="payment-method"
+              rules={[
+                {
+                  required: true,
+                  message: "Vui lòng chọn phương thức thanh toán",
+                },
+              ]}
             >
               <Select placeholder="Chuyen khoan">
                 <Option value="1">Chuyen khoan</Option>
@@ -108,14 +129,17 @@ export const BookingConfirm = () => {
             </Form.Item>
 
             <div className="submit-button">
-              <ButtonCustom onClick={() => {}} type="submit" text="Xác nhận" />
+              <Button size="large" className="primary-btn">
+                Xác nhận
+              </Button>
             </div>
           </Form>
         </div>
         <BookingInformation></BookingInformation>
         <ButtonCustom
+          // style={{ display: "flex", alignItems: "center" }}
+          style={{ padding: "9px 43px" }}
           onClick={() => onSubmit()}
-          type="submit"
           text="Xác nhận"
           className="submit-button-replace"
         />

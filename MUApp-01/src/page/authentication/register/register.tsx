@@ -1,6 +1,6 @@
 import "./register.scss";
-import { Input, Checkbox } from "antd";
-import ButtonCustom from "../../../components/buttonCustom/buttonCustom";
+import { Input, Checkbox, Button } from "antd";
+// import ButtonCustom from "../../../components/buttonCustom/buttonCustom";
 
 export const Register = () => {
   return (
@@ -45,13 +45,16 @@ export const Register = () => {
             </div>
             <div className="note"></div>
             <div style={{ display: "flex", justifyContent: "center" }}>
-              <ButtonCustom text="ĐĂNG KÝ" onClick={() => null} />
+              <Button size="large" className="primary-btn">
+                ĐĂNG KÝ
+              </Button>
+              {/* <ButtonCustom text="ĐĂNG KÝ" onClick={() => null} /> */}
             </div>
             <div className="note">
               <a href="/">Hướng dẫn đăng ký tài khoản</a>
             </div>
             <div className="note">
-              Bạn đã có tài khoản? <a  href="/">Đăng nhập ngay</a>
+              Bạn đã có tài khoản? <a href="/">Đăng nhập ngay</a>
             </div>
           </div>
         </div>

@@ -259,7 +259,7 @@ export const Projects = () => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col className="select-box-status"  span={8}>
                 <Form.Item name="project_kind">
                   <Select
                     style={{ width: "100%", marginTop: "17px" }}

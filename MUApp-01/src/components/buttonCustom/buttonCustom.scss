@@ -1,5 +1,5 @@
 .btn-custom {
-    padding      : 9px 43px;
+    padding      : 9px 0px;
     background  : linear-gradient(91.13deg, #e3ab43 0%, #c79345 100%);
     border-radius: 6px;
     color        : white;
@@ -9,3 +9,25 @@
     white-space  : nowrap;
     text-align   : center;
 }
+
+.primary-btn {
+    background: linear-gradient(91.13deg, #e3ab43 0%, #c79345 100%);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    color: #ffffff;
+    border-color: transparent; 
+    white-space  : nowrap;
+    padding: 10px 40px;
+    i {
+      margin-right: 10px;
+    }
+    &:hover {
+      background: linear-gradient(91.13deg, #e3ab43 0%, #c79345 100%);
+      border-color: transparent;
+      color: #ffffff;
+      opacity: 0.9;
+    }
+  }

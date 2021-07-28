@@ -1,8 +1,7 @@
 import "./login.scss";
-import { Input, Checkbox } from "antd";
+import { Input, Checkbox, Button } from "antd";
 import FacebookLogo from "../../../assets/images/facebook.svg";
 import GoogleLogo from "../../../assets/images/google.svg";
-import ButtonCustom from "../../../components/buttonCustom/buttonCustom";
 
 export const Login = () => {
   return (
@@ -37,7 +36,9 @@ export const Login = () => {
                 marginTop: 20,
               }}
             >
-              <ButtonCustom text="ĐĂNG NHẬP" onClick={() => null} />
+              <Button size="large" className="primary-btn">
+                ĐĂNG NHẬP
+              </Button>
             </div>
             <div className="social-login">
               <div>Hoặc đăng nhập bằng</div>
@@ -47,7 +48,7 @@ export const Login = () => {
               </div>
             </div>
             <div className="note">
-              Bạn chưa có tài khoản? <a  href="/">Đăng ký ngay</a>
+              Bạn chưa có tài khoản? <a href="/">Đăng ký ngay</a>
             </div>
           </div>
         </div>
