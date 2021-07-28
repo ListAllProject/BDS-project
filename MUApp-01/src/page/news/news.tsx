@@ -8,7 +8,7 @@ export const News = () => {
   return (
     <div className="news-container">
       <Row>
-        <Col span={20} className="main-content">
+        <Col xxl={20} xl={20} lg={20} className="main-content">
           <img src={news} />
           <p className="content">
             Là toà căn hộ mở bán cuối cùng tại "phân khu trái tim" của đại đô
@@ -21,7 +21,7 @@ export const News = () => {
             bậc nhất tại trung tâm phía Đông Hà Nội.
           </p>
         </Col>
-        <Col span={4} className="popuplar-news">
+        <Col xxl={4} xl={4} lg={4} className="popuplar-news">
           <p className="popuplar-news__title">Tin tức nổi bật</p>
 
           {[1, 2, 3, 4].map((item) => (
