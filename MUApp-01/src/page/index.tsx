@@ -1,34 +1,47 @@
-import React from "react";
-import { Carousel, Input, Layout } from "antd";
 import { HeaderWrap } from "../layout/header/header";
 import { FooterWrap } from "../layout/footer/footer";
 import { TablePrice } from "./tablePrice/tablePrice";
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects";
+import { Blog } from "./blogs/blogs";
 import { News } from "./news/news";
+import { Cart } from "./cart/cart";
+import { BookingConfirm } from "./booking/bookingConfirm";
+import { BookingPaymentTransfer } from "./booking/bookingPaymentTransfer";
 
 export const Index = () => {
   return (
     <>
       <HeaderWrap />
       <Switch>
+        <Route exact path="/xac-nhan-booking">
+          <BookingConfirm />
+        </Route>
+        <Route exact path="/thanh-toan-chuyen-khoan">
+          <BookingPaymentTransfer />
+        </Route>
+        <Route exact path="/gio-hang">
+          <Cart />
+        </Route>
         <Route exact path="/tin-tuc">
           <News />
         </Route>
-        <Route exact path="/projects">
+        <Route exact path="/du-an">
           <Projects />
         </Route>
-        <Route exact path="/selling">
+        <Route exact path="/dang-ban">
           <Selling />
         </Route>
-        <Route exact path="/table-price">
+        <Route exact path="/bang-gia-truc-tuyen">
           <TablePrice />
         </Route>
-        <Route path="/product-detail" component={Detail}></Route>
+        <Route exact path="/danh-sach-tin-tuc">
+          <Blog />
+        </Route>
+        <Route path="/chi-tiet-du-an" component={Detail}></Route>
         <Route path="/">
           <Home />
         </Route>

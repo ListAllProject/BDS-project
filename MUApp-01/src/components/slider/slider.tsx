@@ -1,4 +1,3 @@
-import { settings } from "cluster";
 import { Component } from "react";
 import Slider, { Settings } from "react-slick";
 import "./slider.scss";
@@ -53,12 +52,10 @@ export default class CustomArrows extends Component<props, state> {
     //   slidesToScroll: this.props?.slidesToScroll || 1,
     // };
     const {
-      className,
       components,
       classNextArrow,
       classPreviousArrow,
       settings,
-      showNum,
     } = this.props;
 
     let sizeDisable = components.length - this.props.showNum;

@@ -1,7 +1,5 @@
-import React, { Component, CSSProperties } from "react";
-import PropTypes from "prop-types";
+import { Component, CSSProperties } from "react";
 import "./seperate.scss";
-import { Input } from "antd";
 
 interface Props {
   widthPar: number ;
@@ -11,9 +9,9 @@ interface Props {
 }
 
 export class Seperate extends Component<Props, any> {
-  constructor(props: Props) {
-    super(props);
-  }
+  // constructor(props: Props) {
+  //   super(props);
+  // }
 
   render() {
     return (

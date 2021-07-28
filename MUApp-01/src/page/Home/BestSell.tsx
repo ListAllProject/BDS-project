@@ -1,7 +1,5 @@
-import React from "react";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
-import { HeaderWrap } from "../../layout/header/header";
-import { FooterWrap } from "../../layout/footer/footer";
+import { Row, Col } from "antd";
+
 import lang_apec_golden_palaceson from "../../assets/images/lang_son_apec_golden_palace.png";
 import pcti_bbch1 from "../../assets/images/pcti_bbch1.png";
 import vincity_ocean_park_anh from "../../assets/images/vinCity.png";
@@ -9,7 +7,7 @@ import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
 
 export const BestSell = () => {
-  const [form] = Form.useForm();
+  // const [form] = Form.useForm();
   return (
     <>
       <div className="homepage-container">
@@ -41,7 +39,7 @@ export const BestSell = () => {
               },
             ].map((item) => (
               <Col className="item-col" key={item.link}>
-                <img
+                <img alt="img"
                   src={item.link}
                   style={{ width: "100%", height: "200px" }}
                 />

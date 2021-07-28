@@ -1,22 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { Badge, Drawer, Input, Menu } from "antd";
+import { useState } from "react";
+import { Badge, Drawer, Dropdown, Input } from "antd";
 import logo from "../../assets/images/logo.png";
 import "./header.scss";
 import { Link, NavLink } from "react-router-dom";
 
-interface Size {
-  width: number | undefined;
-  height: number | undefined;
-}
-
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
+
+  const menu = (
+    <div className="menu-project">
+      <span className="span-item">
+      Vinhomes Ocean Park
+      </span>
+      <div className="div-space-menu-prj"></div>
+      <span  className="span-item">
+      Vinhomes Smart City
+      </span>
+    </div>
+  );
 
   return (
     <div className="container-header">
       <div className="logo">
         <Link to="/">
-          <img src={logo} />
+          <img alt="image3" src={logo} />
         </Link>
       </div>
       <div className="wrap-right">
@@ -28,8 +35,8 @@ export const HeaderWrap = () => {
           ></Input>
           <span
             style={{
-              padding: "0px 20px",
-              minWidth: 80,
+              margin: "0px 20px",
+              minWidth: 60,
               color: "#BE9355",
               whiteSpace: "nowrap",
             }}
@@ -43,7 +50,6 @@ export const HeaderWrap = () => {
           </span>
           <span
             style={{
-              minWidth: 95,
               color: "#BE9355",
               fontWeight: "bold",
               whiteSpace: "nowrap",
@@ -76,7 +82,7 @@ export const HeaderWrap = () => {
 
             <NavLink
               to={{
-                pathname: "/selling",
+                pathname: "/dang-ban",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
@@ -86,28 +92,37 @@ export const HeaderWrap = () => {
             <span className="item-text">
               SẮP BÁN <i className="fas fa-caret-down"></i>
             </span>
-            <NavLink
-              to={{
-                pathname: "/projects",
-              }}
-              className="item-text"
-              activeClassName={"item-text-selected"}
-            >
-              DỰ ÁN <i className="fas fa-caret-down"></i>
-            </NavLink>
+            <Dropdown overlay={menu}>
+              <NavLink
+                to={{
+                  pathname: "/du-an",
+                }}
+                className="item-text"
+                activeClassName={"item-text-selected"}
+              >
+                DỰ ÁN <i className="fas fa-caret-down  icon-prj"></i>
+              </NavLink>
+            </Dropdown>
+
             <span className="item-text">
               HỖ TRỢ <i className="fas fa-caret-down"></i>
             </span>
 
-            <span className="item-text">
+            <NavLink
+              to={{
+                pathname: "/danh-sach-tin-tuc",
+              }}
+              className="item-text"
+              activeClassName={"item-text-selected"}
+            >
               TIN TỨC
               {/* <i   className="fas fa-caret-down"></i> */}
-            </span>
+            </NavLink>
           </div>
 
           <div className="right">
             <div className="wrap-right-content">
-              <Link to="/table-price">
+              <Link to="/bang-gia-truc-tuyen">
                 <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
               </Link>
               <Link
@@ -137,7 +152,7 @@ export const HeaderWrap = () => {
             >
               <i className="fal fa-user-circle"></i>
             </span>
-            <Link to="/shopping-cart">
+            <Link to="/gio-hang">
               <span style={{ padding: "0px 5px " }}>
                 <Badge
                   style={{
@@ -163,7 +178,7 @@ export const HeaderWrap = () => {
         title={
           <div>
             <Link to="/">
-              <img src={logo} />
+              <img alt="image2" src={logo} />
             </Link>
           </div>
         }
@@ -185,7 +200,7 @@ export const HeaderWrap = () => {
 
           <NavLink
             to={{
-              pathname: "/selling",
+              pathname: "/dang-ban",
             }}
             className="tab-item"
           >
@@ -196,7 +211,7 @@ export const HeaderWrap = () => {
 
           <NavLink
             to={{
-              pathname: "/projects",
+              pathname: "/du-an",
             }}
             className="tab-item"
           >
@@ -205,12 +220,16 @@ export const HeaderWrap = () => {
 
           <span className="tab-item">HỖ TRỢ</span>
 
-          <span className="tab-item">
+          <NavLink
+            to={{
+              pathname: "/danh-sach-tin-tuc",
+            }}
+            className="tab-item"
+          >
             TIN TỨC
-            {/* <i   className="fas fa-caret-down"></i> */}
-          </span>
+          </NavLink>
 
-          <NavLink className="tab-item" to="/table-price">
+          <NavLink className="tab-item" to="/bang-gia-truc-tuyen">
             <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
           </NavLink>
 
@@ -241,29 +260,3 @@ export const HeaderWrap = () => {
     </div>
   );
 };
-
-function useWindowSize(): Size {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
-  const [windowSize, setWindowSize] = useState<Size>({
-    width: undefined,
-    height: undefined,
-  });
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    }
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount
-  return windowSize;
-}

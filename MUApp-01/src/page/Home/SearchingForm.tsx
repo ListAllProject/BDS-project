@@ -1,9 +1,7 @@
-import React, { useState } from "react";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
+import  { useState } from "react";
+import {  Form, Select, Row, Col, Slider, Button } from "antd";
 import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
-
-const { Header, Footer, Sider, Content } = Layout;
 const { Option } = Select;
 
 export const SearchingForm = () => {
@@ -86,7 +84,7 @@ export const SearchingForm = () => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col className="select-project" span={8}>
                 <Form.Item name="project_kind">
                   <Select
                     style={{ width: "100%", marginTop: "17px" }}
@@ -99,7 +97,6 @@ export const SearchingForm = () => {
                 </Form.Item>
               </Col>
             </Row>
-
             <Row
               style={{
                 display: "flex",
