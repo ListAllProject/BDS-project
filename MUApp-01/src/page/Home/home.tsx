@@ -1,5 +1,4 @@
-import React from "react";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
+import { Carousel } from "antd";
 import banner_1 from "../../assets/images/banner_1.png";
 import "./home.scss";
 import { SearchingForm } from "./SearchingForm";
@@ -24,7 +23,7 @@ export const Home = () => {
                   width: "100%",
                 }}
               >
-                <img src={banner_1} style={{ width: "100%" }}></img>
+                <img alt="img" src={banner_1} style={{ width: "100%" }}></img>
               </h3>
             </div>
           ))}

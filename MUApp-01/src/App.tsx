@@ -1,14 +1,9 @@
-import React from "react";
 import "./App.scss";
-import { Home } from "./page/home/home";
 import "./assets/fontawesome-pro-5.13.0-web/css/all.min.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams,
 } from "react-router-dom";
 import { Forgotpassw } from "./page/authentication/forgotpassw/forgotpassw";
 import { Login } from "./page/authentication/login/login";

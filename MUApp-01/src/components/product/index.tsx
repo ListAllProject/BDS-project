@@ -1,12 +1,11 @@
-import React, { Component, FC } from "react";
-import PropTypes from "prop-types";
+import  { FC } from "react";
+
 import "./style.scss";
-import { Seperate } from "../seperate/seperate";
 import bathroom from "../../assets/images/bath.png";
 import square_meter from "../../assets/images/square_meter.png";
 import direction from "../../assets/images/direction.png";
 import bed from "../../assets/images/bed.png";
-import { Button, Col, Divider, Row } from "antd";
+import { Col, Divider, Row } from "antd";
 
 interface Props {
   img_url: string;
@@ -19,7 +18,6 @@ interface Props {
   price: number;
 }
 
-interface State {}
 
 export const ProductItem: FC<Props> = ({
   img_url,
@@ -58,7 +56,7 @@ export const ProductItem: FC<Props> = ({
           xs={5}
           className="detail-info-with-icon__item"
         >
-          <img src={bed} className="icon" /> {bedrooms}PN
+          <img alt="image1" src={bed} className="icon" /> {bedrooms}PN
         </Col>
         <Col
           xxl={7}
@@ -74,7 +72,7 @@ export const ProductItem: FC<Props> = ({
           }}
         >
           <div className="detail-info-with-icon__item">
-            <img src={square_meter} className="icon" />
+            <img alt="image2" src={square_meter} className="icon" />
             <div className="square">{square_meters} ㎡</div>
             <i className="fas fa-info-circle" style={{ marginLeft: 5 }}></i>
           </div>
@@ -88,7 +86,7 @@ export const ProductItem: FC<Props> = ({
           xs={3}
           className="detail-info-with-icon__item"
         >
-          <img src={bathroom} className="icon" />
+          <img alt="image3" src={bathroom} className="icon" />
           {bathrooms}
         </Col>
         <Col
@@ -100,7 +98,7 @@ export const ProductItem: FC<Props> = ({
           xs={5}
           className="detail-info-with-icon__item"
         >
-          <img src={direction} className="icon" />
+          <img alt="image4" src={direction} className="icon" />
           {direct}
         </Col>
       </Row>

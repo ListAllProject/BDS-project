@@ -1,5 +1,4 @@
 import { Input } from "antd";
-import React from "react";
 import bgrFooter from "../../assets/images/Group44.png";
 import "./footer.scss";
 

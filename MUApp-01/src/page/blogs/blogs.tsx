@@ -1,4 +1,3 @@
-import React from "react";
 import "./blogs.scss";
 import topimg from "../../assets/images/bgr-blog.jpg";
 import imgTop1 from "../../assets/images/img-top2.png";
@@ -116,7 +115,7 @@ export const Blog = () => {
       <div className="wrap-content-list-blog">
         <div className="top-content">
           <div className="top-left-content">
-            <img
+            <img alt="image3"
               style={{
                 borderRadius: 8,
                 minHeight: 400,
@@ -138,7 +137,7 @@ export const Blog = () => {
               return (
                 <div className="content-item">
                   <div>
-                    <img
+                    <img alt="image1"
                       style={{
                         width: 117,
                       }}
@@ -168,7 +167,7 @@ export const Blog = () => {
             return (
               <div className="wrap-blog">
                 <div>
-                  <img style={{ width: "100%" }} src={item.img} />
+                  <img alt="image2" style={{ width: "100%" }} src={item.img} />
                 </div>
                 <div className="title-blog">{item.title}</div>
                 <div className="time-blog">

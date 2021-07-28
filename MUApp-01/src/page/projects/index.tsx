@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
+import  { useState } from "react";
+import { Form, Select, Row, Col, Slider, Button } from "antd";
 // import "../home/home.scss";
 import "./projects.scss";
 import { Seperate } from "../../components/seperate/seperate";

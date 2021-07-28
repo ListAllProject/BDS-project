@@ -1,19 +1,15 @@
-import React, { Component, useEffect, useRef, useState } from "react";
+import  { Component, useEffect, useState } from "react";
 import "./tablePrice.scss";
-import { Button, Carousel, Progress, Table } from "antd";
+import { Table } from "antd";
 import imgSlider1 from "../../assets/images/5.png";
 import imgSlider2 from "../../assets/images/6.png";
 import imgSlider3 from "../../assets/images/4.png";
-
 import iconHome from "../../assets/images/icon-home.png";
-
 import bgrTable from "../../assets/images/bgr-table-price.png";
 import {
-  CircularProgressbar,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import Slider from "react-slick";
 import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
 
@@ -114,7 +110,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
             color: "#011769",
             fontWeight: "bold",
@@ -135,7 +131,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -152,7 +148,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -170,7 +166,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -187,7 +183,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -204,7 +200,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -221,7 +217,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -238,7 +234,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -255,7 +251,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -272,7 +268,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -289,7 +285,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -306,7 +302,7 @@ const columns = [
       return {
         props: {
           style: {
-            background: Number(obj.key) % 2 == 0 ? "#FFF8EA" : "",
+            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
             textAlign: "center",
           },
         },
@@ -536,7 +532,7 @@ const dataSlide2: JSX.Element[] = [
         }}
       >
         <span style={{ marginBottom: 2 }}>S1.01</span>
-        <img src={iconHome} />
+        <img alt="img"  src={iconHome} />
         <span style={{ marginTop: 2 }}>
           22<span style={{ color: "#E0E0E0" }}>/38</span>
         </span>
@@ -558,7 +554,7 @@ const dataSlide2: JSX.Element[] = [
             }}
           >
             <span style={{ marginBottom: 4 }}>S1.01</span>
-            <img src={iconHome} />
+            <img alt="img" src={iconHome} />
             <span style={{ marginTop: 4 }}>
               22<span style={{ color: "#E0E0E0" }}>/38</span>
             </span>
@@ -571,22 +567,22 @@ const dataSlide2: JSX.Element[] = [
 
 const dataSlide1 = [
   <div className="box">
-    <img src={imgSlider1} />
+    <img alt="img" src={imgSlider1} />
   </div>,
   <div className="box">
-    <img src={imgSlider2} />
+    <img alt="img" src={imgSlider2} />
   </div>,
   <div className="box">
-    <img src={imgSlider3} />
+    <img alt="img" src={imgSlider3} />
   </div>,
   <div className="box-selected">
-    <img src={imgSlider1} />
+    <img alt="img" src={imgSlider1} />
   </div>,
   <div className="box">
-    <img src={imgSlider2} />
+    <img alt="img" src={imgSlider2} />
   </div>,
   <div className="box">
-    <img src={imgSlider3} />
+    <img alt="img" src={imgSlider3} />
   </div>,
 ];
 

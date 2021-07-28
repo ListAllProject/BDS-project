@@ -1,14 +1,15 @@
 import RoomImage from "../../assets/images/room-test.png";
-import RoomImage1 from "../../assets/images/room-test-1.png";
+// import RoomImage1 from "../../assets/images/room-test-1.png";
 import ImageIcon from "../../assets/images/image.png";
 import Rotate360DegreeIcon from "../../assets/images/rotate360degree.png";
 import DownloadIcon from "../../assets/images/download.png";
 import QAIcon from "../../assets/images/QA.png";
 import S11Image from "../../assets/images/S11.png";
 import S12Image from "../../assets/images/S12.png";
-import BackgroundGradientImage from "../../assets/images/background-gradient.png";
+// import BackgroundGradientImage from "../../assets/images/background-gradient.png";
 import "./detail.scss";
 import CustomSlider from "../../components/slider/slider";
+import ButtonCustom from "../../components/buttonCustom/buttonCustom";
 
 const settings = {
   infinite: true,
@@ -16,8 +17,8 @@ const settings = {
 
 export const Detail = () => {
   const imageList: JSX.Element[] = [
-    <img src={RoomImage1} alt="Room 01" />,
-    <img src={S11Image} alt="Room 01" />,
+    <img src={RoomImage} alt="Room 01" />,
+    <img src={RoomImage} alt="Room 01" />,
     <img src={RoomImage} alt="Room 01" />,
     <img src={RoomImage} alt="Room 01" />,
     <img src={RoomImage} alt="Room 01" />,
@@ -157,7 +158,23 @@ export const Detail = () => {
               Tôi muốn được tư vấn về căn hộ
             </div>
             <div className="action">
-              <input
+              <ButtonCustom
+                style={{ width: "44.5%" }}
+                text="Mua ngay"
+                onClick={() => null}
+              />
+              <ButtonCustom
+                style={{
+                  background: "white",
+                  width: "44.5%",
+                  color: "#E1A943",
+                  border: "1px solid #E1A943",
+                }}
+                text="Tính thử giá"
+                onClick={() => null}
+              />
+            </div>
+            {/* <input
                 type="button"
                 className="buy-now-button"
                 value="Mua ngay"
@@ -167,8 +184,7 @@ export const Detail = () => {
                 type="button"
                 className="calculate-price-button"
                 value="Tính thử giá"
-              />
-            </div>
+              /> */}
             <div className="clickable" style={{ marginTop: "16px" }}>
               Chi tiết chính sách bán hàng
             </div>

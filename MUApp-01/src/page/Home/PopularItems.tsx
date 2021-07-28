@@ -1,5 +1,4 @@
-import React from "react";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
+import { Row, Col } from "antd";
 import room1 from "../../assets/images/room_1.png";
 import room2 from "../../assets/images/room-2.png";
 import room3 from "../../assets/images/room-3.png";

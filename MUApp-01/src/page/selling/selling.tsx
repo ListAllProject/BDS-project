@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
-// import "../home/home.scss";
+import { useState } from "react";
+import {  Form, Select, Row, Col, Slider, Button } from "antd";
 import "./selling.scss";
 import { Seperate } from "../../components/seperate/seperate";
 import room1 from "../../assets/images/room_1.png";
@@ -183,7 +181,7 @@ export const Selling = () => {
           <Seperate widthChil={80} widthPar={357} />
         </div>
         <div className="searching-box-sell">
-          <Form form={form} name="searching-box">
+          <Form form={form} name="searching-box-sell">
             <Row gutter={16}>
               <Col span={8}>
                 <Form.Item name="city">
@@ -260,7 +258,7 @@ export const Selling = () => {
                   />
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col className="select-box-status" span={8}>
                 <Form.Item name="project_kind">
                   <Select
                     style={{ width: "100%", marginTop: "17px" }}

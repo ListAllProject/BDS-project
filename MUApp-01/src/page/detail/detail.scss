@@ -118,8 +118,9 @@
         }
 
         .action {
-          margin-top: 16px;
-          display   : flex;
+          margin-top     : 16px;
+          display        : flex;
+          justify-content: space-between;
 
           .buy-now-button {
             background-image: $button-bgr-color;

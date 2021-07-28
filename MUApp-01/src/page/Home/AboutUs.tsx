@@ -1,5 +1,4 @@
-import React from "react";
-import { Carousel, Layout, Form, Select, Row, Col, Slider, Button } from "antd";
+import {   Row, Col,  Button } from "antd";
 import info from "../../assets/images/info.png";
 import time_saving from "../../assets/images/time_saving.png";
 import gift from "../../assets/images/gift.png";
@@ -7,7 +6,6 @@ import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
 
 export const AboutUs = () => {
-  const [form] = Form.useForm();
   return (
     <>
       <div className="homepage-container">
@@ -41,7 +39,7 @@ export const AboutUs = () => {
               },
             ].map((item) => (
               <Col span={8} key={item.link}>
-                <img
+                <img alt="img"
                   src={item.link}
                   //   style={{ width: "50px", height: "60px" }}
                 />
