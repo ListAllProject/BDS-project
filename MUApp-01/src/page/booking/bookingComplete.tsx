@@ -33,7 +33,7 @@ export const BookingComplete = () => {
           </div>
 
           <div className="submit-button">
-            <ButtonCustom onClick={() => {}} text="Trang chủ" />
+            <ButtonCustom    style={{ padding: "9px 43px" }} onClick={() => {}} text="Trang chủ" />
           </div>
         </div>{" "}
         {/* End of Page */}

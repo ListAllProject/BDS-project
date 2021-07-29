@@ -11,12 +11,22 @@ import { News } from "./news/news";
 import { Cart } from "./cart/cart";
 import { BookingConfirm } from "./booking/bookingConfirm";
 import { BookingPaymentTransfer } from "./booking/bookingPaymentTransfer";
+import { BookingComplete } from "./booking/bookingComplete";
+import { Introduce } from "./introduce/introduce";
 
 export const Index = () => {
   return (
     <>
       <HeaderWrap />
       <Switch>
+        <Route exact path="/gioi-thieu-du-an">
+          <Introduce />
+        </Route>
+
+        <Route exact path="/booking-complete">
+          <BookingComplete />
+        </Route>
+
         <Route exact path="/xac-nhan-booking">
           <BookingConfirm />
         </Route>
