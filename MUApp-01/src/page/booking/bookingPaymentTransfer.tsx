@@ -26,7 +26,7 @@ export const BookingPaymentTransfer = () => {
   };
 
   return (
-    <div className="wrap-booking-confirm-content">
+    <div style={{ marginBottom: 20 }} className="wrap-booking-confirm-content">
       <div className="content">
         <div className="booking-payment-transfer">
           {/* Title */}

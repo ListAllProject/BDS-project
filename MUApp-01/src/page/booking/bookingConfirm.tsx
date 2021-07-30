@@ -16,7 +16,7 @@ const formRef = React.createRef<FormInstance>();
 
 export const BookingConfirm = () => {
   return (
-    <div className="wrap-booking-confirm-content">
+    <div style={{ marginBottom: 20 }} className="wrap-booking-confirm-content">
       <div className="content">
         <div className="booking-confirm">
           {/* Title */}

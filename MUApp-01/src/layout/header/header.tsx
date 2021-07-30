@@ -9,13 +9,12 @@ export const HeaderWrap = () => {
 
   const menu = (
     <div className="menu-project">
-      <span className="span-item">
-      Vinhomes Ocean Park
-      </span>
+      <Link className="span-item" to="/gioi-thieu-du-an">
+        Vinhomes Ocean Park
+      </Link>
+
       <div className="div-space-menu-prj"></div>
-      <span  className="span-item">
-      Vinhomes Smart City
-      </span>
+      <span className="span-item">Vinhomes Smart City</span>
     </div>
   );
 

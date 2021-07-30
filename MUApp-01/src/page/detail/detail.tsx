@@ -34,7 +34,7 @@ export const Detail = () => {
   }
 
   return (
-    <div className="wrap-detail-product-content">
+    <div style={{ marginBottom: 20 }} className="wrap-detail-product-content">
       <div className="content">
         {/* Title */}
         <div className="title">BẤT ĐỘNG SẢN ĐANG BÁN</div>

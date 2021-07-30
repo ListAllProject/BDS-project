@@ -57,7 +57,7 @@ export default class CustomArrows extends Component<props, state> {
       classPreviousArrow,
       settings,
     } = this.props;
-
+    console.log(this.props)
     let sizeDisable = components.length - this.props.showNum;
     return (
       <div className="container-slider">

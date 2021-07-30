@@ -7,7 +7,6 @@ export const FooterWrap = () => {
     <div
       className="container-footer"
       style={{
-        marginTop: "20px",
         backgroundImage: `url(${bgrFooter})`,
         backgroundRepeat: "repeat-x",
         backgroundPositionY: "bottom",

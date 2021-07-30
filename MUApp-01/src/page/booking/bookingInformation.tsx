@@ -2,7 +2,7 @@ import RoomImage from '../../assets/images/room-test.png';
 
 export const BookingInformation = () => {
   return (
-    <div className="booking-information">
+    <div style={{ marginBottom: 20 }} className="booking-information">
       <div className="information-image">
         <img src={RoomImage} alt="" />
       </div>

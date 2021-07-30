@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export const Cart = () => {
   return (
-    <div className="wrap-cart-content">
+    <div style={{ marginBottom: 20 }} className="wrap-cart-content">
       <div className="content">
         {/* Title */}
         <div className="title">GIỎ HÀNG</div>
