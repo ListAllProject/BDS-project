@@ -3,6 +3,7 @@ import "./booking.scss";
 import { Input, Form, Select, Button } from "antd";
 import ButtonCustom from "../../components/buttonCustom/buttonCustom";
 import { FormInstance } from "antd/lib/form";
+import { Link } from "react-router-dom";
 import React from "react";
 const { Option } = Select;
 
@@ -130,7 +131,7 @@ export const BookingConfirm = () => {
 
             <div className="submit-button">
               <Button size="large" className="primary-btn">
-                Xác nhận
+                <Link to="/thanh-toan-chuyen-khoan">Xác nhận</Link>
               </Button>
             </div>
           </Form>
