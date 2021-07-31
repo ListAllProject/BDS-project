@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "build",
+    "public": "MUApp-01/build",
     "ignore": [
       "firebase.json",
       "**/.*",
