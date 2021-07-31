@@ -4,10 +4,12 @@ import imgTop1 from "../../assets/images/img-top2.png";
 import imgTop2 from "../../assets/images/img-top3.png";
 import imgTop3 from "../../assets/images/img-top4.png";
 import imgTop4 from "../../assets/images/img-top1.png";
-
 import blog1 from "../../assets/images/blog1.png";
 import blog2 from "../../assets/images/blog2.png";
 import blog3 from "../../assets/images/blog2.png";
+import { useEffect, useState } from "react";
+import { BlogObj, Parameters } from "../../services/models";
+import BlogsAPI from "../../services/APIS/Blogs";
 
 const data1 = [
   {
@@ -110,12 +112,40 @@ const data2 = [
 ];
 
 export const Blog = () => {
+  const [blog, setBlogs] = useState(null);
+  const [outstandingBlogs, setOutstandingBlogs] = useState([]);
+  const [param, setParam] = useState({
+    page: 1,
+    limit: 20,
+    is_outstanding: false,
+    search: "",
+  } as Parameters);
+
+  // useEffect(() => {
+  //   async function fetchMyAPI() {
+  //     let rs = await BlogsAPI.getList(param);
+  //     setBlogs(rs as any);
+  //     console.log(rs)
+  //   }
+
+  //   fetchMyAPI();
+  // }, []);
+
+  useEffect(() => {
+    BlogsAPI.getList(param)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="container-blog">
       <div className="wrap-content-list-blog">
         <div className="top-content">
           <div className="top-left-content">
-            <img alt="image3"
+            <img
+              alt="image3"
               style={{
                 borderRadius: 8,
                 minHeight: 400,
@@ -137,7 +167,8 @@ export const Blog = () => {
               return (
                 <div className="content-item">
                   <div>
-                    <img alt="image1"
+                    <img
+                      alt="image1"
                       style={{
                         width: 117,
                       }}
@@ -182,9 +213,7 @@ export const Blog = () => {
         <div
           style={{ display: "flex", justifyContent: "center", marginTop: 40 }}
         >
-          <span
-           className="btn-loadmore"
-          >
+          <span className="btn-loadmore">
             Xem Thêm <i className="fas fa-sort-down"></i>
           </span>
         </div>

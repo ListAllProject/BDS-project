@@ -1,17 +1,15 @@
 import axios from "axios";
 
 declare global {
-    interface Window {
-      Configs: any;
-      ws: any;
-    }
+  interface Window {
+    Configs: any;
+    ws: any;
   }
+}
 
 window.Configs = {
-    apiBaseUrl: location.protocol + "//endpointdev.shlab.me",
-    webSocketBaseUrl: (location.protocol === "https:" ? "wss:" : "ws:") + "//endpointdev.shlab.me/",
-  };
-  
+  apiBaseUrl: window.location.protocol + "//api-stg.mybeeland.com",
+};
 
 export const BaseUrl = window.Configs.apiBaseUrl;
 

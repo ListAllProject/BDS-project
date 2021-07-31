@@ -1,6 +1,6 @@
-import React from "react";
+// import React from "react";
 import banner from "../../assets/images/banner-introduce1.png";
-import iconIntroduce from "../../assets/images/icon-introduce.png";
+// import iconIntroduce from "../../assets/images/icon-introduce.png";
 import iconTextTop from "../../assets/images/icon-text-top.png";
 import imgMap from "../../assets/images/image-map.png";
 import iconHome from "../../assets/images/icon-home-introduce.png";
@@ -46,14 +46,14 @@ export const Introduce = () => {
           showNum={0}
           settings={settings}
         ></CustomSlider>
-        <div className="icon-introduce">
+        {/* <div className="icon-introduce">
           <img src={iconIntroduce} alt="imageicon" />
           <br />
           <div className="text-title-top">GIỚI THIỆU DỰ ÁN</div>
         </div>
         <div className="khampha">
           <span className="text-kp">KHÁM PHÁ</span>
-        </div>
+        </div> */}
       </div>
 
       <div className="wrap-content-introduce">
@@ -230,7 +230,6 @@ export const Introduce = () => {
           <div className="title-libary">TÌM HIỂU</div>
           <div className="title-name-libary">CÁC DỰ ÁN KHÁC</div>
           <Seperate widthPar={350} widthChil={80} />
-
           <div className="content-oder-prj">
             <div className="square-pj">
               <span>
