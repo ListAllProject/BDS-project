@@ -27,14 +27,18 @@ export const HeaderWrap = () => {
       </div>
       <div className="wrap-right">
         <div className="top-header">
-          <Input
-            addonAfter="NHẬP"
-            style={{ maxWidth: "300px" }}
-            placeholder="Nhập SĐT nhận ưu đãi"
-          ></Input>
+          <div className="box-tooltip">
+            <span className="tooltip">Nhập SĐT nhận ưu đãi</span>
+            <Input
+                addonAfter="NHẬP"
+                style={{ maxWidth: "300px" }}
+                placeholder="Nhập SĐT nhận ưu đãi"
+              >
+              </Input>
+          </div>
           <span
             style={{
-              margin: "0px 20px",
+              margin: "0px 15px",
               minWidth: 60,
               color: "#BE9355",
               whiteSpace: "nowrap",
