@@ -1,11 +1,13 @@
-import { Store } from "antd/lib/form/interface";
+// import { Store } from "antd/lib/form/interface";
 import { API } from "../api";
-import { Parameters } from "../models";
+import {  ResBlogs } from "../models";
 
 let BlogsAPI = {
-  getList(parameter: Parameters) {
-    return API().get(`/web/blog?${parameter}`);
+  getList(parameter: ResBlogs) {
+    return API().get(
+      `/web/blog?page=${parameter.page}&limit=${parameter.limit}&search=${parameter.search}&is_outstanding=${parameter.is_outstanding}`
+    );
   },
 };
 
-export default BlogsAPI
+export default BlogsAPI;

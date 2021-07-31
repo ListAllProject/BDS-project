@@ -28,6 +28,32 @@ const settings = {
   infinite: true,
 };
 
+const settings2 = {
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  // focusOnSelect: true,
+  accessibility: true,
+
+  responsive: [
+    {
+      breakpoint: 992,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+    {
+      breakpoint: 670,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+
 export const Introduce = () => {
   const imageList: JSX.Element[] = [
     <img src={banner} alt="Room 01" />,
@@ -35,6 +61,39 @@ export const Introduce = () => {
     <img src={banner} alt="Room 01" />,
     <img src={banner} alt="Room 01" />,
     <img src={banner} alt="Room 01" />,
+  ];
+
+  const imageList2: JSX.Element[] = [
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      <span>
+        <img style={{ width: "100%" }} alt="libary-small1" src={libarySmall1} />
+      </span>
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      {" "}
+      <img style={{ width: "100%" }} alt="libary-small2" src={libarySmall2} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      {" "}
+      <img style={{ width: "100%" }} alt="libary-small3" src={libarySmall1} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      <img style={{ width: "100%" }} alt="libary-small4" src={libarySmall4} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      {" "}
+      <img style={{ width: "100%" }} alt="libary-small5" src={libarySmall1} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      {" "}
+      <img style={{ width: "100%" }} alt="libary-small6" src={libarySmall2} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      <img style={{ width: "100%" }} alt="libary-small7" src={libarySmall1} />,
+    </div>,
+    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
+      <img style={{ width: "100%" }} alt="libary-small8" src={libarySmall4} />,
+    </div>,
   ];
   return (
     <div className="container-introduce">
@@ -192,6 +251,13 @@ export const Introduce = () => {
               <img style={{ width: "100%" }} alt="libary-big" src={libaryBig} />
             </div>
             <div className="wrap-image-small">
+              <CustomSlider
+                classNextArrow="fal fa-chevron-right next-arrow"
+                components={imageList2}
+                classPreviousArrow="fal fa-chevron-left previous-arrow"
+                showNum={0}
+                settings={settings2}
+              ></CustomSlider>
               <span>
                 <img
                   style={{ width: "100%" }}
@@ -199,7 +265,7 @@ export const Introduce = () => {
                   src={libarySmall1}
                 />
               </span>
-              <span>
+              {/* <span>
                 <img
                   style={{ width: "100%" }}
                   alt="libary-small2"
@@ -219,7 +285,7 @@ export const Introduce = () => {
                   alt="libary-small4"
                   src={libarySmall4}
                 />
-              </span>
+              </span> */}
             </div>
           </div>
         </div>

@@ -2,7 +2,17 @@ export interface Parameters {
   limit: number;
   page: number;
   search: string;
-  is_outstanding: boolean;
+  is_outstanding?: boolean;
+}
+
+export interface ResBlogs {
+  limit: number;
+  page: number;
+  search: string;
+  is_outstanding?: boolean;
+  count?: number;
+  list_blog: BlogObj[];
+  total_page?: number;
 }
 
 export interface BlogObj {

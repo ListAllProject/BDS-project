@@ -1,16 +1,17 @@
 @import '../../../styles/color/variables.scss';
 
 .background {
-  background-color: #E5E5E5;
-  width           : 100vw;
-  height          : 100vh;
-  display         : flex;
-  justify-content : center;
-  align-items     : center;
-  min-height      : 100vh;
-  height          : fit-content;
+  background-color   : #E5E5E5;
+  width              : 100vw;
+  height             : 100vh;
+  display            : flex;
+  justify-content    : center;
+  align-items        : center;
+  // min-height      : 100vh;
+  height             : fit-content;
 
 }
+
 
 
 .register-container {
@@ -98,5 +99,13 @@
         }
       }
     }
+  }
+}
+
+
+@media only screen and (max-width: 450px) {
+  .register-container {
+    margin: 20px 0px;
+
   }
 }

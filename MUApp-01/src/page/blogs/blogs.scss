@@ -1,7 +1,7 @@
 @import '../../styles/color/variables.scss';
 
 .container-blog {
-    padding: 20px 0px;
+    padding: 40px 0px;
     width  : 100%;
 
     .wrap-content-list-blog {
@@ -10,7 +10,7 @@
         margin-right: auto;
         margin-left : auto;
         max-width   : 1110px;
-        margin-top  : 30px;
+        margin-top  : 10px;
 
         .top-content {
             display        : flex;
@@ -45,21 +45,19 @@
                     display       : flex;
                     flex-direction: row;
                     margin-top    : 24px;
-
-
                 }
             }
         }
 
         .list-blog {
-            display        : flex;
-            flex-direction : row;
-            justify-content: space-between;
-            flex-flow      : row wrap;
+            display           : flex;
+            flex-direction    : row;
+            // justify-content: space-between;
+            flex-flow         : row wrap;
 
             .wrap-blog {
                 margin-top: 40px;
-                width     : 32%;
+                width     : calc(100% / 3);
 
                 .title-blog {
                     margin-top: 16px;
@@ -72,6 +70,7 @@
             background   : linear-gradient(91.13deg, #e3ab43 0%, #c79345 100%);
             border-radius: 6px;
             color        : white;
+            cursor       : pointer;
             font-weight  : 600,
         }
 
@@ -145,7 +144,7 @@
                 margin-top: 20px;
             }
 
-            .top-left-content>img {
+            .top-left-content>span>img {
                 min-height: unset !important;
             }
         }

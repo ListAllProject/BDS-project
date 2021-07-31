@@ -10,6 +10,8 @@
   padding         : 0px 15px;
 }
 
+
+
 .login-container {
   width           : 540px;
   border-radius   : 16px;
@@ -18,6 +20,7 @@
   font-size       : 14px;
   font-family     : 'Mulish';
   font-weight     : 600;
+  margin          : 40px;
 
   .content {
     display        : flex;
@@ -105,5 +108,12 @@
         }
       }
     }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .login-container {
+    margin: 20px 0px;
+
   }
 }

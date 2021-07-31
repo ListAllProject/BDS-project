@@ -294,6 +294,8 @@
 
         }
 
+       
+
         .square-content {
             z-index         : 3;
             opacity         : 0;
@@ -345,6 +347,14 @@
                 width           : 2px;
                 background-color: #EBEBEB;
             }
+        }
+
+        @media only screen and (max-width: 670px) {
+            .square-content {
+                padding: 10px 0px;
+            }
+
+            
         }
     }
 

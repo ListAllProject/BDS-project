@@ -1,3 +1,7 @@
+import { useEffect, useState } from "react";
+import BlogsAPI from "../../services/APIS/Blogs";
+import { customTime } from "../../services/helper";
+import { ResBlogs } from "../../services/models";
 import "./blogs.scss";
 import topimg from "../../assets/images/bgr-blog.jpg";
 import imgTop1 from "../../assets/images/img-top2.png";
@@ -7,172 +11,200 @@ import imgTop4 from "../../assets/images/img-top1.png";
 import blog1 from "../../assets/images/blog1.png";
 import blog2 from "../../assets/images/blog2.png";
 import blog3 from "../../assets/images/blog2.png";
-import { useEffect, useState } from "react";
-import { BlogObj, Parameters } from "../../services/models";
-import BlogsAPI from "../../services/APIS/Blogs";
 
-const data1 = [
-  {
-    title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-    img: imgTop1,
-    description:
-      "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-  },
-  {
-    title:
-      "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-    img: imgTop2,
-    description:
-      "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-  },
-  {
-    title:
-      "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-    img: imgTop3,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-  {
-    title:
-      "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
-    img: imgTop4,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-];
+// const data1 = [
+//   {
+//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
+//     img: imgTop1,
+//     description:
+//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
+//   },
+//   {
+//     title:
+//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
+//     img: imgTop2,
+//     description:
+//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
+//   },
+//   {
+//     title:
+//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
+//     img: imgTop3,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+//   {
+//     title:
+//       "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
+//     img: imgTop4,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+// ];
 
-const data2 = [
-  {
-    title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-    img: blog1,
-    description:
-      "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-  },
-  {
-    title:
-      "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-    img: blog2,
-    description:
-      "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-  },
-  {
-    title:
-      "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-    img: blog3,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-  {
-    title:
-      "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
-    img: imgTop4,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-  {
-    title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-    img: blog1,
-    description:
-      "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-  },
-  {
-    title:
-      "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-    img: blog2,
-    description:
-      "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-  },
-  {
-    title:
-      "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-    img: blog3,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-  {
-    title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-    img: blog1,
-    description:
-      "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-  },
-  {
-    title:
-      "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-    img: blog2,
-    description:
-      "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-  },
-  {
-    title:
-      "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-    img: blog3,
-    description:
-      "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-  },
-];
+// const data2 = [
+//   {
+//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
+//     img: blog1,
+//     description:
+//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
+//   },
+//   {
+//     title:
+//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
+//     img: blog2,
+//     description:
+//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
+//   },
+//   {
+//     title:
+//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
+//     img: blog3,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+//   {
+//     title:
+//       "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
+//     img: imgTop4,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+//   {
+//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
+//     img: blog1,
+//     description:
+//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
+//   },
+//   {
+//     title:
+//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
+//     img: blog2,
+//     description:
+//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
+//   },
+//   {
+//     title:
+//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
+//     img: blog3,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+//   {
+//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
+//     img: blog1,
+//     description:
+//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
+//   },
+//   {
+//     title:
+//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
+//     img: blog2,
+//     description:
+//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
+//   },
+//   {
+//     title:
+//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
+//     img: blog3,
+//     description:
+//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
+//   },
+// ];
 
 export const Blog = () => {
-  const [blog, setBlogs] = useState(null);
-  const [outstandingBlogs, setOutstandingBlogs] = useState([]);
-  const [param, setParam] = useState({
+  const [data, setData] = useState<ResBlogs>({
     page: 1,
-    limit: 20,
-    is_outstanding: false,
+    limit: 6,
     search: "",
-  } as Parameters);
-
-  // useEffect(() => {
-  //   async function fetchMyAPI() {
-  //     let rs = await BlogsAPI.getList(param);
-  //     setBlogs(rs as any);
-  //     console.log(rs)
-  //   }
-
-  //   fetchMyAPI();
-  // }, []);
+    list_blog: [],
+    total_page: 0,
+  });
+  const [outstandingBlogs, setOutstandingBlogs] = useState<ResBlogs>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    BlogsAPI.getList(param)
+    fetchData();
+  },[]);
+
+  useEffect(() => {
+    BlogsAPI.getList({
+      page: 1,
+      limit: 4,
+      is_outstanding: true,
+      list_blog: [],
+      search: "",
+    })
       .then((res) => {
-        console.log(res);
+        setOutstandingBlogs(res.data.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  function fetchData() {
+    setLoading(false);
+
+    BlogsAPI.getList(data)
+      .then((res) => {
+        let respon = { ...res.data.data };
+        let dataTemp = data;
+
+        dataTemp.page += 1;
+        dataTemp.count = respon.count;
+        dataTemp.total_page = respon.total_page;
+        dataTemp.list_blog.push(...respon.list_blog);
+
+        setData(dataTemp);
+        setLoading(true);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function onLoadMore() {
+    if (data.total_page && data.page <= data.total_page) {
+      fetchData();
+    }
+  }
 
   return (
     <div className="container-blog">
       <div className="wrap-content-list-blog">
         <div className="top-content">
           <div className="top-left-content">
-            <img
-              alt="image3"
-              style={{
-                borderRadius: 8,
-                minHeight: 400,
-                objectFit: "scale-down",
-              }}
-              src={topimg}
-            ></img>
-            <div className="tille-top1">
-              S1.02 tòa căn hộ đầu tiên tại Vinhomes Ocean Park tích hợp hệ
-              thống Smart Home
-            </div>
+            <span style={{ width: "100%" }}>
+              <img
+                alt="image3"
+                style={{
+                  borderRadius: 8,
+                  width: "100%",
+                  objectFit: "scale-down",
+                  minHeight: 400,
+                }}
+                src={topimg}
+
+                // src={data?.list_blog[0]?.url}
+              ></img>
+            </span>
+
+            <div className="tille-top1"> {data?.list_blog[0]?.title}</div>
+
             <div className="time">
               <i className="fal fa-clock"></i> Thứ 2 ,08/07/2019
             </div>
           </div>
           <div className="top-right-content">
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
-            {data1.map((item) => {
+            {outstandingBlogs?.list_blog?.map((item, index) => {
               return (
-                <div className="content-item">
+                <div key={index} className="content-item">
                   <div>
                     <img
                       alt="image1"
                       style={{
                         width: 117,
                       }}
-                      src={item.img}
+                      // src={item.url}
+                      src={imgTop1}
                     ></img>
                   </div>
                   <div
@@ -194,29 +226,47 @@ export const Blog = () => {
         </div>
 
         <div className="list-blog">
-          {data2.map((item) => {
-            return (
-              <div className="wrap-blog">
-                <div>
-                  <img alt="image2" style={{ width: "100%" }} src={item.img} />
+          {data?.list_blog.map((item, index) => {
+            // {data2.map((item, index) => {
+            if (index > 0) {
+              return (
+                <div key={index} className="wrap-blog">
+                  <div style={{ width: "95%", margin: "auto" }}>
+                    <div>
+                      <img
+                        alt="image2"
+                        style={{ width: "100%" }}
+                        // src={`http://localhost:3000/${item.url}`}
+                        src={blog1}
+                      />
+                    </div>
+                    <div className="title-blog">{item.title}</div>
+                    <div className="time-blog">
+                      <i className="fal fa-clock"></i>{" "}
+                      {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYY")}
+                    </div>
+                    <div className="description">{item.description}</div>
+                  </div>
                 </div>
-                <div className="title-blog">{item.title}</div>
-                <div className="time-blog">
-                  <i className="fal fa-clock"></i> Thứ 2 ,08/07/2019
-                </div>
-                <div className="description">{item.description}</div>
-              </div>
-            );
+              );
+            } else return null;
           })}
         </div>
 
-        <div
-          style={{ display: "flex", justifyContent: "center", marginTop: 40 }}
-        >
-          <span className="btn-loadmore">
-            Xem Thêm <i className="fas fa-sort-down"></i>
-          </span>
-        </div>
+        {data.total_page && data.page <= data.total_page && (
+          <div
+            style={{ display: "flex", justifyContent: "center", marginTop: 40 }}
+          >
+            <span onClick={onLoadMore} className="btn-loadmore">
+              <span style={{ marginRight: 5 }}>Xem Thêm</span>
+              {loading ? (
+                <i style={{ marginBottom: 4 }} className="fas fa-sort-down"></i>
+              ) : (
+                <i className="fal fa-spinner fa-spin"></i>
+              )}
+            </span>
+          </div>
+        )}
       </div>
     </div>
   );

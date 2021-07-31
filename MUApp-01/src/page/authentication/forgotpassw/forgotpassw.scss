@@ -9,6 +9,8 @@
   align-items     : center;
 }
 
+
+
 .forgot-password-container {
   width           : 540px;
   border-radius   : 16px;
@@ -17,6 +19,7 @@
   font-size       : 14px;
   font-family     : 'Mulish';
   font-weight     : 600;
+  margin          : 40px;
 
   .content {
     display        : flex;
@@ -81,5 +84,11 @@
         font-weight    : 600;
       }
     }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .forgot-password-container {
+    margin: 20px 0px;
   }
 }

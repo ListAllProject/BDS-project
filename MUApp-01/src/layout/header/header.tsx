@@ -198,6 +198,9 @@ export const HeaderWrap = () => {
               </Link> */}
 
           <NavLink
+            onClick={() => {
+              setVisible(false);
+            }}
             to={{
               pathname: "/dang-ban",
             }}
@@ -209,6 +212,9 @@ export const HeaderWrap = () => {
           <span className="tab-item">SẮP BÁN</span>
 
           <NavLink
+            onClick={() => {
+              setVisible(false);
+            }}
             to={{
               pathname: "/du-an",
             }}
@@ -220,6 +226,9 @@ export const HeaderWrap = () => {
           <span className="tab-item">HỖ TRỢ</span>
 
           <NavLink
+            onClick={() => {
+              setVisible(false);
+            }}
             to={{
               pathname: "/danh-sach-tin-tuc",
             }}
@@ -228,32 +237,41 @@ export const HeaderWrap = () => {
             TIN TỨC
           </NavLink>
 
-          <NavLink className="tab-item" to="/bang-gia-truc-tuyen">
+          <NavLink
+            onClick={() => {
+              setVisible(false);
+            }}
+            className="tab-item"
+            to="/bang-gia-truc-tuyen"
+          >
             <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
           </NavLink>
 
           <span className="div-col-space-drawer"></span>
 
-          <span className="tab-item">
-            <Link
-              style={{ color: "#011769" }}
-              className="item-text"
-              to="/register"
-            >
-              <i style={{ width: 27 }} className="fal fa-user-plus"></i>
-              ĐĂNG KÝ
-            </Link>
-          </span>
-          <span className="tab-item">
-            <Link
-              style={{ color: "#011769" }}
-              className="item-text"
-              to="/login"
-            >
-              <i style={{ width: 27 }} className="fal fa-sign-in-alt"></i>
-              ĐĂNG NHẬP
-            </Link>
-          </span>
+          <Link
+            to="/register"
+            onClick={() => {
+              setVisible(false);
+            }}
+            style={{ color: "#011769" }}
+            className="tab-item"
+          >
+            <i style={{ width: 27 }} className="fal fa-user-plus"></i>
+            ĐĂNG KÝ
+          </Link>
+
+          <Link
+            onClick={() => {
+              setVisible(false);
+            }}
+            style={{ color: "#011769" }}
+            className="tab-item"
+            to="/login"
+          >
+            <i style={{ width: 27 }} className="fal fa-sign-in-alt"></i>
+            ĐĂNG NHẬP
+          </Link>
         </div>
       </Drawer>
     </div>
