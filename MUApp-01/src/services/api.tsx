@@ -8,7 +8,7 @@ declare global {
   }
 
 window.Configs = {
-    apiBaseUrl: location.protocol + "//endpointdev.shlab.me",
+    apiBaseUrl: location.protocol + "//api-stg.mybeeland.com",
     webSocketBaseUrl: (location.protocol === "https:" ? "wss:" : "ws:") + "//endpointdev.shlab.me/",
   };
   
