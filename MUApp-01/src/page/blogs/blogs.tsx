@@ -121,14 +121,22 @@ export const Blog = () => {
     search: "",
   } as Parameters);
 
-  useEffect(() => {
-    async function fetchMyAPI() {
-      let rs = await BlogsAPI.getList(param);
-      setBlogs(rs as any);
-      console.log(rs)
-    }
+  // useEffect(() => {
+  //   async function fetchMyAPI() {
+  //     let rs = await BlogsAPI.getList(param);
+  //     setBlogs(rs as any);
+  //     console.log(rs)
+  //   }
 
-    fetchMyAPI();
+  //   fetchMyAPI();
+  // }, []);
+
+  useEffect(() => {
+    BlogsAPI.getList(param)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
