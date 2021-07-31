@@ -23,7 +23,7 @@ export const Index = () => {
           <Introduce />
         </Route>
 
-        <Route exact path="/booking-complete">
+        <Route exact path="/chuyen-khoan-thanh-cong">
           <BookingComplete />
         </Route>
 

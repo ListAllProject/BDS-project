@@ -3,9 +3,10 @@ import { Input } from 'antd';
 import './booking.scss';
 import { Upload, message } from 'antd';
 import ButtonCustom from '../../components/buttonCustom/buttonCustom';
+import { useHistory } from "react-router-dom";
 
 export const BookingPaymentTransfer = () => {
-
+  let history = useHistory();
   const props = {
     name: 'file',
     action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
@@ -81,13 +82,13 @@ export const BookingPaymentTransfer = () => {
           </div>
 
           <div className="submit-button">
-            <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {}} text="Xác nhận" />
+            <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {history.push("/chuyen-khoan-thanh-cong");}} text="Xác nhận" />
           </div>
         </div> {/* End of Page */}
 
         <BookingInformation></BookingInformation>
         <div className="submit-button-replace">
-          <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {}} text="Xác nhận" />
+          <ButtonCustom style={{padding: "9px 43px"}} onClick={() => {history.push("/chuyen-khoan-thanh-cong")}} text="Xác nhận" />
         </div>
       </div>
     </div>

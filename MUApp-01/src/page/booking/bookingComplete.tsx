@@ -2,8 +2,10 @@ import { BookingInformation } from "./bookingInformation";
 import "./booking.scss";
 import ButtonCustom from "../../components/buttonCustom/buttonCustom";
 import SuccessThumbnail from "../../assets/images/success-thumbnail.png";
+import { useHistory } from "react-router-dom";
 
 export const BookingComplete = () => {
+  let history = useHistory();
   return (
     <div className="wrap-booking-confirm-content">
       <div className="content">
@@ -33,7 +35,7 @@ export const BookingComplete = () => {
           </div>
 
           <div className="submit-button">
-            <ButtonCustom    style={{ padding: "9px 43px" }} onClick={() => {}} text="Trang chủ" />
+            <ButtonCustom  style={{ padding: "9px 43px" }} onClick={() => history.push("/")} text="Trang chủ" />
           </div>
         </div>{" "}
         {/* End of Page */}
