@@ -12,19 +12,6 @@ export const Home = () => {
     <div className="home">
       <div>
         <Carousel autoplay>
-          <div>
-            <h3
-              style={{
-                // height: "500px",
-                color: "#fff",
-                lineHeight: "160px",
-                textAlign: "center",
-                width: "100%",
-              }}
-            >
-              <img alt="img" src={banner_1} style={{ width: "100%" }}></img>
-            </h3>
-          </div>
           {[1, 2, 3, 4].map((item) => (
             <div>
               <h3
@@ -36,13 +23,7 @@ export const Home = () => {
                   width: "100%",
                 }}
               >
-                <img
-                  alt="img"
-                  src={
-                    "http://api-stg.mybeeland.com/img/banner/image/1627569777239-banner2.png"
-                  }
-                  style={{ width: "100%" }}
-                ></img>
+                <img alt="img" src={banner_1} style={{ width: "100%" }}></img>
               </h3>
             </div>
           ))}
