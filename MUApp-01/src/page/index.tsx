@@ -5,7 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import { Home } from "./home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
-import { Projects } from "./projects";
+import { Projects } from "./projects/index";
 import { Blog } from "./blogs/blogs";
 import { News } from "./news/news";
 import { Cart } from "./cart/cart";
