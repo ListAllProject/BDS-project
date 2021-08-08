@@ -32,3 +32,27 @@ export interface BlogObj {
   is_outstanding: number;
   is_active: number;
 }
+
+export interface DetailProject {
+  city: string;
+  created_at: string;
+  detail_project: {
+    building_density: string;
+    img: string;
+    size: string;
+    sub_title: string;
+    title: string;
+  };
+  district: string;
+  id: number;
+  introduction: string;
+  investor: string;
+  is_active: number;
+  main_title: string;
+}
+
+export interface ProjectFilterObj {
+  cities: Array<string>;
+  districts: Array<string>;
+  investors: Array<string>;
+}

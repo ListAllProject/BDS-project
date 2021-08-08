@@ -1,12 +1,24 @@
-import  { useState } from "react";
-import {  Form, Select, Row, Col, Slider, Button } from "antd";
+import { useEffect, useState } from "react";
+import { Form, Select, Row, Col, Slider, Button } from "antd";
 import "./index.scss";
 import { Seperate } from "../../components/seperate/seperate";
+import ProjectsAPI from "../../services/APIS/Projects";
 const { Option } = Select;
 
 export const SearchingForm = () => {
   const [form] = Form.useForm();
   const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
+  // const [listFilters, setListFilters] = useState<[number, number]>([0, 50]);
+
+  useEffect(() => {
+    ProjectsAPI.getProjectFiltersList()
+      .then((res) => {
+        if (res.data.data) {
+        }
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
       <div className="homepage-container center-container">
