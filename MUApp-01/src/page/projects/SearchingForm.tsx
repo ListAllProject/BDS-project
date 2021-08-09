@@ -50,15 +50,12 @@ export const SearchingForm: FC<{
         <div className="searching-box">
           <Form form={form} name="searching-box" onFinish={onFinish}>
             <Row gutter={16}>
-              <Col span={8}>
+              <Col xxl={8} xl={8} lg={8} sm={8} xs={24}>
                 <Form.Item name="city">
                   <Select
                     style={{ width: "100%" }}
                     placeholder="Tỉnh / Thành phố"
                   >
-                    <Option key={"all"} value={"all"}>
-                      Tất cả
-                    </Option>
                     {listFilters?.cities && listFilters?.cities.length > 0
                       ? listFilters?.cities.map((item) => (
                           <Option key={item} value={item}>
@@ -69,12 +66,9 @@ export const SearchingForm: FC<{
                   </Select>
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col xxl={8} xl={8} lg={8} sm={8} xs={24}>
                 <Form.Item name="district">
                   <Select style={{ width: "100%" }} placeholder="Quận / huyện">
-                    <Option key={"all"} value={"all"}>
-                      Tất cả
-                    </Option>
                     {listFilters?.districts && listFilters?.districts.length > 0
                       ? listFilters?.districts.map((item) => (
                           <Option key={item} value={item}>
@@ -85,12 +79,9 @@ export const SearchingForm: FC<{
                   </Select>
                 </Form.Item>
               </Col>
-              <Col span={8}>
+              <Col xxl={8} xl={8} lg={8} sm={8} xs={24}>
                 <Form.Item name="investor">
                   <Select style={{ width: "100%" }} placeholder="Chủ đầu tư">
-                    <Option key={"all"} value={"all"}>
-                      Tất cả
-                    </Option>
                     {listFilters?.investors && listFilters?.investors.length > 0
                       ? listFilters?.investors.map((item) => (
                           <Option key={item} value={item}>
@@ -149,17 +140,31 @@ export const SearchingForm: FC<{
                 </Form.Item>
               </Col>
             </Row> */}
-            <Row
+            <div
               style={{
                 display: "flex",
-                justifyContent: "center",
-                // marginTop: 20,
+                width: "100%",
+                // float: "right",
+                justifyContent: "space-between",
+                alignItems: "center",
               }}
             >
+              <div style={{ width: "10%" }}></div>
               <Button size="large" className="primary-btn" htmlType="submit">
                 <i className="fas fa-search"></i> TÌM KIẾM
               </Button>
-            </Row>
+
+              <a
+                style={{
+                  textTransform: "uppercase",
+                  fontWeight: "bold",
+                  fontSize: 14,
+                }}
+                onClick={() => form.resetFields()}
+              >
+                Xóa tìm kiếm
+              </a>
+            </div>
           </Form>
         </div>
       </div>
