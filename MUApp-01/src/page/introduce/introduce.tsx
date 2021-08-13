@@ -1,28 +1,30 @@
 // import React from "react";
-import banner from "../../assets/images/banner-introduce1.png";
 // import iconIntroduce from "../../assets/images/icon-introduce.png";
 import iconTextTop from "../../assets/images/icon-text-top.png";
-import imgMap from "../../assets/images/image-map.png";
 import iconHome from "../../assets/images/icon-home-introduce.png";
 import vector5 from "../../assets/images/Vector5.png";
 import num1 from "../../assets/images/num1.png";
 import num2 from "../../assets/images/num2.png";
-import reason1 from "../../assets/images/reason1.png";
-import reason2 from "../../assets/images/reason2.png";
-
-import libaryBig from "../../assets/images/libary-big.png";
-import libarySmall1 from "../../assets/images/libary-small1.png";
-import libarySmall2 from "../../assets/images/libary-small2.png";
-import libarySmall3 from "../../assets/images/libary-small3.png";
-import libarySmall4 from "../../assets/images/libary-small4.png";
-
-import oderPrj1 from "../../assets/images/oder-prj-1.png";
-import oderPrj2 from "../../assets/images/oder-prj-2.png";
-import oderPrj3 from "../../assets/images/oder-prj-3.png";
+import num3 from "../../assets/images/num3.png";
+import num4 from "../../assets/images/num4.png";
+import num5 from "../../assets/images/num5.png";
+import num6 from "../../assets/images/num6.png";
+import num7 from "../../assets/images/num7.png";
+import num8 from "../../assets/images/num8.png";
 
 import "./introduce.scss";
 import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
+import { useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { BannerObj, DetailProject, ImageObj, ReasonObj } from "../../services/models";
+import ProjectsAPI from "../../services/APIS/Projects";
+import BannersAPI from "../../services/APIS/Banner";
+import ReasonsAPI from "../../services/APIS/Reason";
+import ImagesAPI from "../../services/APIS/Images";
+import { Link, useHistory } from "react-router-dom";
+
+const ordinalNumbers  = [num1, num2, num3, num4, num5, num6, num7, num8]
 
 const settings = {
   infinite: true,
@@ -54,73 +56,191 @@ const settings2 = {
   ],
 };
 
-export const Introduce = () => {
-  const imageList: JSX.Element[] = [
-    <img src={banner} alt="Room 01" />,
-    <img src={banner} alt="Room 01" />,
-    <img src={banner} alt="Room 01" />,
-    <img src={banner} alt="Room 01" />,
-    <img src={banner} alt="Room 01" />,
-  ];
+type introduceParams = {
+  id: string;
+}
 
-  const imageList2: JSX.Element[] = [
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      <span>
-        <img style={{ width: "100%" }} alt="libary-small1" src={libarySmall1} />
-      </span>
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      {" "}
-      <img style={{ width: "100%" }} alt="libary-small2" src={libarySmall2} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      {" "}
-      <img style={{ width: "100%" }} alt="libary-small3" src={libarySmall1} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      <img style={{ width: "100%" }} alt="libary-small4" src={libarySmall4} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      {" "}
-      <img style={{ width: "100%" }} alt="libary-small5" src={libarySmall1} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      {" "}
-      <img style={{ width: "100%" }} alt="libary-small6" src={libarySmall2} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      <img style={{ width: "100%" }} alt="libary-small7" src={libarySmall1} />,
-    </div>,
-    <div className="aaaa" style={{ width: "90%", margin: "auto" }}>
-      <img style={{ width: "100%" }} alt="libary-small8" src={libarySmall4} />,
-    </div>,
-  ];
+export const Introduce = () => {
+  const { id } = useParams<introduceParams>();
+
+  const [reasons, setReasons] = useState<ReasonObj[]>([]);
+  const [images, setImages] = useState<ImageObj[]>([]);
+  const [bigImage, setBigImage] = useState<string>("");
+  const [banners, setBanners] = useState<BannerObj[]>([]);
+  const [relativeProjects, setRelativeProjects] = useState<DetailProject[]>([]);
+  const [data, setData] = useState<DetailProject>({
+    city: "",
+    created_at: "",
+    detail_project: {
+      building_density: "",
+      img: "",
+      size: "",
+      sub_title: "",
+      title: "",
+    },
+    district: "",
+    id: 0,
+    introduction: "",
+    investor: "",
+    main_title: "",
+    is_active: 0,
+    slogan: "",
+  })
+
+  useEffect(() => {
+    fetchData();
+  }, [id]);
+
+  function fetchData() {
+    let projectId = parseInt(id)
+    console.log(projectId)
+
+    ProjectsAPI.getProjectById(projectId)
+      .then((res) => {
+        let result = { ...res.data.data };
+        let dataTemp = { ...data };
+
+        dataTemp.id = projectId;
+        dataTemp.introduction = result.introduction;
+        dataTemp.investor = result.investor;
+        dataTemp.slogan = result.slogan;
+        dataTemp.detail_project = {
+          img: result.detail_project.img,
+          size: result.detail_project.size,
+          title: result.detail_project.title,
+          sub_title: result.detail_project.sub_title,
+          building_density: result.detail_project.building_density,
+        }
+        dataTemp.main_title = result.main_title
+        dataTemp.city = result.city
+        dataTemp.district = result.district
+        dataTemp.created_at = result.created_at
+        dataTemp.is_active = result.is_active
+
+        console.log(dataTemp)
+
+        setData(dataTemp);
+      })
+      .catch((err) => console.log(err));
+
+    BannersAPI.getList({ project_id: projectId })
+      .then(res => {
+        let result = res.data.data;
+        setBanners(result);
+      })
+      .catch(err => console.log(err))
+
+    ReasonsAPI.getListByProjectId(projectId)
+      .then(res => {
+        let result = res.data.data;
+        setReasons(result);
+      })
+      .catch(err => console.log(err))
+
+    ImagesAPI.getList({ project_id: projectId })
+      .then(res => {
+        let result = res.data.data;
+        setImages(result);
+        setBigImage(result[0].value)
+      })
+      .catch(err => console.log(err))
+
+    let limit = 3;
+    let page = 1;
+    let city = data.city;
+    ProjectsAPI.getListProjects(limit, page, city)
+      .then(res => {
+        let result = res.data.data.list_projects;
+        console.log(result)
+        setRelativeProjects(result);
+      })
+  }
+
+  const bannerList: JSX.Element[] = [];
+  banners.forEach(b => {
+    bannerList.push(<img src={b.value} alt="Room 01" />)
+  });
+
+  const reasonComponents: JSX.Element[] = [];
+  reasons.forEach((e, i) => {
+    let style: React.CSSProperties = {
+      flexDirection: "row",
+    }
+    if (i % 2 == 0) {
+      style.flexDirection = "row-reverse"
+    }
+
+    reasonComponents.push(
+      <div
+        className="reason-item-container"
+        style={style}
+      >
+        <div className="wrap-image">
+          <img alt="img1" src={e.img} className="big_img" />
+        </div>
+        <div className="content">
+          <div>
+            <img alt="img2" src={ordinalNumbers[i]} className="small_img" />
+          </div>
+
+          <div className="content_title">
+            {e.title}
+          </div>
+          <div className="content_small_content">
+            {e.sub_title}
+          </div>
+        </div>
+      </div>
+    )
+  })
+
+  const galleryComponents: JSX.Element[] = [];
+  images.forEach(e => {
+    galleryComponents.push(
+      <div className="aaaa" style={{ width: "90%", margin: "auto" }} onClick={() => { setBigImage(e.value) }}>
+        <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />,
+      </div>
+    )
+  })
+
+  let history = useHistory();
+  function onClickRelativeProject(project_id: number){
+    history.push("/gioi-thieu-du-an/"+project_id.toString());
+    window.scrollTo(0,0)
+  }
+  const relativeProjectComponents: JSX.Element[] = [];
+  relativeProjects.forEach(e => {
+    relativeProjectComponents.push(
+      <div className="square-pj" onClick={()=> {onClickRelativeProject(e.id)}}>
+        <span>
+          <img
+            style={{ width: "100%" }}
+            src={e.detail_project.img}
+            alt="oder-imag1"
+          />
+        </span>
+        <div className="title-pj">{e.investor}</div>
+        <div className="description-pj">
+          {e.detail_project.title}
+        </div>
+      </div>
+    )
+  })
   return (
     <div className="container-introduce">
       <div className="wrap-content-banner">
         <CustomSlider
           classNextArrow="fal fa-chevron-right next-arrow"
-          components={imageList}
+          components={bannerList}
           classPreviousArrow="fal fa-chevron-left previous-arrow"
           showNum={0}
           settings={settings}
         ></CustomSlider>
-        {/* <div className="icon-introduce">
-          <img src={iconIntroduce} alt="imageicon" />
-          <br />
-          <div className="text-title-top">GIỚI THIỆU DỰ ÁN</div>
-        </div>
-        <div className="khampha">
-          <span className="text-kp">KHÁM PHÁ</span>
-        </div> */}
       </div>
 
       <div className="wrap-content-introduce">
         <div className="text-top">
-          Không chỉ là một Đại đô thị đẳng cấp quốc tế, Vinhomes Ocean Park kiến
-          tạo nên một Thành phố mới với Thiên nhiên – Cuộc sống và Con người với
-          một diện mạo mới mẻ và tinh thần hứng khởi, sẵn sàng cho những trải
-          nghiệm tưởng không thể mà lại là có thể.
+          {data.introduction}
         </div>
         <div className="iconTextTop">
           <span>
@@ -128,24 +248,21 @@ export const Introduce = () => {
           </span>
           <div className="space-div-icon"></div>
         </div>
-        <div className="text-vinhomes-ocean-park">VINHOMES OCEAN PARK</div>
-        <div className="text-noibiennhung">
-          NƠI BIẾN NHỮNG ĐIỀU KHÔNG THỂ THÀNH CÓ THỂ
+        <div className="text-title">{data.investor}</div>
+        <div className="text-slogan">
+          {data.slogan}
         </div>
         <div style={{ width: "100%", height: "4px" }}>
           <Seperate widthPar={350} widthChil={80} style={{ marginTop: 16 }} />
         </div>
         <div className="container-map-content">
           <div className="wrap-map">
-            <img style={{ width: "100%" }} alt="image111" src={imgMap} />
+            <img style={{ width: "100%" }} alt="image111" src={data.detail_project.img} />
           </div>
           <div className="wrap-right-content">
-            <div className="top-text">THÀNH PHỐ BIỂN HỒ TRONG LÒNG HÀ NỘI</div>
+            <div className="top-text">{data.detail_project.title}</div>
             <div className="middle-text">
-              Nơi liền kề phố phường sôi động là xanh ngát đại dương. Nơi giữa
-              nội đô là cận biển kề hồ, là góc bể chân mây. Nơi chỉ một bước là
-              thư thái vùi chân dưới làn cát mịn và cũng chỉ một bước là thỏa
-              sức reo vui với nhịp sống năng động từng ngày.
+              {data.detail_project.sub_title}
             </div>
             <div className="bottom-content">
               <div className="wrap-bottom">
@@ -160,7 +277,7 @@ export const Introduce = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  420ha
+                  {data.detail_project.size}ha
                 </span>
               </div>
 
@@ -177,7 +294,7 @@ export const Introduce = () => {
                     fontWeight: "bold",
                   }}
                 >
-                  Gần 19%
+                  Gần {data.detail_project.building_density}%
                 </span>
               </div>
             </div>
@@ -188,104 +305,34 @@ export const Introduce = () => {
       <div className="reasons-container">
         <div className="wrap-reasons-container">
           <div className="title-container">
-            <p className="small-title">8 LÝ DO LỰA CHỌN</p>
-            <p className="big-title">THÀNH PHỐ BIỂN HỒ VINHOMES OCEAN PARK</p>
+            <p className="small-title">{reasons.length} LÝ DO LỰA CHỌN</p>
+            <p className="big-title">{data.main_title}</p>
             <Seperate widthPar={350} widthChil={80} />
           </div>
-          <div
-            className="reason-item-container"
-            style={{ flexDirection: "row-reverse" }}
-          >
-            <div className="wrap-image">
-              <img alt="img1" src={reason1} className="big_img" />
-            </div>
-            <div className="content">
-              <div>
-                <img alt="img2" src={num1} className="small_img" />
-              </div>
 
-              <div className="content_title">
-                VỊ TRÍ CỬA NGÕ SÔI ĐỘNG PHÍA ĐÔNG BẮC THỦ ĐÔ
-              </div>
-              <div className="content_small_content">
-                Vinhomes Ocean Park tọa lạc tại giao điểm vàng của Gia Lâm, nơi
-                đang được đầu tư trọng điểm về cơ sở hạ tầng giao thông để trở
-                thành trung tâm mới của Thủ đô.
-              </div>
-            </div>
-          </div>
-          <div
-            className="reason-item-container"
-            style={{ flexDirection: "row" }}
-          >
-            <div className="wrap-image">
-              <img alt="img4" src={reason2} className="big_img" />
-            </div>
-            <div className="content">
-              <div>
-                <img alt="img3" src={num2} className="small_img" />
-              </div>
-              <div className="content_title">
-                BIỂN HỒ NƯỚC MẶN 6,1 HA ĐẦU TIÊN TẠI VIỆT NAM
-              </div>
-              <div className="content_small_content">
-                Với công trình biển hồ nước mặn 6,1 ha đầu tiên tại Việt Nam,
-                Vinhomes Ocean Park đã chính thức hiện thực hóa giấc mơ “tắm
-                biển ngay dưới chân nhà mình” cho mỗi cư dân – Điều tưởng chừng
-                như không thể, giờ là có thể.
-              </div>
-            </div>
-          </div>
+          {reasonComponents}
         </div>
       </div>
 
       <div className="wrap-content-introduce">
         <div className="container-libary">
-          <div className="title-libary">VINHOMES OCEAN PARK</div>
+          <div className="title-libary">{data.detail_project.title}</div>
           <div className="title-name-libary">THƯ VIỆN</div>
           <div style={{ width: "100%", height: "4px" }}>
             <Seperate widthPar={350} widthChil={80} style={{ marginTop: 16 }} />
           </div>
           <div className="content-libary">
             <div>
-              <img style={{ width: "100%" }} alt="libary-big" src={libaryBig} />
+              <img style={{ width: "100%" }} alt="libary-big" src={bigImage} />
             </div>
             <div className="wrap-image-small">
               <CustomSlider
                 classNextArrow="fal fa-chevron-right next-arrow"
-                components={imageList2}
+                components={galleryComponents}
                 classPreviousArrow="fal fa-chevron-left previous-arrow"
                 showNum={0}
                 settings={settings2}
               ></CustomSlider>
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  alt="libary-small1"
-                  src={libarySmall1}
-                />
-              </span>
-              {/* <span>
-                <img
-                  style={{ width: "100%" }}
-                  alt="libary-small2"
-                  src={libarySmall2}
-                />
-              </span>{" "}
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  alt="libary-small3"
-                  src={libarySmall3}
-                />
-              </span>{" "}
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  alt="libary-small4"
-                  src={libarySmall4}
-                />
-              </span> */}
             </div>
           </div>
         </div>
@@ -297,45 +344,7 @@ export const Introduce = () => {
           <div className="title-name-libary">CÁC DỰ ÁN KHÁC</div>
           <Seperate widthPar={350} widthChil={80} />
           <div className="content-oder-prj">
-            <div className="square-pj">
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  src={oderPrj1}
-                  alt="oder-imag1"
-                />
-              </span>
-              <div className="title-pj">Vinhomes Ocean Park</div>
-              <div className="description-pj">
-                TP Biển hồ - Thiên đường nghỉ dưỡng mỗi ngày
-              </div>
-            </div>
-            <div className="square-pj">
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  src={oderPrj2}
-                  alt="oder-imag2"
-                />
-              </span>
-              <div className="title-pj">Vinhomes Ocean Park</div>
-              <div className="description-pj">
-                TP Biển hồ - Thiên đường nghỉ dưỡng mỗi ngày
-              </div>
-            </div>
-            <div className="square-pj">
-              <span>
-                <img
-                  style={{ width: "100%" }}
-                  src={oderPrj3}
-                  alt="oder-imag3"
-                />
-              </span>
-              <div className="title-pj">Vinhomes Ocean Park</div>
-              <div className="description-pj">
-                TP Biển hồ - Thiên đường nghỉ dưỡng mỗi ngày
-              </div>
-            </div>
+            {relativeProjectComponents}
           </div>
         </div>
       </div>

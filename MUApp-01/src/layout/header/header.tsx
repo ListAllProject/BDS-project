@@ -9,7 +9,7 @@ export const HeaderWrap = () => {
 
   const menu = (
     <div className="menu-project">
-      <Link className="span-item" to="/gioi-thieu-du-an">
+      <Link className="span-item" to="/gioi-thieu-du-an/4">
         Vinhomes Ocean Park
       </Link>
 

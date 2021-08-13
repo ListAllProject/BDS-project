@@ -7,9 +7,9 @@ let ProjectsAPI = {
     limit: number,
     page: number,
     city: string,
-    investor: string,
-    district: string
-  ) {
+    investor?: string,
+    district?: string
+   ) {
     let params = "";
 
     if (limit) {
