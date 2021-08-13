@@ -6,7 +6,7 @@ let ProjectsAPI = {
   getListProjects(
     limit: number,
     page: number,
-    city: string,
+    city?: string,
     investor?: string,
     district?: string
    ) {
