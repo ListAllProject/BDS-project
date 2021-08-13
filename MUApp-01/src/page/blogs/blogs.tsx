@@ -11,6 +11,7 @@ import imgTop4 from "../../assets/images/img-top1.png";
 import blog1 from "../../assets/images/blog1.png";
 import blog2 from "../../assets/images/blog2.png";
 import blog3 from "../../assets/images/blog2.png";
+import { useHistory } from "react-router-dom";
 
 // const data1 = [
 //   {
@@ -122,10 +123,11 @@ export const Blog = () => {
   });
   const [outstandingBlogs, setOutstandingBlogs] = useState<ResBlogs>();
   const [loading, setLoading] = useState<boolean>(false);
+  let history = useHistory();
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     BlogsAPI.getList({
@@ -170,7 +172,11 @@ export const Blog = () => {
     <div className="container-blog">
       <div className="wrap-content-list-blog">
         <div className="top-content">
-          <div className="top-left-content">
+          <div
+            className="top-left-content"
+            onClick={() => history.push(`/tin-tuc/${data?.list_blog[0]?.id}`)}
+            style={{ cursor: "pointer" }}
+          >
             <span style={{ width: "100%" }}>
               <img
                 alt="image3"
@@ -196,7 +202,12 @@ export const Blog = () => {
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
             {outstandingBlogs?.list_blog?.map((item, index) => {
               return (
-                <div key={index} className="content-item">
+                <div
+                  key={index}
+                  className="content-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                >
                   <div>
                     <img
                       alt="image1"
@@ -235,12 +246,19 @@ export const Blog = () => {
                     <div>
                       <img
                         alt="image2"
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", cursor: "pointer" }}
                         // src={`http://localhost:3000/${item.url}`}
                         src={blog1}
+                        onClick={() => history.push(`/tin-tuc/${item.id}`)}
                       />
                     </div>
-                    <div className="title-blog">{item.title}</div>
+                    <div
+                      className="title-blog"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                    >
+                      {item.title}
+                    </div>
                     <div className="time-blog">
                       <i className="fal fa-clock"></i>{" "}
                       {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYY")}

@@ -1,9 +1,21 @@
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Row, Col } from "antd";
 import news from "../../assets/images/news.png";
 import news_1 from "../../assets/images/news_1.png";
+import BlogsAPI from "../../services/APIS/Blogs";
 import "./news.scss";
 
 export const News = () => {
+  let params = useParams().id;
+  useEffect(() => {
+    // BlogsAPI.getBlogByID(id).then((res) => {
+    //   console.log(res);
+    // });
+
+    console.log(params);
+  }, []);
+
   return (
     <div className="news-container">
       <Row>

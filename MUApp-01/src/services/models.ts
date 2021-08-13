@@ -56,3 +56,12 @@ export interface ProjectFilterObj {
   districts: Array<string>;
   investors: Array<string>;
 }
+
+export interface BannerObj {
+  id: string;
+  value: string;
+  type: string;
+  rank: number;
+  project_id: number;
+  project_title: string;
+}

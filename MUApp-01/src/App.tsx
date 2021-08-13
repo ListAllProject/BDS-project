@@ -49,8 +49,8 @@ function App() {
         <Route exact path="/gio-hang">
           <Cart />
         </Route>
-        <Route exact path="/tin-tuc">
-          <News />
+        <Route path="/tin-tuc/:id" component={News}>
+          {/* <News /> */}
         </Route>
         <Route exact path="/du-an">
           <Projects />

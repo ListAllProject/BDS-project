@@ -36,7 +36,7 @@ export const Index = () => {
         <Route exact path="/gio-hang">
           <Cart />
         </Route>
-        <Route exact path="/tin-tuc">
+        <Route path="/tin-tuc/:id">
           <News />
         </Route>
         <Route exact path="/du-an">
