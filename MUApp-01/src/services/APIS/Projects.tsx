@@ -6,10 +6,10 @@ let ProjectsAPI = {
   getListProjects(
     limit: number,
     page: number,
-    city: string,
-    investor: string,
-    district: string
-  ) {
+    city?: string,
+    investor?: string,
+    district?: string
+   ) {
     let params = "";
 
     if (limit) {

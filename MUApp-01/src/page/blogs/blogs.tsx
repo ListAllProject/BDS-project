@@ -215,7 +215,7 @@ export const Blog = () => {
                         width: 117,
                       }}
                       // src={item.url}
-                      src={imgTop1}
+                      src={item.thumbnail}
                     ></img>
                   </div>
                   <div
@@ -248,8 +248,8 @@ export const Blog = () => {
                         alt="image2"
                         style={{ width: "100%", cursor: "pointer" }}
                         // src={`http://localhost:3000/${item.url}`}
-                        src={blog1}
                         onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                        src={item.thumbnail}
                       />
                     </div>
                     <div

@@ -165,7 +165,7 @@
 
         }
 
-        .text-vinhomes-ocean-park {
+        .text-title {
             // display: flex;
             width        : 100%;
             text-align   : center;
@@ -174,14 +174,16 @@
             font-size    : 18px;
             line-height  : 27px;
             color        : #323232;
+            text-transform: uppercase;
         }
 
-        .text-noibiennhung {
+        .text-slogan {
             font-weight: bold;
             font-size  : 28px;
             line-height: 42px;
             text-align : center;
             color      : #BE9355;
+            text-transform: uppercase;
         }
 
         .container-map-content {

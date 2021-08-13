@@ -1,20 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Badge, Drawer, Dropdown, Input } from "antd";
 import logo from "../../assets/images/logo.png";
 import "./header.scss";
 import { Link, NavLink } from "react-router-dom";
+import { DetailProject } from "../../services/models";
+import ProjectsAPI from "../../services/APIS/Projects";
 
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
+  const [projects, setProjects] = useState<DetailProject[]>([])
 
-  const menu = (
+  useEffect(() => {
+    fetchData()
+  }, [])
+
+  const fetchData = () => {
+    let limit = 10;
+    let page = 1;
+    ProjectsAPI.getListProjects(limit, page)
+      .then(res => {
+        let result = res.data.data.list_projects;
+        setProjects(result)
+      })
+      .catch(err => console.log(err))
+  }
+
+
+  const menuComponent = (
     <div className="menu-project">
-      <Link className="span-item" to="/gioi-thieu-du-an">
-        Vinhomes Ocean Park
-      </Link>
-
-      <div className="div-space-menu-prj"></div>
-      <span className="span-item">Vinhomes Smart City</span>
+      {projects.map((e, i) => {
+        return <Link className="span-item" to={"/gioi-thieu-du-an/" + e.id}>
+          {e.investor}
+        </Link>
+      })}
     </div>
   );
 
@@ -95,7 +113,7 @@ export const HeaderWrap = () => {
             <span className="item-text">
               SẮP BÁN <i className="fas fa-caret-down"></i>
             </span>
-            <Dropdown overlay={menu}>
+            <Dropdown overlay={menuComponent}>
               <NavLink
                 to={{
                   pathname: "/du-an",

@@ -1,8 +1,9 @@
 export interface Parameters {
-  limit: number;
-  page: number;
-  search: string;
+  limit?: number;
+  page?: number;
+  search?: string;
   is_outstanding?: boolean;
+  project_id?: number;
 }
 
 export interface ResBlogs {
@@ -19,7 +20,7 @@ export interface BlogObj {
   id: number;
   title: string;
   description: string;
-  thump_image: string;
+  thumbnail: string;
   content_detail: string;
   seo_description: string;
   seo_title: string;
@@ -49,6 +50,7 @@ export interface DetailProject {
   investor: string;
   is_active: number;
   main_title: string;
+  slogan: string;
 }
 
 export interface ProjectFilterObj {
@@ -56,12 +58,29 @@ export interface ProjectFilterObj {
   districts: Array<string>;
   investors: Array<string>;
 }
-
 export interface BannerObj {
-  id: string;
+  id: number;
   value: string;
   type: string;
   rank: number;
   project_id: number;
+  project_title: string;
+}
+
+export interface ReasonObj {
+  id: number;
+  img: string;
+  title: string;
+  sub_title: string;
+  rank: number;
+  project_id: number;
+  project_title: string;
+}
+
+export interface ImageObj {
+  id: number;
+  value: string;
+  project_id: number;
+  rank: number;
   project_title: string;
 }
