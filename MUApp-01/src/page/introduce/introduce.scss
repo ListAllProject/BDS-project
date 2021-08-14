@@ -288,6 +288,7 @@
                         img {
                             cursor    : pointer;
                             transition: transform 500ms;
+                            height: 132px;
                         }
 
                         img:hover {
@@ -348,6 +349,9 @@
                         .previous-arrow {
                             left: -40px;
     
+                        }
+                        .aaaa img{
+                            max-height: 75px;
                         }
                     }
                 }

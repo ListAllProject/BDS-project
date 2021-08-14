@@ -1,26 +1,24 @@
+import { Button, Col, Form, Row, Select } from "antd";
 import { FC, useEffect, useState } from "react";
-import { Form, Select, Row, Col, Slider, Button } from "antd";
-import "./index.scss";
 import { Seperate } from "../../components/seperate/seperate";
 import ProjectsAPI from "../../services/APIS/Projects";
 import { ProjectFilterObj } from "../../services/models";
-import { Store } from "antd/lib/form/interface";
+import "./index.scss";
 const { Option } = Select;
 
 export const SearchingForm: FC<{
   setFilterResult: React.Dispatch<
     React.SetStateAction<
       | {
-          city: string;
-          district: string;
-          investor: string;
-        }
+        city: string;
+        district: string;
+        investor: string;
+      }
       | undefined
     >
   >;
 }> = ({ setFilterResult }) => {
   const [form] = Form.useForm();
-  const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
   const [listFilters, setListFilters] = useState<ProjectFilterObj>();
   useEffect(() => {
     ProjectsAPI.getProjectFiltersList().then((res) => {
@@ -58,10 +56,10 @@ export const SearchingForm: FC<{
                   >
                     {listFilters?.cities && listFilters?.cities.length > 0
                       ? listFilters?.cities.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
-                          </Option>
-                        ))
+                        <Option key={item} value={item}>
+                          {item}
+                        </Option>
+                      ))
                       : null}
                   </Select>
                 </Form.Item>
@@ -71,10 +69,10 @@ export const SearchingForm: FC<{
                   <Select style={{ width: "100%" }} placeholder="Quận / huyện">
                     {listFilters?.districts && listFilters?.districts.length > 0
                       ? listFilters?.districts.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
-                          </Option>
-                        ))
+                        <Option key={item} value={item}>
+                          {item}
+                        </Option>
+                      ))
                       : null}
                   </Select>
                 </Form.Item>
@@ -84,10 +82,10 @@ export const SearchingForm: FC<{
                   <Select style={{ width: "100%" }} placeholder="Chủ đầu tư">
                     {listFilters?.investors && listFilters?.investors.length > 0
                       ? listFilters?.investors.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
-                          </Option>
-                        ))
+                        <Option key={item} value={item}>
+                          {item}
+                        </Option>
+                      ))
                       : null}
                   </Select>
                 </Form.Item>
@@ -160,6 +158,7 @@ export const SearchingForm: FC<{
                   fontWeight: "bold",
                   fontSize: 14,
                 }}
+                type="button"
                 onClick={() => form.resetFields()}
               >
                 Xóa tìm kiếm
