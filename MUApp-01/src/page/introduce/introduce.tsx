@@ -63,6 +63,7 @@ export const Introduce = () => {
 
   const [reasons, setReasons] = useState<ReasonObj[]>([]);
   const [images, setImages] = useState<ImageObj[]>([]);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [bigImage, setBigImage] = useState<string>("");
   const [banners, setBanners] = useState<BannerObj[]>([]);
   const [relativeProjects, setRelativeProjects] = useState<DetailProject[]>([]);
@@ -193,12 +194,22 @@ export const Introduce = () => {
   })
 
   const galleryComponents: JSX.Element[] = [];
-  images.forEach(e => {
-    galleryComponents.push(
-      <div className="aaaa" style={{ width: "90%", margin: "auto" }} onClick={() => { setBigImage(e.value) }}>
-        <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />,
+  images.forEach((e, i) => {
+    if (i == selectedImageIndex) {
+      galleryComponents.push(
+        <div className="aaaa" style={{ width: "92%", margin: "auto" }}>
+          <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
+          <div className="image-selected-background"></div>
+          <div className="image-selected-border"></div>
+        </div>
+      )
+    } else {
+      galleryComponents.push(
+        <div className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(images[0].value); setSelectedImageIndex(i); }}>
+          <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
       </div>
-    )
+      )
+    }
   })
 
   let history = useHistory();

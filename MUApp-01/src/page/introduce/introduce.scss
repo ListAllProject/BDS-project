@@ -284,13 +284,41 @@
 
                     .aaaa {
                         padding: 0px 10px;
-
+                        display: flex;
+                        position: relative;
+                        justify-content: center;
+                        align-items: center;
                         img {
                             cursor    : pointer;
                             transition: transform 500ms;
                             height: 132px;
+                            margin-left: auto;
+                            margin-right: auto;
                         }
 
+                        .image-selected-background {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: calc(100% - 20px);
+                            height: 100%;
+                            margin-left: 10px;
+                            padding: 10px;
+                            background-color: black;
+                            opacity: 0.25;
+                        }
+
+                        .image-selected-border {
+                            border: solid 3px $primary--color1;
+                            position: absolute;
+                            top: 10px;
+                            left: 20px;
+                            width: calc(100% - 40px);
+                            height: calc(100% - 20px);
+                        }
+                    }
+
+                    .aaaa-hover {
                         img:hover {
                             transform: scale(1.1);
                         }
