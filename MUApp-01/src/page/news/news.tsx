@@ -1,13 +1,11 @@
+import { Col, Row } from "antd";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Row, Col } from "antd";
-import news from "../../assets/images/news.png";
+import { useHistory, useParams } from "react-router-dom";
 import news_1 from "../../assets/images/news_1.png";
 import BlogsAPI from "../../services/APIS/Blogs";
-import "./news.scss";
-import { BlogObj, ResBlogs } from "../../services/models";
 import { customTime } from "../../services/helper";
-import { useHistory } from "react-router-dom";
+import { BlogObj, ResBlogs } from "../../services/models";
+import "./news.scss";
 
 type newsParams = {
   id: string;

@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
 import { Carousel } from "antd";
-import banner_1 from "../../assets/images/banner_1.png";
-import "./home.scss";
-import { SearchingForm } from "./SearchingForm";
-// import { Seperate } from "../../components/seperate/seperate";
-import { BestSell } from "./BestSell";
-import { PopularItems } from "./PopularItems";
-import { AboutUs } from "./AboutUs";
+import { useEffect, useState } from "react";
 import HomeAPI from "../../services/APIS/Home";
 import { BannerObj } from "../../services/models";
+import { AboutUs } from "./AboutUs";
+// import { Seperate } from "../../components/seperate/seperate";
+import { BestSell } from "./BestSell";
+import "./home.scss";
+import { PopularItems } from "./PopularItems";
+import { SearchingForm } from "./SearchingForm";
 
 export const Home = () => {
   const [banners, setBanners] = useState<Array<BannerObj>>();

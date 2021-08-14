@@ -8,7 +8,9 @@ declare global {
 }
 
 window.Configs = {
-  apiBaseUrl: window.location.protocol + "//api-stg.mybeeland.com",
+  // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
+  apiBaseUrl: "https://beesky-admin.ninja-it.asia",
+
 };
 
 export const BaseUrl = window.Configs.apiBaseUrl;
@@ -26,8 +28,8 @@ export function API() {
   Api.defaults.responseType = undefined;
   Api.defaults.headers.common["token"] =
     localStorage.getItem("token") === undefined ||
-    localStorage.getItem("token") === "undefined" ||
-    localStorage.getItem("token") == null
+      localStorage.getItem("token") === "undefined" ||
+      localStorage.getItem("token") == null
       ? ""
       : localStorage.getItem("token");
   return Api;

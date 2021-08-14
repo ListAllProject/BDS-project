@@ -1,8 +1,8 @@
-// import React from "react";
-// import iconIntroduce from "../../assets/images/icon-introduce.png";
-import iconTextTop from "../../assets/images/icon-text-top.png";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useHistory } from "react-router-dom";
 import iconHome from "../../assets/images/icon-home-introduce.png";
-import vector5 from "../../assets/images/Vector5.png";
+import iconTextTop from "../../assets/images/icon-text-top.png";
 import num1 from "../../assets/images/num1.png";
 import num2 from "../../assets/images/num2.png";
 import num3 from "../../assets/images/num3.png";
@@ -11,20 +11,18 @@ import num5 from "../../assets/images/num5.png";
 import num6 from "../../assets/images/num6.png";
 import num7 from "../../assets/images/num7.png";
 import num8 from "../../assets/images/num8.png";
-
-import "./introduce.scss";
-import CustomSlider from "../../components/slider/slider";
+import vector5 from "../../assets/images/Vector5.png";
 import { Seperate } from "../../components/seperate/seperate";
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
-import { BannerObj, DetailProject, ImageObj, ReasonObj } from "../../services/models";
-import ProjectsAPI from "../../services/APIS/Projects";
+import CustomSlider from "../../components/slider/slider";
 import BannersAPI from "../../services/APIS/Banner";
-import ReasonsAPI from "../../services/APIS/Reason";
 import ImagesAPI from "../../services/APIS/Images";
-import { Link, useHistory } from "react-router-dom";
+import ProjectsAPI from "../../services/APIS/Projects";
+import ReasonsAPI from "../../services/APIS/Reason";
+import { BannerObj, DetailProject, ImageObj, ReasonObj } from "../../services/models";
+import "./introduce.scss";
 
-const ordinalNumbers  = [num1, num2, num3, num4, num5, num6, num7, num8]
+
+const ordinalNumbers = [num1, num2, num3, num4, num5, num6, num7, num8]
 
 const settings = {
   infinite: true,
@@ -166,7 +164,7 @@ export const Introduce = () => {
     let style: React.CSSProperties = {
       flexDirection: "row",
     }
-    if (i % 2 == 0) {
+    if (i % 2 === 0) {
       style.flexDirection = "row-reverse"
     }
 
@@ -204,14 +202,14 @@ export const Introduce = () => {
   })
 
   let history = useHistory();
-  function onClickRelativeProject(project_id: number){
-    history.push("/gioi-thieu-du-an/"+project_id.toString());
-    window.scrollTo(0,0)
+  function onClickRelativeProject(project_id: number) {
+    history.push("/gioi-thieu-du-an/" + project_id.toString());
+    window.scrollTo(0, 0)
   }
   const relativeProjectComponents: JSX.Element[] = [];
   relativeProjects.forEach(e => {
     relativeProjectComponents.push(
-      <div className="square-pj" onClick={()=> {onClickRelativeProject(e.id)}}>
+      <div className="square-pj" onClick={() => { onClickRelativeProject(e.id) }}>
         <span>
           <img
             style={{ width: "100%" }}

@@ -1,4 +1,3 @@
-import { Store } from "antd/lib/form/interface";
 import { API } from "../api";
 
 let HomeAPI = {

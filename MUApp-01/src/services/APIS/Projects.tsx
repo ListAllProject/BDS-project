@@ -1,4 +1,3 @@
-import { Store } from "antd/lib/form/interface";
 import { API } from "../api";
 
 let ProjectsAPI = {
@@ -9,7 +8,7 @@ let ProjectsAPI = {
     city?: string,
     investor?: string,
     district?: string
-   ) {
+  ) {
     let params = "";
 
     if (limit) {
@@ -35,15 +34,6 @@ let ProjectsAPI = {
   getProjectFiltersList() {
     return API().get(`/web/project/filters/list`);
   },
-  //   create(obj: Store) {
-  //     return API().post(`/abc/xyz`, obj);
-  //   },
-  //   update(obj: Store) {
-  //     return API().put(`/abc/xyz/${obj.id}`, obj);
-  //   },
-  //   delete(id: number) {
-  //     return API().delete(`/abc/xyz/${id}`);
-  //   },
 };
 
 export default ProjectsAPI;

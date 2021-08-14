@@ -1,10 +1,6 @@
-import { Col, Row, Button, Typography } from "antd";
-import { Store } from "antd/lib/form/interface";
+import { Button, Col, Row, Typography } from "antd";
 import { FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import lang_apec_golden_palaceson from "../../assets/images/lang_son_apec_golden_palace.png";
-import pcti_bbch1 from "../../assets/images/pcti_bbch1.png";
-import vincity_ocean_park_anh from "../../assets/images/vinCity.png";
 import ProjectsAPI from "../../services/APIS/Projects";
 import { DetailProject } from "../../services/models";
 import "./index.scss";
@@ -13,12 +9,12 @@ const { Paragraph } = Typography;
 
 export const List: FC<{
   filterResult:
-    | {
-        city: string;
-        district: string;
-        investor: string;
-      }
-    | undefined;
+  | {
+    city: string;
+    district: string;
+    investor: string;
+  }
+  | undefined;
 }> = ({ filterResult }) => {
   const [pagination, setPagination] = useState({
     limit: 9,
@@ -85,7 +81,7 @@ export const List: FC<{
             {data && data.length !== 0 ? (
               data.map((item) => (
                 <Col className="item-col" key={item.id}>
-                  <Link to={`/chi-tiet-du-an/${item.id}`}>
+                  <Link to={`/gioi-thieu-du-an/${item.id}`}>
                     <img
                       alt={item.detail_project.title}
                       src={item.detail_project.img}

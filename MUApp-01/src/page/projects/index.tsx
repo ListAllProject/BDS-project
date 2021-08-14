@@ -1,4 +1,3 @@
-import { Store } from "antd/lib/form/interface";
 import { useState } from "react";
 import "./index.scss";
 import { List } from "./List";

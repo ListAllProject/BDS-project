@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import topimg from "../../assets/images/bgr-blog.jpg";
 import BlogsAPI from "../../services/APIS/Blogs";
 import { customTime } from "../../services/helper";
 import { ResBlogs } from "../../services/models";
 import "./blogs.scss";
-import topimg from "../../assets/images/bgr-blog.jpg";
-import imgTop1 from "../../assets/images/img-top2.png";
-import imgTop2 from "../../assets/images/img-top3.png";
-import imgTop3 from "../../assets/images/img-top4.png";
-import imgTop4 from "../../assets/images/img-top1.png";
-import blog1 from "../../assets/images/blog1.png";
-import blog2 from "../../assets/images/blog2.png";
-import blog3 from "../../assets/images/blog2.png";
-import { useHistory } from "react-router-dom";
 
 export const Blog = () => {
   const [data, setData] = useState<ResBlogs>({
@@ -88,7 +81,7 @@ export const Blog = () => {
                 }}
                 src={topimg}
 
-                // src={data?.list_blog[0]?.url}
+              // src={data?.list_blog[0]?.url}
               ></img>
             </span>
 
