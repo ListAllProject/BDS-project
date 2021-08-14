@@ -88,7 +88,7 @@ export const List: FC<{
                       style={{ width: "100%", height: "200px" }}
                     />
                     <p className="item_title">
-                      {item.detail_project.title.toLowerCase()}
+                      {item.main_title.toLowerCase()}
                     </p>
                     <Paragraph className="item_description" ellipsis={true}>
                       {item.introduction}

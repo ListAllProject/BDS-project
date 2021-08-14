@@ -217,9 +217,9 @@ export const Introduce = () => {
             alt="oder-imag1"
           />
         </span>
-        <div className="title-pj">{e.investor}</div>
+        <div className="title-pj">{e.main_title}</div>
         <div className="description-pj">
-          {e.detail_project.title}
+          {e.introduction}
         </div>
       </div>
     )

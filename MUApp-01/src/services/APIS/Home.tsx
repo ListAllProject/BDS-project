@@ -11,7 +11,7 @@ let HomeAPI = {
     if (limit) {
       params = params + `limit=${limit}&`;
     }
-    return API().get(`/web/banner?${params}`);
+    return API().get(`/web/banner?${params}type=home`);
   },
   // getById(id:number) {
   //     return API().get(`/abc/xyz/${id}`);
