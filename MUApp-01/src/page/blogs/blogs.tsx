@@ -161,7 +161,7 @@ export const Blog = () => {
                     </div>
                     <div className="time-blog">
                       <i className="fal fa-clock"></i>{" "}
-                      {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYY")}
+                      {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYYY")}
                     </div>
                     <div className="description">{item.description}</div>
                   </div>

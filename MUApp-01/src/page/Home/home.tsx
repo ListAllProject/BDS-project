@@ -23,7 +23,7 @@ export const Home = () => {
   return (
     <div className="home">
       <div>
-        <Carousel autoplay>
+        <Carousel autoplay swipeToSlide draggable>
           {banners &&
             banners.length !== 0 &&
             banners.map((item) => (
@@ -43,8 +43,8 @@ export const Home = () => {
                     width: "100%",
                     height: "500px",
                     margin: "auto",
-                    objectFit: "cover",
-                    objectPosition: "0 60%",
+                    // objectFit: "cover",
+                    // objectPosition: "0 50%",
                   }}
                 ></img>
               </div>

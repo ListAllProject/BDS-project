@@ -52,7 +52,7 @@ export const News = () => {
             <h2 className="news-title">{newsContent?.title}</h2>
             <p className="news-datetime">
               <i className="far fa-clock"></i>{" "}
-              {customTime(newsContent?.created_at, "HH:mm DD/MM/YYY")}
+              {customTime(newsContent?.created_at, "HH:mm DD/MM/YYYY")}
             </p>
             <div
               className="long-content"
@@ -88,7 +88,7 @@ export const News = () => {
                     </p>
                     <p className="news-datetime">
                       <i className="far fa-clock"></i>{" "}
-                      {customTime(item.created_at, "HH:mm DD/MM/YYY")}
+                      {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
                     </p>
                   </div>
                 </Col>
