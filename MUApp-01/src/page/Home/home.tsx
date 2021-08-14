@@ -12,7 +12,7 @@ import { SearchingForm } from "./SearchingForm";
 export const Home = () => {
   const [banners, setBanners] = useState<Array<BannerObj>>();
   useEffect(() => {
-    HomeAPI.getBanners(1, 4).then((res) => {
+    HomeAPI.getBanners(1, 6).then((res) => {
       if (res.data.data && res.data.data.length !== 0) {
         setBanners(res.data.data);
       } else return;
