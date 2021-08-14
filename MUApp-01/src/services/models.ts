@@ -17,6 +17,7 @@ export interface ResBlogs {
 }
 
 export interface BlogObj {
+  created_at: string;
   id: number;
   title: string;
   description: string;
@@ -59,28 +60,28 @@ export interface ProjectFilterObj {
   investors: Array<string>;
 }
 export interface BannerObj {
-  id: number,
-  value: string,
-  type: string,
-  rank: number,
-  project_id: number,
-  project_title: string,
+  id: number;
+  value: string;
+  type: string;
+  rank: number;
+  project_id: number;
+  project_title: string;
 }
 
 export interface ReasonObj {
-  id: number,
-  img: string,
-  title: string,
-  sub_title: string,
-  rank: number,
-  project_id: number,
-  project_title: string,
+  id: number;
+  img: string;
+  title: string;
+  sub_title: string;
+  rank: number;
+  project_id: number;
+  project_title: string;
 }
 
 export interface ImageObj {
-  id: number,
-  value: string,
-  project_id: number,
-  rank: number,
-  project_title: string,
+  id: number;
+  value: string;
+  project_id: number;
+  rank: number;
+  project_title: string;
 }

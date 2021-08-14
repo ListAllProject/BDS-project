@@ -11,106 +11,7 @@ import imgTop4 from "../../assets/images/img-top1.png";
 import blog1 from "../../assets/images/blog1.png";
 import blog2 from "../../assets/images/blog2.png";
 import blog3 from "../../assets/images/blog2.png";
-
-// const data1 = [
-//   {
-//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-//     img: imgTop1,
-//     description:
-//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-//   },
-//   {
-//     title:
-//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-//     img: imgTop2,
-//     description:
-//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-//   },
-//   {
-//     title:
-//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-//     img: imgTop3,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-//   {
-//     title:
-//       "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
-//     img: imgTop4,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-// ];
-
-// const data2 = [
-//   {
-//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-//     img: blog1,
-//     description:
-//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-//   },
-//   {
-//     title:
-//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-//     img: blog2,
-//     description:
-//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-//   },
-//   {
-//     title:
-//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-//     img: blog3,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-//   {
-//     title:
-//       "Đầu tư BĐS hạng sang: Vinhomes Smart City - Chung cư cao cấp phía Tây ‘ăn điểm’",
-//     img: imgTop4,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-//   {
-//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-//     img: blog1,
-//     description:
-//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-//   },
-//   {
-//     title:
-//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-//     img: blog2,
-//     description:
-//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-//   },
-//   {
-//     title:
-//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-//     img: blog3,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-//   {
-//     title: "Vinhomes Ocean Park - Nơi mọi ô cửa đều nhìn ra miền xanh bao la",
-//     img: blog1,
-//     description:
-//       "Vị trí gần trung tâm, không gian sống trong lành, uy tín chủ đầu tư, chính sách cho vay tốt… là những tiêu chí mà người mua thường đặt ra khi cân nhắc",
-//   },
-//   {
-//     title:
-//       "Ra mắt Sapphire Parkville – “Tâm điểm xanh” của Vinhomes Smart City",
-//     img: blog2,
-//     description:
-//       "Với những căn chung cư nhỏ, việc thiết kế phòng khách như thế nào vừa đẹp vừa tiện dụng khiến cho gia chủ khá đau đầu. Cùng Vinhomes Online",
-//   },
-//   {
-//     title:
-//       "Tòa tháp trái tim Vinhomes Ocean Park - bán hết 50% số căn hộ trong 60 phút",
-//     img: blog3,
-//     description:
-//       "Với vị trí vàng giữa trung tâm mới của thành phố, giao thông thuận tiện, hệ thống tiện ích cao cấp, đồng bộ, các tòa tháp cao cấp tại khu vực phía Tây",
-//   },
-// ];
+import { useHistory } from "react-router-dom";
 
 export const Blog = () => {
   const [data, setData] = useState<ResBlogs>({
@@ -122,10 +23,11 @@ export const Blog = () => {
   });
   const [outstandingBlogs, setOutstandingBlogs] = useState<ResBlogs>();
   const [loading, setLoading] = useState<boolean>(false);
+  let history = useHistory();
 
   useEffect(() => {
     fetchData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     BlogsAPI.getList({
@@ -170,7 +72,11 @@ export const Blog = () => {
     <div className="container-blog">
       <div className="wrap-content-list-blog">
         <div className="top-content">
-          <div className="top-left-content">
+          <div
+            className="top-left-content"
+            onClick={() => history.push(`/tin-tuc/${data?.list_blog[0]?.id}`)}
+            style={{ cursor: "pointer" }}
+          >
             <span style={{ width: "100%" }}>
               <img
                 alt="image3"
@@ -196,7 +102,12 @@ export const Blog = () => {
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
             {outstandingBlogs?.list_blog?.map((item, index) => {
               return (
-                <div key={index} className="content-item">
+                <div
+                  key={index}
+                  className="content-item"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                >
                   <div>
                     <img
                       alt="image1"
@@ -235,12 +146,19 @@ export const Blog = () => {
                     <div>
                       <img
                         alt="image2"
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", cursor: "pointer" }}
                         // src={`http://localhost:3000/${item.url}`}
+                        onClick={() => history.push(`/tin-tuc/${item.id}`)}
                         src={item.thumbnail}
                       />
                     </div>
-                    <div className="title-blog">{item.title}</div>
+                    <div
+                      className="title-blog"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                    >
+                      {item.title}
+                    </div>
                     <div className="time-blog">
                       <i className="fal fa-clock"></i>{" "}
                       {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYY")}

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Carousel } from "antd";
 import banner_1 from "../../assets/images/banner_1.png";
 import "./home.scss";
@@ -6,27 +7,48 @@ import { SearchingForm } from "./SearchingForm";
 import { BestSell } from "./BestSell";
 import { PopularItems } from "./PopularItems";
 import { AboutUs } from "./AboutUs";
+import HomeAPI from "../../services/APIS/Home";
+import { BannerObj } from "../../services/models";
 
 export const Home = () => {
+  const [banners, setBanners] = useState<Array<BannerObj>>();
+  useEffect(() => {
+    HomeAPI.getBanners(1, 4).then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setBanners(res.data.data);
+      } else return;
+    });
+  }, []);
+
   return (
     <div className="home">
       <div>
         <Carousel autoplay>
-          {[1, 2, 3, 4].map((item) => (
-            <div>
-              <h3
+          {banners &&
+            banners.length !== 0 &&
+            banners.map((item) => (
+              <div
                 style={{
-                  // height: "500px",
-                  color: "#fff",
-                  lineHeight: "160px",
-                  textAlign: "center",
+                  maxHeight: "500px",
                   width: "100%",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                <img alt="img" src={banner_1} style={{ width: "100%" }}></img>
-              </h3>
-            </div>
-          ))}
+                <img
+                  alt={item.project_title}
+                  src={item.value}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "500px",
+                    margin: "auto",
+                    objectFit: "cover",
+                    objectPosition: "0 60%",
+                  }}
+                ></img>
+              </div>
+            ))}
         </Carousel>
       </div>
 
