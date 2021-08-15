@@ -205,7 +205,7 @@ export const Introduce = () => {
       )
     } else {
       galleryComponents.push(
-        <div className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(images[0].value); setSelectedImageIndex(i); }}>
+        <div className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(e.value); setSelectedImageIndex(i); }}>
           <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
       </div>
       )
