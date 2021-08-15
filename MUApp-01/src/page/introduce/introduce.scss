@@ -547,7 +547,7 @@
             .content-oder-prj {
                 margin-bottom  : 60px;
                 display        : flex;
-                justify-content: space-between;
+                justify-content: space-around;
 
                 .square-pj {
                     width           : calc(100% / 3 - 10px);
@@ -571,7 +571,8 @@
                     .description-pj {
                         font-size  : 14px;
                         line-height: 21px;
-                        text-align : center;
+                        text-align : justify;
+                        padding: 0px 10px;
                         color      : #000000;
                     }
                 }

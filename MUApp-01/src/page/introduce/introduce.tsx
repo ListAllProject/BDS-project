@@ -144,13 +144,12 @@ export const Introduce = () => {
       })
       .catch(err => console.log(err))
 
-    let limit = 3;
+    let limit = 4;
     let page = 1;
     let city = data.city;
     ProjectsAPI.getListProjects(limit, page, city)
       .then(res => {
         let result = res.data.data.list_projects;
-        console.log(result)
         setRelativeProjects(result);
       })
   }
@@ -195,7 +194,7 @@ export const Introduce = () => {
 
   const galleryComponents: JSX.Element[] = [];
   images.forEach((e, i) => {
-    if (i == selectedImageIndex) {
+    if (i === selectedImageIndex) {
       galleryComponents.push(
         <div className="aaaa" style={{ width: "92%", margin: "auto" }}>
           <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
@@ -207,7 +206,7 @@ export const Introduce = () => {
       galleryComponents.push(
         <div className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(e.value); setSelectedImageIndex(i); }}>
           <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
-      </div>
+        </div>
       )
     }
   })
@@ -218,23 +217,29 @@ export const Introduce = () => {
     window.scrollTo(0, 0)
   }
   const relativeProjectComponents: JSX.Element[] = [];
-  relativeProjects.forEach(e => {
-    relativeProjectComponents.push(
-      <div className="square-pj" onClick={() => { onClickRelativeProject(e.id) }}>
-        <span>
-          <img
-            style={{ width: "100%" }}
-            src={e.detail_project.img}
-            alt="oder-imag1"
-          />
-        </span>
-        <div className="title-pj">{e.main_title}</div>
-        <div className="description-pj">
-          {e.introduction}
+  for (let i = 0; i < relativeProjects.length; i++) {
+    if (relativeProjects[i].id.toString() !== id) {
+      console.log(relativeProjects[i].id, id)
+      relativeProjectComponents.push(
+        <div className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id) }}>
+          <span>
+            <img
+              style={{ width: "100%" }}
+              src={relativeProjects[i].detail_project.img}
+              alt="oder-imag1"
+            />
+          </span>
+          <div className="title-pj">{relativeProjects[i].main_title}</div>
+          <div className="description-pj">
+            {relativeProjects[i].introduction}
+          </div>
         </div>
-      </div>
-    )
-  })
+      )
+    }
+    if (relativeProjectComponents.length === 3) {
+      break
+    }
+  }
   return (
     <div className="container-introduce">
       <div className="wrap-content-banner">
