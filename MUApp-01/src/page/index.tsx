@@ -2,7 +2,7 @@ import { HeaderWrap } from "../layout/header/header";
 import { FooterWrap } from "../layout/footer/footer";
 import { TablePrice } from "./tablePrice/tablePrice";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./home/home";
+import { Home } from "./appHome/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects/index";
