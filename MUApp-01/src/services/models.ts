@@ -105,7 +105,7 @@ export interface productsObj {
   MauNen: number;
   TenTT: string;
   Tang: string;
-  PhongNgu: number;
+  SoPhongNgu: string;
   DTTimTuong: number;
   DTThongThuy: number;
   HinhAnh: string;

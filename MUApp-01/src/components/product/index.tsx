@@ -1,4 +1,4 @@
-import  { FC } from "react";
+import { FC } from "react";
 
 import "./style.scss";
 import bathroom from "../../assets/images/bath.png";
@@ -11,7 +11,7 @@ interface Props {
   img_url: string;
   product_name: string;
   product_kind: string;
-  bedrooms: number;
+  bedrooms: string;
   square_meters: number | string;
   bathrooms: number;
   direct: string;
@@ -46,25 +46,24 @@ export const ProductItem: FC<Props> = ({
 
       <p className="product_name">{product_name}</p>
       <Row className="detail-info-with-icon__container">
-        <Col xxl={2} xl={1} lg={1} md={0} sm={0} xs={0}></Col>
         <Col
-          xxl={5}
-          xl={5}
-          lg={5}
-          md={5}
-          sm={5}
-          xs={5}
-          className="detail-info-with-icon__item"
-        >
-          <img alt="image1" src={bed} className="icon" /> {bedrooms}PN
-        </Col>
-        <Col
-          xxl={7}
+          xxl={8}
           xl={8}
-          lg={9}
+          lg={8}
           md={8}
           sm={8}
           xs={8}
+          className="detail-info-with-icon__item bed"
+        >
+          <img alt="image1" src={bed} className="icon" /> {bedrooms}
+        </Col>
+        <Col
+          xxl={6}
+          xl={6}
+          lg={6}
+          md={6}
+          sm={6}
+          xs={6}
           style={{
             display: "flex",
             alignItems: "center",
@@ -80,10 +79,10 @@ export const ProductItem: FC<Props> = ({
         <Col
           xxl={4}
           xl={4}
-          lg={3}
-          md={3}
-          sm={3}
-          xs={3}
+          lg={4}
+          md={4}
+          sm={4}
+          xs={4}
           className="detail-info-with-icon__item"
         >
           <img alt="image3" src={bathroom} className="icon" />
@@ -93,9 +92,9 @@ export const ProductItem: FC<Props> = ({
           xxl={6}
           xl={6}
           lg={6}
-          md={5}
-          sm={5}
-          xs={5}
+          md={6}
+          sm={6}
+          xs={6}
           className="detail-info-with-icon__item"
         >
           <img alt="image4" src={direction} className="icon" />

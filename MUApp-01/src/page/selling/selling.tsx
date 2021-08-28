@@ -2,9 +2,6 @@ import { useEffect, useState } from "react";
 import { Form, Select, Row, Col, Slider, Button, Spin } from "antd";
 import "./selling.scss";
 import { Seperate } from "../../components/seperate/seperate";
-import room1 from "../../assets/images/room_1.png";
-import room2 from "../../assets/images/room-2.png";
-import room3 from "../../assets/images/room-3.png";
 import { ProductItem } from "../../components/product";
 import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import { priceObj, productsObj, projectObj } from "../../services/models";
@@ -132,14 +129,9 @@ export const Selling = () => {
     <div className="container-selling">
       <div
         className="wrap-content-selling"
-        // style={{
-        //   backgroundImage: `url(${bgrTable})`,
-        //   backgroundRepeat: "repeat-x",
-        //   backgroundPositionY: "bottom",
-        // }}
       >
         <div className="title-selling">
-          <h2>BẤT ĐỘNG SẢN ĐANG BÁN</h2>
+          <h2>CHUNG CƯ</h2>
           <Seperate widthChil={80} widthPar={357} />
         </div>
         <div className="searching-box-sell">
@@ -347,7 +339,7 @@ export const Selling = () => {
                     img_url={item.HinhAnh}
                     product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
                     product_kind={item.TenDA}
-                    bedrooms={item.PhongNgu}
+                    bedrooms={item.SoPhongNgu}
                     square_meters={item.DTThongThuy}
                     bathrooms={parseInt(item.SoPhongVS.replace(" VS", ""))}
                     direct={item.TenPhuongHuong}

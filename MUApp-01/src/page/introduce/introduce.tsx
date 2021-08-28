@@ -115,7 +115,6 @@ export const Introduce = () => {
         dataTemp.created_at = result.created_at
         dataTemp.is_active = result.is_active
 
-        console.log(dataTemp)
 
         setData(dataTemp);
       })
@@ -218,7 +217,6 @@ export const Introduce = () => {
   const relativeProjectComponents: JSX.Element[] = [];
   for (let i = 0; i < relativeProjects.length; i++) {
     if (relativeProjects[i].id.toString() !== id) {
-      console.log(relativeProjects[i].id, id)
       relativeProjectComponents.push(
         <div className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id, relativeProjects[i].url) }}>
           <span>

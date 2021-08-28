@@ -62,7 +62,6 @@ export const HeaderWrap = () => {
       })}
     </div>
   );
-  console.log(projects)
   return (
     <div className="container-header">
       <div className="logo">
@@ -129,12 +128,12 @@ export const HeaderWrap = () => {
 
             <NavLink
               to={{
-                pathname: "/dang-ban",
+                pathname: "/chung-cu",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
             >
-              ĐANG BÁN {/* <i   className="fas fa-caret-down"></i> */}
+              CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
             </NavLink>
             <span className="item-text">
               SẮP BÁN <i className="fas fa-caret-down"></i>
@@ -252,11 +251,11 @@ export const HeaderWrap = () => {
               setVisible(false);
             }}
             to={{
-              pathname: "/dang-ban",
+              pathname: "/chung-cu",
             }}
             className="tab-item"
           >
-            ĐANG BÁN {/* <i   className="fas fa-caret-down"></i> */}
+            CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
           </NavLink>
 
           <span className="tab-item">SẮP BÁN</span>

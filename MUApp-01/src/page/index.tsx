@@ -42,7 +42,7 @@ export const Index = () => {
         <Route exact path="/du-an">
           <Projects />
         </Route>
-        <Route exact path="/dang-ban">
+        <Route exact path="/chung-cu">
           <Selling />
         </Route>
         <Route exact path="/bang-gia-truc-tuyen">
