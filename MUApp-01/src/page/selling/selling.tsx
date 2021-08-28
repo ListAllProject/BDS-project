@@ -1,170 +1,132 @@
-import { useState } from "react";
-import {  Form, Select, Row, Col, Slider, Button } from "antd";
+import { useEffect, useState } from "react";
+import { Form, Select, Row, Col, Slider, Button, Spin } from "antd";
 import "./selling.scss";
 import { Seperate } from "../../components/seperate/seperate";
 import room1 from "../../assets/images/room_1.png";
 import room2 from "../../assets/images/room-2.png";
 import room3 from "../../assets/images/room-3.png";
 import { ProductItem } from "../../components/product";
+import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
+import { priceObj, productsObj, projectObj } from "../../services/models";
+import { Store } from "antd/lib/form/interface";
 const { Option } = Select;
-
-const data = [
-  {
-    img_url: room1,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room2,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room3,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room1,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room2,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room3,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room1,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room2,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room3,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room1,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room2,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room3,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room1,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room2,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-  {
-    img_url: room3,
-    product_name: "Căn hộ S1.092205 - Tòa S1.09",
-    product_kind: "Vinhomes Ocean Park",
-    bedrooms: 3,
-    square_meters: "73,9",
-    bathrooms: 2,
-    direct: "ĐB-TB",
-    price: 2840694000,
-  },
-];
 
 export const Selling = () => {
   const [form] = Form.useForm();
 
-  const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
+  const [sliderFloor, setSliderFloor] = useState<[number, number]>([0, 5]);
+  const [sliderSquare, setSliderSquare] = useState<[number, number]>([0, 50]);
+  const [listProducts, setListProducts] = useState<productsObj[]>();
+  const [listProjects, setListProjects] = useState<projectObj[]>();
+  const [listPrices, setListPrices] = useState<priceObj[]>();
+  const [listBuilding, setListBuilding] = useState<any[]>();
+  const [listTypes, setListTypes] = useState<any[]>();
+  const [direct, setDirect] = useState<any[]>();
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [pagination, setPagination] = useState({
+    limit: 12,
+    page: 1,
+  });
+  const [model, setModel] = useState({
+    TenCTDKVT: "beesky",
+    MaDA: 0,
+    MaTN: 0,
+    MaHuong: 0,
+    MaLM: 0,
+    MinFloor: 5,
+    MaxFloor: 15,
+    Price: 0,
+    MinDT: 0,
+    MaxDT: 132,
+    // MaDA: 132,
+    // MaTN: 239,
+    // MaHuong: 0,
+    // MaLM: 26,
+    // MinFloor: 5,
+    // MaxFloor: 15,
+    // Price: 3,
+    // MinDT: 0,
+    // MaxDT: 132,
+  });
+
+  useEffect(() => {
+    ProjectsBeelandAPI.getListProducts({
+      TenCTDKVT: "beesky",
+      MaDA: model.MaDA,
+      MaTN: model.MaTN,
+      MaHuong: model.MaHuong,
+      MaLM: model.MaLM,
+      MinFloor: model.MinFloor,
+      MaxFloor: model.MaxFloor,
+      Price: model.Price,
+      MinDT: model.MinDT,
+      MaxDT: model.MaxDT,
+      Offset: pagination.page,
+      Limit: pagination.limit,
+    }).then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListProducts(res.data.data);
+      }
+      setLoading(false);
+    });
+  }, [model, pagination.limit]);
+
+  useEffect(() => {
+    ProjectsBeelandAPI.getProjectFilter().then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListProjects(res.data.data);
+      }
+    });
+    ProjectsBeelandAPI.getPrice().then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListPrices(res.data.data);
+      }
+    });
+    ProjectsBeelandAPI.getBuildingByProject().then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListBuilding(res.data.data);
+      }
+    });
+    ProjectsBeelandAPI.getTypeofApartment().then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListTypes(res.data.data);
+      }
+    });
+    ProjectsBeelandAPI.getDirect().then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setDirect(res.data.data);
+      }
+    });
+  }, []);
+
+  const onFinish = (values: Store) => {
+    if (values.floor) {
+      Object.assign(values, {
+        MinFloor: values.floor[0],
+        MaxFloor: values.floor[1],
+      });
+    }
+    if (values.square) {
+      Object.assign(values, {
+        MinDT: values.square[0],
+        MaxDT: values.square[1],
+      });
+    }
+
+    setModel((val) => ({
+      ...val,
+      MaDA: values.MaDA ? values.MaDA : 0,
+      MaTN: values.MaTN ? values.MaTN : 0,
+      MaHuong: values.MaHuong ? values.MaHuong : 0,
+      MaLM: values.MaLM ? values.MaLM : 0,
+      MinFloor: values.MinFloor ? values.MinFloor : 5,
+      MaxFloor: values.MaxFloor ? values.MaxFloor : 15,
+      Price: values.Price ? values.Price : 0,
+      MinDT: values.MinDT ? values.MinDT : 0,
+      MaxDT: values.MaxDT ? values.MaxDT : 132,
+    }));
+  };
 
   return (
     <div className="container-selling">
@@ -181,95 +143,148 @@ export const Selling = () => {
           <Seperate widthChil={80} widthPar={357} />
         </div>
         <div className="searching-box-sell">
-          <Form form={form} name="searching-box-sell">
+          <Form form={form} name="searching-box-sell" onFinish={onFinish}>
             <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item name="city">
+              <Col span={8} className="mb-20">
+                <Form.Item name="MaDA">
                   <Select style={{ width: "100%" }} placeholder="Chọn dự án">
-                    <Option value="1">HCM</Option>
-                    <Option value="2">Dak Lak</Option>
-                    <Option value="3">Nghe An</Option>
+                    {listProjects?.map((item) => (
+                      <Option value={item.ID} key={item.ID}>
+                        {item.TenDA}
+                      </Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </Col>
-              <Col span={8}>
-                <Form.Item name="district">
+              <Col span={8} className="mb-20">
+                <Form.Item name="MaTN">
                   <Select style={{ width: "100%" }} placeholder="Chọn tòa">
-                    <Option value="1">HCM</Option>
-                    <Option value="2">Dak Lak</Option>
-                    <Option value="3">Nghe An</Option>
+                    {listBuilding?.map((item: any) => (
+                      <Option value="1" key={item.ID}>
+                        HCM
+                      </Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </Col>
-              <Col span={8}>
-                <Form.Item name="owner">
-                  <Select style={{ width: "100%" }} placeholder="Loại căn hộ">
-                    <Option value="1">HCM</Option>
-                    <Option value="2">Dak Lak</Option>
-                    <Option value="3">Nghe An</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
-            </Row>
-            <Row gutter={16}>
-              <Col span={8}>
-                <Form.Item name="project_kind">
+              <Col span={8} className="mb-20">
+                <Form.Item name="Price">
                   <Select
-                    style={{ width: "100%", marginTop: "17px" }}
-                    placeholder="Hướng ban công"
+                    style={{ width: "100%" }}
+                    placeholder="Chọn khoảng giá"
                   >
-                    <Option value="1">HCM</Option>
-                    <Option value="2">Dak Lak</Option>
-                    <Option value="3">Nghe An</Option>
+                    {listPrices?.map((item) => (
+                      <Option value={item.ID} key={item.ID}>
+                        {item.TenKhoangGia}
+                      </Option>
+                    ))}
                   </Select>
                 </Form.Item>
               </Col>
-
-              <Col span={8}>
-                <Form.Item
-                  name="price"
-                  label="Khoảng giá"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                  className="searching_form_label_slider"
-                >
-                  <Slider
-                    onChange={(value) => setSliderValue(value)}
-                    range
-                    tooltipVisible={false}
-                    defaultValue={[0, 50]}
-                    value={sliderValue}
-                    marks={{
-                      [sliderValue[0]]: {
-                        style: {
-                          color: "#000000",
-                        },
-                        label: <strong>{sliderValue[0]} tỷ</strong>,
-                      },
-                      [sliderValue[1]]: {
-                        style: {
-                          color: "#000000",
-                        },
-                        label: <strong>{sliderValue[1]} tỷ</strong>,
-                      },
-                    }}
-                  />
-                </Form.Item>
-              </Col>
-              <Col className="select-box-status" span={8}>
-                <Form.Item name="project_kind">
-                  <Select
-                    style={{ width: "100%", marginTop: "17px" }}
-                    placeholder="Tình trạng căn hộ"
-                  >
-                    <Option value="1">HCM</Option>
-                    <Option value="2">Dak Lak</Option>
-                    <Option value="3">Nghe An</Option>
-                  </Select>
-                </Form.Item>
-              </Col>
+              {showAdvanced ? (
+                <>
+                  <Col span={8}>
+                    <Form.Item
+                      name="floor"
+                      label="Khoảng tầng"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="searching_form_label_slider"
+                    >
+                      <Slider
+                        key="floor"
+                        onChange={(value) => setSliderFloor(value)}
+                        range
+                        tooltipVisible={false}
+                        defaultValue={[0, 5]}
+                        min={0}
+                        max={15}
+                        value={sliderFloor}
+                        marks={{
+                          [sliderFloor[0]]: {
+                            style: {
+                              color: "#000000",
+                            },
+                            label: <strong>{sliderFloor[0]} tầng</strong>,
+                          },
+                          [sliderFloor[1]]: {
+                            style: {
+                              color: "#000000",
+                            },
+                            label: <strong>{sliderFloor[1]} tầng</strong>,
+                          },
+                        }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item
+                      name="square"
+                      label="Khoảng diện tích"
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                      className="searching_form_label_slider"
+                    >
+                      <Slider
+                        key="square"
+                        onChange={(value) => setSliderSquare(value)}
+                        range
+                        tooltipVisible={false}
+                        defaultValue={[0, 50]}
+                        min={0}
+                        max={132}
+                        value={sliderSquare}
+                        marks={{
+                          [sliderSquare[0]]: {
+                            style: {
+                              color: "#000000",
+                            },
+                            label: <strong>{sliderSquare[0]} m2</strong>,
+                          },
+                          [sliderSquare[1]]: {
+                            style: {
+                              color: "#000000",
+                            },
+                            label: <strong>{sliderSquare[1]} m2</strong>,
+                          },
+                        }}
+                      />
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item name="MaLM">
+                      <Select
+                        style={{ width: "100%" }}
+                        placeholder="Loại căn hộ"
+                      >
+                        {listTypes?.map((item, index) => (
+                          <Option key={index} value="1">
+                            HCM
+                          </Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col span={8}>
+                    <Form.Item name="MaHuong">
+                      <Select
+                        style={{ width: "100%", marginTop: "17px" }}
+                        placeholder="Hướng cửa"
+                      >
+                        {direct?.map((item, index) => (
+                          <Option key={index} value="1">
+                            HCM
+                          </Option>
+                        ))}
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                </>
+              ) : null}
             </Row>
 
             <Row
@@ -287,9 +302,21 @@ export const Selling = () => {
                   fontWeight: "bold",
                   fontSize: 14,
                 }}
+                onClick={() => setShowAdvanced(!showAdvanced)}
               >
-                <i className="fas fa-plus-square"></i> Tìm kiếm nâng cao
+                {!showAdvanced ? (
+                  <>
+                    <i className="fas fa-plus-square"></i> Tìm kiếm nâng cao
+                  </>
+                ) : (
+                  <>
+                    <i className="far fa-minus-square"></i> Tìm kiếm thường
+                  </>
+                )}
               </span>
+              <Button size="large" className="primary-btn" htmlType="submit">
+                <i className="fas fa-search"></i> TÌM KIẾM
+              </Button>
               <span
                 style={{
                   padding: 5,
@@ -297,6 +324,7 @@ export const Selling = () => {
                   fontWeight: "bold",
                   fontSize: 14,
                 }}
+                onClick={() => form.resetFields()}
               >
                 XÓA TÌM KIẾM
               </span>
@@ -307,30 +335,44 @@ export const Selling = () => {
       <div className="homepage-container" style={{ marginBottom: 0 }}>
         <div className="project-container popular-items">
           <Row className="popular-items__row">
-            {data.map((item, index) => (
-              <Col
-                span={7}
-                key={index}
-                className="col-contain-item"
-                style={{ marginBottom: 60 }}
-              >
-                <ProductItem
-                  img_url={item.img_url}
-                  product_name={item.product_name}
-                  product_kind={item.product_kind}
-                  bedrooms={item.bedrooms}
-                  square_meters={item.square_meters}
-                  bathrooms={item.bathrooms}
-                  direct={item.direct}
-                  price={item.price}
-                />
-              </Col>
-            ))}
+            {listProducts && listProducts.length !== 0 ? (
+              listProducts.map((item, index) => (
+                <Col
+                  span={7}
+                  key={index}
+                  className="col-contain-item"
+                  style={{ marginBottom: 60 }}
+                >
+                  <ProductItem
+                    img_url={item.HinhAnh}
+                    product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
+                    product_kind={item.TenDA}
+                    bedrooms={item.PhongNgu}
+                    square_meters={item.DTThongThuy}
+                    bathrooms={parseInt(item.SoPhongVS.replace(" VS", ""))}
+                    direct={item.TenPhuongHuong}
+                    price={item.TongGiaTriHDMB}
+                  />
+                </Col>
+              ))
+            ) : (
+              <div className="spinner-contain">
+                <Spin />
+              </div>
+            )}
           </Row>
         </div>
       </div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button className="primary-btn" size="large">
+        <Button
+          className="primary-btn"
+          size="large"
+          onClick={() => {
+            setPagination((val) => ({ ...val, limit: pagination.limit + 12 }));
+            setLoading(true);
+          }}
+          loading={loading}
+        >
           XEM THÊM{" "}
           <i
             className="fas fa-sort-down"

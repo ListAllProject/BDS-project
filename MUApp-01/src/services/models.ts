@@ -85,3 +85,48 @@ export interface ImageObj {
   rank: number;
   project_title: string;
 }
+
+export interface productsObj {
+  STT: number;
+  TotalRows: number;
+  MaDA: number;
+  MaTang: number;
+  ViTri: number;
+  TenKhu: string;
+  MaKhu: number;
+  MaHuong2: number;
+  MaLBDS: number;
+  MaSP: number;
+  MaTT: number;
+  MaLM: number;
+  KyHieu: string;
+  TenPhuongHuong: string;
+  MauNen: number;
+  TenTT: string;
+  Tang: string;
+  PhongNgu: number;
+  DTTimTuong: number;
+  DTThongThuy: number;
+  HinhAnh: string;
+  DonGiaChuaVAT: number;
+  TongGiaChuaVAT: number;
+  TienVAT: number;
+  TongGiaGomVAT: number;
+  PhiBaoTri: number;
+  TongGiaTriHDMB: number;
+  DonGiaThongThuy: number;
+  SoPhongVS: string;
+  TenDA: string;
+}
+
+export interface projectObj {
+  ID: number;
+  TenDA: string;
+}
+
+export interface priceObj {
+  ID: number;
+  TenKhoangGia: string;
+  Min: number;
+  Max: number;
+}
