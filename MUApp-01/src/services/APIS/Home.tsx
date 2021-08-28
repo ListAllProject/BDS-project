@@ -1,4 +1,4 @@
-import { API } from "../api";
+import { APIIMGAGE as API } from "../api";
 
 let HomeAPI = {
   //k biet api nen tam thoi ghi ten zị
@@ -13,9 +13,9 @@ let HomeAPI = {
     }
     return API().get(`/web/banner?${params}type=home`);
   },
-  getProvince() {
-    return API().get(`/api/Province`);
-  },
+  // getProvince() {
+  //   return API().get(`/api/Province`);
+  // },
   // getById(id:number) {
   //     return API().get(`/abc/xyz/${id}`);
   //   },

@@ -18,7 +18,7 @@ export const Home = () => {
       } else return;
     });
 
-    HomeAPI.getProvince().then((res) => console.log(res));
+    // HomeAPI.getProvince().then((res) => console.log(res));
   }, []);
 
   return (
