@@ -12,7 +12,7 @@ import { BookingConfirm } from "./page/booking/bookingConfirm";
 import { BookingPaymentTransfer } from "./page/booking/bookingPaymentTransfer";
 import { Cart } from "./page/cart/cart";
 import { Detail } from "./page/detail/detail";
-import { Home } from "./page/Home/home"
+import { Home } from "./page/appHome/home";
 import { Introduce } from "./page/introduce/introduce";
 import { News } from "./page/news/news";
 import { Projects } from "./page/projects";
