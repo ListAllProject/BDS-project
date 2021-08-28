@@ -25,7 +25,7 @@ export const Selling = () => {
     limit: 12,
     page: 1,
   });
-  const [model, setModel] = useState({
+  const defaultData = {
     TenCTDKVT: "beesky",
     MaDA: 0,
     MaTN: 0,
@@ -36,18 +36,10 @@ export const Selling = () => {
     Price: 0,
     MinDT: 0,
     MaxDT: 132,
-    // MaDA: 132,
-    // MaTN: 239,
-    // MaHuong: 0,
-    // MaLM: 26,
-    // MinFloor: 5,
-    // MaxFloor: 15,
-    // Price: 3,
-    // MinDT: 0,
-    // MaxDT: 132,
-  });
-
-  useEffect(() => {
+  }
+  const [model, setModel] = useState(defaultData);
+  const fetchDatas = () => {
+    console.log(model, 99)
     ProjectsBeelandAPI.getListProducts({
       TenCTDKVT: "beesky",
       MaDA: model.MaDA,
@@ -62,11 +54,14 @@ export const Selling = () => {
       Offset: pagination.page,
       Limit: pagination.limit,
     }).then((res) => {
-      if (res.data.data && res.data.data.length !== 0) {
+      if (res.data.data) {
         setListProducts(res.data.data);
       }
       setLoading(false);
     });
+  }
+  useEffect(() => {
+    fetchDatas()
   }, [model, pagination.limit]);
 
   useEffect(() => {
@@ -80,23 +75,32 @@ export const Selling = () => {
         setListPrices(res.data.data);
       }
     });
-    ProjectsBeelandAPI.getBuildingByProject().then((res) => {
-      if (res.data.data && res.data.data.length !== 0) {
-        setListBuilding(res.data.data);
-      }
-    });
-    ProjectsBeelandAPI.getTypeofApartment().then((res) => {
-      if (res.data.data && res.data.data.length !== 0) {
-        setListTypes(res.data.data);
-      }
-    });
+
+    // ProjectsBeelandAPI.getTypeofApartment().then((res) => {
+    //   if (res.data.data && res.data.data.length !== 0) {
+    //     setListTypes(res.data.data);
+    //   }
+    // });
     ProjectsBeelandAPI.getDirect().then((res) => {
       if (res.data.data && res.data.data.length !== 0) {
         setDirect(res.data.data);
       }
     });
   }, []);
-
+  const onChangDA = (e: any) => {
+    ProjectsBeelandAPI.getBuildingByProject(e).then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListBuilding(res.data.data);
+      }
+    });
+  }
+  const onChangTN = (e: any) => {
+    ProjectsBeelandAPI.getTypeofApartment(e).then((res) => {
+      if (res.data.data && res.data.data.length !== 0) {
+        setListTypes(res.data.data);
+      }
+    });
+  }
   const onFinish = (values: Store) => {
     if (values.floor) {
       Object.assign(values, {
@@ -139,7 +143,7 @@ export const Selling = () => {
             <Row gutter={16}>
               <Col span={8} className="mb-20">
                 <Form.Item name="MaDA">
-                  <Select style={{ width: "100%" }} placeholder="Chọn dự án">
+                  <Select style={{ width: "100%" }} placeholder="Chọn dự án" onChange={onChangDA}>
                     {listProjects?.map((item) => (
                       <Option value={item.ID} key={item.ID}>
                         {item.TenDA}
@@ -150,10 +154,10 @@ export const Selling = () => {
               </Col>
               <Col span={8} className="mb-20">
                 <Form.Item name="MaTN">
-                  <Select style={{ width: "100%" }} placeholder="Chọn tòa">
+                  <Select style={{ width: "100%" }} placeholder="Chọn tòa" onChange={onChangTN}>
                     {listBuilding?.map((item: any) => (
-                      <Option value="1" key={item.ID}>
-                        HCM
+                      <Option value={item.ID} key={item.ID}>
+                        {item.TenTN}
                       </Option>
                     ))}
                   </Select>
@@ -254,8 +258,8 @@ export const Selling = () => {
                         placeholder="Loại căn hộ"
                       >
                         {listTypes?.map((item, index) => (
-                          <Option key={index} value="1">
-                            HCM
+                          <Option key={item.ID} value={item.ID}>
+                            {item.TenLoaiMau}
                           </Option>
                         ))}
                       </Select>
@@ -268,8 +272,8 @@ export const Selling = () => {
                         placeholder="Hướng cửa"
                       >
                         {direct?.map((item, index) => (
-                          <Option key={index} value="1">
-                            HCM
+                          <Option key={index} value={item.ID}>
+                            {item.TenPhuongHuong}
                           </Option>
                         ))}
                       </Select>
@@ -316,7 +320,7 @@ export const Selling = () => {
                   fontWeight: "bold",
                   fontSize: 14,
                 }}
-                onClick={() => form.resetFields()}
+                onClick={() => { form.resetFields(); setModel(defaultData) }}
               >
                 XÓA TÌM KIẾM
               </span>
@@ -350,6 +354,7 @@ export const Selling = () => {
             ) : (
               <div className="spinner-contain">
                 <Spin />
+                <p style={{ marginLeft: 10 }}>Đang load dữ liệu...</p>
               </div>
             )}
           </Row>

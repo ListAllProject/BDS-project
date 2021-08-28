@@ -12,9 +12,10 @@ let ProjectsBeelandAPI = {
     };
     return API().post(`/api/beeland/get-project`, obj);
   },
-  getBuildingByProject() {
+  getBuildingByProject(maDa: number) {
     return API().post(`/api/beeland/get-building-by-project`, {
       tenCTDKVT: "beesky",
+      maDA: maDa
     });
   },
   getFloorByBuilding() {
@@ -27,9 +28,10 @@ let ProjectsBeelandAPI = {
       tenCTDKVT: "beesky",
     });
   },
-  getTypeofApartment() {
+  getTypeofApartment(maTn: number) {
     return API().post(`/api/beeland/get-typeof-apartment`, {
       tenCTDKVT: "beesky",
+      maTN: maTn
     });
   },
   getPrice() {
