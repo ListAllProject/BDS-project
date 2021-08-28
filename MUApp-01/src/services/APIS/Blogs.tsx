@@ -8,8 +8,8 @@ let BlogsAPI = {
       `/web/blog?page=${parameter.page}&limit=${parameter.limit}&search=${parameter.search}&is_outstanding=${parameter.is_outstanding}`
     );
   },
-  getBlogByID(id: number) {
-    return API().get(`/web/blog/` + id);
+  getBlogBySlug(url: string) {
+    return API().get(`/web/blog/` + url);
   },
 };
 

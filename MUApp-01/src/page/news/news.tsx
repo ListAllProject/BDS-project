@@ -8,20 +8,20 @@ import { BlogObj, ResBlogs } from "../../services/models";
 import "./news.scss";
 
 type newsParams = {
-  id: string;
+  url: string;
 };
 
 export const News = () => {
-  let { id } = useParams<newsParams>();
+  let { url } = useParams<newsParams>();
   let history = useHistory();
   const [newsContent, setNewsContent] = useState<BlogObj>();
   const [outstandingNews, setOutstandingNews] = useState<ResBlogs>();
 
   useEffect(() => {
-    BlogsAPI.getBlogByID(parseInt(id)).then((res) => {
+    BlogsAPI.getBlogBySlug(url).then((res) => {
       setNewsContent(res.data.data);
     });
-  }, [id]);
+  }, [url]);
 
   useEffect(() => {
     BlogsAPI.getList({
@@ -74,13 +74,13 @@ export const News = () => {
                     alt={item.url}
                     className="news-sm-image"
                     style={{ cursor: "pointer" }}
-                    onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                    onClick={() => history.push(`/tin-tuc/${item.url}`)}
                   />
                   <div className="news-item">
                     <p
                       className="sm-news-title"
                       style={{ cursor: "pointer" }}
-                      onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                      onClick={() => history.push(`/tin-tuc/${item.url}`)}
                     >
                       {item.title}
                     </p>
