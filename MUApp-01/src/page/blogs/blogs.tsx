@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import topimg from "../../assets/images/bgr-blog.jpg";
 import BlogsAPI from "../../services/APIS/Blogs";
 import { customTime } from "../../services/helper";
 import { ResBlogs } from "../../services/models";
@@ -60,7 +59,6 @@ export const Blog = () => {
       fetchData();
     }
   }
-  console.log(data)
   return (
     <div className="container-blog">
       <div className="wrap-content-list-blog">
@@ -79,7 +77,7 @@ export const Blog = () => {
                   objectFit: "scale-down",
                   minHeight: 400,
                 }}
-                src={topimg}
+                src={data?.list_blog[0]?.thumbnail}
 
               // src={data?.list_blog[0]?.url}
               ></img>
@@ -88,43 +86,45 @@ export const Blog = () => {
             <div className="tille-top1"> {data?.list_blog[0]?.title}</div>
 
             <div className="time">
-              <i className="fal fa-clock"></i> Thứ 2 ,08/07/2019
+              <i className="fal fa-clock"></i> {customTime(data?.list_blog[0]?.created_at, "HH:mm DD/MM/YYYY")}
             </div>
           </div>
           <div className="top-right-content">
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
             {outstandingBlogs?.list_blog?.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className="content-item"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => history.push(`/tin-tuc/${item.url}`)}
-                >
-                  <div>
-                    <img
-                      alt="image1"
-                      style={{
-                        width: 117,
-                      }}
-                      // src={item.url}
-                      src={item.thumbnail}
-                    ></img>
-                  </div>
+              if (index !== 0) {
+                return (
                   <div
-                    style={{
-                      marginLeft: 16,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
+                    key={index}
+                    className="content-item"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => history.push(`/tin-tuc/${item.url}`)}
                   >
-                    <span className="title-blog">{item.title}</span>
-                    <span className="time-blog">
-                      <i className="fal fa-clock"></i> Thứ 2 ,08/07/2019
+                    <div>
+                      <img
+                        alt="image1"
+                        style={{
+                          width: 117,
+                        }}
+                        // src={item.url}
+                        src={item.thumbnail}
+                      ></img>
+                    </div>
+                    <div
+                      style={{
+                        marginLeft: 16,
+                        display: "flex",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <span className="title-blog">{item.title}</span>
+                      <span className="time-blog">
+                        <i className="fal fa-clock"></i> {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
                     </span>
+                    </div>
                   </div>
-                </div>
-              );
+                );
+              }
             })}
           </div>
         </div>
@@ -154,7 +154,7 @@ export const Blog = () => {
                     </div>
                     <div className="time-blog">
                       <i className="fal fa-clock"></i>{" "}
-                      {customTime("2021-07-30 14:10:33", "HH:mm DD/MM/YYYY")}
+                      {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
                     </div>
                     <div className="description">{item.description}</div>
                   </div>

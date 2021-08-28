@@ -49,6 +49,10 @@
     .body {
       width: 100%;
 
+      .ant-form-item {
+        margin-bottom: 0px;
+      }
+
       .ant-input-affix-wrapper {
         border       : 0px solid white;
         border-bottom: 1px solid $primary--color1 !important;
@@ -70,6 +74,20 @@
       flex-flow  : column;
       align-items: center;
       margin-top : 20px;
+
+      .forgot-password-error-message {
+        font-size: 14px;
+        font-weight: 400;
+        font-style: italic;
+        color: red;
+      }
+
+      .forgot-password-succes-message {
+        font-size: 14px;
+        font-weight: 400;
+        font-style: italic;
+        color: green;
+      }
 
       .send-button {
         margin-top     : 20px;
