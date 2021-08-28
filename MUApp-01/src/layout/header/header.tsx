@@ -14,7 +14,7 @@ export const HeaderWrap = () => {
 
   useEffect(() => {
     fetchData();
-    fetchDataBlog()
+    fetchDataBlog();
   }, []);
 
   const fetchDataBlog = () => {
@@ -150,10 +150,6 @@ export const HeaderWrap = () => {
               </NavLink>
             </Dropdown>
 
-            <span className="item-text">
-              HỖ TRỢ <i className="fas fa-caret-down"></i>
-            </span>
-
             <Dropdown overlay={menuBlogsComponent}>
               <NavLink
                 to={{
@@ -165,7 +161,6 @@ export const HeaderWrap = () => {
                 TIN TỨC <i className="fas fa-caret-down  icon-prj"></i>
               </NavLink>
             </Dropdown>
-
           </div>
 
           <div className="right">
