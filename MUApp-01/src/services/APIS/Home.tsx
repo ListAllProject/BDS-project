@@ -13,6 +13,9 @@ let HomeAPI = {
     }
     return API().get(`/web/banner?${params}type=home`);
   },
+  getProvince() {
+    return API().get(`/api/Province`);
+  },
   // getById(id:number) {
   //     return API().get(`/abc/xyz/${id}`);
   //   },

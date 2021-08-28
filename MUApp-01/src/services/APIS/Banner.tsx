@@ -1,6 +1,6 @@
 // import { Store } from "antd/lib/form/interface";
-import { API } from "../api";
-import {  Parameters } from "../models";
+import { APIIMGAGE as API } from "../api";
+import { Parameters } from "../models";
 
 let BannersAPI = {
   getList(parameter: Parameters) {

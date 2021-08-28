@@ -76,7 +76,8 @@
 
     .item-row {
       display: flex;
-      justify-content: space-between;
+      flex-wrap: row wrap;
+      column-gap: 30px;
 
       .item-col {
         width: 350px;

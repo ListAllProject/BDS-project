@@ -1,4 +1,4 @@
-import { API } from "../api";
+import { APIIMGAGE as API } from "../api";
 
 let ProjectsAPI = {
   //k biet api nen tam thoi ghi ten zị

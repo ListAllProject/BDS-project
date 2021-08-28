@@ -8,30 +8,31 @@ import ProjectsAPI from "../../services/APIS/Projects";
 
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
-  const [projects, setProjects] = useState<DetailProject[]>([])
+  const [projects, setProjects] = useState<DetailProject[]>([]);
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
   const fetchData = () => {
     let limit = 10;
     let page = 1;
     ProjectsAPI.getListProjects(limit, page)
-      .then(res => {
+      .then((res) => {
         let result = res.data.data.list_projects;
-        setProjects(result)
+        setProjects(result);
       })
-      .catch(err => console.log(err))
-  }
-
+      .catch((err) => console.log(err));
+  };
 
   const menuComponent = (
     <div className="menu-project">
       {projects.map((e, i) => {
-        return <Link className="span-item" to={"/gioi-thieu-du-an/" + e.id}>
-          {e.investor}
-        </Link>
+        return (
+          <Link className="span-item" to={"/gioi-thieu-du-an/" + e.id}>
+            {e.investor}
+          </Link>
+        );
       })}
     </div>
   );
@@ -48,11 +49,10 @@ export const HeaderWrap = () => {
           <div className="box-tooltip">
             <span className="tooltip">Nhập SĐT nhận ưu đãi</span>
             <Input
-                addonAfter="NHẬP"
-                style={{ maxWidth: "300px" }}
-                placeholder="Nhập SĐT nhận ưu đãi"
-              >
-              </Input>
+              addonAfter="NHẬP"
+              style={{ maxWidth: "300px" }}
+              placeholder="Nhập SĐT nhận ưu đãi"
+            ></Input>
           </div>
           <span
             style={{

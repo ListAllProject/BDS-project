@@ -1,5 +1,5 @@
 // import { Store } from "antd/lib/form/interface";
-import { API } from "../api";
+import { APIIMGAGE as API } from "../api";
 import { ResBlogs } from "../models";
 
 let BlogsAPI = {

@@ -18,8 +18,16 @@ import { News } from "./page/news/news";
 import { Projects } from "./page/projects";
 import { Selling } from "./page/selling/selling";
 import { TablePrice } from "./page/tablePrice/tablePrice";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    localStorage.setItem(
+      "token",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYU5WIjo5NjMsIkhvVGVuIjoiaG9hbiIsIk1hQ1RESyI6IjEiLCJUZW5DVERLVlQiOiJiZWVza3kiLCJFbWFpbCI6ImRpbmhob2Fubmd1eWVuOTk5QGdtYWlsLmNvbSIsIkRpRG9uZyI6IjAzNzc2MDE1NTkiLCJpc0xvY2siOmZhbHNlLCJpc0FjY2VwdCI6dHJ1ZSwibmJmIjoxNjMwMTI2MjMxLCJleHAiOjE2MzA3MzEwMzEsImlhdCI6MTYzMDEyNjIzMSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2NiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzNjYifQ.5fogorGJ2tupj-3WrdUF70ZsIYFHPTSuWpI8x_ol6wU"
+    );
+  }, []);
+
   return (
     <Router>
       <HeaderWrap />

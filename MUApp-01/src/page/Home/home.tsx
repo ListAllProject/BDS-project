@@ -17,6 +17,8 @@ export const Home = () => {
         setBanners(res.data.data);
       } else return;
     });
+
+    HomeAPI.getProvince().then((res) => console.log(res));
   }, []);
 
   return (
