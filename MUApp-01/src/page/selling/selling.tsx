@@ -11,8 +11,8 @@ const { Option } = Select;
 export const Selling = () => {
   const [form] = Form.useForm();
 
-  const [sliderFloor, setSliderFloor] = useState<[number, number]>([0, 5]);
-  const [sliderSquare, setSliderSquare] = useState<[number, number]>([0, 50]);
+  const [sliderFloor, setSliderFloor] = useState<[number, number]>([0, 20]);
+  const [sliderSquare, setSliderSquare] = useState<[number, number]>([0, 120]);
   const [listProducts, setListProducts] = useState<productsObj[]>();
   const [listProjects, setListProjects] = useState<projectObj[]>();
   const [listPrices, setListPrices] = useState<priceObj[]>();
@@ -196,22 +196,22 @@ export const Selling = () => {
                         onChange={(value) => setSliderFloor(value)}
                         range
                         tooltipVisible={false}
-                        defaultValue={[0, 5]}
+                        defaultValue={[0, 20]}
                         min={0}
-                        max={15}
+                        max={60}
                         value={sliderFloor}
                         marks={{
                           [sliderFloor[0]]: {
                             style: {
                               color: "#000000",
                             },
-                            label: <strong>{sliderFloor[0]} tầng</strong>,
+                            label: <strong>{sliderFloor[0]}</strong>,
                           },
                           [sliderFloor[1]]: {
                             style: {
                               color: "#000000",
                             },
-                            label: <strong>{sliderFloor[1]} tầng</strong>,
+                            label: <strong>{sliderFloor[1]}</strong>,
                           },
                         }}
                       />
@@ -220,7 +220,7 @@ export const Selling = () => {
                   <Col span={8}>
                     <Form.Item
                       name="square"
-                      label="Khoảng diện tích"
+                      label="Khoảng diện tích (m2)"
                       style={{
                         display: "flex",
                         flexDirection: "column",
@@ -232,22 +232,22 @@ export const Selling = () => {
                         onChange={(value) => setSliderSquare(value)}
                         range
                         tooltipVisible={false}
-                        defaultValue={[0, 50]}
+                        defaultValue={[0, 120]}
                         min={0}
-                        max={132}
+                        max={400}
                         value={sliderSquare}
                         marks={{
                           [sliderSquare[0]]: {
                             style: {
                               color: "#000000",
                             },
-                            label: <strong>{sliderSquare[0]} m2</strong>,
+                            label: <strong>{sliderSquare[0]}</strong>,
                           },
                           [sliderSquare[1]]: {
                             style: {
                               color: "#000000",
                             },
-                            label: <strong>{sliderSquare[1]} m2</strong>,
+                            label: <strong>{sliderSquare[1]} </strong>,
                           },
                         }}
                       />
