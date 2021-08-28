@@ -22,7 +22,7 @@ export const Selling = () => {
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState({
-    limit: 12,
+    limit: 100,
     page: 1,
   });
   const defaultData = {
@@ -126,6 +126,8 @@ export const Selling = () => {
       Price: values.Price ? values.Price : 0,
       MinDT: values.MinDT ? values.MinDT : 0,
       MaxDT: values.MaxDT ? values.MaxDT : 132,
+      Offset: pagination.page,
+      Limit: pagination.limit,
     }));
   };
 
