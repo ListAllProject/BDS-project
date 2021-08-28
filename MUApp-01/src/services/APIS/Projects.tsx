@@ -28,8 +28,8 @@ let ProjectsAPI = {
     }
     return API().get(`/web/project` + `?${params}`);
   },
-  getProjectById(id: number) {
-    return API().get(`/web/project/${id}`);
+  getProjectBySlug(url: string) {
+    return API().get(`/web/project/${url}`);
   },
   getProjectFiltersList() {
     return API().get(`/web/project/filters/list`);

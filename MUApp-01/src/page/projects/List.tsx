@@ -81,7 +81,7 @@ export const List: FC<{
             {data && data.length !== 0 ? (
               data.map((item) => (
                 <Col className="item-col" key={item.id}>
-                  <Link to={`/gioi-thieu-du-an/${item.id}`}>
+                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.id}`}>
                     <img
                       alt={item.detail_project.title}
                       src={item.detail_project.img}

@@ -3,19 +3,35 @@ import { Badge, Drawer, Dropdown, Input } from "antd";
 import logo from "../../assets/images/logo.png";
 import "./header.scss";
 import { Link, NavLink } from "react-router-dom";
-import { DetailProject } from "../../services/models";
+import { DetailProject, BlogObj } from "../../services/models";
 import ProjectsAPI from "../../services/APIS/Projects";
+import BlogsAPI from "../../services/APIS/Blogs";
 
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
   const [projects, setProjects] = useState<DetailProject[]>([]);
+  const [blogs, setBlogs] = useState<BlogObj[]>([]);
 
   useEffect(() => {
     fetchData();
+    fetchDataBlog()
   }, []);
 
+  const fetchDataBlog = () => {
+    BlogsAPI.getList({
+      page: 1,
+      limit: 8,
+      list_blog: [],
+      search: "",
+    })
+      .then((res) => {
+        let result = res.data.data.list_blog;
+        setBlogs(result);
+      })
+      .catch((err) => console.log(err));
+  };
   const fetchData = () => {
-    let limit = 10;
+    let limit = 8;
     let page = 1;
     ProjectsAPI.getListProjects(limit, page)
       .then((res) => {
@@ -24,19 +40,28 @@ export const HeaderWrap = () => {
       })
       .catch((err) => console.log(err));
   };
-
   const menuComponent = (
     <div className="menu-project">
       {projects.map((e, i) => {
         return (
-          <Link className="span-item" to={"/gioi-thieu-du-an/" + e.id}>
-            {e.investor}
+          <Link className="span-item" to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
+            {e.main_title}
           </Link>
         );
       })}
     </div>
   );
-
+  const menuBlogsComponent = (
+    <div className="menu-project">
+      {blogs.map((e, i) => {
+        return (
+          <Link className="span-item" to={"/tin-tuc/" + e.url}>
+            {e.title}
+          </Link>
+        );
+      })}
+    </div>
+  );
   return (
     <div className="container-header">
       <div className="logo">
@@ -103,12 +128,12 @@ export const HeaderWrap = () => {
 
             <NavLink
               to={{
-                pathname: "/dang-ban",
+                pathname: "/chung-cu",
               }}
               className="item-text"
               activeClassName={"item-text-selected"}
             >
-              ĐANG BÁN {/* <i   className="fas fa-caret-down"></i> */}
+              CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
             </NavLink>
             <span className="item-text">
               SẮP BÁN <i className="fas fa-caret-down"></i>
@@ -129,16 +154,18 @@ export const HeaderWrap = () => {
               HỖ TRỢ <i className="fas fa-caret-down"></i>
             </span>
 
-            <NavLink
-              to={{
-                pathname: "/danh-sach-tin-tuc",
-              }}
-              className="item-text"
-              activeClassName={"item-text-selected"}
-            >
-              TIN TỨC
-              {/* <i   className="fas fa-caret-down"></i> */}
-            </NavLink>
+            <Dropdown overlay={menuBlogsComponent}>
+              <NavLink
+                to={{
+                  pathname: "/danh-sach-tin-tuc",
+                }}
+                className="item-text"
+                activeClassName={"item-text-selected"}
+              >
+                TIN TỨC <i className="fas fa-caret-down  icon-prj"></i>
+              </NavLink>
+            </Dropdown>
+
           </div>
 
           <div className="right">
@@ -224,11 +251,11 @@ export const HeaderWrap = () => {
               setVisible(false);
             }}
             to={{
-              pathname: "/dang-ban",
+              pathname: "/chung-cu",
             }}
             className="tab-item"
           >
-            ĐANG BÁN {/* <i   className="fas fa-caret-down"></i> */}
+            CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
           </NavLink>
 
           <span className="tab-item">SẮP BÁN</span>

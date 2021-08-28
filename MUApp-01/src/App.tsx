@@ -42,7 +42,7 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route exact path="/gioi-thieu-du-an/:id">
+        <Route exact path="/gioi-thieu-du-an/:url/:id">
           <Introduce />
         </Route>
         <Route exact path="/booking-complete">
@@ -63,7 +63,7 @@ function App() {
         <Route exact path="/du-an">
           <Projects />
         </Route>
-        <Route exact path="/dang-ban">
+        <Route exact path="/chung-cu">
           <Selling />
         </Route>
         <Route exact path="/bang-gia-truc-tuyen">

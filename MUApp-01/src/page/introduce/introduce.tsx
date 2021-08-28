@@ -29,13 +29,12 @@ const settings = {
 };
 
 const settings2 = {
-  infinite: true,
+  infinite: false,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
   // focusOnSelect: true,
   accessibility: true,
-
   responsive: [
     {
       breakpoint: 992,
@@ -56,10 +55,11 @@ const settings2 = {
 
 type introduceParams = {
   id: string;
+  url: string
 }
 
 export const Introduce = () => {
-  const { id } = useParams<introduceParams>();
+  const { id, url } = useParams<introduceParams>();
 
   const [reasons, setReasons] = useState<ReasonObj[]>([]);
   const [images, setImages] = useState<ImageObj[]>([]);
@@ -84,6 +84,7 @@ export const Introduce = () => {
     main_title: "",
     is_active: 0,
     slogan: "",
+    url: ""
   })
 
   useEffect(() => {
@@ -92,9 +93,7 @@ export const Introduce = () => {
 
   function fetchData() {
     let projectId = parseInt(id)
-    console.log(projectId)
-
-    ProjectsAPI.getProjectById(projectId)
+    ProjectsAPI.getProjectBySlug(url)
       .then((res) => {
         let result = { ...res.data.data };
         let dataTemp = { ...data };
@@ -116,7 +115,6 @@ export const Introduce = () => {
         dataTemp.created_at = result.created_at
         dataTemp.is_active = result.is_active
 
-        console.log(dataTemp)
 
         setData(dataTemp);
       })
@@ -212,16 +210,15 @@ export const Introduce = () => {
   })
 
   let history = useHistory();
-  function onClickRelativeProject(project_id: number) {
-    history.push("/gioi-thieu-du-an/" + project_id.toString());
+  function onClickRelativeProject(project_id: number, url: string) {
+    history.push("/gioi-thieu-du-an/" + url + '/' + project_id.toString());
     window.scrollTo(0, 0)
   }
   const relativeProjectComponents: JSX.Element[] = [];
   for (let i = 0; i < relativeProjects.length; i++) {
     if (relativeProjects[i].id.toString() !== id) {
-      console.log(relativeProjects[i].id, id)
       relativeProjectComponents.push(
-        <div className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id) }}>
+        <div className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id, relativeProjects[i].url) }}>
           <span>
             <img
               style={{ width: "100%" }}

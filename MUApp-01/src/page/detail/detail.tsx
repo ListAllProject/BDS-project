@@ -37,7 +37,7 @@ export const Detail = () => {
     <div style={{ marginBottom: 20 }} className="wrap-detail-product-content">
       <div className="content">
         {/* Title */}
-        <div className="title">BẤT ĐỘNG SẢN ĐANG BÁN</div>
+        <div className="title">CHUNG CƯ</div>
         <div className="title-line-break">
           <div className="title-middle-line-break"></div>
         </div>
