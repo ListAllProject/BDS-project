@@ -12,7 +12,7 @@ import { BookingConfirm } from "./page/booking/bookingConfirm";
 import { BookingPaymentTransfer } from "./page/booking/bookingPaymentTransfer";
 import { Cart } from "./page/cart/cart";
 import { Detail } from "./page/detail/detail";
-import { Home } from "./page/home/home";
+import { Home } from "./page/Home/home"
 import { Introduce } from "./page/introduce/introduce";
 import { News } from "./page/news/news";
 import { Projects } from "./page/projects";
@@ -57,7 +57,7 @@ function App() {
         <Route exact path="/gio-hang">
           <Cart />
         </Route>
-        <Route path="/tin-tuc/:id" component={News}>
+        <Route path="/tin-tuc/:url" component={News}>
           {/* <News /> */}
         </Route>
         <Route exact path="/du-an">

@@ -60,14 +60,14 @@ export const Blog = () => {
       fetchData();
     }
   }
-
+  console.log(data)
   return (
     <div className="container-blog">
       <div className="wrap-content-list-blog">
         <div className="top-content">
           <div
             className="top-left-content"
-            onClick={() => history.push(`/tin-tuc/${data?.list_blog[0]?.id}`)}
+            onClick={() => history.push(`/tin-tuc/${data?.list_blog[0]?.url}`)}
             style={{ cursor: "pointer" }}
           >
             <span style={{ width: "100%" }}>
@@ -99,7 +99,7 @@ export const Blog = () => {
                   key={index}
                   className="content-item"
                   style={{ cursor: "pointer" }}
-                  onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                  onClick={() => history.push(`/tin-tuc/${item.url}`)}
                 >
                   <div>
                     <img
@@ -141,14 +141,14 @@ export const Blog = () => {
                         alt="image2"
                         style={{ width: "100%", cursor: "pointer" }}
                         // src={`http://localhost:3000/${item.url}`}
-                        onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                        onClick={() => history.push(`/tin-tuc/${item.url}`)}
                         src={item.thumbnail}
                       />
                     </div>
                     <div
                       className="title-blog"
                       style={{ cursor: "pointer" }}
-                      onClick={() => history.push(`/tin-tuc/${item.id}`)}
+                      onClick={() => history.push(`/tin-tuc/${item.url}`)}
                     >
                       {item.title}
                     </div>

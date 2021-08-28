@@ -2,7 +2,7 @@ import { HeaderWrap } from "../layout/header/header";
 import { FooterWrap } from "../layout/footer/footer";
 import { TablePrice } from "./tablePrice/tablePrice";
 import { Switch, Route } from "react-router-dom";
-import { Home } from "./home/home";
+import { Home } from "./Home/home";
 import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects/index";
@@ -36,7 +36,7 @@ export const Index = () => {
         <Route exact path="/gio-hang">
           <Cart />
         </Route>
-        <Route path="/tin-tuc/:id">
+        <Route path="/tin-tuc/:url">
           <News />
         </Route>
         <Route exact path="/du-an">
