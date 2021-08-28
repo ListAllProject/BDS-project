@@ -52,6 +52,7 @@ export interface DetailProject {
   is_active: number;
   main_title: string;
   slogan: string;
+  url: string;
 }
 
 export interface ProjectFilterObj {

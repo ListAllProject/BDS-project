@@ -42,7 +42,7 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route exact path="/gioi-thieu-du-an/:id">
+        <Route exact path="/gioi-thieu-du-an/:url/:id">
           <Introduce />
         </Route>
         <Route exact path="/booking-complete">
