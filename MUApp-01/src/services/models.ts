@@ -131,3 +131,25 @@ export interface priceObj {
   Min: number;
   Max: number;
 }
+export interface LoginRequest {
+  maCTDK: string;
+  email: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  name: string;
+  phone: string;
+  username: string;
+  password: string;
+  passwordRe: string;
+  email: string;
+  maCTDK: string;
+}
+
+export interface FogotPasswordRequest {
+  maCTDK: string;
+  email: string;
+  phone: string;
+}
+
