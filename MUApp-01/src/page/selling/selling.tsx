@@ -21,8 +21,9 @@ export const Selling = () => {
   const [direct, setDirect] = useState<any[]>();
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingFilter, setLoadingFilter] = useState(false);
   const [pagination, setPagination] = useState({
-    limit: 100,
+    limit: 9,
     page: 1,
   });
   const defaultData = {
@@ -38,6 +39,7 @@ export const Selling = () => {
     MaxDT: 132,
   }
   const [model, setModel] = useState(defaultData);
+
   const fetchDatas = () => {
     console.log(model, 99)
     ProjectsBeelandAPI.getListProducts({
@@ -54,10 +56,12 @@ export const Selling = () => {
       Offset: pagination.page,
       Limit: pagination.limit,
     }).then((res) => {
+      console.log(res, 8)
       if (res.data.data) {
         setListProducts(res.data.data);
       }
       setLoading(false);
+      setLoadingFilter(false)
     });
   }
   useEffect(() => {
@@ -102,6 +106,7 @@ export const Selling = () => {
     });
   }
   const onFinish = (values: Store) => {
+    setLoadingFilter(true)
     if (values.floor) {
       Object.assign(values, {
         MinFloor: values.floor[0],
@@ -290,7 +295,6 @@ export const Selling = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 color: "#BE9355",
-                // marginTop: 20,
               }}
             >
               <span
@@ -312,8 +316,8 @@ export const Selling = () => {
                   </>
                 )}
               </span>
-              <Button size="large" className="primary-btn" htmlType="submit">
-                <i className="fas fa-search"></i> TÌM KIẾM
+              <Button size="large" className="primary-btn" htmlType="submit" loading={loadingFilter}>
+                {!loadingFilter ? <i className="fas fa-search"></i> : null}TÌM KIẾM
               </Button>
               <span
                 style={{
@@ -333,7 +337,7 @@ export const Selling = () => {
       <div className="homepage-container" style={{ marginBottom: 0 }}>
         <div className="project-container popular-items">
           <Row className="popular-items__row">
-            {listProducts && listProducts.length !== 0 ? (
+            {listProducts ? listProducts.length !== 0 ? (
               listProducts.map((item, index) => (
                 <Col
                   span={7}
@@ -355,30 +359,42 @@ export const Selling = () => {
               ))
             ) : (
               <div className="spinner-contain">
-                <Spin />
-                <p style={{ marginLeft: 10 }}>Đang load dữ liệu...</p>
+                <p>Không có dữ liệu ! <i className="fas fa-long-arrow-left" style={{ margin: "0px 5px 0 5px" }}></i><a href="#" onClick={() => { form.resetFields(); setModel(defaultData) }}>Quay lại</a></p>
               </div>
-            )}
+            )
+              : (
+                <div className="spinner-contain">
+                  <Spin />
+                  <p style={{ marginLeft: 10 }}>Đang load dữ liệu...</p>
+                </div>
+              )
+            }
           </Row>
         </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Button
-          className="primary-btn"
-          size="large"
-          onClick={() => {
-            setPagination((val) => ({ ...val, limit: pagination.limit + 12 }));
-            setLoading(true);
-          }}
-          loading={loading}
-        >
-          XEM THÊM{" "}
-          <i
-            className="fas fa-sort-down"
-            style={{ margin: "0px 0px 5px 10px" }}
-          ></i>
-        </Button>
-      </div>
+
+      {/* check show xem them */}
+
+      {listProducts && listProducts.length !== 0 ? (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Button
+            className="primary-btn"
+            size="large"
+            onClick={() => {
+              setPagination((val) => ({ ...val, limit: pagination.limit + 9 }));
+              setLoading(true);
+            }}
+            loading={loading}
+          >
+            XEM THÊM{" "}
+            <i
+              className="fas fa-sort-down"
+              style={{ margin: "0px 0px 5px 10px" }}
+            ></i>
+          </Button>
+        </div>
+      ) : <></>
+      }
     </div>
   );
 };

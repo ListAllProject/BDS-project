@@ -7,6 +7,7 @@ import { Detail } from "./detail/detail";
 import { Selling } from "./selling/selling";
 import { Projects } from "./projects/index";
 import { Blog } from "./blogs/blogs";
+import { BlogCategory } from "./blogs/blogsCategory";
 import { News } from "./news/news";
 import { Cart } from "./cart/cart";
 import { BookingConfirm } from "./booking/bookingConfirm";
@@ -50,6 +51,9 @@ export const Index = () => {
         </Route>
         <Route exact path="/danh-sach-tin-tuc">
           <Blog />
+        </Route>
+        <Route exact path="/danh-sach-tin-tuc/:url">
+          <BlogCategory />
         </Route>
         <Route path="/chi-tiet-du-an" component={Detail}></Route>
         <Route path="/">

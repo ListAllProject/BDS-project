@@ -242,12 +242,16 @@
 }
 
 .menu-project {
+    &.news{
+        width: 160px;
+    }
     display         : flex;
     flex-direction  : column;
     width           : 194px;
     padding         : 5px 10px;
     background-color: #011769;
     border-radius   : 6px;
+    margin-left: -50px;
 
     .div-space-menu-prj {
         width           : 100%;

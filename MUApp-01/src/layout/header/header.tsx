@@ -10,7 +10,7 @@ import BlogsAPI from "../../services/APIS/Blogs";
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
   const [projects, setProjects] = useState<DetailProject[]>([]);
-  const [blogs, setBlogs] = useState<BlogObj[]>([]);
+  const [catblogs, setCatBlogs] = useState<any[]>([]);
 
   useEffect(() => {
     fetchData();
@@ -18,15 +18,10 @@ export const HeaderWrap = () => {
   }, []);
 
   const fetchDataBlog = () => {
-    BlogsAPI.getList({
-      page: 1,
-      limit: 8,
-      list_blog: [],
-      search: "",
-    })
+    BlogsAPI.getCatBlog()
       .then((res) => {
-        let result = res.data.data.list_blog;
-        setBlogs(result);
+        let result = res.data.data;
+        setCatBlogs(result);
       })
       .catch((err) => console.log(err));
   };
@@ -52,11 +47,11 @@ export const HeaderWrap = () => {
     </div>
   );
   const menuBlogsComponent = (
-    <div className="menu-project">
-      {blogs.map((e, i) => {
+    <div className="menu-project news">
+      {catblogs.map((e, i) => {
         return (
-          <Link className="span-item" to={"/tin-tuc/" + e.url}>
-            {e.title}
+          <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
+            {e.name}
           </Link>
         );
       })}

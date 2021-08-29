@@ -14,6 +14,7 @@ export interface ResBlogs {
   count?: number;
   list_blog: BlogObj[];
   total_page?: number;
+  url?: string
 }
 
 export interface BlogObj {
