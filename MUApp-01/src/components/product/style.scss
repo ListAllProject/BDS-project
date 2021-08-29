@@ -61,6 +61,8 @@
       .square {
         display: flex;
         flex-direction: row !important;
+        text-overflow: ellipsis;
+        white-space: nowrap;
         // font-size: 12px;
         // width: 50px;
       }
