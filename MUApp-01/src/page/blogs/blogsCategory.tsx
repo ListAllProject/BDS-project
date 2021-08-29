@@ -10,30 +10,30 @@ type newsParams = {
 
 export const BlogCategory = () => {
   let { url } = useParams<newsParams>();
-  const [name, setName] = useState('')
-  const [data, setData] = useState<ResBlogs>({
+  const defaultValue = {
     page: 1,
     limit: 6,
     url: url,
     search: "",
     list_blog: [],
     total_page: 0,
-  });
+  }
+  const [name, setName] = useState('')
+  const [data, setData] = useState<ResBlogs>(defaultValue);
   const [loading, setLoading] = useState<boolean>(false);
+
   let history = useHistory();
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(defaultValue);
+  }, [url]);
 
-  function fetchData() {
+  function fetchData(d: any) {
     setLoading(false);
-
-    BlogsAPI.getListBySlug(data)
+    BlogsAPI.getListBySlug(d)
       .then((res) => {
         let respon = { ...res.data.data };
-        let dataTemp = data;
-        console.log(res, respon, 88)
+        let dataTemp = d;
 
         dataTemp.page += 1;
         dataTemp.count = respon.count;
@@ -48,7 +48,7 @@ export const BlogCategory = () => {
 
   function onLoadMore() {
     if (data.total_page && data.page <= data.total_page) {
-      fetchData();
+      fetchData(data);
     }
   }
   return (
