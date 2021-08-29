@@ -107,6 +107,7 @@
       display: flex;
       flex-wrap: row wrap;
       column-gap: 30px;
+      justify-content: center;
 
       .item-col {
         width: 350px;
@@ -176,7 +177,8 @@
     &.popular-items {
       .popular-items__row {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        column-gap: 30px;
       }
 
       .col-contain-item {

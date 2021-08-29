@@ -9,12 +9,12 @@ const { Paragraph } = Typography;
 
 export const List: FC<{
   filterResult:
-  | {
-    city: string;
-    district: string;
-    investor: string;
-  }
-  | undefined;
+    | {
+        city: string;
+        district: string;
+        investor: string;
+      }
+    | undefined;
 }> = ({ filterResult }) => {
   const [pagination, setPagination] = useState({
     limit: 9,
@@ -25,9 +25,11 @@ export const List: FC<{
   });
 
   const [data, setData] = useState<Array<DetailProject>>();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     handleLoadList();
+    setLoading(false);
   }, [filterResult, pagination.reloadFlag]);
 
   const handleLoadList = () => {
@@ -66,6 +68,7 @@ export const List: FC<{
   };
 
   const handleAddMore = () => {
+    setLoading(true);
     setPagination((ele) => ({
       ...ele,
       limit: ele.total > ele.limit ? ele.limit + 9 : ele.limit,
@@ -105,7 +108,12 @@ export const List: FC<{
         <div
           style={{ display: "flex", justifyContent: "center", marginTop: 20 }}
         >
-          <Button className="primary-btn" size="large" onClick={handleAddMore}>
+          <Button
+            className="primary-btn"
+            size="large"
+            onClick={handleAddMore}
+            loading={loading}
+          >
             XEM THÊM{" "}
             <i
               className="fas fa-sort-down"
