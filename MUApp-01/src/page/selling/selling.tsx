@@ -32,16 +32,16 @@ export const Selling = () => {
     MaTN: 0,
     MaHuong: 0,
     MaLM: 0,
-    MinFloor: 5,
-    MaxFloor: 15,
+    MinFloor: 1,
+    MaxFloor: 40,
     Price: 0,
-    MinDT: 0,
-    MaxDT: 132,
+    MinDT: 1,
+    MaxDT: 400,
   }
   const [model, setModel] = useState(defaultData);
 
   const fetchDatas = () => {
-    console.log(model, 99)
+    console.log(model, 'modal')
     ProjectsBeelandAPI.getListProducts({
       TenCTDKVT: "beesky",
       MaDA: model.MaDA,
@@ -56,7 +56,7 @@ export const Selling = () => {
       Offset: pagination.page,
       Limit: pagination.limit,
     }).then((res) => {
-      console.log(res, 8)
+      console.log(res, "data")
       if (res.data.data) {
         setListProducts(res.data.data);
       }
@@ -126,11 +126,11 @@ export const Selling = () => {
       MaTN: values.MaTN ? values.MaTN : 0,
       MaHuong: values.MaHuong ? values.MaHuong : 0,
       MaLM: values.MaLM ? values.MaLM : 0,
-      MinFloor: values.MinFloor ? values.MinFloor : 5,
-      MaxFloor: values.MaxFloor ? values.MaxFloor : 15,
+      MinFloor: values.MinFloor ? values.MinFloor : 0,
+      MaxFloor: values.MaxFloor ? values.MaxFloor : 40,
       Price: values.Price ? values.Price : 0,
       MinDT: values.MinDT ? values.MinDT : 0,
-      MaxDT: values.MaxDT ? values.MaxDT : 132,
+      MaxDT: values.MaxDT ? values.MaxDT : 400,
       Offset: pagination.page,
       Limit: pagination.limit,
     }));
@@ -351,7 +351,7 @@ export const Selling = () => {
                     product_kind={item.TenDA}
                     bedrooms={item.SoPhongNgu}
                     square_meters={item.DTThongThuy}
-                    bathrooms={parseInt(item.SoPhongVS.replace(" VS", ""))}
+                    bathrooms={parseInt(item.SoPhongVS?.replace(" VS", ""))}
                     direct={item.TenPhuongHuong}
                     price={item.TongGiaTriHDMB}
                   />
