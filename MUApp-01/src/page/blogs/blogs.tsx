@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import FadingLoaderStading from "../../components/loadBlogStading/loadBlogStading";
 import BlogsAPI from "../../services/APIS/Blogs";
 import { customTime } from "../../services/helper";
 import { ResBlogs } from "../../services/models";
+import loadding from "../../assets/images/loadding.gif"
 import "./blogs.scss";
 
 export const Blog = () => {
@@ -77,7 +79,7 @@ export const Blog = () => {
                   objectFit: "scale-down",
                   minHeight: 400,
                 }}
-                src={data?.list_blog[0]?.thumbnail}
+                src={data?.list_blog[0]?.thumbnail || loadding}
 
               // src={data?.list_blog[0]?.url}
               ></img>
@@ -91,7 +93,7 @@ export const Blog = () => {
           </div>
           <div className="top-right-content">
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
-            {outstandingBlogs?.list_blog?.map((item, index) => {
+            {outstandingBlogs ? outstandingBlogs.list_blog.length !== 0 ? outstandingBlogs?.list_blog.map((item, index) => {
               if (index !== 0) {
                 return (
                   <div
@@ -120,12 +122,13 @@ export const Blog = () => {
                       <span className="title-blog">{item.title}</span>
                       <span className="time-blog">
                         <i className="fal fa-clock"></i> {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
-                    </span>
+                      </span>
                     </div>
                   </div>
                 );
               }
-            })}
+            }) : null
+              : <FadingLoaderStading />}
           </div>
         </div>
 

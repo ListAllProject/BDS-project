@@ -8,6 +8,8 @@ import { BestSell } from "./BestSell";
 import "./home.scss";
 import { PopularItems } from "./PopularItems";
 import { SearchingForm } from "./SearchingForm";
+import loadding from "../../assets/images/loadding.gif"
+import DoorDashFavorite from "../../components/loadBanner/loadBanner";
 
 export const Home = () => {
   const [banners, setBanners] = useState<Array<BannerObj>>();
@@ -24,33 +26,36 @@ export const Home = () => {
   return (
     <div className="home">
       <div>
-        <Carousel autoplay swipeToSlide draggable>
-          {banners &&
-            banners.length !== 0 &&
-            banners.map((item) => (
-              <div
-                style={{
-                  maxHeight: "500px",
-                  width: "100%",
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  alt={item.project_title}
-                  src={item.value}
+        {banners ?
+          <Carousel autoplay swipeToSlide draggable>
+            {
+              banners.length !== 0 &&
+              banners.map((item) => (
+                <div
                   style={{
-                    display: "block",
+                    maxHeight: "500px",
                     width: "100%",
-                    height: "500px",
-                    margin: "auto",
-                    // objectFit: "cover",
-                    // objectPosition: "0 50%",
+                    display: "flex",
+                    justifyContent: "center",
                   }}
-                ></img>
-              </div>
-            ))}
-        </Carousel>
+                >
+                  <img
+                    alt={item.project_title}
+                    src={item.value}
+                    style={{
+                      display: "block",
+                      width: "100%",
+                      height: "500px",
+                      margin: "auto",
+                      // objectFit: "cover",
+                      // objectPosition: "0 50%",
+                    }}
+                  ></img>
+                </div>
+              ))}
+          </Carousel>
+          : <DoorDashFavorite />
+        }
       </div>
 
       <div className="home-container">
