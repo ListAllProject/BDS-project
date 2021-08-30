@@ -119,6 +119,9 @@ export interface productsObj {
   DonGiaThongThuy: number;
   SoPhongVS: string;
   TenDA: string;
+  NoiDung: string;
+  Link_Video: string;
+  Link_360: string;
 }
 
 export interface projectObj {

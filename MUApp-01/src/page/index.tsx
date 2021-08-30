@@ -55,7 +55,7 @@ export const Index = () => {
         <Route exact path="/danh-sach-tin-tuc/:url">
           <BlogCategory />
         </Route>
-        <Route path="/chi-tiet-du-an" component={Detail}></Route>
+        <Route path="/chi-tiet-du-an/:maSP" component={Detail}></Route>
         <Route path="/">
           <Home />
         </Route>

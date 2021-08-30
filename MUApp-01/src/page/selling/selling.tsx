@@ -6,9 +6,11 @@ import { ProductItem } from "../../components/product";
 import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import { priceObj, productsObj, projectObj } from "../../services/models";
 import { Store } from "antd/lib/form/interface";
+import { useHistory } from "react-router";
 const { Option } = Select;
 
 export const Selling = () => {
+  const history = useHistory();
   const [form] = Form.useForm();
 
   const [sliderFloor, setSliderFloor] = useState<[number, number]>([0, 20]);
@@ -354,6 +356,9 @@ export const Selling = () => {
                     bathrooms={parseInt(item.SoPhongVS?.replace(" VS", ""))}
                     direct={item.TenPhuongHuong}
                     price={item.TongGiaTriHDMB}
+                    onClick={()=> {
+                      history.push(`/chi-tiet-du-an/${item.MaSP}`);
+                    }}
                   />
                 </Col>
               ))

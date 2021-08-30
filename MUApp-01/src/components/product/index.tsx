@@ -16,8 +16,8 @@ interface Props {
   bathrooms: number;
   direct: string;
   price: number;
+  onClick: React.MouseEventHandler<HTMLDivElement>;
 }
-
 
 export const ProductItem: FC<Props> = ({
   img_url,
@@ -28,6 +28,7 @@ export const ProductItem: FC<Props> = ({
   bathrooms,
   direct,
   price,
+  onClick,
 }) => {
   return (
     <div className="product-item-container">
@@ -109,7 +110,7 @@ export const ProductItem: FC<Props> = ({
       </p>
       <p className="price">{new Intl.NumberFormat("vi-VN").format(price)}</p>
 
-      <div className="buy-btn">Mua ngay</div>
+      <div className="buy-btn" onClick={onClick}>Mua ngay</div>
     </div>
   );
 };

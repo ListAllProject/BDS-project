@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Badge, Drawer, Dropdown, Input } from "antd";
+import { Badge, Drawer, Dropdown, Input, Menu } from "antd";
 import logo from "../../assets/images/logo.png";
 import "./header.scss";
 import { Link, NavLink } from "react-router-dom";
 import { DetailProject, BlogObj } from "../../services/models";
 import ProjectsAPI from "../../services/APIS/Projects";
 import BlogsAPI from "../../services/APIS/Blogs";
+import SubMenu from "antd/lib/menu/SubMenu";
 
 export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
@@ -46,6 +47,20 @@ export const HeaderWrap = () => {
       })}
     </div>
   );
+  const projectsDrawerComponent = (
+    <div>
+      {projects.map((e, i) => {
+        return (
+          <Menu.Item id={`project_${i}`} key={`project_${i}`} onClick={() => { setVisible(false); }}>
+            <Link className="span-item" to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
+              {e.main_title}
+            </Link>
+          </Menu.Item>
+        );
+      })}
+    </div>
+  );
+
   const menuBlogsComponent = (
     <div className="menu-project news">
       {catblogs.map((e, i) => {
@@ -57,6 +72,24 @@ export const HeaderWrap = () => {
       })}
     </div>
   );
+
+  const menuBlogsDrawerComponent = (
+    <div>
+      {catblogs.map((e, i) => {
+        return (
+            <Menu.Item id={`blog_${e.id}`} key={`blog_${e.id}`} onClick={() => { setVisible(false); }}>
+            <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
+              {e.name}
+            </Link>
+          </Menu.Item>
+        );
+      })}
+    </div>
+  );
+
+  const onOpenChange = (keys: React.Key[]) => {
+    // setDrawerOpenKeys([keys[0].toString()])
+  }
   return (
     <div className="container-header">
       <div className="logo">
@@ -236,7 +269,31 @@ export const HeaderWrap = () => {
                 </span>
               </Link> */}
 
-          <NavLink
+          <Menu mode="inline">
+            <NavLink onClick={() => { setVisible(false); }}
+              to={{ pathname: "/chung-cu" }}
+              className="submenu-nav-link">
+              CHUNG CƯ
+            </NavLink>
+            
+            <SubMenu key="sub1" title="SẮP BÁN">
+              <Menu.Item key="5">Test 1</Menu.Item>
+              <Menu.Item key="6">Test 2</Menu.Item>
+            </SubMenu>
+            <SubMenu key="sub2" title="DỰ ÁN">
+              {projectsDrawerComponent}
+            </SubMenu>
+            <NavLink onClick={() => { setVisible(false); }}
+              to={{ pathname: "/chung-cu" }}
+              className="submenu-nav-link">
+              HỖ TRỢ
+            </NavLink>
+            <SubMenu key="sub3" title="TIN TỨC">
+              {menuBlogsDrawerComponent}
+            </SubMenu>
+          </Menu>
+
+          {/* <NavLink
             onClick={() => {
               setVisible(false);
             }}
@@ -245,7 +302,7 @@ export const HeaderWrap = () => {
             }}
             className="tab-item"
           >
-            CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
+            CHUNG CƯ
           </NavLink>
 
           <span className="tab-item">SẮP BÁN</span>
@@ -274,7 +331,7 @@ export const HeaderWrap = () => {
             className="tab-item"
           >
             TIN TỨC
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             onClick={() => {

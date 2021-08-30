@@ -20,6 +20,7 @@ import { Selling } from "./page/selling/selling";
 import { TablePrice } from "./page/tablePrice/tablePrice";
 import { useEffect } from "react";
 import { BlogCategory } from "./page/blogs/blogsCategory";
+import { VerifyEmail } from "./page/authentication/verifyEmail/verifyEmail";
 
 function App() {
 
@@ -69,7 +70,10 @@ function App() {
         <Route exact path="/danh-sach-tin-tuc/:url">
           <BlogCategory />
         </Route>
-        <Route path="/chi-tiet-du-an" component={Detail}></Route>
+        <Route exact path="/xac-nhan-email">
+          <VerifyEmail />
+        </Route>
+        <Route path="/chi-tiet-du-an/:maSP" component={Detail}></Route>
         <Route path="/">
           <Home />
         </Route>

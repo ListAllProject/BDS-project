@@ -63,6 +63,10 @@ export const PopularItems = () => {
                   bathrooms={item.bathrooms}
                   direct={item.direct}
                   price={item.price}
+                  onClick={() => {
+                    // TODO: chưa làm trang này.
+                    // history.push(`/chi-tiet-du-an/${item.MaSP}`);
+                  }}
                 />
               </Col>
             ))}

@@ -27,12 +27,13 @@ let UserAPI = {
     );
   },
 
-  verifyEmail(user: string, token: string) {
+  verifyEmail(token: string) {
     // Note: chưa biết dùng api nào để active account
     return API().post(
-      `/api/ActiveAccount`,
-      {
-        user, token
+      `/api/ActiveAccount`, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
     );
   }

@@ -1,28 +1,61 @@
 import RoomImage from "../../assets/images/room-test.png";
-// import RoomImage1 from "../../assets/images/room-test-1.png";
 import ImageIcon from "../../assets/images/image.png";
 import Rotate360DegreeIcon from "../../assets/images/rotate360degree.png";
 import DownloadIcon from "../../assets/images/download.png";
 import QAIcon from "../../assets/images/QA.png";
 import S11Image from "../../assets/images/S11.png";
 import S12Image from "../../assets/images/S12.png";
-// import BackgroundGradientImage from "../../assets/images/background-gradient.png";
 import "./detail.scss";
 import CustomSlider from "../../components/slider/slider";
 import ButtonCustom from "../../components/buttonCustom/buttonCustom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import ProductAPI from "../../services/APIBEELAND/Product";
+import { productsObj } from "../../services/models";
 
 const settings = {
   infinite: true,
 };
 
+interface detailParams {
+  maSP: string;
+}
+
 export const Detail = () => {
-  const imageList: JSX.Element[] = [
-    <img src={RoomImage} alt="Room 01" />,
-    <img src={RoomImage} alt="Room 01" />,
-    <img src={RoomImage} alt="Room 01" />,
-    <img src={RoomImage} alt="Room 01" />,
-    <img src={RoomImage} alt="Room 01" />,
-  ];
+  const { maSP } = useParams<detailParams>();
+
+  const [images, setImages] = useState<any[]>([])
+  const [product, setProduct] = useState<productsObj>();
+
+  useEffect(() => {
+    fetchData();
+  }, [maSP])
+
+  const fetchData = () => {
+    const maSPNumber = parseInt(maSP)
+    ProductAPI.getProductImages(maSPNumber)
+      .then(res => {
+        if (res.data.status === 2000) {
+          setImages(res.data.data);
+        }
+      }).catch(err => {
+        console.log(err);
+      })
+    ProductAPI.getProduct(maSPNumber)
+      .then(res => {
+        if (res.data.status === 2000) {
+          setProduct(res.data.data)
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+
+  const imageList: JSX.Element[] = images.map(e => {
+    return (
+      <img src={e.HinhAnh} alt="Room 01" />
+    )
+  })
 
   const utilities: JSX.Element[] = [];
   for (let index = 0; index < 18; index++) {
@@ -31,6 +64,10 @@ export const Detail = () => {
         <i className="fal fa-check-circle"></i>Biểu tượng ngọn hải đăng
       </span>
     );
+  }
+
+  if (!product) {
+    return <></>
   }
 
   return (
@@ -56,11 +93,15 @@ export const Detail = () => {
               ></CustomSlider>
             </div>
             <div className="additional-action">
-              <span className="action">
+              <span className="action" onClick={() => {
+                window.open(product.Link_Video, "_blank");
+              }}>
                 <img src={ImageIcon} alt="" />
               </span>
               <span className="action">
-                <img src={Rotate360DegreeIcon} alt="" />
+                <img src={Rotate360DegreeIcon} alt="" onClick={() => {
+                window.open(product.Link_360, "_blank");
+              }}/>
               </span>
               <span className="action">
                 <img src={DownloadIcon} alt="" />
@@ -91,17 +132,17 @@ export const Detail = () => {
             <div
               style={{ fontSize: "16px", fontWeight: 700, marginTop: "16px" }}
             >
-              Căn hộ S1.092205 - Tòa S1.09
+              {`Căn hộ ${product.KyHieu} - ${product.TenKhu}`}
             </div>
 
             <div style={{ marginTop: "16px" }}>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-bed-alt"></i>
-                <span style={{ marginLeft: "5px" }}>3PN</span>
+                <span style={{ marginLeft: "5px" }}>{product.SoPhongNgu}PN</span>
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-clone"></i>
-                <span style={{ marginLeft: "5px" }}>73.9</span>m<sup>2</sup>
+                <span style={{ marginLeft: "5px" }}>{product.DTThongThuy}</span>m<sup>2</sup>
                 <i
                   className="fas fa-info-circle clickable"
                   style={{ marginLeft: "5px" }}
@@ -109,11 +150,11 @@ export const Detail = () => {
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-bath"></i>
-                <span style={{ marginLeft: "5px" }}>2</span>
+                <span style={{ marginLeft: "5px" }}>{parseInt(product.SoPhongVS?.replace(" VS", ""))}</span>
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-compass"></i>
-                <span style={{ marginLeft: "5px" }}>DB-TB</span>
+                <span style={{ marginLeft: "5px" }}>{product.TenPhuongHuong}</span>
               </span>
             </div>
 
@@ -136,7 +177,7 @@ export const Detail = () => {
             </div>
             <div>
               <span style={{ fontSize: "24px", fontWeight: 700 }}>
-                2.840.694.000
+                {new Intl.NumberFormat("vi-VN").format(product.TongGiaTriHDMB)}
               </span>
               <span style={{ fontSize: "24px", fontWeight: 700 }}>
                 <sup>đ</sup>
@@ -144,10 +185,10 @@ export const Detail = () => {
             </div>
 
             <div style={{ marginTop: "16px", marginBottom: "0px" }}>
-              Đơn giá hủy thông
+              Đơn giá thủy thông
               <i className="fas fa-info-circle clickable"></i>
               <span style={{ marginLeft: "5px", fontWeight: 700 }}>
-                37.210.731
+                {new Intl.NumberFormat("vi-VN").format(product.DonGiaThongThuy)}
               </span>
               <span>
                 <sup>đ</sup>/m<sup>2</sup>
@@ -205,121 +246,12 @@ export const Detail = () => {
           .
         </div>
         {/* Detail */}
-        <div className="detail">
+          
           <div
-            style={{ fontSize: "24px", fontWeight: 700, textAlign: "center" }}
-          >
-            THÔNG TIN CHI TIẾT
-          </div>
-
-          <div style={{ fontSize: "18px", fontWeight: 700 }}>GIỚI THIỆU</div>
-          <div style={{ marginTop: "20px", fontSize: 14, fontWeight: 400 }}>
-            Căn hộ bao gồm 2 phòng ngủ, 1 phòng khách, 2 nhà vệ sinh, 1 phòng
-            bếp, lô gia và một không gian đa năng cư dân có thể sử dụng làm
-            phòng đọc sách, không gian chơi cho trẻ em hoặc góc làm việc riêng,…
-            <br />
-            Diện tích thông thủy là 62.8m2.
-            <br />
-            Căn hộ có hướng ban công là hướng Đông Bắc và Tây Bắc.
-          </div>
-
-          <div style={{ fontSize: 18, fontWeight: 700, marginTop: "40px" }}>
-            Tiện ích nội khu
-          </div>
-          <div className="detail-utilities">{utilities}</div>
-
-          <div style={{ fontSize: 18, fontWeight: 700, marginTop: "40px" }}>
-            Mặt bằng căn hộ
-          </div>
-          <div className="detail-space">
-            <img
-              src={S11Image}
-              alt="Mặt bằng căn hộ"
-              style={{ maxWidth: "100%" }}
+              dangerouslySetInnerHTML={{
+                __html: product.NoiDung as string,
+              }}
             />
-          </div>
-          <div className="handover-standards-button-wrapper">
-            <div className="handover-standards-button">Tiêu chuẩn bàn giao</div>
-          </div>
-
-          <div style={{ fontSize: 18, fontWeight: 700, marginTop: "40px" }}>
-            Mặt bằng căn hộ
-          </div>
-          <div className="detail-space">
-            <img
-              src={S12Image}
-              alt="Mặt bằng tầng"
-              style={{ maxWidth: "100%" }}
-            />
-          </div>
-
-          <div style={{ fontSize: 18, fontWeight: 700, marginTop: "40px" }}>
-            Mặt bằng căn hộ
-          </div>
-          <div
-            style={{
-              marginTop: "20px",
-              fontSize: 14,
-              fontWeight: 400,
-              textAlign: "justify",
-              textJustify: "inter-word",
-            }}
-          >
-            - Thông tin, hình ảnh, các tiện ích chỉ mang tính chất tương đối và
-            có thể được điều chỉnh theo quyết định của Chủ Đầu Tư tại từng thời
-            điểm đảm bảo phù hợp quy hoạch và thực tế thi công Dự Án.
-            <br />
-            - Các thông tin, cam kết chính thức sẽ được quy định cụ thể tại Hợp
-            đồng mua bán.
-            <br />
-            - Việc quản lý, vận hành và kinh doanh của khu đô thị sẽ theo quy
-            định của Ban quản lý.
-            <br />
-            - Mọi thông tin được đăng tải đúng tại thời điểm công bố và có thể
-            được điều chỉnh mà không cần thông báo trước.
-            <br />
-            - Các thông tin, cam kết chính thức sẽ được quy định cụ thể tại Hợp
-            đồng mua bán.
-            <br />
-            - Trường hợp Chủ Đầu Tư phát hiện sai sót về hiển thị Giá niêm yết
-            do lỗi hệ thống hoặc bị tác động bởi các sự kiện bất khả kháng*,
-            Vinhomes Online có quyền điều chỉnh thông tin và thu hồi Sản Phẩm mà
-            không cần thông báo trước.
-            <br />
-            *Các sự kiện bất khả kháng bao gồm nhưng không giới hạn:
-            <br />
-            - Các hiện tượng thiên nhiên: mưa, lũ, động đất, hỏa hoạn, bão, sóng
-            thần, núi lửa phun trào,...;
-            <br />
-            - Các hiện tượng xã hội: chiến tranh, đảo chính, đình công, cấm vận,
-            thay đổi chính sách của Chính phủ,…;
-            <br />
-            - Các sự cố công nghệ thông tin: mất điện, lỗi mạng, lỗi đường
-            truyền, lỗi tín hiệu,…;
-            <br />
-            - Các sự cố do tác động từ bên thứ 3: tin tặc tấn công website,...
-            <br />
-          </div>
-
-          <div style={{ fontSize: 18, fontWeight: 700, marginTop: "40px" }}>
-            CHỦ ĐẦU TƯ
-          </div>
-          <div style={{ fontSize: 14, fontWeight: 700, marginTop: "20px" }}>
-            Công TNHH Đầu tư và Phát triển Đô thị Gia Lâm
-          </div>
-          <div
-            style={{
-              fontSize: 14,
-              fontWeight: 700,
-              marginTop: "12px",
-              textAlign: "justify",
-              textJustify: "inter-word",
-            }}
-          >
-            Số 7 đường Bằng Lăng 1, Khu đô thị sinh thái Vinhomes Riverside,
-            phường Việt Hưng, quận Long Biên, Thành phố Hà Nội, Việt Nam
-          </div>
-        </div>
       </div>
     </div>
   );

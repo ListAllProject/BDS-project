@@ -1,0 +1,81 @@
+@import '../../../styles/color/variables.scss';
+
+.background {
+  background-color: #E5E5E5;
+  width           : 100vw;
+  height          : 100vh;
+  display         : flex;
+  justify-content : center;
+  align-items     : center;
+}
+
+.forgot-password-container {
+  width           : 540px;
+  border-radius   : 16px;
+  background-color: white;
+  height          : fit-content;
+  font-size       : 14px;
+  font-family     : 'Mulish';
+  font-weight     : 600;
+  margin          : 40px;
+
+  .content {
+    display        : flex;
+    justify-content: center;
+    flex-direction : column;
+    align-items    : center;
+    margin         : 30px;
+
+    .title {
+      color      : $primary--color1;
+      font-weight: 700;
+      font-size  : 24px;
+      line-height: 36px;
+    }
+
+    .title-line-break {
+      background-color: $primary--color1;
+      width           : 80px;
+      height          : 3px;
+      margin-top      : 10px;
+    }
+
+    .note {
+      margin-top: 20px;
+
+      .verify-email-success-message {
+        color: green;
+      }
+
+      .verify-email-error-message {
+        color: red;
+      }
+    }
+
+    .footer {
+      display    : flex;
+      flex-flow  : column;
+      align-items: center;
+      margin-top : 20px;
+
+      .send-button {
+        margin-top     : 20px;
+        width          : 168px;
+        height         : 40px;
+        color          : white;
+        background     : $button-bgr-color;
+        display        : flex;
+        justify-content: center;
+        align-items    : center;
+        border-radius  : 6px;
+        font-weight    : 600;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .forgot-password-container {
+    margin: 20px 0px;
+  }
+}
