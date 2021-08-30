@@ -20,7 +20,8 @@
             text-overflow: ellipsis;
         }
 
-        .ant-menu-submenu-title {
+        .ant-menu-submenu-title,
+        .ant-menu-item-only-child {
             padding-left: 16px !important; 
         }
 

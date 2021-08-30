@@ -48,7 +48,7 @@ export const HeaderWrap = () => {
     </div>
   );
   const projectsDrawerComponent = (
-    <div>
+    <>
       {projects.map((e, i) => {
         return (
           <Menu.Item id={`project_${i}`} key={`project_${i}`} onClick={() => { setVisible(false); }}>
@@ -58,7 +58,7 @@ export const HeaderWrap = () => {
           </Menu.Item>
         );
       })}
-    </div>
+    </>
   );
 
   const menuBlogsComponent = (
@@ -74,22 +74,19 @@ export const HeaderWrap = () => {
   );
 
   const menuBlogsDrawerComponent = (
-    <div>
+    <>
       {catblogs.map((e, i) => {
         return (
-            <Menu.Item id={`blog_${e.id}`} key={`blog_${e.id}`} onClick={() => { setVisible(false); }}>
+          <Menu.Item id={`blog_${e.id}`} key={`blog_${e.id}`} onClick={() => { setVisible(false); }}>
             <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
               {e.name}
             </Link>
           </Menu.Item>
         );
       })}
-    </div>
+    </>
   );
 
-  const onOpenChange = (keys: React.Key[]) => {
-    // setDrawerOpenKeys([keys[0].toString()])
-  }
   return (
     <div className="container-header">
       <div className="logo">
@@ -270,12 +267,13 @@ export const HeaderWrap = () => {
               </Link> */}
 
           <Menu mode="inline">
-            <NavLink onClick={() => { setVisible(false); }}
-              to={{ pathname: "/chung-cu" }}
-              className="submenu-nav-link">
-              CHUNG CƯ
-            </NavLink>
-            
+            <Menu.Item key="chungcu">
+              <NavLink onClick={() => { setVisible(false); }}
+                to={{ pathname: "/chung-cu" }}
+                >
+                CHUNG CƯ
+              </NavLink>
+            </Menu.Item>
             <SubMenu key="sub1" title="SẮP BÁN">
               <Menu.Item key="5">Test 1</Menu.Item>
               <Menu.Item key="6">Test 2</Menu.Item>
@@ -283,11 +281,12 @@ export const HeaderWrap = () => {
             <SubMenu key="sub2" title="DỰ ÁN">
               {projectsDrawerComponent}
             </SubMenu>
-            <NavLink onClick={() => { setVisible(false); }}
-              to={{ pathname: "/chung-cu" }}
-              className="submenu-nav-link">
-              HỖ TRỢ
-            </NavLink>
+            <Menu.Item key="hotro">
+              <NavLink onClick={() => { setVisible(false); }}
+                to={{ pathname: "/ho-tro" }}>
+                HỖ TRỢ
+              </NavLink>
+            </Menu.Item>
             <SubMenu key="sub3" title="TIN TỨC">
               {menuBlogsDrawerComponent}
             </SubMenu>
