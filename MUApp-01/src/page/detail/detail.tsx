@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import ProductAPI from "../../services/APIBEELAND/Product";
 import { productsObj } from "../../services/models";
-
+import loadding from "../../assets/images/loadding.gif"
 const settings = {
   infinite: true,
 };
@@ -44,6 +44,7 @@ export const Detail = () => {
     ProductAPI.getProduct(maSPNumber)
       .then(res => {
         if (res.data.status === 2000) {
+          console.log(res.data.data, 8)
           setProduct(res.data.data)
         }
       }).catch(err => {
@@ -67,7 +68,17 @@ export const Detail = () => {
   }
 
   if (!product) {
-    return <></>
+    return (
+      <img
+        alt="image3"
+        style={{
+          borderRadius: 8,
+          width: "100%",
+          objectFit: "scale-down",
+          maxHeight: 550,
+        }}
+        src={loadding} />
+    )
   }
 
   return (
@@ -100,8 +111,8 @@ export const Detail = () => {
               </span>
               <span className="action">
                 <img src={Rotate360DegreeIcon} alt="" onClick={() => {
-                window.open(product.Link_360, "_blank");
-              }}/>
+                  window.open(product.Link_360, "_blank");
+                }} />
               </span>
               <span className="action">
                 <img src={DownloadIcon} alt="" />
@@ -113,11 +124,11 @@ export const Detail = () => {
           </span>
           {/* Short description */}
           <span className="short-description">
-            <div style={{ fontWeight: 700 }}>Vinhomes Ocean Park</div>
+            <div style={{ fontWeight: 700 }}>{product.TenDA}</div>
 
             <div style={{ marginTop: "8px" }}>
               <i className="fas fa-info-circle clickable" />
-              <span style={{ marginLeft: "5px" }}>Gia Lâm, Hà Nội</span>
+              <span style={{ marginLeft: "5px" }}>{product.DiaChi}</span>
             </div>
 
             <div
@@ -138,7 +149,7 @@ export const Detail = () => {
             <div style={{ marginTop: "16px" }}>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-bed-alt"></i>
-                <span style={{ marginLeft: "5px" }}>{product.SoPhongNgu}PN</span>
+                <span style={{ marginLeft: "5px" }}>{product.PhongNgu}</span>
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-clone"></i>
@@ -150,7 +161,7 @@ export const Detail = () => {
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-bath"></i>
-                <span style={{ marginLeft: "5px" }}>{parseInt(product.SoPhongVS?.replace(" VS", ""))}</span>
+                <span style={{ marginLeft: "5px" }}>{product.SoPhongVS}</span>
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-compass"></i>
@@ -246,12 +257,12 @@ export const Detail = () => {
           .
         </div>
         {/* Detail */}
-          
-          <div
-              dangerouslySetInnerHTML={{
-                __html: product.NoiDung as string,
-              }}
-            />
+
+        <div
+          dangerouslySetInnerHTML={{
+            __html: product.NoiDung as string,
+          }}
+        />
       </div>
     </div>
   );

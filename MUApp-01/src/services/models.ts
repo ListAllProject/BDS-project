@@ -92,6 +92,7 @@ export interface productsObj {
   STT: number;
   TotalRows: number;
   MaDA: number;
+  DiaChi: string;
   MaTang: number;
   ViTri: number;
   TenKhu: string;
@@ -106,6 +107,7 @@ export interface productsObj {
   MauNen: number;
   TenTT: string;
   Tang: string;
+  PhongNgu: string;
   SoPhongNgu: string;
   DTTimTuong: number;
   DTThongThuy: number;
