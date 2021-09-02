@@ -10,7 +10,7 @@ declare global {
 window.Configs = {
   // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
   apiBaseUrl:
-    "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
+    "https://api-client.mybeeland.com",
   apiImageUrl: "https://beesky-admin.ninja-it.asia", // for-blog-image
 };
 
@@ -54,8 +54,8 @@ export function APIIMGAGE() {
   ApiImage.defaults.responseType = undefined;
   ApiImage.defaults.headers.common["token"] =
     localStorage.getItem("token") === undefined ||
-    localStorage.getItem("token") === "undefined" ||
-    localStorage.getItem("token") == null
+      localStorage.getItem("token") === "undefined" ||
+      localStorage.getItem("token") == null
       ? ""
       : localStorage.getItem("token");
   return ApiImage;

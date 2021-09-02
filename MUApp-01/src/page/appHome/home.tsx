@@ -42,6 +42,7 @@ export const Home = () => {
                   <img
                     alt={item.project_title}
                     src={item.value}
+                    className='banner-home'
                     style={{
                       display: "block",
                       width: "100%",

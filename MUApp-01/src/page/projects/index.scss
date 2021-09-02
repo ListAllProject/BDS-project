@@ -9,6 +9,12 @@
 }
 
 .home {
+  .banner-home{
+
+    @media only screen and (max-width: 460px) {
+      max-height: 260px;
+    }
+  }
   .home-container {
     background-image: url("../../assets//images/background-gradient.png");
     background-repeat: no-repeat;
