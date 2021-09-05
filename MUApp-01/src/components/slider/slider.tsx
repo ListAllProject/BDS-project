@@ -14,7 +14,7 @@ interface props {
   showNum: number;
 }
 
-export default class CustomArrows extends Component<props, state> {
+export default class CustomSlider extends Component<props, state> {
   slider: Slider | undefined | null;
   element!: JSX.Element[];
   setting: Settings;
@@ -43,6 +43,7 @@ export default class CustomArrows extends Component<props, state> {
   previous() {
     this.slider?.slickGoTo(this.state.indexBox - 1);
   }
+
   render() {
     // const settings = {
     //   dots: this.props?.dots || false,

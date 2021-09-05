@@ -1,9 +1,6 @@
-import  { Component, useEffect, useState } from "react";
+import { Component, useEffect, useState } from "react";
 import "./tablePrice.scss";
-import { Table } from "antd";
-import imgSlider1 from "../../assets/images/5.png";
-import imgSlider2 from "../../assets/images/6.png";
-import imgSlider3 from "../../assets/images/4.png";
+import { Table, Spin } from "antd";
 import iconHome from "../../assets/images/icon-home.png";
 import bgrTable from "../../assets/images/bgr-table-price.png";
 import {
@@ -12,9 +9,13 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
+import { Block, DetailMaTT, projectObj } from "../../services/models";
+import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
+import ProductBeelandAPI from "../../services/APIBEELAND/Product";
+import { getHexColor } from "../../services/helper";
 
 const settings = {
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,
@@ -58,13 +59,12 @@ const settings = {
 };
 
 const settings2 = {
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 5,
   slidesToScroll: 1,
   focusOnSelect: true,
   accessibility: true,
-
   responsive: [
     {
       breakpoint: 992,
@@ -90,506 +90,16 @@ const settings2 = {
   ],
 };
 
-let arr = [10, 20, 30, 40, 50, 60, 70, 80];
-
-interface objData {
-  key: string;
-  name: string;
-  age: number;
-  address: string;
-}
-
-const columns = [
-  {
-    title: "",
-    width: "calc(100% / 12)",
-    dataIndex: "title",
-    fixed: "left",
-    key: "name",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-            color: "#011769",
-            fontWeight: "bold",
-            lineHeight: "21px",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "01 2PN+1 DN-TN 62,4",
-    width: "calc(100% / 12)",
-    dataIndex: "name",
-    key: "name",
-
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "02 1PN+1 TN   42,9",
-    width: "calc(100% / 12)",
-    dataIndex: "age",
-    key: "age",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-    // fixed: "left",
-  },
-  {
-    title: "03 Studio TN 30,6",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "1",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "2",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "3",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "06 3PN TB-TN 75,6(75,1)",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "4",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "8A 2PN+1 ĐB-TB 63,3(62,9)",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "5",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "08 2PN+1 ĐB 54,1(53,7)",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "6",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "9 2PN+1 ĐB 54,8(54,3)",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "7",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "8",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: <div>{text}</div>,
-      };
-    },
-  },
-  {
-    title: "11 2PN+1 ĐB-TB 63,4(63)",
-    dataIndex: "address",
-    width: "calc(100% / 12)",
-    key: "9",
-    render: (text: string, obj: objData) => {
-      return {
-        props: {
-          style: {
-            background: Number(obj.key) % 2 === 0 ? "#FFF8EA" : "",
-            textAlign: "center",
-          },
-        },
-        children: text,
-      };
-    },
-  },
-];
-
-const data = [
-  {
-    title: "T5A số căn còn 1",
-    key: "1",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    age: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    name: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "2",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "3",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "4",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "5",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "6",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-  {
-    title: "T5 số căn còn 1",
-    key: "7",
-    address: (
-      <i
-        style={{ color: "#C4C4C4", fontSize: 22 }}
-        className="fal fa-lock-alt"
-      ></i>
-    ),
-    name: (
-      <div
-        style={{ color: "#DA0000", display: "flex", flexDirection: "column" }}
-      >
-        <span>Đã bán</span>
-        <i style={{ fontSize: 22 }} className="fal fa-check-circle"></i>
-      </div>
-    ),
-    age: (
-      <div
-        style={{ color: "#03A000", display: "flex", flexDirection: "column" }}
-      >
-        <span>1,775 tỷ</span>
-        <i style={{ fontSize: 22 }} className="fal fa-shopping-cart"></i>
-        <span>
-          <i className="fas fa-heart"></i> 1
-        </span>
-      </div>
-    ),
-  },
-];
-
-const dataSlide2: JSX.Element[] = [
-  <div className="cirle-ratio-selected">
-    <CircularProgressbarWithChildren strokeWidth={2} value={50}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          marginTop: -55,
-          color: "#BB8E4C",
-          fontWeight: 500,
-          fontSize: 13,
-        }}
-      >
-        <span style={{ marginBottom: 2 }}>S1.01</span>
-        <img alt="img"  src={iconHome} />
-        <span style={{ marginTop: 2 }}>
-          22<span style={{ color: "#E0E0E0" }}>/38</span>
-        </span>
-      </div>
-    </CircularProgressbarWithChildren>
-  </div>,
-  ...arr.map((e) => {
-    return (
-      <div className="cirle-ratio">
-        <CircularProgressbarWithChildren strokeWidth={2} value={e}>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              marginTop: -55,
-              color: "#BB8E4C",
-              fontWeight: 500,
-              fontSize: 13,
-            }}
-          >
-            <span style={{ marginBottom: 4 }}>S1.01</span>
-            <img alt="img" src={iconHome} />
-            <span style={{ marginTop: 4 }}>
-              22<span style={{ color: "#E0E0E0" }}>/38</span>
-            </span>
-          </div>
-        </CircularProgressbarWithChildren>
-      </div>
-    );
-  }),
-];
-
-const dataSlide1 = [
-  <div className="box">
-    <img alt="img" src={imgSlider1} />
-  </div>,
-  <div className="box">
-    <img alt="img" src={imgSlider2} />
-  </div>,
-  <div className="box">
-    <img alt="img" src={imgSlider3} />
-  </div>,
-  <div className="box-selected">
-    <img alt="img" src={imgSlider1} />
-  </div>,
-  <div className="box">
-    <img alt="img" src={imgSlider2} />
-  </div>,
-  <div className="box">
-    <img alt="img" src={imgSlider3} />
-  </div>,
-];
-
 export const TablePrice = () => {
   const [numberSlider1, setNumberSlider1] = useState(4);
   const [numberSlider2, setNumberSlider2] = useState(5);
-
+  const [selectedProjectId, setSelectedProjectId] = useState(-1);
+  const [listProjects, setListProjects] = useState<projectObj[]>([]);
+  const [listBlocks, setListBlocks] = useState<Block[]>([]);
+  const [selectedBlock, setSelectedBlock] = useState<Block>();
+  const [pageLoading, setPageLoading] = useState(false);
+  const [blockLoading, setBlockLoading] = useState(false);
+  
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 992) {
@@ -614,6 +124,229 @@ export const TablePrice = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    setPageLoading(true);
+    ProjectsBeelandAPI.getProjectFilter().then((res) => {
+      setPageLoading(false);
+      if (res.data.data && res.data.data.length !== 0) {
+        setListProjects(res.data.data);
+        handleChooseProject(res.data.data[0].MaDA);
+      }
+    }).catch(err => {
+      console.log(err);
+      setPageLoading(false);
+    });
+  }, [])
+
+  const handleChooseProject = (id: number) => {
+    if (id === selectedProjectId) {
+      return
+    }
+
+    setSelectedProjectId(id)
+    setBlockLoading(true)
+    ProductBeelandAPI.getBlock(id).then((res) => {
+      setBlockLoading(false);
+      if (res.data.data && res.data.data.length !== 0) {
+        setListBlocks(res.data.data.filter((e: Block) => e.maKhu > -1));
+        setSelectedBlock(res.data.data[1]);
+      }
+    }).catch(err => {
+      console.log(err);
+      setBlockLoading(false);
+    });;
+  }
+
+  const handleChooseBlock = (blockIndex: number) => {
+    setSelectedBlock(listBlocks[blockIndex])
+  }
+
+  const getSliderSettings = (array: any[], maxShow: number, setting: any) => {
+    if (array.length < maxShow) {
+      setting.slidesToShow = array.length;
+    }
+    return setting;
+  }
+
+  // Generate list project
+  const projectListComponent: JSX.Element[] = listProjects.map(e => {
+    if (e.MaDA === selectedProjectId) {
+      return (
+        <div className="box-selected" key={`${e.MaDA}`} onClick={() => { handleChooseProject(e.MaDA) }}>
+          <img style={{ width: '155px' }} alt="img" src={e.icon} />
+        </div>
+      )
+    } else {
+      return (
+        <div className="box" key={`${e.MaDA}`} onClick={() => { handleChooseProject(e.MaDA) }}>
+          <img style={{ width: '155px' }} alt="img" src={e.icon} />
+        </div>
+      )
+    }
+  })
+
+  // Generate 
+  const blockListComponent: JSX.Element[] = [];
+  for (let i = 0; i < listBlocks.length; i++) {
+    const maKhu = listBlocks[i].maKhu;
+    const soldProduct = listBlocks[i].detailKhu[0].DaBan;
+    const totalProduct = listBlocks[i].detailKhu[0].Tong;
+    const ratio = totalProduct !== 0 ? soldProduct / totalProduct * 100 : 0;
+
+    if (maKhu === selectedBlock?.maKhu) {
+      blockListComponent.push(
+        <div key={maKhu} className="cirle-ratio-selected" onClick={() => handleChooseBlock(i)}>
+          <CircularProgressbarWithChildren strokeWidth={2} value={ratio}>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                marginTop: -55,
+                color: "#BB8E4C",
+                fontWeight: 500,
+                fontSize: 13,
+              }}
+            >
+              <span style={{ marginBottom: 2, textAlign: "center" }}>{listBlocks[i].tenKhu}</span>
+              <img alt="img" src={iconHome} />
+              <span style={{ marginTop: 2, textAlign: "center" }}>
+                {soldProduct}<span style={{ color: "#E0E0E0" }}>/{totalProduct}</span>
+              </span>
+            </div>
+          </CircularProgressbarWithChildren>
+        </div>
+      )
+    } else {
+      blockListComponent.push(<div key={maKhu} className="cirle-ratio" onClick={() => handleChooseBlock(i)}>
+        <CircularProgressbarWithChildren strokeWidth={2} value={ratio}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              marginTop: -55,
+              color: "#BB8E4C",
+              fontWeight: 500,
+              fontSize: 13,
+            }}
+          >
+            <span style={{ marginBottom: 4, textAlign: "center" }}>{listBlocks[i].tenKhu}</span>
+            <img alt="img" src={iconHome} />
+            <span style={{ marginTop: 4, textAlign: "center" }}>
+              {soldProduct}<span style={{ color: "#E0E0E0" }}>/{totalProduct}</span>
+            </span>
+          </div>
+        </CircularProgressbarWithChildren>
+      </div>
+      );
+    }
+  }
+
+  // Generate columns
+  const columns = [];
+  if (selectedBlock && selectedBlock.location) {
+    for (let i = 0; i < selectedBlock.location.length; i++) {
+      const element = selectedBlock.location[i];
+      if (element.detailVT[0]
+        && element.detailVT[0].TenViTri
+        && element.detailVT[0].PhongNgu
+        && element.detailVT[0].TenPhuongHuong
+        && element.detailVT[0].DTThongThuy) {
+        columns.push(
+          {
+            title: `${element.detailVT[0].TenViTri} ${element.detailVT[0].PhongNgu.replace(" ", "")} ${element.detailVT[0].TenPhuongHuong.replace(" ", "-")} ${element.detailVT[0].DTThongThuy}`,
+            width: 100,
+            dataIndex: `col${element.maVT}`,
+            key: `col${element.maVT}`,
+            render: (text: any, obj: any) => {
+              if (text) {
+                return {
+                  props: {
+                    style: {
+                      background: Number(obj.index) % 2 === 0 ? "#FFF8EA" : "",
+                      textAlign: "center",
+                    },
+                  },
+                  children: <div>{text}</div>,
+                };
+              }
+              return {
+                props: {
+                  style: {
+                    background: Number(obj.index) % 2 === 0 ? "#FFF8EA" : "",
+                    textAlign: "center",
+                    userSelect: "none",
+                  },
+                },
+                children: <i
+                  style={{ color: "#C4C4C4", fontSize: 22 }}
+                  className="fal fa-lock-alt"
+                ></i>,
+              }
+            },
+          }
+        )
+      }
+    }
+  }
+  columns.unshift({
+    title: "",
+    width: 100,
+    dataIndex: "title",
+    fixed: "left",
+    key: "  ",
+    render: (text: string, obj: any) => {
+      return {
+        props: {
+          style: {
+            background: Number(obj.index) % 2 === 0 ? "#FFF8EA" : "",
+            textAlign: "center",
+            color: "#011769",
+            fontWeight: "bold",
+            lineHeight: "21px",
+          },
+        },
+        children: <div>{text}</div>,
+      };
+    },
+  })
+
+  // Generate data cell
+  const tableData = [];
+  if (selectedBlock) {
+    for (let i = 0; i < selectedBlock.floor.length; i++) {
+      const rowData: any = {
+        title: `Tầng ${selectedBlock.floor[i].tenTang} còn 1 căn`,
+        key: `${selectedBlock.floor[i].tenTang}`,
+        index: i,
+      };
+      for (let j = 0; j < selectedBlock.floor[i].detailFloor.length; j++) {
+        rowData[`col${selectedBlock.floor[i].detailFloor[j].MaVT}`] = (
+          <div
+            style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column" }}
+          >
+            <span>{selectedBlock.floor[i].detailFloor[j].TongGiaGomPBTView}</span>
+            <div>
+              <img style={{ height: '28px', textAlign: 'center' }} src={selectedBlock.floor[i].detailFloor[j].icon} alt="" />
+            </div>
+            <span>
+              <i className="fas fa-heart"></i> 1
+            </span>
+          </div>
+        )
+      }
+      tableData.push(rowData);
+    }
+  }
+
+  if (pageLoading) {
+    return (
+      <div className="container-table-price" style={{ display: 'flex', justifyContent: 'center' }}>
+        <Spin style={{ marginRight: '20px' }} /> Đang tải dữ liệu
+      </div>
+    )
+  }
+
+
   return (
     <div className="container-table-price">
       <div
@@ -633,37 +366,56 @@ export const TablePrice = () => {
               <CustomSlider
                 classPreviousArrow={"fal fa-chevron-left previous-arrow"}
                 classNextArrow={"fal fa-chevron-right next-arrow"}
-                components={dataSlide1}
-                settings={settings}
+                components={projectListComponent}
+                settings={getSliderSettings(listProjects, numberSlider1, settings)}
                 showNum={numberSlider1}
               />
             </div>
           </div>
         </div>
-        <div className="slide-container-2">
-          <div className="space-table-price"></div>
-          <div className="content">
-            <CustomSlider
-              classPreviousArrow={"fal fa-chevron-left previous-arrow"}
-              classNextArrow={"fal fa-chevron-right next-arrow"}
-              components={dataSlide2}
-              settings={settings2}
-              showNum={numberSlider2}
-            />
+        {!blockLoading && listBlocks.length > 0 ? <>
+          <div className="slide-container-2">
+            <div className="space-table-price"></div>
+            <div className="content">
+              <CustomSlider
+                classPreviousArrow={"fal fa-chevron-left previous-arrow"}
+                classNextArrow={"fal fa-chevron-right next-arrow"}
+                components={blockListComponent}
+                settings={getSliderSettings(listBlocks, 5, settings2)}
+                showNum={numberSlider2}
+              />
+            </div>
+            <div className="circle-note">
+              <NoteInfor detailMaTT={selectedBlock ? selectedBlock.detailMaTT : []} />
+            </div>
+
+
           </div>
-          <div className="circle-note">
-            <NoteInfor />
-          </div>
+        </> : ''}
+
+        {blockLoading ? <div className="container-table-price" style={{ display: 'flex', justifyContent: 'center' }}>
+          <Spin style={{ marginRight: '20px' }} /> Đang tải dữ liệu
+        </div> : ''}
+      </div>
+
+
+      {!blockLoading && selectedBlock && columns.length > 1 && tableData.length > 0 ? <>
+        <div className="wrap-table">
+          <Table
+            pagination={false}
+            columns={columns as any}
+            dataSource={tableData}
+            scroll={{ x: 1300 }}
+          />
         </div>
-      </div>
-      <div className="wrap-table">
-        <Table
-          pagination={false}
-          columns={columns as any}
-          dataSource={data}
-          scroll={{ x: 1300 }}
-        />
-      </div>
+      </> : ''}
+
+      {!blockLoading && (listBlocks.length === 0 || columns.length === 1 || tableData.length === 0) ?
+        <div className="container-table-price" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+          <i style={{ fontSize: '30px', color: '#be9355' }} className="fas fa-database"></i>
+          <div>Không có dữ liệu</div>
+        </div> : ''}
+
     </div>
   );
 };
@@ -672,13 +424,19 @@ interface state {
   show: boolean;
 }
 
-class NoteInfor extends Component<any, state> {
+interface props {
+  detailMaTT: DetailMaTT[]
+}
+
+class NoteInfor extends Component<props, state> {
   refss: HTMLElement | null = null;
 
-  constructor(props: any) {
+  constructor(props: props) {
     super(props);
-
-    this.state = { show: false };
+    const { detailMaTT } = this.props;
+    this.state = {
+      show: false
+    };
   }
 
   onClick = () => {
@@ -698,6 +456,22 @@ class NoteInfor extends Component<any, state> {
   };
 
   render() {
+
+    const ttComponent: any[] = [];
+    const slComponent: any[] = [];
+    this.props.detailMaTT.forEach(element => {
+      ttComponent.push(
+        <span className="st-item" key={element.STT}>
+          <img style={{height: '16px', marginRight: '5px'}} src={element.Icon} alt=""/>
+          <span>{element.TenTT}</span>
+        </span>
+      );
+
+      slComponent.push(
+        <span key={element.STT} className="st-item"  style={{alignSelf:'center'}}>{element.SoLuong}</span>
+      )
+    });
+
     return (
       <div style={{ position: "relative" }}>
         <div className="wrap-btn-note">
@@ -712,44 +486,12 @@ class NoteInfor extends Component<any, state> {
         <div ref={(ref) => (this.refss = ref)} className="square-content">
           <div className="ct-status">
             <span className="st-title">Tình Trạng</span>
-            <span className="st-item" style={{ marginTop: 5 }}>
-              <i
-                style={{ color: "#03A000", width: 30 }}
-                className="far fa-shopping-cart"
-              ></i>
-              <span>Còn hàng</span>
-            </span>
-            <span className="st-item">
-              <i
-                style={{ color: "#3C79E6", width: 30 }}
-                className="far fa-cart-arrow-down"
-              ></i>
-              <span>Đặt mua bán</span>
-            </span>
-            <span className="st-item">
-              <i
-                style={{ color: "#C4C4C4", width: 30 }}
-                className="far fa-lock-alt"
-              ></i>
-              <span>Không mở bán</span>
-            </span>
-            <span className="st-item">
-              <i
-                style={{ color: "#DA0000", width: 30 }}
-                className="far fa-check-circle"
-              ></i>
-              <span>Đã bán</span>
-            </span>
+            {ttComponent}
           </div>
           <div className="space-div"></div>
           <div className="ct-amount">
             <span className="st-title">Số Lượng</span>
-            <span className="st-item" style={{ marginTop: 5 }}>
-              8
-            </span>
-            <span className="st-item">0</span>
-            <span className="st-item">105</span>
-            <span className="st-item">2</span>
+            {slComponent}
           </div>
         </div>
       </div>

@@ -6,3 +6,7 @@ export const customTime = (
 ) => {
   return (time && moment.utc(time).local().format(format)) || "";
 };
+
+export const getHexColor = (number: number) => {
+  return "#" + ((number) >>> 0).toString(16).slice(-6);
+}

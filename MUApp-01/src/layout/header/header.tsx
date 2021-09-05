@@ -40,7 +40,7 @@ export const HeaderWrap = () => {
     <div className="menu-project">
       {projects.map((e, i) => {
         return (
-          <Link className="span-item" to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
+          <Link className="span-item" key={e.id} to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
             {e.main_title}
           </Link>
         );
@@ -65,7 +65,7 @@ export const HeaderWrap = () => {
     <div className="menu-project news">
       {catblogs.map((e, i) => {
         return (
-          <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
+          <Link key={i} className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
             {e.name}
           </Link>
         );

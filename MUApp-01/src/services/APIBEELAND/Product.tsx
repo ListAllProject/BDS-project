@@ -13,6 +13,13 @@ let ProductAPI = {
       tenCTDKVT: 'beesky',
       maSP: maSP
     });
+  },
+
+  getBlock(maDA: number) {
+    return API().post(`/api/beeland/block`, {
+      tenCTDKVT: 'beesky',
+      maDA: maDA,
+    })
   }
 }
 

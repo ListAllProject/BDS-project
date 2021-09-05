@@ -154,7 +154,7 @@ export const Selling = () => {
                 <Form.Item name="MaDA">
                   <Select style={{ width: "100%" }} placeholder="Chọn dự án" onChange={onChangDA}>
                     {listProjects?.map((item) => (
-                      <Option value={item.ID} key={item.ID}>
+                      <Option value={item.MaDA} key={item.MaDA}>
                         {item.TenDA}
                       </Option>
                     ))}

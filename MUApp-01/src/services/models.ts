@@ -127,8 +127,9 @@ export interface productsObj {
 }
 
 export interface projectObj {
-  ID: number;
   TenDA: string;
+  MaDA: number;
+  icon: string;
 }
 
 export interface priceObj {
@@ -159,3 +160,79 @@ export interface FogotPasswordRequest {
   phone: string;
 }
 
+export interface Block {
+  maKhu: number,
+  tenKhu: string,
+  detailKhu: DetailKhu[],
+  floor: Floor[],
+  location: BLocation[],
+  detailMaTT: DetailMaTT[],
+}
+
+export interface DetailKhu {
+  STT: number,
+  TenKhu: string,
+  DaBan: number,
+  Tong: number
+}
+
+export interface Floor {
+  maTang: number,
+  tenTang: string,
+  detailFloor: DetailFloor[],
+}
+
+export interface DetailFloor {
+  STT: 9,
+  TenViTri: 09,
+  PhongNgu: string,
+  TenPhuongHuong: string,
+  DTThongThuy: number,
+  MaDA: number,
+  SoPhongVS: string,
+  TenDA: string,
+  DiaChi: string,
+  TenKhu: string,
+  MaSP: number,
+  MaTT: number,
+  MaLM: number,
+  KyHieu: string,
+  TongGiaGomPBTView: string,
+  icon: string,
+  MauNen: number,
+  TenTT: string,
+  Tang: string,
+  DTTimTuong: number,
+  DonGiaChuaVAT: number,
+  TongGiaChuaVAT: number,
+  TienVAT: number,
+  TongGiaGomVAT: number,
+  PhiBaoTri: number,
+  TongGiaTriHDMB: number,
+  DonGiaThongThuy: number,
+  MaVT: number,
+  MaTang: number,
+  MaNhomGioHang: number,
+  SapXep: number,
+}
+
+export interface BLocation {
+  maVT: number,
+  tenVT: string,
+  detailVT: DetailVT[],
+}
+
+export interface DetailVT {
+  TenViTri: string,
+  PhongNgu: string,
+  TenPhuongHuong: string,
+  DTThongThuy: number,
+  SapXep: number,
+}
+
+export interface DetailMaTT {
+  STT: number,
+  TenTT: string,
+  Icon: string,
+  SoLuong: number
+}
