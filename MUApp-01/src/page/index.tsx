@@ -18,8 +18,10 @@ import { Introduce } from "./introduce/introduce";
 export const Index = () => {
   return (
     <>
-      <HeaderWrap />
       <Switch>
+      <Route path="/v/abc-1">
+            hhhhh
+        </Route>
         <Route exact path="/gioi-thieu-du-an">
           <Introduce />
         </Route>
@@ -56,11 +58,7 @@ export const Index = () => {
           <BlogCategory />
         </Route>
         <Route path="/chi-tiet-du-an/:maSP" component={Detail}></Route>
-        <Route path="/">
-          <Home />
-        </Route>
       </Switch>
-      <FooterWrap />
     </>
   );
 };

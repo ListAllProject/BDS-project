@@ -131,7 +131,7 @@ export const BookingConfirm = () => {
 
             <div className="submit-button">
               <Button size="large" className="primary-btn">
-                <Link to="/thanh-toan-chuyen-khoan">Xác nhận</Link>
+                <Link to="/v/thanh-toan-chuyen-khoan">Xác nhận</Link>
               </Button>
             </div>
           </Form>

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./forgotpassw.scss";
 import { Button, Input, Form } from "antd";
 import { useState } from "react";
 import { FogotPasswordRequest } from "../../../services/models";
 import UserAPI from "../../../services/APIBEELAND/User";
+import { useHistory } from "react-router-dom";
 
 export const Forgotpassw = () => {
 
+  const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -31,6 +33,12 @@ export const Forgotpassw = () => {
         })
     }
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      history.push('/')
+    }
+  }, []);
 
   return (
     <div className="background">

@@ -30,8 +30,9 @@ export const Home = () => {
           <Carousel autoplay swipeToSlide draggable>
             {
               banners.length !== 0 &&
-              banners.map((item) => (
+              banners.map((item, index) => (
                 <div
+                  key={index}
                   style={{
                     maxHeight: "500px",
                     width: "100%",
