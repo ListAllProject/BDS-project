@@ -76,8 +76,8 @@ export const Booking = () => {
           <Route path="/v/booking/:maSP/complete">
             <BookingComplete />
           </Route>
-          <Route path="/v/booking/:maSP/thanh-toan-chuyen-khoan">
-            <BookingPaymentTransfer ref={childRef} />
+          <Route path="/v/booking/:maSP/thanh-toan-chuyen-khoan/:maPGC">
+            <BookingPaymentTransfer ref={childRef} product={product} onSetLoading={onSetLoading} />
           </Route>
         </Switch>
         {product ? (

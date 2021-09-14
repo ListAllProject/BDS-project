@@ -2,7 +2,10 @@ import { Skeleton } from "antd";
 import { Booking } from "page/booking/booking";
 import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router, Route, Switch, useHistory
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
 } from "react-router-dom";
 import "./App.scss";
 import "./assets/fontawesome-pro-5.13.0-web/css/all.min.css";
@@ -35,26 +38,29 @@ const AuthorizeApp = () => {
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
-    setLoaded(false)
+    setLoaded(false);
     bds
       .authorize()
       .then(() => {
-        setLoaded(true)
-        setUser(bds.store.user)
-
+        setLoaded(true);
+        setUser(bds.store.user);
       })
       .catch((err) => {
-        if( err.message === "401"){
-          history.push('/login')
+        if (err.message === "401") {
+          history.push("/login");
         }
       })
       .finally(() => {
-        setLoaded(true)
+        setLoaded(true);
       });
   }, []);
 
   if (!loaded) {
-    return <div><Skeleton active /></div>;
+    return (
+      <div>
+        <Skeleton active />
+      </div>
+    );
   } else {
     return (
       <MyContext.Provider value={user}>
@@ -70,7 +76,6 @@ const AuthorizeApp = () => {
     );
   }
 };
-
 function App() {
   return (
     <Router>

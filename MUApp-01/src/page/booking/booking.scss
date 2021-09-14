@@ -178,10 +178,14 @@
     // booking payment transfer page
     .booking-payment-transfer {
       width: 66%;
-
       display       : flex;
       flex-direction: column;
       align-items   : center;
+
+      .wrap-select-banks{
+        width: 70%;
+        margin: 10px 0px
+      }
 
       .title {
         color      : $primary--color1;
@@ -500,6 +504,9 @@
   }
 
   @media only screen and (max-width: 620px) {
+    .wrap-select-banks{
+      width: 100% !important;
+    }
     .content {
       .booking-information {
         margin: 0px;
