@@ -1,4 +1,5 @@
 import { Skeleton } from "antd";
+import { Booking } from "page/booking/booking";
 import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router, Route, Switch, useHistory
@@ -15,9 +16,6 @@ import { Register } from "./page/authentication/register/register";
 import { VerifyEmail } from "./page/authentication/verifyEmail/verifyEmail";
 import { Blog } from "./page/blogs/blogs";
 import { BlogCategory } from "./page/blogs/blogsCategory";
-import { BookingComplete } from "./page/booking/bookingComplete";
-import { BookingConfirm } from "./page/booking/bookingConfirm";
-import { BookingPaymentTransfer } from "./page/booking/bookingPaymentTransfer";
 import { Cart } from "./page/cart/cart";
 import { Detail } from "./page/detail/detail";
 import { Introduce } from "./page/introduce/introduce";
@@ -64,15 +62,9 @@ const AuthorizeApp = () => {
           <Route path="/v/gio-hang">
             <Cart />
           </Route>
-          <Route exact path="/v/booking-complete">
-            <BookingComplete />
-          </Route>
-          <Route exact path="/v/xac-nhan-booking">
-            <BookingConfirm />
-          </Route>
-          <Route exact path="/v/thanh-toan-chuyen-khoan">
-            <BookingPaymentTransfer />
-          </Route>
+          <Route path="/v/booking/:maSP">
+            <Booking />
+          </Route>  
         </Switch>
       </MyContext.Provider>
     );

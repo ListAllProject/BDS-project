@@ -89,6 +89,7 @@ export interface ImageObj {
 }
 
 export interface productsObj {
+  TenLoaiMau: string;
   STT: number;
   TotalRows: number;
   MaDA: number;
@@ -235,4 +236,45 @@ export interface DetailMaTT {
   TenTT: string,
   Icon: string,
   SoLuong: number
+}
+
+export interface Tinh {
+  tenTinh: string,
+  maTinh: number,
+  listHuyen: Huyen[],
+}
+
+export interface Huyen {
+  tenHuyen: string,
+  maHuyen: number,
+  listXa: Xa[],
+}
+
+export interface Xa {
+  TenXa: string,
+  MaXa: number,
+}
+
+export interface AddKHRequest {
+  TenKH: string,
+  DiDong: string,
+  DiaChi?: string,
+  Email?: string,
+  SoCMND?: string,
+  MaTinh?: number,
+  MaHuyen?: number,
+  MaXa?: number;
+}
+
+export interface AddBookingRequest {
+  MaKH: number,
+  MaSP: number,
+  MGD: number,
+  GiaThongThuy: number,
+  GiaChuaVAT: number,
+  TongGiaTriHD: number,
+  PhiBaoTri: number,
+  PhiBaoGomPBT: number,
+  MaNhomGioHang: number,
+  MaVoucher?: number,
 }
