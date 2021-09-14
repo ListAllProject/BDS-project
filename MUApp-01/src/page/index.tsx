@@ -10,7 +10,6 @@ import { Blog } from "./blogs/blogs";
 import { BlogCategory } from "./blogs/blogsCategory";
 import { News } from "./news/news";
 import { Cart } from "./cart/cart";
-import { BookingConfirm } from "./booking/bookingConfirm";
 import { BookingPaymentTransfer } from "./booking/bookingPaymentTransfer";
 import { BookingComplete } from "./booking/bookingComplete";
 import { Introduce } from "./introduce/introduce";
@@ -31,7 +30,6 @@ export const Index = () => {
         </Route>
 
         <Route exact path="/xac-nhan-booking">
-          <BookingConfirm />
         </Route>
         <Route exact path="/thanh-toan-chuyen-khoan">
           <BookingPaymentTransfer />

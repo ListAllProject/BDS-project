@@ -1,14 +1,15 @@
 import { Input } from 'antd';
-import './booking.scss';
+import React from 'react';
 import { Upload, message } from 'antd';
 import ButtonCustom from '../../components/buttonCustom/buttonCustom';
 import { useHistory } from "react-router-dom";
+import './booking.scss';
+const { forwardRef, useRef, useImperativeHandle } = React;
 
-export const BookingPaymentTransfer = () => {
+export const BookingPaymentTransfer = forwardRef((props, ref) => {
   let history = useHistory();
-  const props = {
+  const propsUpload = {
     name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
     headers: {
       authorization: 'authorization-text',
     },
@@ -24,6 +25,12 @@ export const BookingPaymentTransfer = () => {
       }
     },
   };
+
+  useImperativeHandle(ref, () => ({
+    onBooking(data: any) {
+      console.log('11111', data)
+    },
+  }));
 
   return (
     <div className="booking-payment-transfer">
@@ -69,7 +76,7 @@ export const BookingPaymentTransfer = () => {
         <Input style={{ marginBottom: '24px' }} disabled suffix={
           <Upload
             listType="picture"
-            {...props}>
+            {...propsUpload}>
             <ButtonCustom style={{ padding: "5px 43px" }} onClick={() => { }} text="Chọn file" />
           </Upload>
         }></Input>
@@ -78,9 +85,9 @@ export const BookingPaymentTransfer = () => {
             </div>
       </div>
 
-      <div className="submit-button">
+      {/* <div className="submit-button">
         <ButtonCustom style={{ padding: "9px 43px" }} onClick={() => { history.push("/chuyen-khoan-thanh-cong"); }} text="Xác nhận" />
-      </div>
+      </div> */}
     </div> 
   )
-}
+})

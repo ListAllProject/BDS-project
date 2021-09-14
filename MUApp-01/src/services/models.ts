@@ -278,3 +278,30 @@ export interface AddBookingRequest {
   MaNhomGioHang: number,
   MaVoucher?: number,
 }
+
+export interface InfoKhachHang{
+  CongTy1: any
+  DTCD: any
+  DiDong: string
+  DiDong2: any
+  DiaChi: string
+  DuAn: any
+  Email: string
+  Email2: string
+  GhiChu: string
+  HoKH: any
+  MaKh: number
+  MaSoKH: string
+  MaSoTTNCN: any
+  Ngay: string
+  NgayCap: string
+  NgayDangKy: string
+  NgaySinh: string
+  NguyenQuan: any
+  NoiCap: any
+  STT: number
+  SanPham: any
+  SoCMND: any
+  TenKH: string
+  ThuongTru: string
+}

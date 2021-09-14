@@ -1,10 +1,17 @@
-import { Button, Form, Input, Select, List } from "antd";
+import { Button, Form, Input, Modal, Select } from "antd";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import BookingAPI from "services/APIBEELAND/Booking";
-import "react-select/dist/react-select.css";
-import "react-virtualized-select/styles.css";
-import { AddBookingRequest, Huyen, Tinh, Xa } from "services/models";
+import List from "rc-virtual-list";
+// import "react-select/dist/react-select.css";
+// import "react-virtualized-select/styles.css";
+import {
+  AddBookingRequest,
+  Huyen,
+  Tinh,
+  Xa,
+  InfoKhachHang,
+} from "services/models";
 import "./booking.scss";
 const { Option } = Select;
 const { forwardRef, useRef, useImperativeHandle } = React;
@@ -28,39 +35,50 @@ interface BookingData {
   ward?: any;
 }
 
-export const BookingConfirm = forwardRef((props, ref) => {
+interface props {
+  onSetLoading: (val: boolean) => void
+}
 
+export const BookingConfirm = forwardRef((props: props, ref) => {
   const history = useHistory();
-  const [listTinhs, setListTinhs] = useState<Tinh[]>([])
-  const [selectedTinh, setSelectedTinh] = useState<Tinh>()
-  const [selectedHuyen, setSelectedHuyen] = useState<Huyen>()
-  const [selectedXa, setSelectedXa] = useState<Xa>()
+  const [listTinhs, setListTinhs] = useState<Tinh[]>([]);
+  const [selectedTinh, setSelectedTinh] = useState<Tinh>();
+  const [selectedHuyen, setSelectedHuyen] = useState<Huyen>();
+  const [selectedXa, setSelectedXa] = useState<Xa>();
   const [form] = Form.useForm();
-  const [bookingInformation, setBookingInformation] = useState<AddBookingRequest>();
+  const [bookingInformation, setBookingInformation] =
+    useState<AddBookingRequest>();
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [dataKH, setDataKH] = useState<InfoKhachHang[]>([]);
+  const [selectedKH, setSelectedKH] = useState<InfoKhachHang | null>(null);
 
   useEffect(() => {
     BookingAPI.getAddress()
-      .then(res => {
+      .then((res) => {
         if (res.data.status === 2000) {
           setListTinhs(res.data.data);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       })
-  }, [])
+      .finally(() => {});
+  }, []);
 
   useImperativeHandle(ref, () => ({
     onBooking(data: AddBookingRequest) {
+      console.log(11113, data)
       if (data) {
         setBookingInformation(data)
         form.submit();
       }
-    }
+    },
   }));
 
   // Add booking handle
   const onFinishBooking = (data: BookingData) => {
+    props.onSetLoading(true)
     BookingAPI.addKH({
       DiDong: data.phoneNumber,
       TenKH: data.name,
@@ -70,67 +88,96 @@ export const BookingConfirm = forwardRef((props, ref) => {
       MaHuyen: data.district,
       MaXa: data.ward,
       SoCMND: data.cmnd,
-    }).then(res => {
-      if (res.data.status === 2000) {
-        const maKH = res.data.data;
-        if (bookingInformation) {
-          bookingInformation.MaKH = maKH;
-          BookingAPI.addBooking(bookingInformation)
-            .then(res => {
-              if (res.data.status === 2000) {
-                history.push(`/v/booking/${bookingInformation.MaSP}/thanh-toan-chuyen-khoan/${res.data.data}`)
-              }
-            })
-            .catch(err => {
-              console.log(err);
-            })
-        }
-      }
-    }).catch(err => {
-      console.log(err)
     })
-  }
+      .then((res) => {
+        if (res.data.status === 2000) {
+          const maKH = res.data.data;
+          if (bookingInformation) {
+            bookingInformation.MaKH = maKH;
+            BookingAPI.addBooking(bookingInformation)
+              .then((res) => {
+                if (res.data.status === 2000) {
+                  history.push(
+                    `/v/booking/${bookingInformation.MaSP}/thanh-toan-chuyen-khoan/${res.data.data}`
+                  );
+                }else if (res.data.status === 2002) {
+                  Modal.info({
+                    title: 'Thông Báo',
+                    content: (
+                      <div>
+                        {res.data.message}
+                      </div>
+                    ),
+                    onOk() {},
+                  });
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      }).finally(() => {
+        props.onSetLoading(false)
+      });
+  };
 
   // Address handle
   const onSelectedTinhChange = (value: any) => {
+    form.setFieldsValue({
+      district: null,
+      ward: null
+    })
     const maTinh = parseInt(value);
-    const tinh = listTinhs.find(e => e.maTinh === maTinh);
+    const tinh = listTinhs.find((e) => e.maTinh === maTinh);
     setSelectedTinh(tinh);
-  }
+  };
   const onSelectedHuyenChange = (value: any) => {
+    form.setFieldsValue({
+      ward: null
+    })
     const maHuyen = parseInt(value);
-    const huyen = selectedTinh?.listHuyen.find(e => e.maHuyen === maHuyen);
+    const huyen = selectedTinh?.listHuyen.find((e) => e.maHuyen === maHuyen);
     setSelectedHuyen(huyen);
-  }
+  };
   const onSelectedXaChange = (value: any) => {
     const maXa = parseInt(value);
-    const xa = selectedHuyen?.listXa.find(e => e.MaXa === maXa);
+    const xa = selectedHuyen?.listXa.find((e) => e.MaXa === maXa);
     setSelectedXa(xa);
-  }
+  };
 
   // TODO:
   // Search Customer handle
-  const options = Array.from(new Array(1000), (_, index) => ({
-    label: `Item ${index}`,
-    value: index
-  }));
+
   const onFinishSearchKH = (data: searchData) => {
-    BookingAPI.searchKH(data.searchText)
-      .then(res => {
-
+    console.log(data);
+    setLoading(true);
+    BookingAPI.searchKH(data.searchText || "")
+      .then((res) => {
+        if (res.data.status === 2000) {
+          setDataKH(res.data.data);
+        }
       })
-      .catch(err => {
+      .catch((err) => {})
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
-      })
-  }
+  const onSetSelectedKH = (data: InfoKhachHang) => {
+    setSelectedKH(data);
 
-  const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-  ];
+    form.setFieldsValue({
+      name: data.TenKH,
+      cmnd: data.SoCMND || '',
+      phoneNumber: data.DiDong || data.DiDong2,
+      email: data.Email || data.Email2,
+      address: data.DiaChi,
+    })
+  };
 
   return (
     <div className="booking-confirm">
@@ -149,29 +196,43 @@ export const BookingConfirm = forwardRef((props, ref) => {
           textAlign: "center",
         }}
       >
-        Thông tin Họ và tên, Email, Điện thoại, ngày sinh sẽ được tự động
-        điền chính xác theo các thông tin quý khách đã cung cấp khi tạo tài
-        khoản. Trường hợp quý khách có nhu cầu thay đổi các thông tin này,
-        vui lòng truy cập mục Tài khoản của tôi để điều chỉnh thông tin tài
-        khoản.
-          </div>
+        Thông tin Họ và tên, Email, Điện thoại, ngày sinh sẽ được tự động điền
+        chính xác theo các thông tin quý khách đã cung cấp khi tạo tài khoản.
+        Trường hợp quý khách có nhu cầu thay đổi các thông tin này, vui lòng
+        truy cập mục Tài khoản của tôi để điều chỉnh thông tin tài khoản.
+      </div>
 
       {/* Form input */}
-      <Form style={{ marginTop: '40px' }} className="search-form" onFinish={onFinishSearchKH}>
-        <Form.Item name="searchText">
+      <Form
+        style={{ margin: "40px 0px" }}
+        className="search-form"
+        onFinish={onFinishSearchKH}
+      >
+        <Form.Item name="searchText" style={{ marginBottom: 0 }}>
           <Input
             placeholder="Nhập tên hoặc số điện thoại của khách hàng"
-            addonAfter={<Button htmlType="submit" loading={false} >Tìm kiếm</Button>}
+            addonAfter={
+              <Button htmlType="submit" loading={loading}>
+                Tìm kiếm
+              </Button>
+            }
           ></Input>
-          <List
-            dataSource={data}
-            renderItem={item => (
-              <List.Item>
-                {item}
-              </List.Item>
-            )}
-          />
         </Form.Item>
+        {dataKH.length !== 0 && (
+          <List data={dataKH} height={200} itemHeight={30} itemKey="id">
+            {(KH) => (
+              <div
+                onClick={() => onSetSelectedKH(KH)}
+                className={`item-results ${
+                  selectedKH?.MaKh === KH.MaKh ? "item-focus" : ""
+                }`}
+              >
+                <span style={{ fontWeight: "bold" }}>{KH.TenKH}</span> -
+                {KH.DiDong}
+              </div>
+            )}
+          </List>
+        )}
       </Form>
 
       <Form form={form} layout="vertical" onFinish={onFinishBooking}>
@@ -213,9 +274,10 @@ export const BookingConfirm = forwardRef((props, ref) => {
           <Form.Item label="Thành phố/ Tỉnh" name="city">
             <Select
               placeholder="- Chọn Thành phố/ Tỉnh -"
-              onChange={(value) => onSelectedTinhChange(value)}>
-              {listTinhs.map(e => {
-                return <Option value={e.maTinh}>{e.tenTinh}</Option>
+              onChange={(value) => onSelectedTinhChange(value)}
+            >
+              {listTinhs.map((e) => {
+                return <Option key={e.maTinh} value={e.maTinh}>{e.tenTinh}</Option>;
               })}
             </Select>
           </Form.Item>
@@ -225,31 +287,37 @@ export const BookingConfirm = forwardRef((props, ref) => {
           <Form.Item label="Quận/ Huyện" name="district">
             <Select
               onChange={(value) => onSelectedHuyenChange(value)}
-              placeholder="- Chọn Quận/ Huyện -">
-              {selectedTinh ? selectedTinh.listHuyen.map(e => {
-                return <Option value={e.maHuyen}>{e.tenHuyen}</Option>
-              }) : ''}
+              placeholder="- Chọn Quận/ Huyện -"
+            >
+              {selectedTinh
+                ? selectedTinh.listHuyen.map((e) => {
+                    return <Option key={e.maHuyen} value={e.maHuyen}>{e.tenHuyen}</Option>;
+                  })
+                : ""}
             </Select>
           </Form.Item>
           <Form.Item label="Phường/ Xã" name="ward">
             <Select
               value={selectedXa?.MaXa}
               onChange={(value) => onSelectedXaChange(value)}
-              placeholder="- Chọn Phường/ Xã -">
-              {selectedHuyen ? selectedHuyen.listXa.map(e => {
-                return <Option value={e.MaXa}>{e.TenXa}</Option>
-              }) : ''}
+              placeholder="- Chọn Phường/ Xã -"
+            >
+              {selectedHuyen
+                ? selectedHuyen.listXa.map((e) => {
+                    return <Option key={e.MaXa} value={e.MaXa}>{e.TenXa}</Option>;
+                  })
+                : ""}
             </Select>
           </Form.Item>
         </div>
-        <div
+        {/* <div
           style={{
             width: "100%",
             height: "1px",
             backgroundColor: "#EBEBEB",
           }}
-        ></div>
-        <Form.Item
+        ></div> */}
+        {/* <Form.Item
           style={{ marginTop: "20px" }}
           label="Phương thức thanh toán"
           name="payment-method"
@@ -263,7 +331,7 @@ export const BookingConfirm = forwardRef((props, ref) => {
           <Select>
             <Option value="1">Chuyển khoản</Option>
           </Select>
-        </Form.Item>
+        </Form.Item> */}
       </Form>
     </div>
   );

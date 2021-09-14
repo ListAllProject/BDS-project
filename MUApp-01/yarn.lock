@@ -9671,7 +9671,7 @@
     "react-is" "^16.12.0"
     "shallowequal" "^1.1.0"
 
-"rc-virtual-list@^3.0.1", "rc-virtual-list@^3.2.0":
+"rc-virtual-list@^3.0.1", "rc-virtual-list@^3.2.0", "rc-virtual-list@^3.3.0":
   "integrity" "sha512-lVXpGWC6yMdwV2SHo6kc63WlqjCnb3eO72V726KA2/wh9KA6wi/swcdR3zAowuA8hJxG/lRANmY5kpLZ+Pz3iQ=="
   "resolved" "https://registry.npmjs.org/rc-virtual-list/-/rc-virtual-list-3.3.0.tgz"
   "version" "3.3.0"
