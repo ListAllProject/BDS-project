@@ -125,6 +125,7 @@ export interface productsObj {
   NoiDung: string;
   Link_Video: string;
   Link_360: string;
+  MaNhomGioHang: number;
 }
 
 export interface projectObj {
@@ -274,7 +275,7 @@ export interface AddBookingRequest {
   GiaChuaVAT: number,
   TongGiaTriHD: number,
   PhiBaoTri: number,
-  PhiBaoGomPBT: number,
+  PhiBaoGomPBT?: number,
   MaNhomGioHang: number,
   MaVoucher?: number,
 }
@@ -304,4 +305,9 @@ export interface InfoKhachHang{
   SoCMND: any
   TenKH: string
   ThuongTru: string
+}
+
+export interface Voucher {
+  ID: number;
+  GiaTri: number;
 }

@@ -1,9 +1,9 @@
 import { Button, Form, Input, Skeleton, Image } from "antd";
 import React, { useEffect, useState } from "react";
-import { Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch, useHistory, useParams } from "react-router-dom";
 import BookingAPI from "services/APIBEELAND/Booking";
 import ProductAPI from "services/APIBEELAND/Product";
-import { AddBookingRequest, productsObj } from "services/models";
+import { Voucher, productsObj } from "services/models";
 import * as helper from "../../services/helper";
 import "./booking.scss";
 import { BookingComplete } from "./bookingComplete";
@@ -20,16 +20,10 @@ interface EvoucherData {
   evoucher: string;
 }
 
-interface Voucher {
-  ID: number;
-  GiaTri: number;
-}
-
 export const Booking = () => {
   const { maSP } = useParams<detailParams>();
   const childRef = useRef();
   const [product, setProduct] = useState<productsObj>();
-  const [loading, setLoading] = useState(false);
   const [loadingBtn, setLoadingBtn] = useState(false);
 
   // Voucher
@@ -38,29 +32,11 @@ export const Booking = () => {
   const [voucher, setVoucher] = useState<Voucher>();
   const [voucherMessage, setVoucherMessage] = useState("");
 
-  //
-  const [bookingInformation, setBookingInformation] =
-    useState<AddBookingRequest>();
-
   useEffect(() => {
     ProductAPI.getProduct(parseInt(maSP))
       .then((res) => {
         if (res.data.status === 2000) {
-          const producTemp = res.data.data;
-          console.log(res.data.data)
           setProduct(res.data.data);
-          setBookingInformation({
-            GiaChuaVAT: producTemp.TongGiaChuaVAT,
-            GiaThongThuy: producTemp.TongGiaChuaVAT,
-            MGD: 1,
-            MaNhomGioHang: producTemp.MaNhomGioHang,
-            MaSP: producTemp.MaSP,
-            // TODO: PhiBaoGomPBT:
-            PhiBaoGomPBT: 0,
-            PhiBaoTri: producTemp.PhiBaoTri,
-            TongGiaTriHD: producTemp.TongGiaTriHDMB,
-            MaKH: -1,
-          });
         }
       })
       .catch((err) => {
@@ -72,29 +48,17 @@ export const Booking = () => {
     setIsCheckingVoucher(true);
     BookingAPI.getVoucher(data.evoucher)
       .then((res) => {
-        setIsCheckingVoucher(false);
-        if (
-          res.data.status === 2000 &&
-          res.data.data &&
-          res.data.data.length > 0
-        ) {
+        if (res.data.status === 2000 && res.data.data && res.data.data.length > 0) {
           setVoucher(res.data.data[0]);
         } else {
-          setVoucher({
-            GiaTri: 0,
-            ID: 0,
-          });
           setVoucherMessage(res.data.message);
         }
       })
       .catch((err) => {
-        setVoucher({
-          GiaTri: 0,
-          ID: 0,
-        });
-        setIsCheckingVoucher(false);
         setVoucherMessage("Có lỗi xảy ra vui lòng thử lại");
         console.log(err);
+      }).finally(() => {
+        setIsCheckingVoucher(false);
       });
   };
 
@@ -188,35 +152,38 @@ export const Booking = () => {
                 </div>
               </div>
 
-              <div className="information-break"></div>
 
-              <Form
-                form={formEvoucher}
-                className="evoucher"
-                onFinish={onFinishCheckVoucher}
-              >
-                <Form.Item name="evoucher">
-                  <Input
-                    suffix={<i className="fas fa-info-circle clickable" />}
-                    placeholder="Nhập mã E-voucher"
-                    addonAfter={
-                      <Button htmlType="submit" loading={isCheckingVoucher}>
-                        ÁP DỤNG
+              {window.location.href.indexOf("xac-nhan") !== -1 ?
+                <>
+                  <div className="information-break"></div>
+                  <Form
+                    form={formEvoucher}
+                    className="evoucher"
+                    onFinish={onFinishCheckVoucher}
+                  >
+                    <Form.Item name="evoucher">
+                      <Input
+                        suffix={<i className="fas fa-info-circle clickable" />}
+                        placeholder="Nhập mã E-voucher"
+                        addonAfter={
+                          <Button htmlType="submit" loading={isCheckingVoucher}>
+                            ÁP DỤNG
                       </Button>
-                    }
-                  ></Input>
-                </Form.Item>
-              </Form>
-              {voucher && voucher.GiaTri != 0 ? (
+                        }
+                      ></Input>
+                    </Form.Item>
+                  </Form>
+                </> : ""}
+
+                {/* Show voucher value */}
+              {voucher && voucher.GiaTri !== 0 ? (
                 <div className="information-row">
                   <div className="information-label">Mức giảm (tạm tính)</div>
                   <div className="information-value">
                     {voucher ? helper.formatMoney(voucher.GiaTri) : 0}
                   </div>
                 </div>
-              ) : (
-                <div>{voucherMessage}</div>
-              )}
+              ) : window.location.href.indexOf("xac-nhan") != -1 ? <div>{voucherMessage}</div> : ''}
 
               <div className="information-break"></div>
 
@@ -225,10 +192,7 @@ export const Booking = () => {
                   <strong>Tổng tiền mua online</strong>
                 </div>
                 <div className="information-value" style={{ color: "#BE9355" }}>
-                  {voucher
-                    ? helper.formatMoney(
-                        product.TongGiaTriHDMB - voucher.GiaTri
-                      )
+                  {voucher ? helper.formatMoney(product.TongGiaTriHDMB - voucher.GiaTri)
                     : helper.formatMoney(product.TongGiaTriHDMB)}
                 </div>
               </div>
@@ -248,17 +212,16 @@ export const Booking = () => {
         )}
       </div>
       <div>
+      {window.location.href.indexOf("complete") === -1 ?
         <Button
           loading={loadingBtn}
           onClick={() =>
-            (childRef?.current as any).onBooking(bookingInformation)
+            (childRef?.current as any).onBooking(product, voucher)
           }
           style={{ height: 35 }}
           size="middle"
           className="primary-btn"
-        >
-          Xác nhận
-        </Button>
+        >Xác nhận</Button>:'' }
       </div>
     </div>
   );

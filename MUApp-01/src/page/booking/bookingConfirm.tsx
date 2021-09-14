@@ -11,6 +11,8 @@ import {
   Tinh,
   Xa,
   InfoKhachHang,
+  productsObj,
+  Voucher,
 } from "services/models";
 import "./booking.scss";
 const { Option } = Select;
@@ -46,8 +48,9 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
   const [selectedHuyen, setSelectedHuyen] = useState<Huyen>();
   const [selectedXa, setSelectedXa] = useState<Xa>();
   const [form] = Form.useForm();
-  const [bookingInformation, setBookingInformation] =
-    useState<AddBookingRequest>();
+  // const [bookingInformation, setBookingInformation] = useState<AddBookingRequest>();
+  const [product, setProduct] = useState<productsObj>();
+  const [voucher, setVoucher] = useState<Voucher>();
 
   const [loading, setLoading] = useState<boolean>(false);
   const [dataKH, setDataKH] = useState<InfoKhachHang[]>([]);
@@ -67,10 +70,10 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
   }, []);
 
   useImperativeHandle(ref, () => ({
-    onBooking(data: AddBookingRequest) {
-      console.log(11113, data)
-      if (data) {
-        setBookingInformation(data)
+    onBooking(product: productsObj, voucher: Voucher) {
+      if (product) {
+        setProduct(product);
+        setVoucher(voucher);
         form.submit();
       }
     },
@@ -92,13 +95,24 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       .then((res) => {
         if (res.data.status === 2000) {
           const maKH = res.data.data;
-          if (bookingInformation) {
-            bookingInformation.MaKH = maKH;
-            BookingAPI.addBooking(bookingInformation)
+          if (product) {
+            const addBookingRequest: AddBookingRequest = {
+              GiaChuaVAT: product.TongGiaChuaVAT,
+              GiaThongThuy: product.TongGiaChuaVAT,
+              MGD: 1,
+              MaNhomGioHang: product.MaNhomGioHang,
+              MaSP: product.MaSP,
+              PhiBaoTri: product.PhiBaoTri,
+              TongGiaTriHD: product.TongGiaTriHDMB,
+              MaKH: maKH,
+              MaVoucher: voucher?.ID,
+            } 
+
+            BookingAPI.addBooking(addBookingRequest)
               .then((res) => {
                 if (res.data.status === 2000) {
                   history.push(
-                    `/v/booking/${bookingInformation.MaSP}/thanh-toan-chuyen-khoan/${res.data.data}`
+                    `/v/booking/${addBookingRequest.MaSP}/thanh-toan-chuyen-khoan/${res.data.data}`
                   );
                 }else if (res.data.status === 2002) {
                   Modal.info({
@@ -149,11 +163,8 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
     setSelectedXa(xa);
   };
 
-  // TODO:
   // Search Customer handle
-
   const onFinishSearchKH = (data: searchData) => {
-    console.log(data);
     setLoading(true);
     BookingAPI.searchKH(data.searchText || "")
       .then((res) => {
