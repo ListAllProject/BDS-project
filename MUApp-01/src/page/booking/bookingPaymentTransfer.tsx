@@ -6,6 +6,7 @@ import { useHistory, useParams } from "react-router-dom";
 import "./booking.scss";
 import BookingAPI from "services/APIBEELAND/Booking";
 import { productsObj } from "services/models";
+import { flatMap } from "assets/fontawesome-pro-5.13.0-web/js/v4-shims";
 const { forwardRef, useRef, useImperativeHandle } = React;
 const { Option } = Select;
 
@@ -31,6 +32,7 @@ interface props {
   onSetLoading: (val: boolean) => void;
 }
 
+let imagesTemp: DataImage[] = [];
 export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
   const { maPGC } = useParams<detailParams>();
 
@@ -39,35 +41,33 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
   const [loadingSelect, setLoadingSelect] = useState<boolean>(false);
   const [images, setImages] = useState<DataImage[]>([]);
 
+  useEffect(() => {
+    imagesTemp = [...images]
+  })
+
   let history = useHistory();
   const propsUpload = {
-    // multiple: true,
+    multiple: true,
     accept: ".png, .jpg, jpeg",
     async onChange(info: any) {
-      console.log(info);
       if (info.file.status !== "uploading" && info.file.status !== "removed") {
-        info.fileList.map(async (i: any) => {
-          i.status = "done";
-          const formData = new FormData();
-          formData.append("Image", i.originFileObj);
-          formData.append("Type", "booking");
-          formData.append("CompanyCode", "beesky");
-
-          const res = await BookingAPI.uploadImage(formData);
-
-          if (res) {
-            const temp: DataImage = { uid: info.file.uid, url: res.data[0] };
-            const data = [...images];
-            data.push(temp);
-            setImages(data);
-          }
-        });
+        // info.file.status = "PROGRESS";
+        info.file.status = "done";
+        const formData = new FormData();
+        formData.append("Image", info.file.originFileObj);
+        formData.append("Type", "booking");
+        formData.append("CompanyCode", "beesky");
+        const res = await BookingAPI.uploadImage(formData)
+        if (res) {
+          const temp: DataImage = { uid: info.file.uid, url: res.data[0] };
+          imagesTemp.push(temp);
+          setImages(imagesTemp);
+        }
       }
     },
     onRemove(info: any) {
-      let data = [...images];
-      data = data.filter((_i) => _i.uid !== info.uid);
-      setImages(data);
+      imagesTemp = imagesTemp.filter((_i: DataImage) => _i.uid !== info.uid);
+      setImages(imagesTemp);
     },
   };
 
@@ -80,7 +80,9 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
   const onConfirmXacNhan = async (propduct: productsObj) => {
     props.onSetLoading(true);
     const rs = images.map((i) => {
-      return i.url;
+      return {
+        Image: i.url,
+      };
     });
     const dataAddImage = {
       MaPGC: Number(maPGC),
@@ -98,8 +100,8 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
 
     const rsAdd1 = await BookingAPI.addImageBooking(dataAddImage);
     const rsAdd2 = await BookingAPI.addConfirmReceipt(dataConfirmReceipt);
-    if(rsAdd2.data.status === 2000){
-      console.log('success')
+    if (rsAdd2.data.status === 2000) {
+      history.push(`/v/booking/${propduct.MaSP}/complete`)
     }
     props.onSetLoading(false);
   };
@@ -111,7 +113,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         setBanks(res.data.data);
         setSelectedBank(res.data.data[0]);
       })
-      .catch((error) => {})
+      .catch((error) => { })
       .finally(() => {
         setLoadingSelect(false);
       });
@@ -121,8 +123,6 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
     const bank = banks.find((_b) => _b.MaNH === val);
     if (bank) setSelectedBank(bank);
   };
-
-  console.log(images);
 
   return (
     <div className="booking-payment-transfer">
