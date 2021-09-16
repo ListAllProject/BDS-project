@@ -1,4 +1,5 @@
 import { Skeleton } from "antd";
+import ScrollToTop from "components/ScrollToTop";
 import { Booking } from "page/booking/booking";
 import React, { useEffect, useState } from "react";
 import {
@@ -47,7 +48,7 @@ const AuthorizeApp = () => {
       })
       .catch((err) => {
         if (err.message === "401") {
-          localStorage.setItem('pathname', window.location.pathname)
+          localStorage.setItem("pathname", window.location.pathname);
           history.push("/login");
         }
       })
@@ -71,7 +72,7 @@ const AuthorizeApp = () => {
           </Route>
           <Route path="/v/booking/:maSP">
             <Booking />
-          </Route>  
+          </Route>
         </Switch>
       </MyContext.Provider>
     );
@@ -82,6 +83,7 @@ function App() {
     <Router>
       <HeaderWrap />
 
+      <ScrollToTop />
       <Switch>
         <Route path="/forget-password">
           <Forgotpassw />

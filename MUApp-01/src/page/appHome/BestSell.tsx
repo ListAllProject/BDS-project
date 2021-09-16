@@ -1,13 +1,55 @@
-import { Row, Col } from "antd";
+import { Row, Col, Typography } from "antd";
 
 import lang_apec_golden_palaceson from "../../assets/images/lang_son_apec_golden_palace.png";
 import pcti_bbch1 from "../../assets/images/pcti_bbch1.png";
 import vincity_ocean_park_anh from "../../assets/images/vinCity.png";
 import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
+import { FC, useEffect, useState } from "react";
+import { DetailProject } from "services/models";
+import ProjectsAPI from "services/APIS/Projects";
+import { Link } from "react-router-dom";
 
-export const BestSell = () => {
+const { Paragraph } = Typography;
+
+export const BestSell: FC<{
+  filterResult:
+    | {
+        city: string;
+        district: string;
+        investor: string;
+      }
+    | undefined;
+}> = ({ filterResult }) => {
   // const [form] = Form.useForm();
+  const [data, setData] = useState<Array<DetailProject>>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    handleLoadList();
+    setLoading(false);
+  }, [filterResult]);
+
+  const handleLoadList = () => {
+    ProjectsAPI.getListProjects(
+      3,
+      1,
+      filterResult?.city as string,
+      filterResult?.investor as string,
+      filterResult?.district as string
+    ).then((res) => {
+      if (
+        res.data.data &&
+        res.data.data.list_projects &&
+        res.data.data.list_projects.length !== 0
+      ) {
+        setData(res.data.data.list_projects);
+      } else {
+        setData([]);
+      }
+    });
+  };
+
   return (
     <>
       <div className="homepage-container">
@@ -20,33 +62,28 @@ export const BestSell = () => {
 
         <div className="project-container">
           <Row className="item-row" gutter={0}>
-            {[
-              {
-                link: lang_apec_golden_palaceson,
-                name: "Vinhomes Ocean Park",
-                description: "TP Biển hồ - Thiên đường nghỉ dưỡng mỗi ngày",
-              },
-              {
-                link: pcti_bbch1,
-                name: "Vinhomes Smart City",
-                description:
-                  "TP Thông minh đẳng cấp quốc tế năng động, hiện đại",
-              },
-              {
-                link: vincity_ocean_park_anh,
-                name: "Vinhomes Symphony",
-                description: "Khu căn hộ cao cấp liền kề Vinhomes Riverside",
-              },
-            ].map((item) => (
-              <Col className="item-col" key={item.link}>
-                <img alt="img"
-                  src={item.link}
-                  style={{ width: "100%", height: "200px" }}
-                />
-                <p className="item_title">{item.name}</p>
-                <p className="item_description">{item.description}</p>
-              </Col>
-            ))}
+            {data && data.length !== 0 ? (
+              data.map((item) => (
+                <Col className="item-col" key={item.id}>
+                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.id}`}>
+                    <img
+                      alt={item.detail_project.title}
+                      src={item.detail_project.img}
+                      style={{ width: "100%", height: "200px" }}
+                    />
+                    <p className="item_title">
+                      {item.main_title.toLowerCase()}
+                    </p>
+                    <Paragraph className="item_description" ellipsis={true}>
+                      {item.introduction}
+                    </Paragraph>
+                  </Link>
+                  {/* <p ></p> */}
+                </Col>
+              ))
+            ) : (
+              <i>Không có dữ liệu</i>
+            )}
           </Row>
         </div>
       </div>

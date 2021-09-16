@@ -39,11 +39,10 @@ export const Selling = () => {
     Price: 0,
     MinDT: 1,
     MaxDT: 400,
-  }
+  };
   const [model, setModel] = useState(defaultData);
 
   const fetchDatas = () => {
-    console.log(model, 'modal')
     ProjectsBeelandAPI.getListProducts({
       TenCTDKVT: "beesky",
       MaDA: model.MaDA,
@@ -58,16 +57,15 @@ export const Selling = () => {
       Offset: pagination.page,
       Limit: pagination.limit,
     }).then((res) => {
-      console.log(res, "data")
       if (res.data.data) {
         setListProducts(res.data.data);
       }
       setLoading(false);
-      setLoadingFilter(false)
+      setLoadingFilter(false);
     });
-  }
+  };
   useEffect(() => {
-    fetchDatas()
+    fetchDatas();
   }, [model, pagination.limit]);
 
   useEffect(() => {
@@ -99,16 +97,16 @@ export const Selling = () => {
         setListBuilding(res.data.data);
       }
     });
-  }
+  };
   const onChangTN = (e: any) => {
     ProjectsBeelandAPI.getTypeofApartment(e).then((res) => {
       if (res.data.data && res.data.data.length !== 0) {
         setListTypes(res.data.data);
       }
     });
-  }
+  };
   const onFinish = (values: Store) => {
-    setLoadingFilter(true)
+    setLoadingFilter(true);
     if (values.floor) {
       Object.assign(values, {
         MinFloor: values.floor[0],
@@ -140,9 +138,7 @@ export const Selling = () => {
 
   return (
     <div className="container-selling">
-      <div
-        className="wrap-content-selling"
-      >
+      <div className="wrap-content-selling">
         <div className="title-selling">
           <h2>CHUNG CƯ</h2>
           <Seperate widthChil={80} widthPar={357} />
@@ -152,7 +148,11 @@ export const Selling = () => {
             <Row gutter={16}>
               <Col span={8} className="mb-20">
                 <Form.Item name="MaDA">
-                  <Select style={{ width: "100%" }} placeholder="Chọn dự án" onChange={onChangDA}>
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder="Chọn dự án"
+                    onChange={onChangDA}
+                  >
                     {listProjects?.map((item) => (
                       <Option value={item.MaDA} key={item.MaDA}>
                         {item.TenDA}
@@ -163,7 +163,11 @@ export const Selling = () => {
               </Col>
               <Col span={8} className="mb-20">
                 <Form.Item name="MaTN">
-                  <Select style={{ width: "100%" }} placeholder="Chọn tòa" onChange={onChangTN}>
+                  <Select
+                    style={{ width: "100%" }}
+                    placeholder="Chọn tòa"
+                    onChange={onChangTN}
+                  >
                     {listBuilding?.map((item: any) => (
                       <Option value={item.ID} key={item.ID}>
                         {item.TenTN}
@@ -318,8 +322,14 @@ export const Selling = () => {
                   </>
                 )}
               </span>
-              <Button size="large" className="primary-btn" htmlType="submit" loading={loadingFilter}>
-                {!loadingFilter ? <i className="fas fa-search"></i> : null}TÌM KIẾM
+              <Button
+                size="large"
+                className="primary-btn"
+                htmlType="submit"
+                loading={loadingFilter}
+              >
+                {!loadingFilter ? <i className="fas fa-search"></i> : null}TÌM
+                KIẾM
               </Button>
               <span
                 style={{
@@ -328,7 +338,10 @@ export const Selling = () => {
                   fontWeight: "bold",
                   fontSize: 14,
                 }}
-                onClick={() => { form.resetFields(); setModel(defaultData) }}
+                onClick={() => {
+                  form.resetFields();
+                  setModel(defaultData);
+                }}
               >
                 XÓA TÌM KIẾM
               </span>
@@ -339,41 +352,56 @@ export const Selling = () => {
       <div className="homepage-container" style={{ marginBottom: 0 }}>
         <div className="project-container popular-items">
           <Row className="popular-items__row">
-            {listProducts ? listProducts.length !== 0 ? (
-              listProducts.map((item, index) => (
-                <Col
-                  span={7}
-                  key={index}
-                  className="col-contain-item"
-                  style={{ marginBottom: 60 }}
-                >
-                  <ProductItem
-                    img_url={item.HinhAnh}
-                    product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
-                    product_kind={item.TenDA}
-                    bedrooms={item.SoPhongNgu}
-                    square_meters={item.DTThongThuy}
-                    bathrooms={parseInt(item.SoPhongVS?.replace(" VS", ""))}
-                    direct={item.TenPhuongHuong}
-                    price={item.TongGiaTriHDMB}
-                    onClick={()=> {
-                      history.push(`/chi-tiet-du-an/${item.MaSP}`);
-                    }}
-                  />
-                </Col>
-              ))
-            ) : (
-              <div className="spinner-contain">
-                <p>Không có dữ liệu ! <i className="fas fa-long-arrow-left" style={{ margin: "0px 5px 0 5px" }}></i><a href="#" onClick={() => { form.resetFields(); setModel(defaultData) }}>Quay lại</a></p>
-              </div>
-            )
-              : (
+            {listProducts ? (
+              listProducts.length !== 0 ? (
+                listProducts.map((item, index) => (
+                  <Col
+                    span={7}
+                    key={index}
+                    className="col-contain-item"
+                    style={{ marginBottom: 60 }}
+                  >
+                    <ProductItem
+                      img_url={item.HinhAnh}
+                      product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
+                      product_kind={item.TenDA}
+                      bedrooms={item.SoPhongNgu}
+                      square_meters={item.DTThongThuy}
+                      bathrooms={parseInt(item.SoPhongVS?.replace(" VS", ""))}
+                      direct={item.TenPhuongHuong}
+                      price={item.TongGiaTriHDMB}
+                      onClick={() => {
+                        history.push(`/chi-tiet-du-an/${item.MaSP}`);
+                      }}
+                    />
+                  </Col>
+                ))
+              ) : (
                 <div className="spinner-contain">
-                  <Spin />
-                  <p style={{ marginLeft: 10 }}>Đang load dữ liệu...</p>
+                  <p>
+                    Không có dữ liệu !{" "}
+                    <i
+                      className="fas fa-long-arrow-left"
+                      style={{ margin: "0px 5px 0 5px" }}
+                    ></i>
+                    <a
+                      href="#"
+                      onClick={() => {
+                        form.resetFields();
+                        setModel(defaultData);
+                      }}
+                    >
+                      Quay lại
+                    </a>
+                  </p>
                 </div>
               )
-            }
+            ) : (
+              <div className="spinner-contain">
+                <Spin />
+                <p style={{ marginLeft: 10 }}>Đang load dữ liệu...</p>
+              </div>
+            )}
           </Row>
         </div>
       </div>
@@ -398,8 +426,9 @@ export const Selling = () => {
             ></i>
           </Button>
         </div>
-      ) : <></>
-      }
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

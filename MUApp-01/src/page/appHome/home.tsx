@@ -8,11 +8,14 @@ import { BestSell } from "./BestSell";
 import "./home.scss";
 import { PopularItems } from "./PopularItems";
 import { SearchingForm } from "./SearchingForm";
-import loadding from "../../assets/images/loadding.gif"
+import loadding from "../../assets/images/loadding.gif";
 import DoorDashFavorite from "../../components/loadBanner/loadBanner";
 
 export const Home = () => {
   const [banners, setBanners] = useState<Array<BannerObj>>();
+  const [filterResult, setFilterResult] =
+    useState<{ city: string; district: string; investor: string }>();
+
   useEffect(() => {
     HomeAPI.getBanners(1, 6).then((res) => {
       if (res.data.data && res.data.data.length !== 0) {
@@ -26,10 +29,9 @@ export const Home = () => {
   return (
     <div className="home">
       <div>
-        {banners ?
+        {banners ? (
           <Carousel autoplay swipeToSlide draggable>
-            {
-              banners.length !== 0 &&
+            {banners.length !== 0 &&
               banners.map((item, index) => (
                 <div
                   key={index}
@@ -43,7 +45,7 @@ export const Home = () => {
                   <img
                     alt={item.project_title}
                     src={item.value}
-                    className='banner-home'
+                    className="banner-home"
                     style={{
                       display: "block",
                       width: "100%",
@@ -56,14 +58,15 @@ export const Home = () => {
                 </div>
               ))}
           </Carousel>
-          : <DoorDashFavorite />
-        }
+        ) : (
+          <DoorDashFavorite />
+        )}
       </div>
 
       <div className="home-container">
-        <SearchingForm />
+        <SearchingForm setFilterResult={setFilterResult} />
 
-        <BestSell />
+        <BestSell filterResult={filterResult} />
 
         <PopularItems />
 
