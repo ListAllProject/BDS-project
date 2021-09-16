@@ -9,8 +9,8 @@ declare global {
 
 window.Configs = {
   // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
-  apiBaseUrl:
-    "https://api-client.mybeeland.com",
+  // apiBaseUrl: "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
+  apiBaseUrl: "https://api-client.mybeeland.com",
   apiImageUrl: "https://beesky-admin.ninja-it.asia", // for-blog-image
 };
 
