@@ -13,6 +13,7 @@ import { Block, DetailMaTT, projectObj } from "../../services/models";
 import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import ProductBeelandAPI from "../../services/APIBEELAND/Product";
 import { getHexColor } from "../../services/helper";
+import { useHistory } from "react-router-dom";
 
 const settings = {
   infinite: true,
@@ -99,7 +100,8 @@ export const TablePrice = () => {
   const [selectedBlock, setSelectedBlock] = useState<Block>();
   const [pageLoading, setPageLoading] = useState(false);
   const [blockLoading, setBlockLoading] = useState(false);
-  
+  const history = useHistory();
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth < 992) {
@@ -312,6 +314,7 @@ export const TablePrice = () => {
 
   // Generate data cell
   const tableData = [];
+  console.log(selectedBlock, 787)
   if (selectedBlock) {
     for (let i = 0; i < selectedBlock.floor.length; i++) {
       const rowData: any = {
@@ -322,15 +325,16 @@ export const TablePrice = () => {
       for (let j = 0; j < selectedBlock.floor[i].detailFloor.length; j++) {
         rowData[`col${selectedBlock.floor[i].detailFloor[j].MaVT}`] = (
           <div
-            style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column" }}
+            onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}
+            style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column", cursor: "pointer" }}
           >
             <span>{selectedBlock.floor[i].detailFloor[j].TongGiaGomPBTView}</span>
             <div>
               <img style={{ height: '28px', textAlign: 'center' }} src={selectedBlock.floor[i].detailFloor[j].icon} alt="" />
             </div>
-            <span>
+            {/* <span>
               <i className="fas fa-heart"></i> 1
-            </span>
+            </span> */}
           </div>
         )
       }
@@ -462,13 +466,13 @@ class NoteInfor extends Component<props, state> {
     this.props.detailMaTT.forEach(element => {
       ttComponent.push(
         <span className="st-item" key={element.STT}>
-          <img style={{height: '16px', marginRight: '5px'}} src={element.Icon} alt=""/>
+          <img style={{ height: '16px', marginRight: '5px' }} src={element.Icon} alt="" />
           <span>{element.TenTT}</span>
         </span>
       );
 
       slComponent.push(
-        <span key={element.STT} className="st-item"  style={{alignSelf:'center'}}>{element.SoLuong}</span>
+        <span key={element.STT} className="st-item" style={{ alignSelf: 'center' }}>{element.SoLuong}</span>
       )
     });
 
