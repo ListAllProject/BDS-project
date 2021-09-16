@@ -47,6 +47,7 @@ const AuthorizeApp = () => {
       })
       .catch((err) => {
         if (err.message === "401") {
+          localStorage.setItem('pathname', window.location.pathname)
           history.push("/login");
         }
       })
