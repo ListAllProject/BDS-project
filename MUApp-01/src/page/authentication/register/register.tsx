@@ -1,11 +1,13 @@
 import "./register.scss";
 import { Input, Checkbox, Button, Form } from "antd";
 import { RegisterRequest } from "../../../services/models";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import UserAPI from "../../../services/APIBEELAND/User";
+import { useHistory } from "react-router-dom";
 // import ButtonCustom from "../../../components/buttonCustom/buttonCustom";
 
-export const Register = () => {
+export const Register = (props: any) => {
+  const history = useHistory();
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -30,6 +32,12 @@ export const Register = () => {
         console.log(err);
       })
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      history.push('/')
+    }
+  }, []);
 
   return (
     <div className="background">

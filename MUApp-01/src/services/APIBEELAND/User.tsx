@@ -11,6 +11,12 @@ let UserAPI = {
     );
   },
 
+  currentUser() {
+    return API().get(
+      `/api/UserInfo`,
+    );
+  },
+
   register(data: RegisterRequest) {
     data.maCTDK = "beesky"
     return API().post(

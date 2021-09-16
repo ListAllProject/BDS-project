@@ -13,9 +13,17 @@ export const VerifyEmail = () => {
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
   const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      history.push('/')
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, []);
+  
 
   const fetchData = () => {
     UserAPI.verifyEmail(token || "")

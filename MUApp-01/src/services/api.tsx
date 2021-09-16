@@ -9,44 +9,50 @@ declare global {
 
 window.Configs = {
   // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
-  // apiBaseUrl: "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
-  apiBaseUrl: "https://api-client.mybeeland.com",
+  apiBaseUrl:
+    "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
+  apiUpload: "https://lingsmoment.herokuapp.com/https://apibeehomecore.appbeesky.com",
   apiImageUrl: "https://beesky-admin.ninja-it.asia", // for-blog-image
 };
 
 export const BaseUrl = window.Configs.apiBaseUrl;
 export const ImageBaseUrl = window.Configs.apiImageUrl;
+export const domainUpload = window.Configs.apiUpload;
+
 
 let Api = axios.create({
   baseURL: BaseUrl,
   timeout: 100000,
   headers: {
     "Content-Type": "application/json",
-    Authorization:
-      "Bearer " +
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJNYU5WIjo5NjMsIkhvVGVuIjoiaG9hbiIsIk1hQ1RESyI6IjEiLCJUZW5DVERLVlQiOiJiZWVza3kiLCJFbWFpbCI6ImRpbmhob2Fubmd1eWVuOTk5QGdtYWlsLmNvbSIsIkRpRG9uZyI6IjAzNzc2MDE1NTkiLCJpc0xvY2siOmZhbHNlLCJpc0FjY2VwdCI6dHJ1ZSwibmJmIjoxNjMwMTI2MjMxLCJleHAiOjE2MzA3MzEwMzEsImlhdCI6MTYzMDEyNjIzMSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo0NDM2NiIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NDQzNjYifQ.5fogorGJ2tupj-3WrdUF70ZsIYFHPTSuWpI8x_ol6wU",
   },
 });
+let ApiUpload = axios.create({
+  baseURL: domainUpload,
+  timeout: 100000,
+});
+
 let ApiImage = axios.create({
   baseURL: ImageBaseUrl,
   timeout: 100000,
-  headers: {
-    "Content-Type": "application/json",
-  },
+  // headers: {
+  //   // "Content-Type": "application/json",
+  // },
 });
 
 export function API() {
-  // console.log("token", localStorage.getItem("token"));
   Api.defaults.responseType = undefined;
-  Api.defaults.headers.common["Access-Control-Allow-Headers"] = "*";
-  // Api.defaults.headers.common["Authorization"] =
-  //   localStorage.getItem("token") === undefined ||
-  //   localStorage.getItem("token") === "undefined" ||
-  //   localStorage.getItem("token") == null
-  //     ? ""
-  //     : localStorage.getItem("token");
-
+  Api.defaults.headers.common["authorization"] =
+    localStorage.getItem("token") === undefined ||
+      localStorage.getItem("token") === "undefined" ||
+      localStorage.getItem("token") == null
+      ? ""
+      : "Bearer " + localStorage.getItem("token");
   return Api;
+}
+
+export function APIUpload() {
+  return ApiUpload;
 }
 
 export function APIIMGAGE() {
@@ -60,3 +66,40 @@ export function APIIMGAGE() {
       : localStorage.getItem("token");
   return ApiImage;
 }
+
+// const APIFormData = async (
+//   url: string,
+//   method: string,
+//   bodyData: any
+// ) => {
+//   try {
+//     const formData = new FormData()
+//     formData.append('file', bodyData.file)
+//     formData.append('site_id', bodyData.siteId)
+//     const respond = await fetch(url, {
+//       method,
+//       body: formData,
+//     })
+
+//     const object = await respond.json()
+//     if (respond.status < 200 || respond.status > 299) {
+//       if (respond.status === 401) {
+//         document.cookie = 'token' + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;'
+//         notification.warning({
+//           message: 'Sites.bio Notification',
+//           description: 'Access denied'
+//         })
+//         window.location.reload()
+//       }
+//       return { success: false, ...object }
+//     }
+//     return { success: true, data: object }
+//   } catch (err) {
+//     notification.error({
+//       message: 'Sites.bio Notification',
+//       description: err
+//     })
+//   }
+// }
+
+// export default APIFormData

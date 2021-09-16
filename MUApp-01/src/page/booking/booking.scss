@@ -5,6 +5,16 @@
   display        : flex;
   justify-content: center;
   margin-top     : 30px;
+  flex-direction : column;
+  align-items    : center;
+
+  .wrap-loading-booking-info{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    flex: 1 1 0%;
+    align-items: center;
+  }
 
   .content {
     width  : 100%;
@@ -42,9 +52,65 @@
         }
       }
 
+      .search-form {
+        width: 100%;
+
+        .item-results {
+          padding      : 10px 10px;
+          border-bottom: 0.5px solid #e1e1e1;
+          cursor       : pointer;
+          transition: 300ms;
+        }
+
+        .item-focus {
+          background-color: #BE9355 !important;
+        }
+
+        .item-results:hover {
+          background-color: #e2e2e2
+        }
+
+
+
+        .ant-btn {
+          border          : none;
+          background      : transparent;
+          height          : 100%;
+          margin          : 0;
+          color           : white;
+          background-color: $primary--color1;
+          font-weight     : 700;
+          font-size       : 14px;
+        }
+
+        .ant-input-group-addon {
+          background-color: transparent;
+          border          : none;
+          padding         : 0;
+        }
+
+        .ant-form-item {
+          width: unset !important;
+        }
+
+        .demo-infinite-container {
+          height       : 300px;
+          padding      : 8px 24px;
+          overflow     : auto;
+          border       : 1px solid #e8e8e8;
+          border-radius: 4px;
+        }
+
+        .demo-loading-container {
+          position  : absolute;
+          bottom    : 40px;
+          width     : 100%;
+          text-align: center;
+        }
+      }
+
       .ant-form {
         width         : 100%;
-        margin-top    : 40px;
         display       : flex;
         flex-direction: column;
 
@@ -112,10 +178,14 @@
     // booking payment transfer page
     .booking-payment-transfer {
       width: 66%;
-
       display       : flex;
       flex-direction: column;
       align-items   : center;
+
+      .wrap-select-banks{
+        width: 70%;
+        margin: 10px 0px
+      }
 
       .title {
         color      : $primary--color1;
@@ -249,6 +319,34 @@
           }
         }
 
+        .evoucher {
+          margin-top: 16px;
+          width     : 100%;
+          padding   : 0 20px;
+
+          .ant-input-group-wrapper {
+            border-radius: 6px;
+          }
+
+          .ant-row {
+            margin-bottom: 0;
+          }
+
+          .ant-input-group-addon {
+            padding: 0;
+
+            .ant-btn {
+              border     : none;
+              background : transparent;
+              height     : 100%;
+              margin     : 0;
+              color      : $primary--color1;
+              font-weight: 700;
+              font-size  : 14px;
+            }
+          }
+        }
+
         .information-break {
           margin-top      : 12px;
           width           : 100%;
@@ -260,7 +358,7 @@
     }
 
     .submit-button-replace {
-      display   : none;
+      // display   : none;
       margin-top: 20px;
     }
   }
@@ -274,6 +372,9 @@
 
   // booking confirm responsive
   @media only screen and (max-width: 920px) and (min-width: 621px) {
+    .wrap-loading-booking-info{
+      width: 100%;
+    }
     .content {
       flex-direction: column;
       align-items   : center;
@@ -285,6 +386,9 @@
   }
 
   @media only screen and (max-width: 620px) {
+    .wrap-loading-booking-info{
+      width: 100%;
+    }
     .content {
       flex-direction: column;
       align-items   : center;
@@ -309,7 +413,7 @@
     .content {
       .booking-confirm {
         .submit-button {
-          display: none;
+          // display: none;
         }
       }
 
@@ -326,7 +430,7 @@
         width: 100%;
 
         .submit-button {
-          display: none;
+          // display: none;
         }
       }
 
@@ -354,7 +458,8 @@
         width: 100%;
 
         .submit-button {
-          display: none;
+          // display: none;
+          margin-bottom: 20px;
         }
       }
 
@@ -394,12 +499,15 @@
     .content {
       .booking-information {
         width : 100%;
-        margin: -23px 0px 0px 0px;
+        margin: 10px 0px 0px 0px;
       }
     }
   }
 
   @media only screen and (max-width: 620px) {
+    .wrap-select-banks{
+      width: 100% !important;
+    }
     .content {
       .booking-information {
         margin: 0px;

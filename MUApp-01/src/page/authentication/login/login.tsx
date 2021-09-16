@@ -5,7 +5,7 @@ import GoogleLogo from "../../../assets/images/google.svg";
 import { LoginRequest } from "../../../services/models";
 import UserAPI from "../../../services/APIBEELAND/User";
 import { useHistory } from "react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const Login = () => {
 
@@ -21,7 +21,7 @@ export const Login = () => {
         setLoading(false);
         if (res.data && res.data.status === 200) {
           localStorage.setItem("token", res.data.acessToken);
-          history.push("/");
+          window.location.href = "/"
         } else {
           setErrorMessage(res.data.message);
         }
@@ -33,6 +33,12 @@ export const Login = () => {
       })
     }
   }
+
+  useEffect(() => {
+    if(localStorage.getItem("token")){
+      history.push('/')
+    }
+  }, []);
     
   return (
     <div className="background">
@@ -92,7 +98,7 @@ export const Login = () => {
                 </div>
               </div>
               <div className="note">
-                Bạn chưa có tài khoản? <a href="/">Đăng ký ngay</a>
+                Bạn chưa có tài khoản? <a href="/register">Đăng ký ngay</a>
               </div>
             </div>
           </Form>

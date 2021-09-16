@@ -89,6 +89,7 @@ export interface ImageObj {
 }
 
 export interface productsObj {
+  TenLoaiMau: string;
   STT: number;
   TotalRows: number;
   MaDA: number;
@@ -121,9 +122,12 @@ export interface productsObj {
   DonGiaThongThuy: number;
   SoPhongVS: string;
   TenDA: string;
+  SoTienGC: number;
+  NoiDungCK: string;
   NoiDung: string;
   Link_Video: string;
   Link_360: string;
+  MaNhomGioHang: number;
 }
 
 export interface projectObj {
@@ -235,4 +239,77 @@ export interface DetailMaTT {
   TenTT: string,
   Icon: string,
   SoLuong: number
+}
+
+export interface Tinh {
+  tenTinh: string,
+  maTinh: number,
+  listHuyen: Huyen[],
+}
+
+export interface Huyen {
+  tenHuyen: string,
+  maHuyen: number,
+  listXa: Xa[],
+}
+
+export interface Xa {
+  TenXa: string,
+  MaXa: number,
+}
+
+export interface AddKHRequest {
+  TenKH: string,
+  DiDong: string,
+  DiaChi?: string,
+  Email?: string,
+  SoCMND?: string,
+  MaTinh?: number,
+  MaHuyen?: number,
+  MaXa?: number;
+}
+
+export interface AddBookingRequest {
+  MaKH: number,
+  MaSP: number,
+  MGD: number,
+  GiaThongThuy: number,
+  GiaChuaVAT: number,
+  TongGiaTriHD: number,
+  PhiBaoTri: number,
+  PhiBaoGomPBT?: number,
+  MaNhomGioHang: number,
+  MaVoucher?: number,
+}
+
+export interface InfoKhachHang{
+  CongTy1: any
+  DTCD: any
+  DiDong: string
+  DiDong2: any
+  DiaChi: string
+  DuAn: any
+  Email: string
+  Email2: string
+  GhiChu: string
+  HoKH: any
+  MaKh: number
+  MaSoKH: string
+  MaSoTTNCN: any
+  Ngay: string
+  NgayCap: string
+  NgayDangKy: string
+  NgaySinh: string
+  NguyenQuan: any
+  NoiCap: any
+  STT: number
+  SanPham: any
+  SoCMND: any
+  TenKH: string
+  ThuongTru: string
+}
+
+export interface Voucher {
+  ID: number;
+  GiaTri: number;
 }

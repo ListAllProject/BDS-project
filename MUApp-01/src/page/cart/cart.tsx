@@ -180,7 +180,7 @@ export const Cart = () => {
                   2.613.359.000đ
                 </span>
               </div>
-              <Link to="/xac-nhan-booking">
+              <Link to="/v/xac-nhan-booking">
                 <div className="buy-now-button">XÁC NHẬN</div>
               </Link>
             </div>

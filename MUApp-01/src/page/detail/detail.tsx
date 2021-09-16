@@ -9,7 +9,7 @@ import "./detail.scss";
 import CustomSlider from "../../components/slider/slider";
 import ButtonCustom from "../../components/buttonCustom/buttonCustom";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import ProductAPI from "../../services/APIBEELAND/Product";
 import { productsObj } from "../../services/models";
 import loadding from "../../assets/images/loadding.gif"
@@ -22,6 +22,7 @@ interface detailParams {
 }
 
 export const Detail = () => {
+  const history = useHistory();
   const { maSP } = useParams<detailParams>();
 
   const [images, setImages] = useState<any[]>([])
@@ -50,6 +51,10 @@ export const Detail = () => {
       }).catch(err => {
         console.log(err)
       })
+  }
+
+  const onClickBuyNow = () => {
+    history.push(`/v/booking/${maSP}/xac-nhan`);
   }
 
   const imageList: JSX.Element[] = images.map(e => {
@@ -213,7 +218,7 @@ export const Detail = () => {
               <ButtonCustom
                 style={{ width: "44.5%" }}
                 text="Mua ngay"
-                onClick={() => null}
+                onClick={() => onClickBuyNow()}
               />
               <ButtonCustom
                 style={{

@@ -1,21 +1,36 @@
 import { useEffect, useState } from "react";
-import { Badge, Drawer, Dropdown, Input, Menu } from "antd";
+import { Badge, Drawer, Dropdown, Input, Menu, Tooltip } from "antd";
 import logo from "../../assets/images/logo.png";
 import "./header.scss";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useHistory } from "react-router-dom";
 import { DetailProject, BlogObj } from "../../services/models";
 import ProjectsAPI from "../../services/APIS/Projects";
 import BlogsAPI from "../../services/APIS/Blogs";
 import SubMenu from "antd/lib/menu/SubMenu";
+import { bds } from "services/store";
+import UserAPI from "services/APIBEELAND/User";
 
 export const HeaderWrap = () => {
+  const history = useHistory();
+
   const [visilbe, setVisible] = useState(false);
   const [projects, setProjects] = useState<DetailProject[]>([]);
   const [catblogs, setCatBlogs] = useState<any[]>([]);
+  const [token, setToken] = useState<string | null>("");
+  const [user, setUser] = useState<string>("");
 
   useEffect(() => {
     fetchData();
     fetchDataBlog();
+  }, []);
+
+  useEffect(() => {
+    UserAPI.currentUser().then((rs) => {
+      setUser(rs.data.data.HoTen);
+    });
+    if (localStorage.getItem("token")) {
+      setToken(localStorage.getItem("token"));
+    }
   }, []);
 
   const fetchDataBlog = () => {
@@ -40,7 +55,11 @@ export const HeaderWrap = () => {
     <div className="menu-project">
       {projects.map((e, i) => {
         return (
-          <Link className="span-item" key={e.id} to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
+          <Link
+            className="span-item"
+            key={e.id}
+            to={`/gioi-thieu-du-an/${e.url}/${e.id}`}
+          >
             {e.main_title}
           </Link>
         );
@@ -51,8 +70,17 @@ export const HeaderWrap = () => {
     <>
       {projects.map((e, i) => {
         return (
-          <Menu.Item id={`project_${i}`} key={`project_${i}`} onClick={() => { setVisible(false); }}>
-            <Link className="span-item" to={`/gioi-thieu-du-an/${e.url}/${e.id}`}>
+          <Menu.Item
+            id={`project_${i}`}
+            key={`project_${i}`}
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
+            <Link
+              className="span-item"
+              to={`/gioi-thieu-du-an/${e.url}/${e.id}`}
+            >
               {e.main_title}
             </Link>
           </Menu.Item>
@@ -65,7 +93,11 @@ export const HeaderWrap = () => {
     <div className="menu-project news">
       {catblogs.map((e, i) => {
         return (
-          <Link key={i} className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
+          <Link
+            key={i}
+            className="span-item"
+            to={"/danh-sach-tin-tuc/" + e.url}
+          >
             {e.name}
           </Link>
         );
@@ -77,7 +109,13 @@ export const HeaderWrap = () => {
     <>
       {catblogs.map((e, i) => {
         return (
-          <Menu.Item id={`blog_${e.id}`} key={`blog_${e.id}`} onClick={() => { setVisible(false); }}>
+          <Menu.Item
+            id={`blog_${e.id}`}
+            key={`blog_${e.id}`}
+            onClick={() => {
+              setVisible(false);
+            }}
+          >
             <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
               {e.name}
             </Link>
@@ -193,51 +231,67 @@ export const HeaderWrap = () => {
               <Link to="/bang-gia-truc-tuyen">
                 <h3>BẢNG GIÁ TRỰC TUYẾN</h3>
               </Link>
-              <Link
-                style={{ color: "#011769" }}
-                className="item-text"
-                to="/register"
-              >
-                ĐĂNG KÝ
-              </Link>
-              <span className="div-col-space"></span>
-              <Link
-                style={{ color: "#011769" }}
-                className="item-text"
-                to="/login"
-              >
-                ĐĂNG NHẬP
-              </Link>
+              {!token && (
+                <div>
+                  {" "}
+                  <Link
+                    style={{ color: "#011769" }}
+                    className="item-text"
+                    to="/register"
+                  >
+                    ĐĂNG KÝ
+                  </Link>
+                  <span className="div-col-space"></span>
+                  <Link
+                    style={{ color: "#011769" }}
+                    className="item-text"
+                    to="/login"
+                  >
+                    ĐĂNG NHẬP
+                  </Link>
+                </div>
+              )}
             </div>
 
-            <span
-              style={{
-                padding: "0px 2px",
-                fontSize: 16,
-                cursor: "pointer",
-                margin: "0px 5px",
-              }}
-            >
-              <i className="fal fa-user-circle"></i>
-            </span>
-            <Link to="/gio-hang">
-              <span style={{ padding: "0px 5px " }}>
-                <Badge
-                  style={{
-                    backgroundColor: "white",
-                    color: "#BE9355",
-                    border: " 1px solid #011769 ",
-                  }}
-                  count={2}
-                  size="small"
-                >
-                  <i
-                    style={{ color: "#011769" }}
-                    className="fal fa-shopping-cart"
-                  ></i>
-                </Badge>
-              </span>
-            </Link>
+            {token && (
+              <div>
+                <span className="name-user">{user ? user : <i className="fas fa-spinner fa-pulse"></i>}</span>
+                <Tooltip placement="bottom" title={"Logout"}>
+                  <span
+                    onClick={() => {
+                      window.location.href = "/login";
+                      localStorage.removeItem("token");
+                    }}
+                    style={{
+                      padding: "0px 2px",
+                      fontSize: 16,
+                      cursor: "pointer",
+                      margin: "0px 5px",
+                    }}
+                  >
+                    <i className="fal fa-sign-out-alt"></i>
+                  </span>
+                </Tooltip>
+                <Link to="/v/gio-hang">
+                  <span style={{ padding: "0px 5px " }}>
+                    <Badge
+                      style={{
+                        backgroundColor: "white",
+                        color: "#BE9355",
+                        border: " 1px solid #011769 ",
+                      }}
+                      count={2}
+                      size="small"
+                    >
+                      <i
+                        style={{ color: "#011769" }}
+                        className="fal fa-shopping-cart"
+                      ></i>
+                    </Badge>
+                  </span>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -268,9 +322,12 @@ export const HeaderWrap = () => {
 
           <Menu mode="inline">
             <Menu.Item key="chungcu">
-              <NavLink onClick={() => { setVisible(false); }}
+              <NavLink
+                onClick={() => {
+                  setVisible(false);
+                }}
                 to={{ pathname: "/chung-cu" }}
-                >
+              >
                 CHUNG CƯ
               </NavLink>
             </Menu.Item>
@@ -282,8 +339,12 @@ export const HeaderWrap = () => {
               {projectsDrawerComponent}
             </SubMenu>
             <Menu.Item key="hotro">
-              <NavLink onClick={() => { setVisible(false); }}
-                to={{ pathname: "/ho-tro" }}>
+              <NavLink
+                onClick={() => {
+                  setVisible(false);
+                }}
+                to={{ pathname: "/ho-tro" }}
+              >
                 HỖ TRỢ
               </NavLink>
             </Menu.Item>
@@ -343,30 +404,32 @@ export const HeaderWrap = () => {
           </NavLink>
 
           <span className="div-col-space-drawer"></span>
-
-          <Link
-            to="/register"
-            onClick={() => {
-              setVisible(false);
-            }}
-            style={{ color: "#011769" }}
-            className="tab-item"
-          >
-            <i style={{ width: 27 }} className="fal fa-user-plus"></i>
-            ĐĂNG KÝ
-          </Link>
-
-          <Link
-            onClick={() => {
-              setVisible(false);
-            }}
-            style={{ color: "#011769" }}
-            className="tab-item"
-            to="/login"
-          >
-            <i style={{ width: 27 }} className="fal fa-sign-in-alt"></i>
-            ĐĂNG NHẬP
-          </Link>
+          {!token && (
+            <>
+              <Link
+                to="/register"
+                onClick={() => {
+                  setVisible(false);
+                }}
+                style={{ color: "#011769" }}
+                className="tab-item"
+              >
+                <i style={{ width: 27 }} className="fal fa-user-plus"></i>
+                ĐĂNG KÝ
+              </Link>
+              <Link
+                onClick={() => {
+                  setVisible(false);
+                }}
+                style={{ color: "#011769" }}
+                className="tab-item"
+                to="/login"
+              >
+                <i style={{ width: 27 }} className="fal fa-sign-in-alt"></i>
+                ĐĂNG NHẬP
+              </Link>
+            </>
+          )}
         </div>
       </Drawer>
     </div>
