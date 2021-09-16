@@ -51,7 +51,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
   // const [bookingInformation, setBookingInformation] = useState<AddBookingRequest>();
   const [product, setProduct] = useState<productsObj>();
   const [voucher, setVoucher] = useState<Voucher>();
-
+  const [show, setShow] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [dataKH, setDataKH] = useState<InfoKhachHang[]>([]);
   const [selectedKH, setSelectedKH] = useState<InfoKhachHang | null>(null);
@@ -66,7 +66,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       .catch((err) => {
         console.log(err);
       })
-      .finally(() => {});
+      .finally(() => { });
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -106,7 +106,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
               TongGiaTriHD: product.TongGiaTriHDMB,
               MaKH: maKH,
               MaVoucher: voucher?.ID,
-            } 
+            }
 
             BookingAPI.addBooking(addBookingRequest)
               .then((res) => {
@@ -114,7 +114,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
                   history.push(
                     `/v/booking/${addBookingRequest.MaSP}/thanh-toan-chuyen-khoan/${res.data.data}`
                   );
-                }else if (res.data.status === 2002) {
+                } else if (res.data.status === 2002) {
                   Modal.info({
                     title: 'Thông Báo',
                     content: (
@@ -122,7 +122,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
                         {res.data.message}
                       </div>
                     ),
-                    onOk() {},
+                    onOk() { },
                   });
                 }
               })
@@ -172,7 +172,7 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
           setDataKH(res.data.data);
         }
       })
-      .catch((err) => {})
+      .catch((err) => { })
       .finally(() => {
         setLoading(false);
       });
@@ -188,6 +188,10 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       email: data.Email || data.Email2,
       address: data.DiaChi,
     })
+  };
+  const changeSearch = (e: any) => {
+    if (e.target.value.length === 0) setShow(true)
+    else setShow(false)
   };
 
   return (
@@ -221,6 +225,8 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       >
         <Form.Item name="searchText" style={{ marginBottom: 0 }}>
           <Input
+            onFocus={() => setShow(false)}
+            onChange={changeSearch}
             placeholder="Nhập tên hoặc số điện thoại của khách hàng"
             addonAfter={
               <Button htmlType="submit" loading={loading}>
@@ -229,14 +235,13 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
             }
           ></Input>
         </Form.Item>
-        {dataKH.length !== 0 && (
+        {dataKH.length !== 0 && !show && (
           <List data={dataKH} height={200} itemHeight={30} itemKey="id">
             {(KH) => (
               <div
-                onClick={() => onSetSelectedKH(KH)}
-                className={`item-results ${
-                  selectedKH?.MaKh === KH.MaKh ? "item-focus" : ""
-                }`}
+                onClick={() => { onSetSelectedKH(KH); setShow(true) }}
+                className={`item-results ${selectedKH?.MaKh === KH.MaKh ? "item-focus" : ""
+                  }`}
               >
                 <span style={{ fontWeight: "bold" }}>{KH.TenKH}</span> -
                 {KH.DiDong}
@@ -302,8 +307,8 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
             >
               {selectedTinh
                 ? selectedTinh.listHuyen.map((e) => {
-                    return <Option key={e.maHuyen} value={e.maHuyen}>{e.tenHuyen}</Option>;
-                  })
+                  return <Option key={e.maHuyen} value={e.maHuyen}>{e.tenHuyen}</Option>;
+                })
                 : ""}
             </Select>
           </Form.Item>
@@ -315,8 +320,8 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
             >
               {selectedHuyen
                 ? selectedHuyen.listXa.map((e) => {
-                    return <Option key={e.MaXa} value={e.MaXa}>{e.TenXa}</Option>;
-                  })
+                  return <Option key={e.MaXa} value={e.MaXa}>{e.TenXa}</Option>;
+                })
                 : ""}
             </Select>
           </Form.Item>
