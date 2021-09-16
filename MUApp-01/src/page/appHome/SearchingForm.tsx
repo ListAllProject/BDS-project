@@ -23,7 +23,7 @@ export const SearchingForm: FC<{
   const [listFilters, setListFilters] = useState<ProjectFilterObj>();
 
   useEffect(() => {
-    ProjectsAPI.getProjectFiltersList().then((res) => {
+    ProjectsAPI.getProjectFiltersList("BEESKY").then((res) => {
       if (res.data.data) {
         setListFilters(res.data.data);
       }
