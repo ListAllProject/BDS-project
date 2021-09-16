@@ -31,8 +31,9 @@ let ProjectsAPI = {
   getProjectBySlug(url: string) {
     return API().get(`/web/project/${url}`);
   },
-  getProjectFiltersList() {
-    return API().get(`/web/project/filters/list`);
+  getProjectFiltersList(company: string) {
+    let params = `?company_code=${company}`
+    return API().get(`/web/project/filters/list/${params}`);
   },
 };
 
