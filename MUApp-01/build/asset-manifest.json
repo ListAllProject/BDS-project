@@ -1,0 +1,43 @@
+{
+  "files": {
+    "main.css": "/static/css/main.7b408bdd.chunk.css",
+    "main.js": "/static/js/main.46519f37.chunk.js",
+    "main.js.map": "/static/js/main.46519f37.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.40afe68c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.40afe68c.js.map",
+    "static/css/2.6c3ce8bb.chunk.css": "/static/css/2.6c3ce8bb.chunk.css",
+    "static/js/2.8ecb38ef.chunk.js": "/static/js/2.8ecb38ef.chunk.js",
+    "static/js/2.8ecb38ef.chunk.js.map": "/static/js/2.8ecb38ef.chunk.js.map",
+    "static/js/3.371a54ed.chunk.js": "/static/js/3.371a54ed.chunk.js",
+    "static/js/3.371a54ed.chunk.js.map": "/static/js/3.371a54ed.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.6c3ce8bb.chunk.css.map": "/static/css/2.6c3ce8bb.chunk.css.map",
+    "static/css/main.7b408bdd.chunk.css.map": "/static/css/main.7b408bdd.chunk.css.map",
+    "static/js/2.8ecb38ef.chunk.js.LICENSE.txt": "/static/js/2.8ecb38ef.chunk.js.LICENSE.txt",
+    "static/media/Group44.aaead34a.png": "/static/media/Group44.aaead34a.png",
+    "static/media/tablePrice.scss": "/static/media/Mulish-VariableFont_wght.894f3c22.ttf",
+    "static/media/detail.scss": "/static/media/background-gradient.0ef17b9c.png",
+    "static/media/introduce.scss": "/static/media/bgr-oder-project.b72eeed7.png",
+    "static/media/bgr-table-price.4cca7478.png": "/static/media/bgr-table-price.4cca7478.png",
+    "static/media/all.min.css": "/static/media/fa-solid-900.c4054b9e.svg",
+    "static/media/facebook.06546d88.svg": "/static/media/facebook.06546d88.svg",
+    "static/media/google.faf01ea1.svg": "/static/media/google.faf01ea1.svg",
+    "static/media/lang_son_apec_golden_palace.b8de89fa.png": "/static/media/lang_son_apec_golden_palace.b8de89fa.png",
+    "static/media/news_1.3cfaaa72.png": "/static/media/news_1.3cfaaa72.png",
+    "static/media/pcti_bbch1.9d918677.png": "/static/media/pcti_bbch1.9d918677.png",
+    "static/media/room-2.78ef297c.png": "/static/media/room-2.78ef297c.png",
+    "static/media/room-3.b093289e.png": "/static/media/room-3.b093289e.png",
+    "static/media/room-test-1.4a180215.png": "/static/media/room-test-1.4a180215.png",
+    "static/media/room-test.2e43f335.png": "/static/media/room-test.2e43f335.png",
+    "static/media/room_1.7904cb8a.png": "/static/media/room_1.7904cb8a.png",
+    "static/media/success-thumbnail.87877988.png": "/static/media/success-thumbnail.87877988.png",
+    "static/media/vinCity.9fecb802.png": "/static/media/vinCity.9fecb802.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40afe68c.js",
+    "static/css/2.6c3ce8bb.chunk.css",
+    "static/js/2.8ecb38ef.chunk.js",
+    "static/css/main.7b408bdd.chunk.css",
+    "static/js/main.46519f37.chunk.js"
+  ]
+}
