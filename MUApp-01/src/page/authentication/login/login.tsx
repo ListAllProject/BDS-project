@@ -21,7 +21,13 @@ export const Login = () => {
         setLoading(false);
         if (res.data && res.data.status === 200) {
           localStorage.setItem("token", res.data.acessToken);
-          window.location.href = "/"
+          let pathname = localStorage.getItem('pathname')
+          if(pathname){
+            localStorage.removeItem('pathname')
+            window.location.href = pathname
+          }else {
+            window.location.href = '/'
+          }
         } else {
           setErrorMessage(res.data.message);
         }

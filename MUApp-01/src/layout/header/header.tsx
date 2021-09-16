@@ -243,6 +243,7 @@ export const HeaderWrap = () => {
                   </Link>
                   <span className="div-col-space"></span>
                   <Link
+                    onClick={() => localStorage.setItem('pathname', window.location.pathname)}
                     style={{ color: "#011769" }}
                     className="item-text"
                     to="/login"
@@ -260,6 +261,7 @@ export const HeaderWrap = () => {
                   <span
                     onClick={() => {
                       window.location.href = "/login";
+                      localStorage.removeItem("pathname");
                       localStorage.removeItem("token");
                     }}
                     style={{
@@ -419,6 +421,7 @@ export const HeaderWrap = () => {
               </Link>
               <Link
                 onClick={() => {
+                  localStorage.setItem('pathname', window.location.pathname)
                   setVisible(false);
                 }}
                 style={{ color: "#011769" }}
