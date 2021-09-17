@@ -1,4 +1,4 @@
-import { API } from "../api";
+import { API, APIBase } from "../api";
 
 import {FogotPasswordRequest, LoginRequest, RegisterRequest} from "../models";
 
@@ -34,8 +34,8 @@ let UserAPI = {
   },
 
   verifyEmail(token: string) {
-    // Note: chưa biết dùng api nào để active account
-    return API().post(
+    localStorage.removeItem("token");
+    return APIBase().post(
       `/api/ActiveAccount`, {}, {
         headers: {
           Authorization: `Bearer ${token}`

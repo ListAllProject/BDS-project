@@ -20,6 +20,13 @@ export const ImageBaseUrl = window.Configs.apiImageUrl;
 export const domainUpload = window.Configs.apiUpload;
 
 
+let ApiBase = axios.create({
+  baseURL: BaseUrl,
+  timeout: 100000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 let Api = axios.create({
   baseURL: BaseUrl,
   timeout: 100000,
@@ -65,6 +72,10 @@ export function APIIMGAGE() {
       ? ""
       : localStorage.getItem("token");
   return ApiImage;
+}
+
+export function APIBase() {
+  return ApiBase;
 }
 
 // const APIFormData = async (
