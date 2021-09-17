@@ -142,8 +142,7 @@ export const Blog = () => {
                     <div>
                       <img
                         alt="image2"
-                        style={{ width: "100%", cursor: "pointer" }}
-                        // src={`http://localhost:3000/${item.url}`}
+                        className={"thumbnail"}
                         onClick={() => history.push(`/tin-tuc/${item.url}`)}
                         src={item.thumbnail}
                       />
