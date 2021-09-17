@@ -175,7 +175,7 @@ export const Booking = () => {
                   </Form>
                 </> : ""}
 
-                {/* Show voucher value */}
+              {/* Show voucher value */}
               {voucher && voucher.GiaTri !== 0 ? (
                 <div className="information-row">
                   <div className="information-label">Mức giảm (tạm tính)</div>
@@ -212,16 +212,18 @@ export const Booking = () => {
         )}
       </div>
       <div>
-      {window.location.href.indexOf("complete") === -1 ?
-        <Button
-          loading={loadingBtn}
-          onClick={() =>
-            (childRef?.current as any).onBooking(product, voucher)
-          }
-          style={{ height: 35 }}
-          size="middle"
-          className="primary-btn"
-        >Xác nhận</Button>:'' }
+        {window.location.href.indexOf("complete") > 0 ||
+          (window.location.href.indexOf("thanh-toan-chuyen-khoan") > 0 && (!product || product.SoTienGC == 0)) ?
+          '' :
+          <Button
+            loading={loadingBtn}
+            onClick={() =>
+              (childRef?.current as any).onBooking(product, voucher)
+            }
+            style={{ height: 35 }}
+            size="middle"
+            className="primary-btn"
+          >Xác nhận</Button>}
       </div>
     </div>
   );
