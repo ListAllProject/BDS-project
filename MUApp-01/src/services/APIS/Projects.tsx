@@ -26,14 +26,14 @@ let ProjectsAPI = {
     if (district) {
       params = params + `district=${district}&`;
     }
-    return API().get(`/web/project` + `?${params}`);
+    return API().get(`/web/project` + `?${params}&company_code=BEESKY`);
   },
   getProjectBySlug(url: string) {
-    return API().get(`/web/project/${url}`);
+    return API().get(`/web/project/${url}?company_code=BEESKY`);
   },
   getProjectFiltersList(company: string) {
     let params = `?company_code=${company}`
-    return API().get(`/web/project/filters/list/${params}`);
+    return API().get(`/web/project/filters/list/${params}&company_code=BEESKY`);
   },
 };
 
