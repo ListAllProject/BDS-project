@@ -1,3 +1,4 @@
+import { BodyBooking } from "page/listTransfer/listTransfer";
 import { AddBookingRequest, AddKHRequest } from "services/models";
 import { API, APIIMGAGE, APIUpload } from "../api";
 
@@ -58,6 +59,19 @@ let BookingAPI = {
       ...data,
     });
   },
+  getListBooking(data: BodyBooking) {
+    return API().post(`/api/beeland/list-booking`,data);
+  },
+  getListStatus(){
+    return API().post(`/api/beeland/status`, {
+      TenCTDKVT: "beesky",
+    });
+  },
+  getListProject(){
+    return API().post(`/api/beeland/get-project`, {
+      TenCTDKVT: "beesky",
+    });
+  }
 };
 
 export default BookingAPI;

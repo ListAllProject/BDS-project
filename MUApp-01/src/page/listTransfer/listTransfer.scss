@@ -1,0 +1,174 @@
+.container-list-tranfer {
+    padding: 40px 0;
+    width  : 100%;
+
+    .wrap-list-tranfer {
+        padding        : 0 15px;
+        width          : 100%;
+        margin-right   : auto;
+        margin-left    : auto;
+        max-width      : 1210px;
+        margin-top     : 10px;
+        display        : flex;
+        justify-content: space-between;
+
+        .ant-table-thead > tr > th {
+            color: rgb(132 132 132 / 85%);
+        }
+
+        .wrap-infor-user {
+            background   : #FFFFFF;
+            box-shadow   : 0px 0px 12px rgba(0, 0, 0, 0.12);
+            border-radius: 4px;
+            width        : 255px;
+            height       : 232px;
+
+            .top {
+                padding      : 16px;
+                display      : flex;
+                border-bottom: 1px solid #F1F1F1;
+
+                .name-user {
+                    font-size  : 14px;
+                    line-height: 21px;
+                    font-weight: bold;
+                }
+            }
+
+            .bottom {
+                padding: 16px;
+
+                .item-choose {
+                    padding    : 10px 0px;
+                    cursor     : pointer;
+                    line-height: 21px;
+                    font-weight: 600;
+                    transition : 300px;
+                    color      : #777777
+                }
+
+                .focus {
+                    color: #BE9355;
+                }
+            }
+        }
+
+        .row-item1 {
+            font-size  : 14px;
+            line-height: 21px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .row-item2{
+            font-weight: bold;
+            color: #BE9355
+        }
+
+        .wrap-table-list {
+            width        : calc(100% - 285px);
+            padding      : 24px 20px;
+            background   : #FFFFFF;
+            box-shadow   : 0px 0px 12px rgba(0, 0, 0, 0.12);
+            border-radius: 4px;
+
+            .transfer-title {
+                font-weight  : bold;
+                color        : #BE9355;
+                font-size    : 18px;
+                margin-bottom: 18px;
+            }
+
+            .ant-input {
+                border       : unset;
+                border-bottom: 1px solid #C4C4C4;
+                outline      : unset !important;
+                box-shadow   : unset;
+            }
+
+            .ant-picker {
+                width        : 100%;
+                border       : unset;
+                border-bottom: 1px solid #C4C4C4;
+                outline      : unset !important;
+                box-shadow   : unset;
+                height       : 40px;
+            }
+
+            .ant-picker-input>input {
+                font-weight: bold;
+            }
+
+            .wrap-pagination {
+                margin-top: 20px;
+                width     : 100%;
+                text-align: center;
+
+                .ant-pagination-item-link {
+                    border-radius: 100%;
+                }
+
+                .ant-pagination-item-active {
+                    border-color: #BE9355 !important;
+
+                }
+
+                .ant-pagination-item:hover a,
+                .ant-pagination-item-active a {
+                    color       : #BE9355;
+                    border-color: #BE9355 !important;
+                }
+
+                .ant-pagination-item:hover {
+                    color       : #BE9355;
+                    border-color: #BE9355;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 920px) {
+
+    .wrap-list-tranfer {
+        display       : flex;
+        flex-direction: column;
+
+        .wrap-infor-user {
+            margin-bottom: 20px;
+            width        : 100% !important;
+        }
+
+        .wrap-table-list {
+            width: 100% !important
+        }
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .ant-col-8 {
+        display  : block;
+        flex     : 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+
+    .select-project,
+    .select-box-status {
+        margin-top: -30px;
+    }
+}
+
+@media only screen and (max-width: 460px) {
+    .ant-col-8 {
+        display  : block;
+        flex     : 0 0 100%;
+        max-width: 100%;
+    }
+
+    .select-project {
+        margin-top: -30px;
+    }
+}

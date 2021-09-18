@@ -313,3 +313,20 @@ export interface Voucher {
   ID: number;
   GiaTri: number;
 }
+
+export interface Booking{
+  KyHieu: string
+MaDA: number
+MaNVKD: number
+MaPGC: number
+MaSP: number
+MaTT: number
+NgayKy: string
+STT: number
+SoTienGC: number
+TenDA:string
+TenKH: string
+TenTT: string
+ThanhToan: number
+TongGiTriHD: number
+}

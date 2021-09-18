@@ -28,6 +28,7 @@ import { Projects } from "./page/projects";
 import { Selling } from "./page/selling/selling";
 import { TablePrice } from "./page/tablePrice/tablePrice";
 import { bds } from "./services/store";
+import { ListTransfer } from "page/listTransfer/listTransfer";
 
 // import { Index } from "./page";
 
@@ -73,6 +74,9 @@ const AuthorizeApp = () => {
           <Route path="/v/booking/:maSP">
             <Booking />
           </Route>
+          <Route path="/v/danh-sach-giao-dich">
+          <ListTransfer />
+          </Route>  
         </Switch>
       </MyContext.Provider>
     );

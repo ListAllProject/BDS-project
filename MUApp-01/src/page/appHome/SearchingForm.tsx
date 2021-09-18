@@ -117,6 +117,7 @@ export const SearchingForm: FC<{
                   textTransform: "uppercase",
                   fontWeight: "bold",
                   fontSize: 14,
+                  whiteSpace: 'nowrap'
                 }}
                 type="button"
                 onClick={() => form.resetFields()}
