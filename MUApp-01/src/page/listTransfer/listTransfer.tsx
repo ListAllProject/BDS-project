@@ -6,6 +6,8 @@ import form from 'antd/lib/form';
 import { useEffect, useState } from 'react';
 import MyContext from 'components/myContext';
 import ProjectsAPI from 'services/APIBEELAND/Booking';
+import Nodata from "assets/images/Nodata.png";
+
 import moment from 'moment';
 import { Booking } from 'services/models';
 import { customTime } from 'services/helper';
@@ -285,19 +287,6 @@ setLoading(true)
                      </Option>
                    ))}
                  </Select>
-                 {/* <Select
-        mode="tags"
-        placeholder="Please select"
-        defaultValue={[132, 268]}
-        onChange={handleChange}
-        style={{ width: '100%' }}
-      >
-        {projects?.map((item: Project) => (
-                     <Option value={item.ID} key={item.ID}>
-                       {item.TenDA}
-                     </Option>
-                   ))}
-      </Select> */}
                </Form.Item>
              </Col>
            </Row>
@@ -322,15 +311,25 @@ setLoading(true)
       
           </div>
           <div className="wrap-table" style={{marginTop: 40}}>
-          <Table loading={loading} columns={columns as any} dataSource={bookings} scroll={{ x: 790}} pagination={false} />
+          {bookings && bookings.length > 0 ? 
+
+              <Table loading={loading} columns={columns as any} dataSource={bookings} scroll={{ x: 790}} pagination={false} />
+         
+         
+          : <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            <img width={80} src={Nodata} alt='nodata' />
+            <span style={{marginTop: 20}}>
+            Bạn chưa có giao dịch nào
+            </span>
+          </div> }
           <div className="wrap-pagination">
 
-          <Pagination current={offset} onChange={(val) =>{
-        onSearch()
-        setOffset(val)
-          } } pageSize={4} total={bookings?.length || 0} />
-          </div>
-          </div>
+<Pagination current={offset} onChange={(val) =>{
+onSearch()
+setOffset(val)
+} } pageSize={4} total={bookings?.length || 0} />
+</div>
+         </div>
         </>
         }
         </div>
