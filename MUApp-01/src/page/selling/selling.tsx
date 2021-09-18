@@ -140,7 +140,7 @@ export const Selling = () => {
     <div className="container-selling">
       <div className="wrap-content-selling">
         <div className="title-selling">
-          <h2>CHUNG CƯ</h2>
+          <h2>ĐANG BÁN</h2>
           <Seperate widthChil={80} widthPar={357} />
         </div>
         <div className="searching-box-sell">

@@ -42,8 +42,8 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
   const [images, setImages] = useState<DataImage[]>([]);
 
   useEffect(() => {
-    imagesTemp = [...images]
-  })
+    imagesTemp = [...images];
+  });
 
   let history = useHistory();
   const propsUpload = {
@@ -57,7 +57,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         formData.append("Image", info.file.originFileObj);
         formData.append("Type", "booking");
         formData.append("CompanyCode", "beesky");
-        const res = await BookingAPI.uploadImage(formData)
+        const res = await BookingAPI.uploadImage(formData);
         if (res) {
           const temp: DataImage = { uid: info.file.uid, url: res.data[0] };
           imagesTemp.push(temp);
@@ -78,32 +78,36 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
   }));
 
   const onConfirmXacNhan = async (propduct: productsObj) => {
-    props.onSetLoading(true);
-    const rs = images.map((i) => {
-      return {
-        Image: i.url,
+    if (images && images.length > 0) {
+      props.onSetLoading(true);
+      const rs = images.map((i) => {
+        return {
+          Image: i.url,
+        };
+      });
+      const dataAddImage = {
+        MaPGC: Number(maPGC),
+        RequestIMG: rs,
       };
-    });
-    const dataAddImage = {
-      MaPGC: Number(maPGC),
-      RequestIMG: rs,
-    };
 
-    const dataConfirmReceipt = {
-      MaPGC: Number(maPGC),
-      MaSP: propduct.MaSP,
-      NguoiNop: "",
-      DienGiai: "",
-      MaNH: selectedBank?.MaNH,
-      SoTienGC: props.product?.SoTienGC,
-    };
+      const dataConfirmReceipt = {
+        MaPGC: Number(maPGC),
+        MaSP: propduct.MaSP,
+        NguoiNop: "",
+        DienGiai: "",
+        MaNH: selectedBank?.MaNH,
+        SoTienGC: props.product?.SoTienGC,
+      };
 
-    const rsAdd1 = await BookingAPI.addImageBooking(dataAddImage);
-    const rsAdd2 = await BookingAPI.addConfirmReceipt(dataConfirmReceipt);
-    if (rsAdd2.data.status === 2000) {
-      history.push(`/v/booking/${propduct.MaSP}/complete`)
+      const rsAdd1 = await BookingAPI.addImageBooking(dataAddImage);
+      const rsAdd2 = await BookingAPI.addConfirmReceipt(dataConfirmReceipt);
+      if (rsAdd2.data.status === 2000) {
+        history.push(`/v/booking/${propduct.MaSP}/complete`);
+      }
+      props.onSetLoading(false);
+    } else {
+      message.error("Hãy tải lên ít nhất 1 file hình ảnh!");
     }
-    props.onSetLoading(false);
   };
 
   useEffect(() => {
@@ -113,7 +117,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         setBanks(res.data.data);
         setSelectedBank(res.data.data[0]);
       })
-      .catch((error) => { })
+      .catch((error) => {})
       .finally(() => {
         setLoadingSelect(false);
       });
@@ -180,10 +184,24 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
               </div>
             </div>
             <div className="transfer-information-row-item">
-              <div style={{ marginTop: "24px", fontSize: 14, fontWeight: 600 }}>
+              <div
+                style={{
+                  marginTop: "24px",
+                  fontSize: 15,
+                  fontWeight: 600,
+                  color: "red",
+                }}
+              >
                 Số tiền cọc
               </div>
-              <div style={{ marginTop: "12px", fontSize: 14, fontWeight: 400 }}>
+              <div
+                style={{
+                  marginTop: "12px",
+                  fontSize: 15,
+                  fontWeight: 500,
+                  color: "red",
+                }}
+              >
                 {props.product?.SoTienGC.toLocaleString("it-IT", {
                   style: "currency",
                   currency: "VND",

@@ -198,9 +198,6 @@ export const HeaderWrap = () => {
             >
               CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
             </NavLink>
-            <span className="item-text">
-              SẮP BÁN <i className="fas fa-caret-down"></i>
-            </span>
             <Dropdown overlay={menuComponent}>
               <NavLink
                 to={{
@@ -243,7 +240,9 @@ export const HeaderWrap = () => {
                   </Link>
                   <span className="div-col-space"></span>
                   <Link
-                    onClick={() => localStorage.setItem('pathname', window.location.pathname)}
+                    onClick={() =>
+                      localStorage.setItem("pathname", window.location.pathname)
+                    }
                     style={{ color: "#011769" }}
                     className="item-text"
                     to="/login"
@@ -256,7 +255,9 @@ export const HeaderWrap = () => {
 
             {token && (
               <div>
-                <span className="name-user">{user ? user : <i className="fas fa-spinner fa-pulse"></i>}</span>
+                <span className="name-user">
+                  {user ? user : <i className="fas fa-spinner fa-pulse"></i>}
+                </span>
                 <Tooltip placement="bottom" title={"Logout"}>
                   <span
                     onClick={() => {
@@ -333,14 +334,10 @@ export const HeaderWrap = () => {
                 CHUNG CƯ
               </NavLink>
             </Menu.Item>
-            <SubMenu key="sub1" title="SẮP BÁN">
-              <Menu.Item key="5">Test 1</Menu.Item>
-              <Menu.Item key="6">Test 2</Menu.Item>
-            </SubMenu>
             <SubMenu key="sub2" title="DỰ ÁN">
               {projectsDrawerComponent}
             </SubMenu>
-            <Menu.Item key="hotro">
+            {/* <Menu.Item key="hotro">
               <NavLink
                 onClick={() => {
                   setVisible(false);
@@ -349,7 +346,7 @@ export const HeaderWrap = () => {
               >
                 HỖ TRỢ
               </NavLink>
-            </Menu.Item>
+            </Menu.Item> */}
             <SubMenu key="sub3" title="TIN TỨC">
               {menuBlogsDrawerComponent}
             </SubMenu>
@@ -421,7 +418,7 @@ export const HeaderWrap = () => {
               </Link>
               <Link
                 onClick={() => {
-                  localStorage.setItem('pathname', window.location.pathname)
+                  localStorage.setItem("pathname", window.location.pathname);
                   setVisible(false);
                 }}
                 style={{ color: "#011769" }}

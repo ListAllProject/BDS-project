@@ -12,7 +12,7 @@ import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 import ProductAPI from "../../services/APIBEELAND/Product";
 import { productsObj } from "../../services/models";
-import loadding from "../../assets/images/loadding.gif"
+import loadding from "../../assets/images/loadding.gif";
 const settings = {
   infinite: true,
 };
@@ -25,43 +25,42 @@ export const Detail = () => {
   const history = useHistory();
   const { maSP } = useParams<detailParams>();
 
-  const [images, setImages] = useState<any[]>([])
+  const [images, setImages] = useState<any[]>([]);
   const [product, setProduct] = useState<productsObj>();
 
   useEffect(() => {
     fetchData();
-  }, [maSP])
+  }, [maSP]);
 
   const fetchData = () => {
-    const maSPNumber = parseInt(maSP)
+    const maSPNumber = parseInt(maSP);
     ProductAPI.getProductImages(maSPNumber)
-      .then(res => {
+      .then((res) => {
         if (res.data.status === 2000) {
           setImages(res.data.data);
         }
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
-      })
+      });
     ProductAPI.getProduct(maSPNumber)
-      .then(res => {
+      .then((res) => {
         if (res.data.status === 2000) {
-          console.log(res.data.data, 8)
-          setProduct(res.data.data)
+          setProduct(res.data.data);
         }
-      }).catch(err => {
-        console.log(err)
       })
-  }
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const onClickBuyNow = () => {
     history.push(`/v/booking/${maSP}/xac-nhan`);
-  }
+  };
 
-  const imageList: JSX.Element[] = images.map(e => {
-    return (
-      <img src={e.HinhAnh} alt="Room 01" />
-    )
-  })
+  const imageList: JSX.Element[] = images.map((e) => {
+    return <img src={e.HinhAnh} alt="Room 01" />;
+  });
 
   const utilities: JSX.Element[] = [];
   for (let index = 0; index < 18; index++) {
@@ -82,8 +81,9 @@ export const Detail = () => {
           objectFit: "scale-down",
           maxHeight: 550,
         }}
-        src={loadding} />
-    )
+        src={loadding}
+      />
+    );
   }
 
   return (
@@ -109,21 +109,40 @@ export const Detail = () => {
               ></CustomSlider>
             </div>
             <div className="additional-action">
-              <span className="action" onClick={() => {
-                window.open(product.Link_Video, "_blank");
-              }}>
+              <span
+                className="action"
+                onClick={() => {
+                  window.open(product.Link_Video, "_blank");
+                }}
+              >
                 <img src={ImageIcon} alt="" />
               </span>
               <span className="action">
-                <img src={Rotate360DegreeIcon} alt="" onClick={() => {
-                  window.open(product.Link_360, "_blank");
-                }} />
+                <img
+                  src={Rotate360DegreeIcon}
+                  alt=""
+                  onClick={() => {
+                    window.open(product.Link_360, "_blank");
+                  }}
+                />
               </span>
               <span className="action">
-                <img src={DownloadIcon} alt="" />
+                <img
+                  src={DownloadIcon}
+                  alt="download"
+                  onClick={() => {
+                    window.open(product.Doccument, "_blank");
+                  }}
+                />
               </span>
               <span className="action">
-                <img src={QAIcon} alt="" />
+                <img
+                  src={QAIcon}
+                  alt="QA"
+                  onClick={() => {
+                    window.open(product.LinkGroup, "_blank");
+                  }}
+                />
               </span>
             </div>
           </span>
@@ -158,7 +177,8 @@ export const Detail = () => {
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-clone"></i>
-                <span style={{ marginLeft: "5px" }}>{product.DTThongThuy}</span>m<sup>2</sup>
+                <span style={{ marginLeft: "5px" }}>{product.DTThongThuy}</span>
+                m<sup>2</sup>
                 <i
                   className="fas fa-info-circle clickable"
                   style={{ marginLeft: "5px" }}
@@ -170,7 +190,9 @@ export const Detail = () => {
               </span>
               <span style={{ marginRight: "26px" }}>
                 <i className="fal fa-compass"></i>
-                <span style={{ marginLeft: "5px" }}>{product.TenPhuongHuong}</span>
+                <span style={{ marginLeft: "5px" }}>
+                  {product.TenPhuongHuong}
+                </span>
               </span>
             </div>
 
@@ -226,7 +248,7 @@ export const Detail = () => {
                   width: "44.5%",
                   color: "#E1A943",
                   border: "1px solid #E1A943",
-                  backgroundColor: "unset"
+                  backgroundColor: "unset",
                 }}
                 text="Tính thử giá"
                 onClick={() => null}
