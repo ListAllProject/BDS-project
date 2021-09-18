@@ -95,16 +95,18 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       .then((res) => {
         if (res.data.status === 2000) {
           const maKH = res.data.data;
+          const voucherGiaTri = voucher ? voucher.GiaTri : 0;
           if (product) {
             const addBookingRequest: AddBookingRequest = {
-              GiaChuaVAT: product.TongGiaChuaVAT,
-              GiaThongThuy: product.TongGiaChuaVAT,
-              MGD: 1,
-              MaNhomGioHang: product.MaNhomGioHang,
-              MaSP: product.MaSP,
-              PhiBaoTri: product.PhiBaoTri,
-              TongGiaTriHD: product.TongGiaTriHDMB,
               MaKH: maKH,
+              MaSP: product.MaSP,
+              MGD: 1,
+              GiaThongThuy: product.DonGiaThongThuy,
+              GiaChuaVAT: product.TongGiaChuaVAT,
+              TongGiaTriHD: product.TongGiaGomVAT,
+              PhiBaoTri: product.PhiBaoTri,
+              PhiBaoGomPBT: product.TongGiaTriHDMB - voucherGiaTri,
+              MaNhomGioHang: product.MaNhomGioHang,
               MaVoucher: voucher?.ID,
             }
 
