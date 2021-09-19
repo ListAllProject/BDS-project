@@ -151,7 +151,7 @@ export const ListTransfer = () => {
       key: "HĐ",
       width: 50,
       render: (val: any, data: any) => {
-        return ( data.MaTT === 16 && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1"><i className="far fa-money-check-alt"></i></a> )
+        return ( data.MaTT === 6 && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1"><i className="far fa-money-check-alt"></i></a> )
       },
     },
   ];
