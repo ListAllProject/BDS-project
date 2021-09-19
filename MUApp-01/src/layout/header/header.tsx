@@ -275,24 +275,7 @@ export const HeaderWrap = () => {
                     <i className="fal fa-sign-out-alt"></i>
                   </span>
                 </Tooltip>
-                <Link to="/v/gio-hang">
-                  <span style={{ padding: "0px 5px " }}>
-                    <Badge
-                      style={{
-                        backgroundColor: "white",
-                        color: "#BE9355",
-                        border: " 1px solid #011769 ",
-                      }}
-                      count={2}
-                      size="small"
-                    >
-                      <i
-                        style={{ color: "#011769" }}
-                        className="fal fa-shopping-cart"
-                      ></i>
-                    </Badge>
-                  </span>
-                </Link>
+
               </div>
             )}
           </div>
