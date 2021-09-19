@@ -16,8 +16,11 @@ export const PopularItems = () => {
   const history = useHistory();
 
   useEffect(() => {
+    const tenCTDKVT = window.location.href.split(".");
     ProjectsBeelandAPI.getListProducts({
-      TenCTDKVT: "beesky",
+      TenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
       MaDA: 0,
       MaTN: 0,
       MaHuong: 0,

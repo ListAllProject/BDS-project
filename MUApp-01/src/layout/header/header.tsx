@@ -334,9 +334,17 @@ export const HeaderWrap = () => {
                 CHUNG CƯ
               </NavLink>
             </Menu.Item>
-            <SubMenu key="sub2" title="DỰ ÁN">
-              {projectsDrawerComponent}
-            </SubMenu>
+            <NavLink
+              onClick={() => {
+                setVisible(false);
+              }}
+              to={{ pathname: "/du-an" }}
+            >
+              <SubMenu key="sub2" title="DỰ ÁN">
+                {projectsDrawerComponent}
+              </SubMenu>
+            </NavLink>
+
             {/* <Menu.Item key="hotro">
               <NavLink
                 onClick={() => {
@@ -347,9 +355,16 @@ export const HeaderWrap = () => {
                 HỖ TRỢ
               </NavLink>
             </Menu.Item> */}
-            <SubMenu key="sub3" title="TIN TỨC">
-              {menuBlogsDrawerComponent}
-            </SubMenu>
+            <NavLink
+              onClick={() => {
+                setVisible(false);
+              }}
+              to={{ pathname: "/danh-sach-tin-tuc" }}
+            >
+              <SubMenu key="sub3" title="TIN TỨC">
+                {menuBlogsDrawerComponent}
+              </SubMenu>
+            </NavLink>
           </Menu>
 
           {/* <NavLink

@@ -28,8 +28,11 @@ export const Selling = () => {
     limit: 9,
     page: 1,
   });
+  const tenCTDKVT = window.location.href.split(".");
   const defaultData = {
-    TenCTDKVT: "beesky",
+    TenCTDKVT: tenCTDKVT[0].includes("https")
+      ? tenCTDKVT[0].replaceAll("https://", "")
+      : "beesky",
     MaDA: 0,
     MaTN: 0,
     MaHuong: 0,
@@ -44,7 +47,9 @@ export const Selling = () => {
 
   const fetchDatas = () => {
     ProjectsBeelandAPI.getListProducts({
-      TenCTDKVT: "beesky",
+      TenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
       MaDA: model.MaDA,
       MaTN: model.MaTN,
       MaHuong: model.MaHuong,
