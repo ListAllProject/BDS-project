@@ -237,11 +237,26 @@ export const Detail = () => {
               Tôi muốn được tư vấn về căn hộ
             </div>
             <div className="action">
-              <ButtonCustom
-                style={{ width: "44.5%" }}
-                text="Mua ngay"
-                onClick={() => onClickBuyNow()}
-              />
+              {product.MuaNgay === 0 ?
+                <div
+                  style={{
+                    width: "44.5%",
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontWeight: 'bold',
+                    color: "green",
+                    letterSpacing: '2px',
+                    fontSize: '16px'
+                    }}>
+                 <i className="far fa-check-circle" style={{fontSize: '24px', marginRight: '5px'}}></i> ĐÃ BOOK
+                </div> :
+                <ButtonCustom
+                  style={{ width: "44.5%" }}
+                  text="Mua ngay"
+                  onClick={() => onClickBuyNow()}
+                />
+              }
               <ButtonCustom
                 style={{
                   background: "unset",

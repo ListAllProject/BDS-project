@@ -130,6 +130,7 @@ export interface productsObj {
   Link_Video: string;
   Link_360: string;
   MaNhomGioHang: number;
+  MuaNgay: number;
 }
 
 export interface projectObj {
