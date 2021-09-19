@@ -153,8 +153,8 @@ export const Introduce = () => {
   }
 
   const bannerList: JSX.Element[] = [];
-  banners.forEach(b => {
-    bannerList.push(<img src={b.value} alt="Room 01" />)
+  banners.forEach((b, i) => {
+    bannerList.push(<img key={i} src={b.value} alt="Room 01" />)
   });
 
   const reasonComponents: JSX.Element[] = [];
@@ -170,6 +170,7 @@ export const Introduce = () => {
       <div
         className="reason-item-container"
         style={style}
+        key={i}
       >
         <div className="wrap-image">
           <img alt="img1" src={e.img} className="big_img" />
@@ -194,7 +195,7 @@ export const Introduce = () => {
   images.forEach((e, i) => {
     if (i === selectedImageIndex) {
       galleryComponents.push(
-        <div className="aaaa" style={{ width: "92%", margin: "auto" }}>
+        <div key={i} className="aaaa" style={{ width: "92%", margin: "auto" }}>
           <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
           <div className="image-selected-background"></div>
           <div className="image-selected-border"></div>
@@ -202,7 +203,7 @@ export const Introduce = () => {
       )
     } else {
       galleryComponents.push(
-        <div className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(e.value); setSelectedImageIndex(i); }}>
+        <div key={i} className="aaaa aaaa-hover" style={{ width: "92%", margin: "auto" }} onClick={() => { setBigImage(e.value); setSelectedImageIndex(i); }}>
           <img style={{ width: "100%" }} alt="libary-small8" src={e.value} />
         </div>
       )
@@ -218,7 +219,7 @@ export const Introduce = () => {
   for (let i = 0; i < relativeProjects.length; i++) {
     if (relativeProjects[i].id.toString() !== id) {
       relativeProjectComponents.push(
-        <div className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id, relativeProjects[i].url) }}>
+        <div key={i} className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id, relativeProjects[i].url) }}>
           <span>
             <img
               style={{ width: "100%" }}

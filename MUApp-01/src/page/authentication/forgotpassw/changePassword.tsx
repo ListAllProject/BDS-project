@@ -12,7 +12,6 @@ export const ConfirmPassword = () => {
   const token = new URLSearchParams(search).get('token');
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
 
@@ -26,11 +25,8 @@ export const ConfirmPassword = () => {
       UserAPI.confirmPassword(data, token || "")
         .then(res => {
           if (res.data && res.data.status === 2000) {
-            console.log(res)
-            setSuccessMessage(res.data.message);
-            setErrorMessage("");
+            history.push('/login');
           } else {
-            setSuccessMessage("");
             setErrorMessage(res.data.message);
           }
         })
@@ -86,12 +82,7 @@ export const ConfirmPassword = () => {
               <div className="forgot-password-error-message">
                 {errorMessage}
               </div>
-              <div className="forgot-password-succes-message">
-                {successMessage}
-              </div>
-              {successMessage !== "" ?
-                <Button style={{ width: 168 }} className="primary-btn" onClick={() => history.push("/login")}>ĐĂNG NHẬP</Button> :
-                <Button style={{ width: 168 }} className="primary-btn" htmlType="submit" loading={loading}>GỬI</Button>}
+              <Button style={{ width: 168 }} className="primary-btn" htmlType="submit" loading={loading}>GỬI</Button>
             </div>
           </Form>
         </div>

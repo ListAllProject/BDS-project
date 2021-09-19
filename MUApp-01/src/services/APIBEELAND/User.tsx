@@ -42,7 +42,6 @@ let UserAPI = {
   },
 
   confirmPassword(data: ConfirmPasswordRequest, token: string) {
-    // data.tenCTDKVT = "beesky"
     return APIBase().post(
       `/api/ConfimPasword`,
       data,

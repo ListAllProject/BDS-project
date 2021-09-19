@@ -347,7 +347,7 @@ export const TablePrice = () => {
       };
       for (let j = 0; j < selectedBlock.floor[i].detailFloor.length; j++) {
         rowData[`col${selectedBlock.floor[i].detailFloor[j].MaVT}`] = (
-          <Dropdown overlay={<ProductDetailModel product={selectedBlock.floor[i].detailFloor[j]} onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}/>} trigger={['contextMenu', 'hover']}>
+          <Dropdown overlay={<ProductDetailModel product={selectedBlock.floor[i].detailFloor[j]} onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)} />} trigger={['contextMenu', 'hover']}>
             <div
               onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}
               style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column", cursor: "pointer" }}
@@ -561,83 +561,83 @@ class ProductDetailModel extends Component<ProductDetailModelProps, state> {
   render() {
     return (
       <div className="model-product-detail">
-          <div className="model-product-detail-header" style={{backgroundColor:  helper.getHexColor(this.props.product.MauNen)}}>
-            <div className="model-product-detail-header-sign">
-              <div>
-                <img width="32px" height="32px" style={{ marginRight: '10px' }} src={this.props.product.icon} alt="" />
-              </div>
-              <div>
-                <div>Căn hộ</div>
-                <div className="model-product-detail-header-sign-value">{this.props.product.KyHieu}</div>
-              </div>
+        <div className="model-product-detail-header" style={{ backgroundColor: helper.getHexColor(this.props.product.MauNen) }}>
+          <div className="model-product-detail-header-sign">
+            <div>
+              <img width="32px" height="32px" style={{ marginRight: '10px' }} src={this.props.product.icon} alt="" />
             </div>
-            <div className="model-product-detail-header-seperate"></div>
-            <div className="model-product-detail-header-price">
-              <div>Giá niêm yết</div>
-              <div className="model-product-detail-header-price-value">{this.props.product.TongGiaGomPBTView}</div>
+            <div>
+              <div>Căn hộ</div>
+              <div className="model-product-detail-header-sign-value">{this.props.product.KyHieu}</div>
             </div>
           </div>
-          <div className="model-product-detail-body">
-            <div className="product-detail-row">
-              <div className="icon-container">
-                <i className="fas fa-bed-alt"></i>
-              </div>
-              {this.props.product.PhongNgu}
-            </div>
-            <div className="model-product-detail-body-seperate" />
-            <div className="product-detail-row">
-              <div className="icon-container">
-                <i className="fal fa-clone"></i>
-              </div>
-              {this.props.product.DTThongThuy}m2
-            </div>
-            <div className="model-product-detail-body-seperate" />
-            <div className="product-detail-row">
-              <div className="icon-container">
-                <i className="fas fa-bath"></i>
-              </div>
-              {this.props.product.SoPhongVS}
-            </div>
-            <div className="model-product-detail-body-seperate" />
-            <div className="product-detail-row">
-              <div className="icon-container">
-                <i className="far fa-compass"></i>
-              </div>
-              {this.props.product.TenPhuongHuong}
-            </div>
-            <div className="model-product-detail-body-seperate" />
-            <div className="product-detail-row">
-              <div className="icon-container">
-                <i className="fas fa-male"></i>
-              </div>
-              {this.props.product.SoLuongQT}
-            </div>
-          </div>
-          <div className="model-product-detail-footer">
-            {this.props.product.MuaNgay === 0 ?
-              <div className="model-product-detail-footer-content">
-                <div>Thời hạn đặt mua:</div>
-                <div>{this.props.product.ThoiHanMua}</div>
-              </div>
-              :
-              <div style={{width: '100%', height: '100%', padding: '5px'}}>
-                <div style={{
-                  display: 'flex',
-                  height: '100%',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  backgroundColor: '#be9355',
-                  color: 'white',
-                  borderRadius: '5px',
-                  cursor: 'pointer'
-                }}
-                  onClick={this.props.onClick}>
-                  Mua ngay
-              </div>
-              </div>
-            }
+          <div className="model-product-detail-header-seperate"></div>
+          <div className="model-product-detail-header-price">
+            <div>Giá niêm yết</div>
+            <div className="model-product-detail-header-price-value">{this.props.product.TongGiaGomPBTView}</div>
           </div>
         </div>
+        <div className="model-product-detail-body">
+          <div className="product-detail-row">
+            <div className="icon-container">
+              <i className="fas fa-bed-alt"></i>
+            </div>
+            {this.props.product.PhongNgu}
+          </div>
+          <div className="model-product-detail-body-seperate" />
+          <div className="product-detail-row">
+            <div className="icon-container">
+              <i className="fal fa-clone"></i>
+            </div>
+            {this.props.product.DTThongThuy}m2
+            </div>
+          <div className="model-product-detail-body-seperate" />
+          <div className="product-detail-row">
+            <div className="icon-container">
+              <i className="fas fa-bath"></i>
+            </div>
+            {this.props.product.SoPhongVS}
+          </div>
+          <div className="model-product-detail-body-seperate" />
+          <div className="product-detail-row">
+            <div className="icon-container">
+              <i className="far fa-compass"></i>
+            </div>
+            {this.props.product.TenPhuongHuong}
+          </div>
+          <div className="model-product-detail-body-seperate" />
+          <div className="product-detail-row">
+            <div className="icon-container">
+              <i className="fas fa-male"></i>
+            </div>
+            {this.props.product.SoLuongQT}
+          </div>
+        </div>
+        <div className="model-product-detail-footer">
+          {this.props.product.MuaNgay === 0 ?
+            <div className="model-product-detail-footer-content">
+              <div style={{ marginRight: '10px' }}>Thời hạn đặt mua:</div>
+              <div style={{ fontWeight: 700 }}>{helper.customTime(this.props.product.ThoiHanMua)}</div>
+            </div>
+            :
+            <div style={{ width: '100%', height: '100%', padding: '5px' }}>
+              <div style={{
+                display: 'flex',
+                height: '100%',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: '#be9355',
+                color: 'white',
+                borderRadius: '5px',
+                cursor: 'pointer'
+              }}
+                onClick={this.props.onClick}>
+                Mua ngay
+              </div>
+            </div>
+          }
+        </div>
+      </div>
     );
   }
 }

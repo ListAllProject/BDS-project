@@ -76,7 +76,7 @@ export const Login = () => {
             <div className="additional-action">
               <span>
                 <Form.Item name="savePassword">
-                  <Checkbox>Ghi nhớ mật khẩu</Checkbox>
+                  <Checkbox checked={false}>Ghi nhớ mật khẩu</Checkbox>
                 </Form.Item>
               </span>
               <span style={{cursor: 'pointer'}} onClick={() => history.push('/forget-password')}>Quên mật khẩu?</span>

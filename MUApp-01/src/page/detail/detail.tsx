@@ -58,8 +58,8 @@ export const Detail = () => {
     history.push(`/v/booking/${maSP}/xac-nhan`);
   };
 
-  const imageList: JSX.Element[] = images.map((e) => {
-    return <img src={e.HinhAnh} alt="Room 01" />;
+  const imageList: JSX.Element[] = images.map((e, i) => {
+    return <img key={i} src={e.HinhAnh} alt="Room 01" />;
   });
 
   const utilities: JSX.Element[] = [];
