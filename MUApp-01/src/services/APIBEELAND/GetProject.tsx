@@ -1,5 +1,7 @@
 import { API } from "../api";
 
+const tenCTDKVT = window.location.href.split(".");
+
 let ProjectsBeelandAPI = {
   getListProducts(obj: any) {
     return API().post(`/api/beeland/get-products`, obj);
@@ -8,35 +10,47 @@ let ProjectsBeelandAPI = {
   // for-filter
   getProjectFilter() {
     const obj = {
-      tenCTDKVT: "beesky",
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
     };
     return API().post(`/api/beeland/get-project`, obj);
   },
   getBuildingByProject(maDa: number) {
     return API().post(`/api/beeland/get-building-by-project`, {
-      tenCTDKVT: "beesky",
-      maDA: maDa
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
+      maDA: maDa,
     });
   },
   getFloorByBuilding() {
     return API().post(`/api​/beeland​/get-floor-by-building`, {
-      tenCTDKVT: "beesky",
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
     });
   },
   getDirect() {
     return API().post(`/api/beeland/get-direct`, {
-      tenCTDKVT: "beesky",
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
     });
   },
   getTypeofApartment(maTn: number) {
     return API().post(`/api/beeland/get-typeof-apartment`, {
-      tenCTDKVT: "beesky",
-      maTN: maTn
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
+      maTN: maTn,
     });
   },
   getPrice() {
     return API().post(`/api/beeland/get-price`, {
-      tenCTDKVT: "beesky",
+      tenCTDKVT: tenCTDKVT[0].includes("https")
+        ? tenCTDKVT[0].replaceAll("https://", "")
+        : "beesky",
     });
   },
 };
