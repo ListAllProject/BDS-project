@@ -196,7 +196,7 @@ export const HeaderWrap = () => {
               className="item-text"
               activeClassName={"item-text-selected"}
             >
-              CHUNG CƯ {/* <i   className="fas fa-caret-down"></i> */}
+              ĐANG BÁN {/* <i   className="fas fa-caret-down"></i> */}
             </NavLink>
             <Dropdown overlay={menuComponent}>
               <NavLink
@@ -331,7 +331,7 @@ export const HeaderWrap = () => {
                 }}
                 to={{ pathname: "/chung-cu" }}
               >
-                CHUNG CƯ
+                ĐANG BÁN
               </NavLink>
             </Menu.Item>
             <SubMenu key="sub2" title="DỰ ÁN">

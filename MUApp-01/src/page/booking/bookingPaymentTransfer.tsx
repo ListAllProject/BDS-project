@@ -117,7 +117,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         setBanks(res.data.data);
         setSelectedBank(res.data.data[0]);
       })
-      .catch((error) => {})
+      .catch((error) => { })
       .finally(() => {
         setLoadingSelect(false);
       });
@@ -198,7 +198,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
                 style={{
                   marginTop: "12px",
                   fontSize: 15,
-                  fontWeight: 500,
+                  fontWeight: 600,
                   color: "red",
                 }}
               >
