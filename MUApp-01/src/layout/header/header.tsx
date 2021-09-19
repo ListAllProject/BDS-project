@@ -275,7 +275,6 @@ export const HeaderWrap = () => {
                     <i className="fal fa-sign-out-alt"></i>
                   </span>
                 </Tooltip>
-
               </div>
             )}
           </div>
@@ -298,13 +297,6 @@ export const HeaderWrap = () => {
         className="container-drawer"
       >
         <div className="wrap-contentdrawer">
-          {/* <Link to="/">
-                <span
-                  style={{ color: "#BE9355", marginRight: 5, fontSize: 16 }}
-                >
-                  <i className="fal fa-home"></i>
-                </span>
-              </Link> */}
 
           <Menu mode="inline">
             <Menu.Item key="chungcu">
@@ -317,78 +309,27 @@ export const HeaderWrap = () => {
                 ĐANG BÁN
               </NavLink>
             </Menu.Item>
-            <NavLink
-              onClick={() => {
+            <SubMenu
+              key="sub2"
+              title="DỰ ÁN"
+              onTitleClick={() => {
                 setVisible(false);
+                history.push("/du-an");
               }}
-              to={{ pathname: "/du-an" }}
             >
-              <SubMenu key="sub2" title="DỰ ÁN">
-                {projectsDrawerComponent}
-              </SubMenu>
-            </NavLink>
-
-            {/* <Menu.Item key="hotro">
-              <NavLink
-                onClick={() => {
-                  setVisible(false);
-                }}
-                to={{ pathname: "/ho-tro" }}
-              >
-                HỖ TRỢ
-              </NavLink>
-            </Menu.Item> */}
-            <NavLink
-              onClick={() => {
+              {projectsDrawerComponent}
+            </SubMenu>
+            <SubMenu
+              onTitleClick={() => {
                 setVisible(false);
+                history.push("/danh-sach-tin-tuc");
               }}
-              to={{ pathname: "/danh-sach-tin-tuc" }}
+              key="sub3"
+              title="TIN TỨC"
             >
-              <SubMenu key="sub3" title="TIN TỨC">
-                {menuBlogsDrawerComponent}
-              </SubMenu>
-            </NavLink>
+              {menuBlogsDrawerComponent}
+            </SubMenu>
           </Menu>
-
-          {/* <NavLink
-            onClick={() => {
-              setVisible(false);
-            }}
-            to={{
-              pathname: "/chung-cu",
-            }}
-            className="tab-item"
-          >
-            CHUNG CƯ
-          </NavLink>
-
-          <span className="tab-item">SẮP BÁN</span>
-
-          <NavLink
-            onClick={() => {
-              setVisible(false);
-            }}
-            to={{
-              pathname: "/du-an",
-            }}
-            className="tab-item"
-          >
-            DỰ ÁN
-          </NavLink>
-
-          <span className="tab-item">HỖ TRỢ</span>
-
-          <NavLink
-            onClick={() => {
-              setVisible(false);
-            }}
-            to={{
-              pathname: "/danh-sach-tin-tuc",
-            }}
-            className="tab-item"
-          >
-            TIN TỨC
-          </NavLink> */}
 
           <NavLink
             onClick={() => {
