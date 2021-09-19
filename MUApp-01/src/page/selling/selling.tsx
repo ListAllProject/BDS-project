@@ -7,6 +7,7 @@ import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import { priceObj, productsObj, projectObj } from "../../services/models";
 import { Store } from "antd/lib/form/interface";
 import { useHistory } from "react-router";
+import { tenCTDKVT } from "services/api";
 const { Option } = Select;
 
 export const Selling = () => {
@@ -28,7 +29,7 @@ export const Selling = () => {
     limit: 9,
     page: 1,
   });
-  const tenCTDKVT = window.location.href.split(".");
+
   const defaultData = {
     TenCTDKVT: tenCTDKVT[0].includes("https")
       ? tenCTDKVT[0].replaceAll("https://", "")

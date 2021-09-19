@@ -1,8 +1,6 @@
 import { BodyBooking } from "page/listTransfer/listTransfer";
 import { AddBookingRequest, AddKHRequest } from "services/models";
-import { API, APIIMGAGE, APIUpload } from "../api";
-
-const tenCTDKVT = window.location.href.split(".");
+import { API, APIIMGAGE, APIUpload, tenCTDKVT } from "../api";
 
 let BookingAPI = {
   getVoucher(voucher: string) {

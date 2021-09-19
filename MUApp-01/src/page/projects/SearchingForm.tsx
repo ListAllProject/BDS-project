@@ -10,10 +10,10 @@ export const SearchingForm: FC<{
   setFilterResult: React.Dispatch<
     React.SetStateAction<
       | {
-        city: string;
-        district: string;
-        investor: string;
-      }
+          city: string;
+          district: string;
+          investor: string;
+        }
       | undefined
     >
   >;
@@ -21,7 +21,7 @@ export const SearchingForm: FC<{
   const [form] = Form.useForm();
   const [listFilters, setListFilters] = useState<ProjectFilterObj>();
   useEffect(() => {
-    ProjectsAPI.getProjectFiltersList("BEESKY").then((res) => {
+    ProjectsAPI.getProjectFiltersList().then((res) => {
       if (res.data.data) {
         setListFilters(res.data.data);
       }
@@ -56,10 +56,10 @@ export const SearchingForm: FC<{
                   >
                     {listFilters?.cities && listFilters?.cities.length > 0
                       ? listFilters?.cities.map((item) => (
-                        <Option key={item} value={item}>
-                          {item}
-                        </Option>
-                      ))
+                          <Option key={item} value={item}>
+                            {item}
+                          </Option>
+                        ))
                       : null}
                   </Select>
                 </Form.Item>
@@ -69,10 +69,10 @@ export const SearchingForm: FC<{
                   <Select style={{ width: "100%" }} placeholder="Quận / huyện">
                     {listFilters?.districts && listFilters?.districts.length > 0
                       ? listFilters?.districts.map((item) => (
-                        <Option key={item} value={item}>
-                          {item}
-                        </Option>
-                      ))
+                          <Option key={item} value={item}>
+                            {item}
+                          </Option>
+                        ))
                       : null}
                   </Select>
                 </Form.Item>
@@ -82,10 +82,10 @@ export const SearchingForm: FC<{
                   <Select style={{ width: "100%" }} placeholder="Chủ đầu tư">
                     {listFilters?.investors && listFilters?.investors.length > 0
                       ? listFilters?.investors.map((item) => (
-                        <Option key={item} value={item}>
-                          {item}
-                        </Option>
-                      ))
+                          <Option key={item} value={item}>
+                            {item}
+                          </Option>
+                        ))
                       : null}
                   </Select>
                 </Form.Item>

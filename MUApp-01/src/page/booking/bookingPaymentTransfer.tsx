@@ -7,6 +7,7 @@ import "./booking.scss";
 import BookingAPI from "services/APIBEELAND/Booking";
 import { productsObj } from "services/models";
 import { flatMap } from "assets/fontawesome-pro-5.13.0-web/js/v4-shims";
+import { tenCTDKVT } from "services/api";
 const { forwardRef, useRef, useImperativeHandle } = React;
 const { Option } = Select;
 
@@ -56,7 +57,14 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         const formData = new FormData();
         formData.append("Image", info.file.originFileObj);
         formData.append("Type", "booking");
-        formData.append("CompanyCode", "beesky");
+        formData.append(
+          "CompanyCode",
+          `${
+            tenCTDKVT[0].includes("https")
+              ? tenCTDKVT[0].replaceAll("https://", "")
+              : "beesky"
+          }`
+        );
         const res = await BookingAPI.uploadImage(formData);
         if (res) {
           const temp: DataImage = { uid: info.file.uid, url: res.data[0] };
@@ -117,7 +125,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         setBanks(res.data.data);
         setSelectedBank(res.data.data[0]);
       })
-      .catch((error) => { })
+      .catch((error) => {})
       .finally(() => {
         setLoadingSelect(false);
       });

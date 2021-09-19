@@ -23,7 +23,7 @@ export const SearchingForm: FC<{
   const [listFilters, setListFilters] = useState<ProjectFilterObj>();
 
   useEffect(() => {
-    ProjectsAPI.getProjectFiltersList("BEESKY").then((res) => {
+    ProjectsAPI.getProjectFiltersList().then((res) => {
       if (res.data.data) {
         setListFilters(res.data.data);
       }
@@ -117,7 +117,7 @@ export const SearchingForm: FC<{
                   textTransform: "uppercase",
                   fontWeight: "bold",
                   fontSize: 14,
-                  whiteSpace: 'nowrap'
+                  whiteSpace: "nowrap",
                 }}
                 type="button"
                 onClick={() => form.resetFields()}

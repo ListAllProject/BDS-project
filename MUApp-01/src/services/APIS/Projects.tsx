@@ -1,4 +1,4 @@
-import { APIIMGAGE, API} from "../api";
+import { APIIMGAGE, API, tenCTDKVT } from "../api";
 import { BodyBooking } from "page/listTransfer/listTransfer";
 
 let ProjectsAPI = {
@@ -27,14 +27,32 @@ let ProjectsAPI = {
     if (district) {
       params = params + `district=${district}&`;
     }
-    return APIIMGAGE().get(`/web/project` + `?${params}&company_code=BEESKY`);
+    return APIIMGAGE().get(
+      `/web/project` +
+        `?${params}&company_code=${
+          tenCTDKVT[0].includes("https")
+            ? tenCTDKVT[0].replaceAll("https://", "")
+            : "beesky"
+        }`
+    );
   },
   getProjectBySlug(url: string) {
-    return APIIMGAGE().get(`/web/project/${url}?company_code=BEESKY`);
+    return APIIMGAGE().get(
+      `/web/project/${url}?company_code=${
+        tenCTDKVT[0].includes("https")
+          ? tenCTDKVT[0].replaceAll("https://", "")
+          : "beesky"
+      }`
+    );
   },
-  getProjectFiltersList(company: string) {
-    let params = `?company_code=${company}`
-    return APIIMGAGE().get(`/web/project/filters/list/${params}&company_code=BEESKY`);
+  getProjectFiltersList() {
+    return APIIMGAGE().get(
+      `/web/project/filters/list?company_code=${
+        tenCTDKVT[0].includes("https")
+          ? tenCTDKVT[0].replaceAll("https://", "")
+          : "beesky"
+      }`
+    );
   },
 };
 

@@ -11,14 +11,16 @@ window.Configs = {
   // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
   apiBaseUrl:
     "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
-  apiUpload: "https://lingsmoment.herokuapp.com/https://apibeehomecore.appbeesky.com",
+  apiUpload:
+    "https://lingsmoment.herokuapp.com/https://apibeehomecore.appbeesky.com",
   apiImageUrl: "https://beesky-admin.ninja-it.asia", // for-blog-image
 };
+
+export const tenCTDKVT = window.location.href.split(".");
 
 export const BaseUrl = window.Configs.apiBaseUrl;
 export const ImageBaseUrl = window.Configs.apiImageUrl;
 export const domainUpload = window.Configs.apiUpload;
-
 
 let ApiBase = axios.create({
   baseURL: BaseUrl,
@@ -51,8 +53,8 @@ export function API() {
   Api.defaults.responseType = undefined;
   Api.defaults.headers.common["authorization"] =
     localStorage.getItem("token") === undefined ||
-      localStorage.getItem("token") === "undefined" ||
-      localStorage.getItem("token") == null
+    localStorage.getItem("token") === "undefined" ||
+    localStorage.getItem("token") == null
       ? ""
       : "Bearer " + localStorage.getItem("token");
   return Api;
@@ -67,8 +69,8 @@ export function APIIMGAGE() {
   ApiImage.defaults.responseType = undefined;
   ApiImage.defaults.headers.common["token"] =
     localStorage.getItem("token") === undefined ||
-      localStorage.getItem("token") === "undefined" ||
-      localStorage.getItem("token") == null
+    localStorage.getItem("token") === "undefined" ||
+    localStorage.getItem("token") == null
       ? ""
       : localStorage.getItem("token");
   return ApiImage;

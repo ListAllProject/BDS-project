@@ -1,6 +1,4 @@
-import { API } from "../api";
-
-const tenCTDKVT = window.location.href.split(".");
+import { API, tenCTDKVT } from "../api";
 
 let ProjectsBeelandAPI = {
   getListProducts(obj: any) {
