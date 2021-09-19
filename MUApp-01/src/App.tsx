@@ -29,6 +29,7 @@ import { Selling } from "./page/selling/selling";
 import { TablePrice } from "./page/tablePrice/tablePrice";
 import { bds } from "./services/store";
 import { ListTransfer } from "page/listTransfer/listTransfer";
+import { ConfirmPassword } from "page/authentication/forgotpassw/changePassword";
 
 // import { Index } from "./page";
 
@@ -97,6 +98,9 @@ function App() {
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/Account/ConfimForgotPassword">
+          <ConfirmPassword />
         </Route>
         <Route exact path="/gioi-thieu-du-an/:url/:id">
           <Introduce />

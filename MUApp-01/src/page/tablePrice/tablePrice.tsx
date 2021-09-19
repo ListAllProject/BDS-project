@@ -1,6 +1,6 @@
-import { Component, useEffect, useState } from "react";
+import { Component, useEffect, useRef, useState } from "react";
 import "./tablePrice.scss";
-import { Table, Spin } from "antd";
+import { Table, Spin, Dropdown, Button } from "antd";
 import iconHome from "../../assets/images/icon-home.png";
 import bgrTable from "../../assets/images/bgr-table-price.png";
 import {
@@ -9,11 +9,12 @@ import {
 import "react-circular-progressbar/dist/styles.css";
 import CustomSlider from "../../components/slider/slider";
 import { Seperate } from "../../components/seperate/seperate";
-import { Block, DetailMaTT, projectObj } from "../../services/models";
+import { Block, DetailFloor, DetailMaTT, productsObj, projectObj } from "../../services/models";
 import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import ProductBeelandAPI from "../../services/APIBEELAND/Product";
 import { getHexColor } from "../../services/helper";
 import { useHistory } from "react-router-dom";
+import * as helper from "../../services/helper";
 
 const settings = {
   infinite: true,
@@ -91,6 +92,11 @@ const settings2 = {
   ],
 };
 
+interface Point {
+  X: number,
+  Y: number,
+}
+
 export const TablePrice = () => {
   const [numberSlider1, setNumberSlider1] = useState(4);
   const [numberSlider2, setNumberSlider2] = useState(5);
@@ -101,6 +107,12 @@ export const TablePrice = () => {
   const [pageLoading, setPageLoading] = useState(false);
   const [blockLoading, setBlockLoading] = useState(false);
   const history = useHistory();
+
+  // Product detail model
+  const [productDetailPosition, setProductDetailPosition] = useState<Point>({ X: 0, Y: 0 });
+  const [productDetailDisplayStyle, setProductDetailDisplayStyle] = useState('none');
+  const [productDetail, setProductDetail] = useState<DetailFloor>();
+  const productDetailRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     function handleResize() {
@@ -168,6 +180,16 @@ export const TablePrice = () => {
       setting.slidesToShow = array.length;
     }
     return setting;
+  }
+
+  const getProductDetailPosition = (point: Point): Point => {
+    let x: number = point.X, y: number = point.Y;
+    let windowWitdh = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    let productDetailWidthStyle: string = productDetailRef?.current?.style?.width || "100px"
+    let productDetailWidth: number = parseInt(productDetailWidthStyle.replaceAll("px", ""))
+    // console.log("productDetailWidth", productDetailWidth)
+    return { X: x, Y: y };
   }
 
   // Generate list project
@@ -314,7 +336,8 @@ export const TablePrice = () => {
 
   // Generate data cell
   const tableData = [];
-  console.log(selectedBlock, 787)
+  // console.log(selectedBlock, 787)
+  console.log(selectedBlock)
   if (selectedBlock) {
     for (let i = 0; i < selectedBlock.floor.length; i++) {
       const rowData: any = {
@@ -324,18 +347,20 @@ export const TablePrice = () => {
       };
       for (let j = 0; j < selectedBlock.floor[i].detailFloor.length; j++) {
         rowData[`col${selectedBlock.floor[i].detailFloor[j].MaVT}`] = (
-          <div
-            onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}
-            style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column", cursor: "pointer" }}
-          >
-            <span>{selectedBlock.floor[i].detailFloor[j].TongGiaGomPBTView}</span>
-            <div>
-              <img style={{ height: '28px', textAlign: 'center' }} src={selectedBlock.floor[i].detailFloor[j].icon} alt="" />
-            </div>
-            {/* <span>
+          <Dropdown overlay={<ProductDetailModel product={selectedBlock.floor[i].detailFloor[j]} onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}/>} trigger={['contextMenu', 'hover']}>
+            <div
+              onClick={() => history.push(`chi-tiet-du-an/${selectedBlock.floor[i].detailFloor[j].MaSP}`)}
+              style={{ color: `${getHexColor(selectedBlock.floor[i].detailFloor[j].MauNen)}`, display: "flex", flexDirection: "column", cursor: "pointer" }}
+            >
+              <span>{selectedBlock.floor[i].detailFloor[j].TongGiaGomPBTView}</span>
+              <div>
+                <img style={{ height: '28px', textAlign: 'center' }} src={selectedBlock.floor[i].detailFloor[j].icon} alt="" />
+              </div>
+              {/* <span>
               <i className="fas fa-heart"></i> 1
             </span> */}
-          </div>
+            </div>
+          </Dropdown>
         )
       }
       tableData.push(rowData);
@@ -353,6 +378,27 @@ export const TablePrice = () => {
 
   return (
     <div className="container-table-price">
+      <div
+        style={{
+          position: 'fixed',
+          display: productDetailDisplayStyle,
+          top: productDetailPosition.Y,
+          left: productDetailPosition.X,
+          height: 'fit-content',
+          backgroundColor: 'white',
+          zIndex: 1,
+          border: '2px solid white',
+          boxShadow: '0px 0px 8px 0px rgba(0,0,0,0.4)'
+        }}
+        ref={productDetailRef}>
+        <div style={{ display: 'flex', width: '200px', height: '100px' }}>
+          <div style={{ width: '50%' }}>
+            <div>Căn hộ</div>
+            <div>{productDetail?.KyHieu}</div>
+          </div>
+          <div style={{ width: '50%' }}></div>
+        </div>
+      </div>
       <div
         style={{
           backgroundImage: `url(${bgrTable})`,
@@ -499,6 +545,99 @@ class NoteInfor extends Component<props, state> {
           </div>
         </div>
       </div>
+    );
+  }
+}
+
+interface ProductDetailModelProps {
+  product: DetailFloor,
+  onClick: () => void;
+}
+class ProductDetailModel extends Component<ProductDetailModelProps, state> {
+  constructor(props: ProductDetailModelProps) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="model-product-detail">
+          <div className="model-product-detail-header" style={{backgroundColor:  helper.getHexColor(this.props.product.MauNen)}}>
+            <div className="model-product-detail-header-sign">
+              <div>
+                <img width="32px" height="32px" style={{ marginRight: '10px' }} src={this.props.product.icon} alt="" />
+              </div>
+              <div>
+                <div>Căn hộ</div>
+                <div className="model-product-detail-header-sign-value">{this.props.product.KyHieu}</div>
+              </div>
+            </div>
+            <div className="model-product-detail-header-seperate"></div>
+            <div className="model-product-detail-header-price">
+              <div>Giá niêm yết</div>
+              <div className="model-product-detail-header-price-value">{this.props.product.TongGiaGomPBTView}</div>
+            </div>
+          </div>
+          <div className="model-product-detail-body">
+            <div className="product-detail-row">
+              <div className="icon-container">
+                <i className="fas fa-bed-alt"></i>
+              </div>
+              {this.props.product.PhongNgu}
+            </div>
+            <div className="model-product-detail-body-seperate" />
+            <div className="product-detail-row">
+              <div className="icon-container">
+                <i className="fal fa-clone"></i>
+              </div>
+              {this.props.product.DTThongThuy}m2
+            </div>
+            <div className="model-product-detail-body-seperate" />
+            <div className="product-detail-row">
+              <div className="icon-container">
+                <i className="fas fa-bath"></i>
+              </div>
+              {this.props.product.SoPhongVS}
+            </div>
+            <div className="model-product-detail-body-seperate" />
+            <div className="product-detail-row">
+              <div className="icon-container">
+                <i className="far fa-compass"></i>
+              </div>
+              {this.props.product.TenPhuongHuong}
+            </div>
+            <div className="model-product-detail-body-seperate" />
+            <div className="product-detail-row">
+              <div className="icon-container">
+                <i className="fas fa-male"></i>
+              </div>
+              {this.props.product.SoLuongQT}
+            </div>
+          </div>
+          <div className="model-product-detail-footer">
+            {this.props.product.MuaNgay === 0 ?
+              <div className="model-product-detail-footer-content">
+                <div>Thời hạn đặt mua:</div>
+                <div>{this.props.product.ThoiHanMua}</div>
+              </div>
+              :
+              <div style={{width: '100%', height: '100%', padding: '5px'}}>
+                <div style={{
+                  display: 'flex',
+                  height: '100%',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: '#be9355',
+                  color: 'white',
+                  borderRadius: '5px',
+                  cursor: 'pointer'
+                }}
+                  onClick={this.props.onClick}>
+                  Mua ngay
+              </div>
+              </div>
+            }
+          </div>
+        </div>
     );
   }
 }

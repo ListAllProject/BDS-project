@@ -79,7 +79,7 @@ export const Login = () => {
                   <Checkbox>Ghi nhớ mật khẩu</Checkbox>
                 </Form.Item>
               </span>
-              <span>Quên mật khẩu?</span>
+              <span style={{cursor: 'pointer'}} onClick={() => history.push('/forget-password')}>Quên mật khẩu?</span>
             </div>
             <div className="login-error-message">
               {errorMessage}

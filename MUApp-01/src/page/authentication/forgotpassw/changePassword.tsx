@@ -2,25 +2,35 @@ import React, { useEffect } from "react";
 import "./forgotpassw.scss";
 import { Button, Input, Form } from "antd";
 import { useState } from "react";
-import { FogotPasswordRequest } from "../../../services/models";
+import { ConfirmPasswordRequest, FogotPasswordRequest } from "../../../services/models";
 import UserAPI from "../../../services/APIBEELAND/User";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
-export const Forgotpassw = () => {
+export const ConfirmPassword = () => {
 
+  const search = useLocation().search;
+  const token = new URLSearchParams(search).get('token');
   const history = useHistory();
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const onFinish = (data: FogotPasswordRequest) => {
+
+  const onFinish = (data: ConfirmPasswordRequest) => {
+    if (data.password != data.rePassword) {
+      setErrorMessage("Mật khẩu không khớp, vui lòng nhập lại!");
+      return;
+    }
     if (!loading) {
       setLoading(true);
-      UserAPI.fogotPassword(data)
+      UserAPI.confirmPassword(data, token || "")
         .then(res => {
           if (res.data && res.data.status === 2000) {
+            console.log(res)
             setSuccessMessage(res.data.message);
+            setErrorMessage("");
           } else {
+            setSuccessMessage("");
             setErrorMessage(res.data.message);
           }
         })
@@ -34,7 +44,7 @@ export const Forgotpassw = () => {
   }
 
   useEffect(() => {
-    if(localStorage.getItem("token")){
+    if (localStorage.getItem("token")) {
       history.push('/')
     }
   }, []);
@@ -43,32 +53,33 @@ export const Forgotpassw = () => {
     <div className="background">
       <div className="forgot-password-container">
         <div className="content">
-          <div className="title">QUÊN MẬT KHẨU</div>
+          <div className="title">XÁC NHẬN MẬT KHẨU</div>
           <div className="title-line-break" />
           <div className="note">
-            Vui lòng nhập địa chỉ email Quý khách đã đăng ký để đặt lại mật
-            khẩu.
+            Vui lòng nhập mật khẩu mới của bạn.
           </div>
 
           <Form className="body"
             onFinish={onFinish}>
             <Form.Item
-              name="email"
-              rules={[{ required: true, message: 'Vui lòng nhập địa chỉ email của bạn!' }]}>
+              name="password"
+              rules={[{ required: true, message: 'Vui lòng nhập mật khẩu của bạn!' }]}>
               <Input
-                placeholder="Email"
+                placeholder="Password"
+                type="password"
                 prefix={
-                  <i style={{ fontSize: 12 }} className="fas fa-envelope" />
+                  <i style={{ fontSize: 12 }} className="fas fa-key" />
                 }
               />
             </Form.Item>
 
             <Form.Item
-              name="phone"
-              rules={[{ required: true, message: 'Vui lòng nhập số điện thoại của bạn!' }]}>
+              name="rePassword"
+              rules={[{ required: true, message: 'Vui lòng nhập lại mật khẩu của bạn!' }]}>
               <Input
-                placeholder="Số điện thoại"
-                prefix={<i style={{ fontSize: 12 }} className="fas fa-phone" />}
+                type="password"
+                placeholder="Retype Password"
+                prefix={<i style={{ fontSize: 12 }} className="fas fa-key" />}
               />
             </Form.Item>
             <div className="footer">
@@ -78,7 +89,9 @@ export const Forgotpassw = () => {
               <div className="forgot-password-succes-message">
                 {successMessage}
               </div>
-              <Button style={{ width: 168 }} className="primary-btn" htmlType="submit" loading={loading}>GỬI</Button>
+              {successMessage !== "" ?
+                <Button style={{ width: 168 }} className="primary-btn" onClick={() => history.push("/login")}>ĐĂNG NHẬP</Button> :
+                <Button style={{ width: 168 }} className="primary-btn" htmlType="submit" loading={loading}>GỬI</Button>}
             </div>
           </Form>
         </div>

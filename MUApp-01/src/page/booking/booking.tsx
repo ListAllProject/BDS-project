@@ -212,9 +212,7 @@ export const Booking = () => {
         )}
       </div>
       <div>
-        {window.location.href.indexOf("complete") > 0 ||
-          (window.location.href.indexOf("thanh-toan-chuyen-khoan") > 0 && (!product || product.SoTienGC == 0)) ?
-          '' :
+        {window.location.href.indexOf("complete") === -1 ?
           <Button
             loading={loadingBtn}
             onClick={() =>
@@ -223,7 +221,7 @@ export const Booking = () => {
             style={{ height: 35 }}
             size="middle"
             className="primary-btn"
-          >Xác nhận</Button>}
+          >Xác nhận</Button> : ''}
       </div>
     </div>
   );

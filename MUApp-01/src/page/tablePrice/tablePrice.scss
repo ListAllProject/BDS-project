@@ -13,9 +13,88 @@
 //     cursor          : pointer;
 // }
 
+.model-product-detail {
+    background-color: white;
+    width: 280px;
+    height: fit-content;
+    padding-top: -5px;
+    border: 1px solid rgba(0,0,0,0.1);
+
+    i {
+        color: $primary--color1;
+    }
+
+    .model-product-detail-header {
+        display: flex;
+        width: 100%;
+        color: white;
+        padding: 10px;
+
+        .model-product-detail-header-sign {
+            width: 48%;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            
+            .model-product-detail-header-sign-value {
+                font-weight: bolder !important;
+            }
+        }
+        .model-product-detail-header-seperate {
+            width: 1px;
+            margin: 0 10px;
+            border: 1px solid white;
+        }
+        .model-product-detail-header-price {
+            width: 48%;
+            font-weight: 600;
+
+            .model-product-detail-header-price-value {
+                font-weight: bolder !important;
+            }
+        }
+    }
+
+    .model-product-detail-body {
+        padding: 0px 15px 0px 15px;
+        width: 100%;
+
+        .product-detail-row {
+            line-height: 32px;
+            display: flex;
+            flex-direction: row;
+
+            .icon-container {
+                width: 32px;
+            }
+        }
+
+        .model-product-detail-body-seperate {
+            width: 100%;
+            height: 1px;
+            background-color: black;
+            border: 1px solid black;
+            opacity: 0.1;
+        }
+    }
+
+    .model-product-detail-footer {
+        background-color: rgba(0,0,0,0.1);
+        height: 36px;
+        width: 100%;
+
+        .model-product-detail-footer-content {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0px 10px;
+        }
+    }
+
+}
+
 .container-table-price {
     padding: 20px 0px;
-
 
     .next-arrow,
     .previous-arrow {

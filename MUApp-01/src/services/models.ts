@@ -221,6 +221,9 @@ export interface DetailFloor {
   MaTang: number;
   MaNhomGioHang: number;
   SapXep: number;
+  SoLuongQT: number;
+  MuaNgay: number;
+  ThoiHanMua: string;
 }
 
 export interface BLocation {
@@ -332,4 +335,9 @@ export interface Booking {
   TenTT: string;
   ThanhToan: number;
   TongGiTriHD: number;
+}
+
+export interface ConfirmPasswordRequest {
+  password: string;
+  rePassword: string;
 }

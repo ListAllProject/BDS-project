@@ -1,6 +1,6 @@
 import { API, APIBase, tenCTDKVT } from "../api";
 
-import { FogotPasswordRequest, LoginRequest, RegisterRequest } from "../models";
+import {FogotPasswordRequest, LoginRequest, RegisterRequest, ConfirmPasswordRequest} from "../models";
 
 let UserAPI = {
   login(data: LoginRequest) {
@@ -37,6 +37,19 @@ let UserAPI = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+      }
+    );
+  },
+
+  confirmPassword(data: ConfirmPasswordRequest, token: string) {
+    // data.maCTDK = "beesky"
+    return APIBase().post(
+      `/api/ConfimPasword`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       }
     );
   },
