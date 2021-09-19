@@ -1,10 +1,10 @@
 import { API, APIBase, tenCTDKVT } from "../api";
 
-import {FogotPasswordRequest, LoginRequest, RegisterRequest, ConfirmPasswordRequest} from "../models";
+import { FogotPasswordRequest, LoginRequest, RegisterRequest, ConfirmPasswordRequest } from "../models";
 
 let UserAPI = {
   login(data: LoginRequest) {
-    data.maCTDK = tenCTDKVT[0].includes("https")
+    data.tenCTDKVT = tenCTDKVT[0].includes("https")
       ? tenCTDKVT[0].replaceAll("https://", "")
       : "beesky";
     return API().post(`/api/Login`, data);
@@ -15,14 +15,14 @@ let UserAPI = {
   },
 
   register(data: RegisterRequest) {
-    data.maCTDK = tenCTDKVT[0].includes("https")
+    data.tenCTDKVT = tenCTDKVT[0].includes("https")
       ? tenCTDKVT[0].replaceAll("https://", "")
       : "beesky";
     return API().post(`/api/Register`, data);
   },
 
   fogotPassword(data: FogotPasswordRequest) {
-    data.maCTDK = tenCTDKVT[0].includes("https")
+    data.tenCTDKVT = tenCTDKVT[0].includes("https")
       ? tenCTDKVT[0].replaceAll("https://", "")
       : "beesky";
     return API().post(`/api/FogotPassword`, data);
@@ -42,7 +42,7 @@ let UserAPI = {
   },
 
   confirmPassword(data: ConfirmPasswordRequest, token: string) {
-    // data.maCTDK = "beesky"
+    // data.tenCTDKVT = "beesky"
     return APIBase().post(
       `/api/ConfimPasword`,
       data,

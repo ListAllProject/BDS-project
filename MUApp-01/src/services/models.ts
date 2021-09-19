@@ -146,7 +146,7 @@ export interface priceObj {
   Max: number;
 }
 export interface LoginRequest {
-  maCTDK: string;
+  tenCTDKVT: string;
   email: string;
   password: string;
 }
@@ -158,11 +158,11 @@ export interface RegisterRequest {
   password: string;
   passwordRe: string;
   email: string;
-  maCTDK: string;
+  tenCTDKVT: string;
 }
 
 export interface FogotPasswordRequest {
-  maCTDK: string;
+  tenCTDKVT: string;
   email: string;
   phone: string;
 }
