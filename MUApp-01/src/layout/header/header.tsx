@@ -272,7 +272,7 @@ export const HeaderWrap = () => {
             {token && (
               <div>
                 <span className="name-user">
-                  <Dropdown overlay={menuUser}>
+                  <Dropdown overlay={menuUser}  trigger={['hover']}  placement="bottomCenter" arrow>
                     <span>
                       {user ? (
                         user
