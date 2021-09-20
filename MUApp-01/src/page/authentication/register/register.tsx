@@ -102,7 +102,7 @@ export const Register = (props: any) => {
             <Form.Item
               name="emailNotification"
               className="additional-action">
-              <Checkbox>Đăng ký nhận thông tin, thông báo qua email</Checkbox>
+              <Checkbox checked={false}>Đăng ký nhận thông tin, thông báo qua email</Checkbox>
             </Form.Item>
 
             <div className="footer">

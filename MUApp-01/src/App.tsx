@@ -36,16 +36,14 @@ import { ConfirmPassword } from "page/authentication/forgotpassw/changePassword"
 const AuthorizeApp = () => {
   const history = useHistory();
 
-  const [loaded, setLoaded] = useState<boolean>(true);
+  const [loaded, setLoaded] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
-    setLoaded(false);
     bds
       .authorize()
       .then(() => {
-        setLoaded(true);
         setUser(bds.store.user);
       })
       .catch((err) => {

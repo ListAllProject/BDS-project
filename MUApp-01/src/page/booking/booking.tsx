@@ -33,13 +33,20 @@ export const Booking = () => {
   const [voucherMessage, setVoucherMessage] = useState("");
 
   useEffect(() => {
+    fetchData()
+  }, []);
+
+  const fetchData = () => {
     ProductAPI.getProduct(parseInt(maSP))
       .then((res) => {
         if (res.data.status === 2000) {
           setProduct(res.data.data);
         }
       })
-  }, []);
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   const onFinishCheckVoucher = (data: EvoucherData) => {
     setIsCheckingVoucher(true);

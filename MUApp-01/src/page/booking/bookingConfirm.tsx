@@ -1,5 +1,5 @@
 import { Button, Form, Input, Modal, Select } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import BookingAPI from "services/APIBEELAND/Booking";
 import List from "rc-virtual-list";
@@ -65,8 +65,9 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       })
       .catch((err) => {
       })
-      .finally(() => { });
-  }, []);
+      .finally(() => {
+      });
+  }, []) 
 
   useImperativeHandle(ref, () => ({
     onBooking(product: productsObj, voucher: Voucher) {
@@ -94,18 +95,16 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
       .then((res) => {
         if (res.data.status === 2000) {
           const maKH = res.data.data;
-          const voucherGiaTri = voucher ? voucher.GiaTri : 0;
           if (product) {
             const addBookingRequest: AddBookingRequest = {
-              MaKH: maKH,
-              MaSP: product.MaSP,
-              MGD: 1,
-              GiaThongThuy: product.DonGiaThongThuy,
               GiaChuaVAT: product.TongGiaChuaVAT,
-              TongGiaTriHD: product.TongGiaGomVAT,
-              PhiBaoTri: product.PhiBaoTri,
-              PhiBaoGomPBT: product.TongGiaTriHDMB - voucherGiaTri,
+              GiaThongThuy: product.TongGiaChuaVAT,
+              MGD: 1,
               MaNhomGioHang: product.MaNhomGioHang,
+              MaSP: product.MaSP,
+              PhiBaoTri: product.PhiBaoTri,
+              TongGiaTriHD: product.TongGiaTriHDMB,
+              MaKH: maKH,
               MaVoucher: voucher?.ID,
             }
 

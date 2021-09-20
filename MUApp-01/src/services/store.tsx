@@ -17,17 +17,16 @@ class BDS extends React.Component<any, any> {
         this.store = new Store();
     }
 
-    authorize = async () => {
-        try {
-            let infor = await UserAPI.currentUser()
-            if(infor){
-                this.store.user = infor.data.data.HoTen
-            }
-        } catch(ex){
-            if((ex as any)?.response?.status === 401){
+    authorize = () => {
+            return UserAPI.currentUser().then(infor => {
+                if(infor){
+                    this.store.user = infor.data.data.HoTen
+                }
+            }).catch(ex => {
+                if((ex as any)?.response?.status === 401){
                 throw new Error("401")
             }
-        }
+        })
     }
 }
 
