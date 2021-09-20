@@ -130,11 +130,13 @@ export const HeaderWrap = () => {
   const menuUser = () => {
     return (
       <Menu>
-        <Menu.Item onClick={() => {
-                setVisible(false);
-                history.push("/v/danh-sach-giao-dich");
-              }}>
-            Danh sách giao dịch
+        <Menu.Item
+          onClick={() => {
+            setVisible(false);
+            history.push("/v/danh-sach-giao-dich");
+          }}
+        >
+          Danh sách giao dịch
         </Menu.Item>
       </Menu>
     );
@@ -272,15 +274,20 @@ export const HeaderWrap = () => {
             {token && (
               <div>
                 <span className="name-user">
-                  <Dropdown overlay={menuUser}  trigger={['hover']}  placement="bottomCenter" arrow>
-                    <span>
-                      {user ? (
-                        user
-                      ) : (
-                        <i className="fas fa-spinner fa-pulse"></i>
-                      )}
-                    </span>
-                  </Dropdown>
+                  <span>
+                    {user ? (
+                      <Dropdown
+                        overlay={menuUser}
+                        trigger={["hover"]}
+                        placement="bottomCenter"
+                        arrow
+                      >
+                        {user}
+                      </Dropdown>
+                    ) : (
+                      <i className="fas fa-spinner fa-pulse"></i>
+                    )}
+                  </span>
                 </span>
                 <Tooltip placement="bottom" title={"Logout"}>
                   <span
