@@ -26,7 +26,9 @@ export const HeaderWrap = () => {
 
   useEffect(() => {
     UserAPI.currentUser().then((rs) => {
-      setUser(rs.data.data.HoTen);
+      if (rs.data.status === 2000) {
+        setUser(rs.data.data.HoTen);
+      }
     });
     if (localStorage.getItem("token")) {
       setToken(localStorage.getItem("token"));
@@ -125,6 +127,19 @@ export const HeaderWrap = () => {
     </>
   );
 
+  const menuUser = () => {
+    return (
+      <Menu>
+        <Menu.Item onClick={() => {
+                setVisible(false);
+                history.push("/v/danh-sach-giao-dich");
+              }}>
+            Danh sách giao dịch
+        </Menu.Item>
+      </Menu>
+    );
+  };
+
   return (
     <div className="container-header">
       <div className="logo">
@@ -157,7 +172,8 @@ export const HeaderWrap = () => {
             ></i>{" "}
             Tư vấn
           </span>
-          <span
+          <a
+            href="tel:0123 456 787"
             style={{
               color: "#BE9355",
               fontWeight: "bold",
@@ -166,7 +182,7 @@ export const HeaderWrap = () => {
           >
             <i style={{ color: "#011769" }} className="fad fa-phone-volume"></i>{" "}
             0123 456 787
-          </span>
+          </a>
         </div>
         <div className="div-row-space"></div>
         <div className="bottom-header">
@@ -256,7 +272,15 @@ export const HeaderWrap = () => {
             {token && (
               <div>
                 <span className="name-user">
-                  {user ? user : <i className="fas fa-spinner fa-pulse"></i>}
+                  <Dropdown overlay={menuUser}>
+                    <span>
+                      {user ? (
+                        user
+                      ) : (
+                        <i className="fas fa-spinner fa-pulse"></i>
+                      )}
+                    </span>
+                  </Dropdown>
                 </span>
                 <Tooltip placement="bottom" title={"Logout"}>
                   <span
@@ -297,7 +321,6 @@ export const HeaderWrap = () => {
         className="container-drawer"
       >
         <div className="wrap-contentdrawer">
-
           <Menu mode="inline">
             <Menu.Item key="chungcu">
               <NavLink

@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import ProjectsBeelandAPI from "services/APIBEELAND/GetProject";
 import { productsObj } from "services/models";
 import { useHistory } from "react-router";
+import { getCodeBody } from "services/helper";
 
 export const PopularItems = () => {
   const [listProducts, setListProducts] = useState<productsObj[]>();
@@ -18,9 +19,7 @@ export const PopularItems = () => {
   useEffect(() => {
     const tenCTDKVT = window.location.href.split(".");
     ProjectsBeelandAPI.getListProducts({
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       MaDA: 0,
       MaTN: 0,
       MaHuong: 0,

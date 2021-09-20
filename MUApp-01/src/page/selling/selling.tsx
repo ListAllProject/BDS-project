@@ -8,6 +8,7 @@ import { priceObj, productsObj, projectObj } from "../../services/models";
 import { Store } from "antd/lib/form/interface";
 import { useHistory } from "react-router";
 import { tenCTDKVT } from "services/api";
+import { getCodeBody } from "services/helper";
 const { Option } = Select;
 
 export const Selling = () => {
@@ -31,9 +32,7 @@ export const Selling = () => {
   });
 
   const defaultData = {
-    TenCTDKVT: tenCTDKVT[0].includes("https")
-      ? tenCTDKVT[0].replaceAll("https://", "")
-      : "beesky",
+    TenCTDKVT: getCodeBody(),
     MaDA: 0,
     MaTN: 0,
     MaHuong: 0,
@@ -48,9 +47,7 @@ export const Selling = () => {
 
   const fetchDatas = () => {
     ProjectsBeelandAPI.getListProducts({
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       MaDA: model.MaDA,
       MaTN: model.MaTN,
       MaHuong: model.MaHuong,

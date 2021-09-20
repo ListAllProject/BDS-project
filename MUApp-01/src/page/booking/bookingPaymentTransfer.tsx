@@ -8,6 +8,7 @@ import BookingAPI from "services/APIBEELAND/Booking";
 import { productsObj } from "services/models";
 import { flatMap } from "assets/fontawesome-pro-5.13.0-web/js/v4-shims";
 import { tenCTDKVT } from "services/api";
+import { getCodeBody } from "services/helper";
 const { forwardRef, useRef, useImperativeHandle } = React;
 const { Option } = Select;
 
@@ -60,9 +61,7 @@ export const BookingPaymentTransfer = forwardRef((props: props, ref) => {
         formData.append(
           "CompanyCode",
           `${
-            tenCTDKVT[0].includes("https")
-              ? tenCTDKVT[0].replaceAll("https://", "")
-              : "beesky"
+            getCodeBody()
           }`
         );
         const res = await BookingAPI.uploadImage(formData);
