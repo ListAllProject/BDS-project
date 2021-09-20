@@ -4,7 +4,7 @@ import FadingLoaderStading from "../../components/loadBlogStading/loadBlogStadin
 import BlogsAPI from "../../services/APIS/Blogs";
 import { customTime } from "../../services/helper";
 import { ResBlogs } from "../../services/models";
-import loadding from "../../assets/images/loadding.gif"
+import loadding from "../../assets/images/loadding.gif";
 import "./blogs.scss";
 
 export const Blog = () => {
@@ -81,54 +81,65 @@ export const Blog = () => {
                 }}
                 src={data?.list_blog[0]?.thumbnail || loadding}
 
-              // src={data?.list_blog[0]?.url}
+                // src={data?.list_blog[0]?.url}
               ></img>
             </span>
 
             <div className="tille-top1"> {data?.list_blog[0]?.title}</div>
 
             <div className="time">
-              <i className="fal fa-clock"></i> {customTime(data?.list_blog[0]?.created_at, "HH:mm DD/MM/YYYY")}
+              {data?.list_blog[0]?.created_at && (
+                <>
+                  <i className="fal fa-clock"></i>{" "}
+                  {customTime(data?.list_blog[0]?.created_at, "HH:mm DD/MM/YYYY")}
+                </>
+              )}
             </div>
           </div>
           <div className="top-right-content">
             <div style={{ fontSize: 24, fontWeight: 700 }}>Tin tức nổi bật</div>
-            {outstandingBlogs ? outstandingBlogs.list_blog.length !== 0 ? outstandingBlogs?.list_blog.map((item, index) => {
-              if (index !== 0) {
-                return (
-                  <div
-                    key={index}
-                    className="content-item"
-                    style={{ cursor: "pointer" }}
-                    onClick={() => history.push(`/tin-tuc/${item.url}`)}
-                  >
-                    <div>
-                      <img
-                        alt="image1"
-                        style={{
-                          width: 117,
-                        }}
-                        // src={item.url}
-                        src={item.thumbnail}
-                      ></img>
-                    </div>
-                    <div
-                      style={{
-                        marginLeft: 16,
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <span className="title-blog">{item.title}</span>
-                      <span className="time-blog">
-                        <i className="fal fa-clock"></i> {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
-                      </span>
-                    </div>
-                  </div>
-                );
-              }
-            }) : null
-              : <FadingLoaderStading />}
+            {outstandingBlogs ? (
+              outstandingBlogs.list_blog.length !== 0 ? (
+                outstandingBlogs?.list_blog.map((item, index) => {
+                  if (index !== 0) {
+                    return (
+                      <div
+                        key={index}
+                        className="content-item"
+                        style={{ cursor: "pointer" }}
+                        onClick={() => history.push(`/tin-tuc/${item.url}`)}
+                      >
+                        <div>
+                          <img
+                            alt="image1"
+                            style={{
+                              width: 117,
+                            }}
+                            // src={item.url}
+                            src={item.thumbnail}
+                          ></img>
+                        </div>
+                        <div
+                          style={{
+                            marginLeft: 16,
+                            display: "flex",
+                            flexDirection: "column",
+                          }}
+                        >
+                          <span className="title-blog">{item.title}</span>
+                          <span className="time-blog">
+                            <i className="fal fa-clock"></i>{" "}
+                            {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  }
+                })
+              ) : null
+            ) : (
+              <FadingLoaderStading />
+            )}
           </div>
         </div>
 
@@ -155,7 +166,7 @@ export const Blog = () => {
                       {item.title}
                     </div>
                     <div className="time-blog">
-                      <i className="fal fa-clock"></i>{" "}
+                      {/* <i className="fal fa-clock"></i>{" "} */}
                       {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
                     </div>
                     <div className="description">{item.description}</div>
@@ -166,7 +177,7 @@ export const Blog = () => {
           })}
         </div>
 
-        {data.total_page && data.page <= data.total_page && (
+        {data.total_page !== undefined && data.page <= data.total_page && (
           <div
             style={{ display: "flex", justifyContent: "center", marginTop: 40 }}
           >
