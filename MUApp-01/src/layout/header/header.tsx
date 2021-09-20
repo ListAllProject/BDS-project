@@ -274,20 +274,18 @@ export const HeaderWrap = () => {
             {token && (
               <div>
                 <span className="name-user">
-                  <span>
-                    {user ? (
-                      <Dropdown
-                        overlay={menuUser}
-                        trigger={["hover"]}
-                        placement="bottomCenter"
-                        arrow
-                      >
-                        {user}
-                      </Dropdown>
-                    ) : (
-                      <i className="fas fa-spinner fa-pulse"></i>
-                    )}
-                  </span>
+                  {user ? (
+                    <Dropdown
+                      overlay={menuUser}
+                      trigger={["hover"]}
+                      placement="bottomCenter"
+                      arrow
+                    >
+                      <span>{user}</span>
+                    </Dropdown>
+                  ) : (
+                    <i className="fas fa-spinner fa-pulse"></i>
+                  )}
                 </span>
                 <Tooltip placement="bottom" title={"Logout"}>
                   <span
