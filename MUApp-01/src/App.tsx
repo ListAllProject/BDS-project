@@ -97,7 +97,7 @@ function App() {
         <Route path="/register">
           <Register />
         </Route>
-        <Route path="/Account/ConfimForgotPassword">
+        <Route path="/confirm-password">
           <ConfirmPassword />
         </Route>
         <Route exact path="/gioi-thieu-du-an/:url/:id">

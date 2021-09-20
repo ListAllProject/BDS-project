@@ -16,7 +16,7 @@ export const ConfirmPassword = () => {
 
 
   const onFinish = (data: ConfirmPasswordRequest) => {
-    if (data.password != data.rePassword) {
+    if (data.password !== data.rePassword) {
       setErrorMessage("Mật khẩu không khớp, vui lòng nhập lại!");
       return;
     }
