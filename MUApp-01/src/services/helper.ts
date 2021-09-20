@@ -14,3 +14,13 @@ export const getHexColor = (number: number) => {
 export const formatMoney = (number: number) => {
   return new Intl.NumberFormat("vi-VN").format(number);
 }
+
+export const getCodeBody = () => {
+  const temp = window.location.host.split(".")[0]
+  if(temp.search("beeland") !== -1 || temp === "localhost:3001"){
+    return "beesky"
+  }
+  else {
+    return temp
+  }
+}

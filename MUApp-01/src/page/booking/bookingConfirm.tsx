@@ -64,7 +64,6 @@ export const BookingConfirm = forwardRef((props: props, ref) => {
         }
       })
       .catch((err) => {
-        console.log(err);
       })
       .finally(() => { });
   }, []);

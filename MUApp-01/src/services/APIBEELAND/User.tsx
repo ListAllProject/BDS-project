@@ -1,12 +1,11 @@
-import { API, APIBase, tenCTDKVT } from "../api";
+import { getCodeBody } from "services/helper";
+import { API, APIBase } from "../api";
+import { ConfirmPasswordRequest, FogotPasswordRequest, LoginRequest, RegisterRequest } from "../models";
 
-import { FogotPasswordRequest, LoginRequest, RegisterRequest, ConfirmPasswordRequest } from "../models";
 
 let UserAPI = {
   login(data: LoginRequest) {
-    data.tenCTDKVT = tenCTDKVT[0].includes("https")
-      ? tenCTDKVT[0].replaceAll("https://", "")
-      : "beesky";
+    data.tenCTDKVT = getCodeBody();
     return API().post(`/api/Login`, data);
   },
 
@@ -15,16 +14,12 @@ let UserAPI = {
   },
 
   register(data: RegisterRequest) {
-    data.tenCTDKVT = tenCTDKVT[0].includes("https")
-      ? tenCTDKVT[0].replaceAll("https://", "")
-      : "beesky";
+    data.tenCTDKVT = getCodeBody();
     return API().post(`/api/Register`, data);
   },
 
   fogotPassword(data: FogotPasswordRequest) {
-    data.tenCTDKVT = tenCTDKVT[0].includes("https")
-      ? tenCTDKVT[0].replaceAll("https://", "")
-      : "beesky";
+    data.tenCTDKVT = getCodeBody();
     return API().post(`/api/FogotPassword`, data);
   },
 

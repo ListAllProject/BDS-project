@@ -1,56 +1,45 @@
 import { BodyBooking } from "page/listTransfer/listTransfer";
+import { getCodeBody } from "services/helper";
 import { AddBookingRequest, AddKHRequest } from "services/models";
-import { API, APIIMGAGE, APIUpload, tenCTDKVT } from "../api";
+import { API, APIUpload } from "../api";
 
 let BookingAPI = {
   getVoucher(voucher: string) {
     return API().post(`/api/beeland/check-voucher`, {
-      tenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      tenCTDKVT: getCodeBody(),
       Voucher: voucher,
     });
   },
   getBanks() {
     return API().post(`api/beeland/banks`, {
-      tenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      tenCTDKVT: getCodeBody()
     });
   },
 
   getAddress() {
     return API().post(`/api/beeland/get-address`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
     });
   },
 
   searchKH(searchText: string) {
     console.log(searchText);
     return API().post(`/api/beeland/search-customer`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       inputSearch: searchText,
     });
   },
 
   addKH(data: AddKHRequest) {
     return API().post(`/api/beeland/add-customer`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       ...data,
     });
   },
 
   addBooking(data: AddBookingRequest) {
     return API().post(`/api/beeland/add-booking`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       ...data,
     });
   },
@@ -61,9 +50,7 @@ let BookingAPI = {
 
   addImageBooking(data: any) {
     return API().post(`/api/beeland/add-images-booking`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
       ...data,
     });
   },
@@ -78,16 +65,12 @@ let BookingAPI = {
   },
   getListStatus() {
     return API().post(`/api/beeland/status`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
     });
   },
   getListProject() {
     return API().post(`/api/beeland/get-project`, {
-      TenCTDKVT: tenCTDKVT[0].includes("https")
-        ? tenCTDKVT[0].replaceAll("https://", "")
-        : "beesky",
+      TenCTDKVT: getCodeBody(),
     });
   },
 };

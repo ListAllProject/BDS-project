@@ -1,5 +1,5 @@
-import { APIIMGAGE, API, tenCTDKVT } from "../api";
-import { BodyBooking } from "page/listTransfer/listTransfer";
+import { getCodeBody } from "services/helper";
+import { APIIMGAGE } from "../api";
 
 let ProjectsAPI = {
   //k biet api nen tam thoi ghi ten zị
@@ -29,29 +29,17 @@ let ProjectsAPI = {
     }
     return APIIMGAGE().get(
       `/web/project` +
-        `?${params}&company_code=${
-          tenCTDKVT[0].includes("https")
-            ? tenCTDKVT[0].replaceAll("https://", "")
-            : "beesky"
-        }`
+        `?${params}&company_code=${getCodeBody()}`
     );
   },
   getProjectBySlug(url: string) {
     return APIIMGAGE().get(
-      `/web/project/${url}?company_code=${
-        tenCTDKVT[0].includes("https")
-          ? tenCTDKVT[0].replaceAll("https://", "")
-          : "beesky"
-      }`
+      `/web/project/${url}?company_code=${getCodeBody()}`
     );
   },
   getProjectFiltersList() {
     return APIIMGAGE().get(
-      `/web/project/filters/list?company_code=${
-        tenCTDKVT[0].includes("https")
-          ? tenCTDKVT[0].replaceAll("https://", "")
-          : "beesky"
-      }`
+      `/web/project/filters/list?company_code=${getCodeBody()}`
     );
   },
 };

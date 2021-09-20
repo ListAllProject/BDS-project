@@ -39,10 +39,7 @@ export const Booking = () => {
           setProduct(res.data.data);
         }
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [maSP]);
+  }, []);
 
   const onFinishCheckVoucher = (data: EvoucherData) => {
     setIsCheckingVoucher(true);
