@@ -339,5 +339,5 @@ export interface Booking {
 
 export interface ConfirmPasswordRequest {
   password: string;
-  rePassword: string;
+  passwordRe: string;
 }

@@ -16,7 +16,7 @@ export const ConfirmPassword = () => {
 
 
   const onFinish = (data: ConfirmPasswordRequest) => {
-    if (data.password !== data.rePassword) {
+    if (data.password !== data.passwordRe) {
       setErrorMessage("Mật khẩu không khớp, vui lòng nhập lại!");
       return;
     }
@@ -70,7 +70,7 @@ export const ConfirmPassword = () => {
             </Form.Item>
 
             <Form.Item
-              name="rePassword"
+              name="passwordRe"
               rules={[{ required: true, message: 'Vui lòng nhập lại mật khẩu của bạn!' }]}>
               <Input
                 type="password"
