@@ -59,6 +59,13 @@ export default class CustomSlider extends Component<props, state> {
       settings,
     } = this.props;
     let sizeDisable = components.length - this.props.showNum;
+
+    let slidesToShow = 0;
+    if (this.props.showNum === 0) {
+      slidesToShow = 1;
+    } else {
+      slidesToShow = components.length > 4 ? 4 : components.length
+    }
     return (
       <div className="container-slider">
         <i
@@ -82,7 +89,7 @@ export default class CustomSlider extends Component<props, state> {
                 indexBox: next,
               });
             }}
-            {...{ ...this.setting, ...settings, slidesToShow: components.length > 4 ? 4 : components.length }}
+            {...{ ...this.setting, ...settings, slidesToShow: slidesToShow }}
             ref={(c) => (this.slider = c)}
           >
             {components}
