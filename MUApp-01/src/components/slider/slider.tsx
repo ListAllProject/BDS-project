@@ -82,12 +82,10 @@ export default class CustomSlider extends Component<props, state> {
                 indexBox: next,
               });
             }}
-            {...{ ...this.setting, ...settings }}
+            {...{ ...this.setting, ...settings, slidesToShow: components.length > 4 ? 4 : components.length }}
             ref={(c) => (this.slider = c)}
           >
-            {components?.map((e) => {
-              return e;
-            })}
+            {components}
           </Slider>
         </span>
         <i

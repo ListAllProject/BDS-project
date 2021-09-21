@@ -4,7 +4,7 @@ export const customTime = (
   time: Date | string | undefined,
   format: string = "DD/MM/YYYY HH:mm:ss"
 ) => {
-  return (time && moment.utc(time).local().format(format)) || "";
+  return (time && moment.utc(time).format(format)) || "";
 };
 
 export const getHexColor = (number: number) => {
@@ -17,7 +17,7 @@ export const formatMoney = (number: number) => {
 
 export const getCodeBody = () => {
   const temp = window.location.host.split(".")[0]
-  if(temp.search("beeland") !== -1 || temp === "localhost:3001"){
+  if(temp.search("beeland") !== -1 || temp === "localhost:3000"){
     return "beesky"
   }
   else {
