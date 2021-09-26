@@ -87,8 +87,8 @@ export const ListTransfer = () => {
     },
     {
       title: "Mã sản phẩm",
-      dataIndex: "MaSP",
-      key: "MaSP",
+      dataIndex: "KyHieu",
+      key: "KyHieu",
       width: 100,
       render: (val: any) => {
         return <span className="row-item1">{val}</span>;
@@ -149,9 +149,9 @@ export const ListTransfer = () => {
       title: "",
       dataIndex: "HĐ",
       key: "HĐ",
-      width: 50,
+      width: 150,
       render: (val: any, data: any) => {
-        return ( (data.MaTT === 1 || data.MaTT === 8) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1"><i className="far fa-money-check-alt"></i></a> )
+        return ( (data.ThanhToan === 0) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1" style={{background:"#cd9844", borderRadius:"5px", padding:"5px 8px", color:"#fff"}}><i className="far fa-money-check-alt"></i> Thanh toán</a> )
       },
     },
   ];
@@ -183,9 +183,10 @@ export const ListTransfer = () => {
     data.Limit = 10;
     data.Offset = offsetVal;
     data.MaTT = temp.status > 0 ? temp.status.toString() : getAllStatusId();
+    data.MaTT = `,${data.MaTT},`
     data.DuAn = temp.project > 0 ? temp.project.toString() : getAllDuAnId();
-    data.inputSearch = temp.textSearch
-
+    data.DuAn = `,${data.DuAn},`
+    data.inputSearch = temp.textSearch || ""
     getListBooking(data);
   };
 
@@ -241,7 +242,6 @@ export const ListTransfer = () => {
       address: `London Park no. ${i}`,
     });
   }
-
   return (
     <MyContext.Consumer>
       {(user) => {
