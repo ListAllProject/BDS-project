@@ -151,7 +151,7 @@ export const ListTransfer = () => {
       key: "HĐ",
       width: 50,
       render: (val: any, data: any) => {
-        return ( data.MaTT === 6 && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1"><i className="far fa-money-check-alt"></i></a> )
+        return ( (data.MaTT === 1 || data.MaTT === 8) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1"><i className="far fa-money-check-alt"></i></a> )
       },
     },
   ];
@@ -178,12 +178,13 @@ export const ListTransfer = () => {
       Limit: 10,
     };
     const temp = form.getFieldsValue();
-    data.TuNgay = temp.Date1 || "2000-01-01";
-    data.DenNgay = temp.Date2 || "2022-01-26";
+    data.TuNgay = customTime(temp.Date1, "YYYY-MM-DD") || "2000-01-01";
+    data.DenNgay = customTime(temp.Date2, "YYYY-MM-DD") || "2022-01-26";
     data.Limit = 10;
     data.Offset = offsetVal;
     data.MaTT = temp.status > 0 ? temp.status.toString() : getAllStatusId();
     data.DuAn = temp.project > 0 ? temp.project.toString() : getAllDuAnId();
+    data.inputSearch = temp.textSearch
 
     getListBooking(data);
   };
