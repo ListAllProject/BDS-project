@@ -29,7 +29,7 @@ let ProjectsAPI = {
     }
     return APIIMGAGE().get(
       `/web/project` +
-        `?${params}&company_code=${getCodeBody()}`
+        `?${params}company_code=${getCodeBody()}`
     );
   },
   getProjectBySlug(url: string) {
