@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import bgrFooter from "../../assets/images/Group44.png";
 import InfoAPI from "../../services/APIS/Info";
 import "./footer.scss";
+import ReactHtmlParser from "react-html-parser";
 
 export const FooterWrap = () => {
   const [info, setInfo] = useState<any>({});
@@ -110,12 +111,7 @@ export const FooterWrap = () => {
         <div className="div-row-space" />
         <div className="bottom-content">
           <div className="text-end">
-            Bản quyền thuộc Công ty TNHH công nghệ và thương mại Beesky Việt
-            Nam.
-          </div>
-          <div className="text-end">
-            MST: 0106909814 ,Cấp ngày :22/07/2015 - Nơi cấp: Sở Kế hoạch và đầu
-            tư Thành Phố Hà Nội
+            {ReactHtmlParser(info.copywrite)}
           </div>
         </div>
       </div>
