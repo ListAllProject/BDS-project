@@ -1,20 +1,20 @@
+import { Dropdown, Spin, Table } from "antd";
 import { Component, useEffect, useRef, useState } from "react";
-import "./tablePrice.scss";
-import { Table, Spin, Dropdown, Button } from "antd";
-import iconHome from "../../assets/images/icon-home.png";
-import bgrTable from "../../assets/images/bgr-table-price.png";
 import {
-  CircularProgressbarWithChildren,
+  CircularProgressbarWithChildren
 } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import CustomSlider from "../../components/slider/slider";
+import { useHistory } from "react-router-dom";
+import bgrTable from "../../assets/images/bgr-table-price.png";
+import iconHome from "../../assets/images/icon-home.png";
 import { Seperate } from "../../components/seperate/seperate";
-import { Block, DetailFloor, DetailMaTT, productsObj, projectObj } from "../../services/models";
+import CustomSlider from "../../components/slider/slider";
 import ProjectsBeelandAPI from "../../services/APIBEELAND/GetProject";
 import ProductBeelandAPI from "../../services/APIBEELAND/Product";
-import { getHexColor } from "../../services/helper";
-import { useHistory } from "react-router-dom";
 import * as helper from "../../services/helper";
+import { getHexColor } from "../../services/helper";
+import { Block, DetailFloor, DetailMaTT, projectObj } from "../../services/models";
+import "./tablePrice.scss";
 
 const settings = {
   infinite: true,
@@ -336,8 +336,6 @@ export const TablePrice = () => {
 
   // Generate data cell
   const tableData = [];
-  // console.log(selectedBlock, 787)
-  console.log(selectedBlock)
   if (selectedBlock) {
     for (let i = 0; i < selectedBlock.floor.length; i++) {
       const rowData: any = {
@@ -590,7 +588,7 @@ class ProductDetailModel extends Component<ProductDetailModelProps, state> {
               <i className="fal fa-clone"></i>
             </div>
             {this.props.product.DTThongThuy}m2
-            </div>
+          </div>
           <div className="model-product-detail-body-seperate" />
           <div className="product-detail-row">
             <div className="icon-container">

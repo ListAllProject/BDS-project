@@ -6,6 +6,7 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { DetailProject, BlogObj } from "../../services/models";
 import ProjectsAPI from "../../services/APIS/Projects";
 import BlogsAPI from "../../services/APIS/Blogs";
+import InfoAPI from "../../services/APIS/Info";
 import SubMenu from "antd/lib/menu/SubMenu";
 import { bds } from "services/store";
 import UserAPI from "services/APIBEELAND/User";
@@ -16,12 +17,15 @@ export const HeaderWrap = () => {
   const [visilbe, setVisible] = useState(false);
   const [projects, setProjects] = useState<DetailProject[]>([]);
   const [catblogs, setCatBlogs] = useState<any[]>([]);
+  const [info, setInfo] = useState<any>({});
+
   const [token, setToken] = useState<string | null>("");
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
     fetchData();
     fetchDataBlog();
+    fetchDataHeader()
   }, []);
 
   useEffect(() => {
@@ -35,11 +39,20 @@ export const HeaderWrap = () => {
     }
   }, []);
 
+
   const fetchDataBlog = () => {
     BlogsAPI.getCatBlog()
       .then((res) => {
         let result = res.data.data;
         setCatBlogs(result);
+      })
+      .catch((err) => console.log(err));
+  };
+  const fetchDataHeader = () => {
+    InfoAPI.getList()
+      .then((res) => {
+        let result = res.data.data;
+        setInfo(result.list_company[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -146,7 +159,7 @@ export const HeaderWrap = () => {
     <div className="container-header">
       <div className="logo">
         <Link to="/">
-          <img alt="image3" src={logo} />
+          <img alt="image3" src={info.logo} />
         </Link>
       </div>
       <div className="wrap-right">
@@ -175,7 +188,7 @@ export const HeaderWrap = () => {
             Tư vấn
           </span>
           <a
-            href="tel:0123 456 787"
+            href={`tel:${info.phone}`}
             style={{
               color: "#BE9355",
               fontWeight: "bold",
@@ -183,7 +196,7 @@ export const HeaderWrap = () => {
             }}
           >
             <i style={{ color: "#011769" }} className="fad fa-phone-volume"></i>{" "}
-            0123 456 787
+            {info.phone}
           </a>
         </div>
         <div className="div-row-space"></div>
@@ -314,7 +327,7 @@ export const HeaderWrap = () => {
         title={
           <div>
             <Link to="/">
-              <img alt="image2" src={logo} />
+              <img alt="image2" src={info.logo} />
             </Link>
           </div>
         }

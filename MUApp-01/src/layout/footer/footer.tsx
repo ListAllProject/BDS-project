@@ -1,8 +1,25 @@
 import { Input } from "antd";
+import { useEffect, useState } from "react";
 import bgrFooter from "../../assets/images/Group44.png";
+import InfoAPI from "../../services/APIS/Info";
 import "./footer.scss";
 
 export const FooterWrap = () => {
+  const [info, setInfo] = useState<any>({});
+
+
+  useEffect(() => {
+    fetchDataHeader()
+  }, []);
+
+  const fetchDataHeader = () => {
+    InfoAPI.getList()
+      .then((res) => {
+        let result = res.data.data;
+        setInfo(result.list_company[0]);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div
       className="container-footer"
@@ -18,19 +35,10 @@ export const FooterWrap = () => {
       <div className="wrap-footer-content">
         <div className="top-content">
           <span className="title">
-            BEESKY ONLINE – SÀN GIAO DỊCH TMĐT BẤT ĐỘNG SẢN HÀNG ĐẦU VIỆT NAM
+            {info?.intro_footer?.title}
           </span>
           <span className="description">
-            Beesky Online được ra đời và phát triển với mong muốn mang đến một
-            dịch vụ đẳng cấp, thuận tiện và tiết kiệm hơn cho Khách hàng khi mua
-            BĐS. Tại Beesky Online, Quý khách có thể dễ dàng tìm kiếm BĐS phù
-            hợp với nhu cầu. Với tiêu chí Chính Xác, Minh Bạch, Đa Dạng, Tiết
-            Kiệm và Đầy đủ Ưu Đãi, chúng tôi luôn cung cấp tới khách hàng thông
-            tin, chính sách bán hàng đầy đủ, kịp thời, rõ ràng nhất, cùng với
-            phương thức thanh toán an toàn, tiện lợi nhất. Giờ đây, khách hàng
-            có thể mua BĐS ở bất cứ đâu, bất cứ lúc nào, với chỉ vài thao tác
-            trên máy tính hoặc điện thoại di động. Hãy cùng chúng tôi trải
-            nghiệm một nền tảng số hoàn toàn mới!
+            {info?.intro_footer?.sub_title}
           </span>
         </div>
         <div className="div-row-space" />
@@ -43,59 +51,49 @@ export const FooterWrap = () => {
                 style={{ marginRight: 8 }}
                 className="fas fa-map-marker-alt"
               ></i>
-              Trụ sở: Số 7, Đại Lộ Thăng Long, Phường Trung Hoà, Quận Cầu
-              Giấy.HN
+              Trụ sở: {info.locate}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-phone-alt"></i>
-              01234 456 566
+              {info.phone}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-fax"></i>
-              Fax: 0913 994 696
+              Fax: {info.fax}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-envelope"></i>
-              Email: info@beesky.com.vn
+              Email: {info.email}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-globe"></i>
-              Website: http://beesky.vn/
+              Website: {info.website}
             </span>
           </div>
           <div className="ft-content-1">
-            <span className="title">VĂN PHÒNG GIAO DỊCH HỒ CHÍ MINH</span>
+            <span className="title">Truy cập ngay</span>
             <div className="f-space-row"></div>
             <span className="item-infor ">
-              <i
-                style={{ marginRight: 8 }}
-                className="fas fa-map-marker-alt"
-              ></i>
-              Trụ sở: Tầng 6, 102 Nguyễn Xí, P26, Quận Bình Thạnh.HCM
+              <a href="/du-an" >Trang dự án</a>
             </span>
             <span className="item-infor ">
-              <i style={{ marginRight: 8 }} className="fas fa-phone-alt"></i>
-              Điện thoại: 0287 10 60 686
+              <a href="/chung-cu" >Trang đang bán</a>
             </span>
             <span className="item-infor ">
-              <i style={{ marginRight: 8 }} className="fas fa-fax"></i>
-              Fax: 0913 994 696
+              <a href="/danh-sach-tin-tuc" >Trang tin tức</a>
             </span>
             <span className="item-infor ">
-              <i style={{ marginRight: 8 }} className="fas fa-envelope"></i>
-              Email: info@beesky.com.vn
+
+              <a href="/bang-gia-truc-tuyen" >Bảng giá trực tuyến</a>
             </span>
-            <span className="item-infor ">
-              <i style={{ marginRight: 8 }} className="fas fa-globe"></i>
-              Website: http://beesky.vn/
-            </span>
+
           </div>
           <div className="ft-content-1">
             <span className="title">ĐĂNG KÝ NHẬN BẢNG TIN</span>
             <div className="f-space-row"></div>
             <span style={{ color: "#AAAAAA" }}>
-              Hãy đăng ký để nhận những thông tin mới nhất về các sản phẩm dịch
-              của Beesky Việt Nam.
+              {`Hãy đăng ký để nhận những thông tin mới nhất về các sản phẩm dịch
+              của ${info.company_name}.`}
             </span>
             <Input
               style={{ marginTop: 20, backgroundColor: "#383838" }}

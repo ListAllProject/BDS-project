@@ -1,3 +1,4 @@
+import { UserOutlined } from "@ant-design/icons";
 import {
   Avatar,
   Button,
@@ -7,21 +8,16 @@ import {
   Input,
   Pagination,
   Row,
-  Select,
-  Slider,
-  Table,
+  Select, Table
 } from "antd";
-import "./listTransfer.scss";
-import { UserOutlined } from "@ant-design/icons";
-import form from "antd/lib/form";
-import { useEffect, useState } from "react";
-import MyContext from "components/myContext";
-import ProjectsAPI from "services/APIBEELAND/Booking";
 import Nodata from "assets/images/Nodata.png";
-
-import moment from "moment";
-import { Booking } from "services/models";
+import MyContext from "components/myContext";
+import { useEffect, useState } from "react";
+import ProjectsAPI from "services/APIBEELAND/Booking";
 import { customTime } from "services/helper";
+import { Booking } from "services/models";
+import "./listTransfer.scss";
+
 
 const { Option } = Select;
 const dateFormat = "YYYY/MM/DD";
@@ -59,7 +55,7 @@ export const ListTransfer = () => {
   const [offset, setOffset] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const onFinish = () => {};
+  const onFinish = () => { };
   const columns = [
     {
       title: "Ngày ký",
@@ -151,7 +147,7 @@ export const ListTransfer = () => {
       key: "HĐ",
       width: 150,
       render: (val: any, data: any) => {
-        return ( (data.ThanhToan === 0) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1" style={{background:"#cd9844", borderRadius:"5px", padding:"5px 8px", color:"#fff"}}><i className="far fa-money-check-alt"></i> Thanh toán</a> )
+        return ((data.ThanhToan === 0) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1" style={{ background: "#cd9844", borderRadius: "5px", padding: "5px 8px", color: "#fff" }}><i className="far fa-money-check-alt"></i> Thanh toán</a>)
       },
     },
   ];
@@ -229,7 +225,7 @@ export const ListTransfer = () => {
           setBookings(rs.data.data);
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .then(() => setLoading(false));
   };
 

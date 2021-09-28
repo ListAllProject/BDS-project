@@ -1,25 +1,40 @@
-import {   Row, Col,  Button } from "antd";
+import { Button, Col, Row } from "antd";
+import { useEffect, useState } from "react";
+import gift from "../../assets/images/gift.png";
 import info from "../../assets/images/info.png";
 import time_saving from "../../assets/images/time_saving.png";
-import gift from "../../assets/images/gift.png";
-import "./home.scss";
 import { Seperate } from "../../components/seperate/seperate";
+import InfoAPI from "../../services/APIS/Info";
+import "./home.scss";
+import ReactHtmlParser from "react-html-parser";
 
 export const AboutUs = () => {
+  const [infor, setInfo] = useState<any>({});
+
+
+  useEffect(() => {
+    fetchDataHeader()
+  }, []);
+
+  const fetchDataHeader = () => {
+    InfoAPI.getList()
+      .then((res) => {
+        let result = res.data.data;
+        setInfo(result.list_company[0]);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <div className="homepage-container">
-        <h1>Về BeeSky Online</h1>
+        <h1>{infor?.intro_main?.title}</h1>
         <Seperate
           widthPar={350}
           widthChil={80}
           style={{ marginBottom: "3%" }}
         />
         <p className="intro-line">
-          Beesky Online - Sàn giao dịch Thương mại điện tử Bất động sản hàng đầu
-          Việt.
-          <br />
-          MUA NHÀ TỪ XA, ƯU ĐÃI THẢ GA
+          {ReactHtmlParser(infor?.intro_main?.sub_title)}
         </p>
 
         <div className="project-container">
@@ -41,7 +56,7 @@ export const AboutUs = () => {
               <Col span={8} key={item.link}>
                 <img alt="img"
                   src={item.link}
-                  //   style={{ width: "50px", height: "60px" }}
+                //   style={{ width: "50px", height: "60px" }}
                 />
                 <p className="about_us_details">{item.name}</p>
               </Col>

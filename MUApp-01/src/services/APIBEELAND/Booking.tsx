@@ -23,7 +23,6 @@ let BookingAPI = {
   },
 
   searchKH(searchText: string) {
-    console.log(searchText);
     return API().post(`/api/beeland/search-customer`, {
       TenCTDKVT: getCodeBody(),
       inputSearch: searchText,

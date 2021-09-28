@@ -14,12 +14,12 @@ const { Paragraph } = Typography;
 
 export const BestSell: FC<{
   filterResult:
-    | {
-        city: string;
-        district: string;
-        investor: string;
-      }
-    | undefined;
+  | {
+    city: string;
+    district: string;
+    investor: string;
+  }
+  | undefined;
 }> = ({ filterResult }) => {
   // const [form] = Form.useForm();
   const [data, setData] = useState<Array<DetailProject>>();
@@ -53,7 +53,7 @@ export const BestSell: FC<{
   return (
     <>
       <div className="homepage-container">
-        <h1>Các dự án đang bán tại BeeSky</h1>
+        <h1>Các dự án đang mở bán</h1>
         <Seperate
           widthPar={350}
           widthChil={80}
