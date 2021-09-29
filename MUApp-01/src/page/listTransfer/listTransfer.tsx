@@ -53,6 +53,7 @@ export const ListTransfer = () => {
   const [statusList, setStatusList] = useState<Status[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
   const [offset, setOffset] = useState<number>(1);
+  const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
   const onFinish = () => { };
@@ -60,7 +61,7 @@ export const ListTransfer = () => {
     {
       title: "Ngày ký",
       width: 130,
-      dataIndex: "NgayKy",
+      dataIndex: "ngayKy",
       key: "NgayKy",
       fixed: "left",
       render: (val: any) => {
@@ -74,7 +75,7 @@ export const ListTransfer = () => {
     {
       title: "Tên dự án",
       width: 130,
-      dataIndex: "TenDA",
+      dataIndex: "tenDA",
       key: "TenDA",
       fixed: "left",
       render: (val: any) => {
@@ -83,7 +84,7 @@ export const ListTransfer = () => {
     },
     {
       title: "Mã sản phẩm",
-      dataIndex: "KyHieu",
+      dataIndex: "kyHieu",
       key: "KyHieu",
       width: 100,
       render: (val: any) => {
@@ -92,7 +93,7 @@ export const ListTransfer = () => {
     },
     {
       title: "Khách hàng",
-      dataIndex: "TenKH",
+      dataIndex: "tenKH",
       key: "TenKH",
       width: 100,
       render: (val: any) => {
@@ -101,7 +102,7 @@ export const ListTransfer = () => {
     },
     {
       title: "Giá trị HĐ",
-      dataIndex: "TongGiTriHD",
+      dataIndex: "tongGiTriHD",
       key: "TongGiTriHD",
       width: 100,
       render: (val: any) => {
@@ -118,7 +119,7 @@ export const ListTransfer = () => {
     },
     {
       title: "Giá trị cọc",
-      dataIndex: "SoTienGC",
+      dataIndex: "soTienGC",
       key: "SoTienGC",
       width: 100,
       render: (val: any) => {
@@ -134,7 +135,7 @@ export const ListTransfer = () => {
     },
     {
       title: "Trạng thái",
-      dataIndex: "TenTT",
+      dataIndex: "tenTT",
       key: "TenTT",
       width: 130,
       render: (val: any) => {
@@ -166,18 +167,19 @@ export const ListTransfer = () => {
     }
   };
 
-  const onSearch = (offsetVal: number = offset) => {
+  const onSearch = (offsetVal: number = 1) => {
     const data: BodyBooking = {
       TuNgay: "2000-01-01",
       DenNgay: "2022-01-26",
       Offset: 1,
       Limit: 10,
     };
+    setOffset(offsetVal)
     const temp = form.getFieldsValue();
     data.TuNgay = customTime(temp.Date1, "YYYY-MM-DD") || "2000-01-01";
     data.DenNgay = customTime(temp.Date2, "YYYY-MM-DD") || "2022-01-26";
     data.Limit = 10;
-    data.Offset = offsetVal;
+    data.Offset = offsetVal || 1;
     data.MaTT = temp.status > 0 ? temp.status.toString() : getAllStatusId();
     data.MaTT = `,${data.MaTT},`
     data.DuAn = temp.project > 0 ? temp.project.toString() : getAllDuAnId();
@@ -222,22 +224,15 @@ export const ListTransfer = () => {
     ProjectsAPI.getListBooking(data)
       .then((rs) => {
         if (rs.status === 200) {
-          setBookings(rs.data.data);
+          setTotal(rs.data.totalRows)
+          setBookings(rs.data.daTa);
         }
       })
       .catch(() => { })
       .then(() => setLoading(false));
   };
 
-  const data: any[] | undefined = [];
-  for (let i = 0; i < 5; i++) {
-    data.push({
-      key: i,
-      name: `Edrward ${i}`,
-      age: 32,
-      address: `London Park no. ${i}`,
-    });
-  }
+
   return (
     <MyContext.Consumer>
       {(user) => {
@@ -386,7 +381,7 @@ export const ListTransfer = () => {
                       </Form>
                     </div>
                     <div className="wrap-table" style={{ marginTop: 40 }}>
-                      {bookings && bookings.length > 0 ? (
+                      {loading || (bookings && bookings.length > 0) ? (
                         <Table
                           loading={loading}
                           columns={columns as any}
@@ -412,11 +407,11 @@ export const ListTransfer = () => {
                         <Pagination
                           current={offset}
                           onChange={(val) => {
-                            onSearch();
+                            onSearch(val);
                             setOffset(val);
                           }}
-                          pageSize={4}
-                          total={bookings?.length || 0}
+                          pageSize={10}
+                          total={total || 0}
                         />
                       </div>
                     </div>

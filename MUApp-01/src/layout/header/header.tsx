@@ -159,7 +159,7 @@ export const HeaderWrap = () => {
     <div className="container-header">
       <div className="logo">
         <Link to="/">
-          <img alt="image3" src={info.logo} />
+          <img width="40" alt="image3" src={info.logo} />
         </Link>
       </div>
       <div className="wrap-right">
@@ -327,7 +327,7 @@ export const HeaderWrap = () => {
         title={
           <div>
             <Link to="/">
-              <img alt="image2" src={info.logo} />
+              <img alt="image2" width="40" src={info.logo} />
             </Link>
           </div>
         }
