@@ -1,4 +1,6 @@
 import { APIIMGAGE as API } from "../api";
+import { getCodeBody } from "services/helper";
+
 
 let HomeAPI = {
   //k biet api nen tam thoi ghi ten zị
@@ -11,7 +13,7 @@ let HomeAPI = {
     if (limit) {
       params = params + `limit=${limit}&`;
     }
-    return API().get(`/web/banner?${params}type=home`);
+    return API().get(`/web/banner?${params}type=home&company_code=${getCodeBody()}`);
   },
   // getProvince() {
   //   return API().get(`/api/Province`);

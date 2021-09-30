@@ -159,7 +159,7 @@ export const HeaderWrap = () => {
     <div className="container-header">
       <div className="logo">
         <Link to="/">
-          <img width="40" alt="image3" src={info.logo} />
+          <img width="40" style={{maxWidth:"70px"}} alt="image" src={info.logo} />
         </Link>
       </div>
       <div className="wrap-right">

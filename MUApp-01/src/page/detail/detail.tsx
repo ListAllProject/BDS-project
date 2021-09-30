@@ -90,7 +90,7 @@ export const Detail = () => {
     <div style={{ marginBottom: 20 }} className="wrap-detail-product-content">
       <div className="content">
         {/* Title */}
-        <div className="title">CHUNG CƯ</div>
+        <div className="title">SẢN PHẨM</div>
         <div className="title-line-break">
           <div className="title-middle-line-break"></div>
         </div>
@@ -167,7 +167,7 @@ export const Detail = () => {
             <div
               style={{ fontSize: "16px", fontWeight: 700, marginTop: "16px" }}
             >
-              {`Căn hộ ${product.KyHieu} - ${product.TenKhu}`}
+              {`${product.KyHieu} - ${product.TenKhu}`}
             </div>
 
             <div style={{ marginTop: "16px" }}>
@@ -223,7 +223,7 @@ export const Detail = () => {
             </div>
 
             <div style={{ marginTop: "16px", marginBottom: "0px" }}>
-              Đơn giá thủy thông
+              Đơn giá gồm VAT 
               <i className="fas fa-info-circle clickable"></i>
               <span style={{ marginLeft: "5px", fontWeight: 700 }}>
                 {new Intl.NumberFormat("vi-VN").format(product.DonGiaThongThuy)}
@@ -233,9 +233,9 @@ export const Detail = () => {
               </span>
             </div>
 
-            <div className="clickable" style={{ marginTop: "16px" }}>
+            {/* <div className="clickable" style={{ marginTop: "16px" }}>
               Tôi muốn được tư vấn về căn hộ
-            </div>
+            </div> */}
             <div className="action">
               {product.MuaNgay === 0 ?
                 <div
@@ -252,12 +252,12 @@ export const Detail = () => {
                  <i className="far fa-check-circle" style={{fontSize: '24px', marginRight: '5px'}}></i> ĐÃ BOOK
                 </div> :
                 <ButtonCustom
-                  style={{ width: "44.5%" }}
+                  style={{ width: "44.5%", marginTop: 20, }}
                   text="Mua ngay"
                   onClick={() => onClickBuyNow()}
                 />
               }
-              <ButtonCustom
+              {/* <ButtonCustom
                 style={{
                   background: "unset",
                   width: "44.5%",
@@ -267,7 +267,7 @@ export const Detail = () => {
                 }}
                 text="Tính thử giá"
                 onClick={() => null}
-              />
+              /> */}
             </div>
             {/* <input
                 type="button"
@@ -280,9 +280,9 @@ export const Detail = () => {
                 className="calculate-price-button"
                 value="Tính thử giá"
               /> */}
-            <div className="clickable" style={{ marginTop: "16px" }}>
+            {/* <div className="clickable" style={{ marginTop: "16px" }}>
               Chi tiết chính sách bán hàng
-            </div>
+            </div> */}
           </span>
         </div>
 

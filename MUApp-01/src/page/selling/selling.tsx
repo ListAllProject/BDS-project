@@ -168,7 +168,7 @@ export const Selling = () => {
                 <Form.Item name="MaTN">
                   <Select
                     style={{ width: "100%" }}
-                    placeholder="Chọn tòa"
+                    placeholder="Chọn khu"
                     onChange={onChangTN}
                   >
                     {listBuilding?.map((item: any) => (

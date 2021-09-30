@@ -208,7 +208,6 @@ export const TablePrice = () => {
       )
     }
   })
-
   // Generate 
   const blockListComponent: JSX.Element[] = [];
   for (let i = 0; i < listBlocks.length; i++) {
@@ -339,7 +338,7 @@ export const TablePrice = () => {
   if (selectedBlock) {
     for (let i = 0; i < selectedBlock.floor.length; i++) {
       const rowData: any = {
-        title: `Tầng ${selectedBlock.floor[i].tenTang} còn 1 căn`,
+        title: `${selectedBlock.floor[i].tenTang} còn 1 căn`,
         key: `${selectedBlock.floor[i].tenTang}`,
         index: i,
       };
@@ -565,7 +564,7 @@ class ProductDetailModel extends Component<ProductDetailModelProps, state> {
               <img width="32px" height="32px" style={{ marginRight: '10px' }} src={this.props.product.icon} alt="" />
             </div>
             <div>
-              <div>Căn hộ</div>
+              <div>Mã sản phẩm</div>
               <div className="model-product-detail-header-sign-value">{this.props.product.KyHieu}</div>
             </div>
           </div>

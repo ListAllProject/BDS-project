@@ -232,7 +232,6 @@ export const ListTransfer = () => {
       .then(() => setLoading(false));
   };
 
-
   return (
     <MyContext.Consumer>
       {(user) => {

@@ -108,7 +108,7 @@ export const Register = (props: any) => {
             <div className="footer">
               <div className="note">
                 Các thông tin để đăng ký tài khoản trên đây của Quý khách sẽ được
-                sử dụng trong suốt quá trình giao dịch BĐS tại Beesky Online, vui
+                sử dụng trong suốt quá trình giao dịch BĐS, vui
                 lòng nhập đầy đủ và chính xác.
             </div>
               <div className="register-error-message">
