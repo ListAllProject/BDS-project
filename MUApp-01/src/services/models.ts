@@ -187,6 +187,8 @@ export interface Floor {
   maTang: number;
   tenTang: string;
   detailFloor: DetailFloor[];
+  soLuongCon?: number
+
 }
 
 export interface DetailFloor {
