@@ -148,7 +148,8 @@ export const ListTransfer = () => {
       key: "HĐ",
       width: 150,
       render: (val: any, data: any) => {
-        return ((data.ThanhToan === 0) && <a href={`/v/booking/${data.MaSP}/thanh-toan-chuyen-khoan/${data.MaPGC}`} className="row-item1" style={{ background: "#cd9844", borderRadius: "5px", padding: "5px 8px", color: "#fff" }}><i className="far fa-money-check-alt"></i> Thanh toán</a>)
+        console.log(data)
+        return ((data.thanhToan === 0) && <a href={`/v/booking/${data.maSP}/thanh-toan-chuyen-khoan/${data.maPGC}`} className="row-item1" style={{ background: "#cd9844", borderRadius: "5px", padding: "5px 8px", color: "#fff" }}><i className="far fa-money-check-alt"></i> Thanh toán</a>)
       },
     },
   ];
@@ -202,7 +203,7 @@ export const ListTransfer = () => {
     getStatus();
     getProjects();
   }, []);
-
+// console.log(1, bookings)
   const getProjects = () => {
     ProjectsAPI.getListProject().then((rs) => {
       if (rs.status === 200) {

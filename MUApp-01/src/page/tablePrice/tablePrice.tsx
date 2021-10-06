@@ -338,7 +338,7 @@ export const TablePrice = () => {
   if (selectedBlock) {
     for (let i = 0; i < selectedBlock.floor.length; i++) {
       const rowData: any = {
-        title: `${selectedBlock.floor[i].tenTang} còn 1 căn`,
+        title: `${selectedBlock.floor[i].tenTang} còn ${selectedBlock.floor[i].soLuongCon} căn`,
         key: `${selectedBlock.floor[i].tenTang}`,
         index: i,
       };

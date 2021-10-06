@@ -366,7 +366,7 @@ export const Selling = () => {
                   >
                     <ProductItem
                       img_url={item.HinhAnh}
-                      product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
+                      product_name={`${item.KyHieu}`}
                       product_kind={item.TenDA}
                       bedrooms={item.SoPhongNgu}
                       square_meters={item.DTThongThuy}

@@ -38,7 +38,6 @@ export const PopularItems = () => {
       setLoading(false);
     });
   }, []);
-
   return (
     <>
       <div className="homepage-container">
@@ -62,7 +61,7 @@ export const PopularItems = () => {
                   >
                     <ProductItem
                       img_url={item.HinhAnh}
-                      product_name={`Căn hộ ${item.KyHieu} - ${item.TenKhu}`}
+                      product_name={`${item.KyHieu}`}
                       product_kind={item.TenDA}
                       bedrooms={item.SoPhongNgu}
                       square_meters={item.DTThongThuy}
