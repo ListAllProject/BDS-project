@@ -19,7 +19,8 @@ export const News = () => {
 
   useEffect(() => {
     BlogsAPI.getBlogBySlug(url).then((res) => {
-      setNewsContent(res.data.data);
+      console.log(res)
+      setNewsContent(res.data.data[0]);
     });
   }, [url]);
 
@@ -42,20 +43,20 @@ export const News = () => {
       <Row>
         <Col span={20} className="main-content">
           <img
-            alt={newsContent?.thumbnail}
+            alt={newsContent?.imgIcon}
             className="img-news"
-            src={newsContent?.thumbnail}
+            src={newsContent?.imgIcon}
           />
           <div className="content">
-            <h2 className="news-title">{newsContent?.title}</h2>
+            <h2 className="news-title">{newsContent?.TieuDe}</h2>
             <p className="news-datetime">
               <i className="far fa-clock"></i>{" "}
-              {customTime(newsContent?.created_at, "HH:mm DD/MM/YYYY")}
+              {customTime(newsContent?.NgayNhap, "HH:mm DD/MM/YYYY")}
             </p>
             <div
               className="long-content"
               dangerouslySetInnerHTML={{
-                __html: newsContent?.content_detail as string,
+                __html: newsContent?.NoiDung as string,
               }}
             />
           </div>

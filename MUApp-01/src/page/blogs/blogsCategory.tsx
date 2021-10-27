@@ -3,6 +3,8 @@ import { useHistory, useParams } from "react-router-dom";
 import BlogsAPI from "../../services/APIS/Blogs";
 import { customTime } from "../../services/helper";
 import { ResBlogs } from "../../services/models";
+import ReactHtmlParser from "react-html-parser";
+
 import "./blogs.scss";
 type newsParams = {
   url: string;
@@ -32,14 +34,14 @@ export const BlogCategory = () => {
     setLoading(false);
     BlogsAPI.getListBySlug(d)
       .then((res) => {
-        let respon = { ...res.data.data };
+        let respon = res.data.data;
         let dataTemp = d;
 
         dataTemp.page += 1;
         dataTemp.count = respon.count;
         dataTemp.total_page = respon.total_page;
-        dataTemp.list_blog.push(...respon.list_blog);
-        setName(respon.list_blog[0].category_name || '')
+        dataTemp.list_blog = respon;
+        setName(respon[0].tenLoai || '')
         setData(dataTemp);
         setLoading(true);
       })
@@ -62,24 +64,24 @@ export const BlogCategory = () => {
                 <div style={{ width: "95%", margin: "auto" }}>
                   <div>
                     <img
-                      alt="image2"
+                      alt="image-blog"
                       style={{ width: "100%", cursor: "pointer" }}
-                      onClick={() => history.push(`/tin-tuc/${item.url}`)}
-                      src={item.thumbnail}
+                      onClick={() => history.push(`/tin-tuc/${item.maTin}`)}
+                      src={item.imgIcon}
                     />
                   </div>
                   <div
                     className="title-blog"
                     style={{ cursor: "pointer" }}
-                    onClick={() => history.push(`/tin-tuc/${item.url}`)}
+                    onClick={() => history.push(`/tin-tuc/${item.maTin}`)}
                   >
-                    {item.title}
+                    {item.tieuDe}
                   </div>
                   <div className="time-blog">
                     <i className="fal fa-clock"></i>{" "}
-                    {customTime(item.created_at, "HH:mm DD/MM/YYYY")}
+                    {customTime(item.ngayNhap, "HH:mm DD/MM/YYYY")}
                   </div>
-                  <div className="description">{item.description}</div>
+                  <div className="description">{ReactHtmlParser(item?.noiDung || "")}</div>
                 </div>
               </div>
             );

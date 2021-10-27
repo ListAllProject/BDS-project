@@ -195,7 +195,7 @@ export const ListTransfer = () => {
       DenNgay: "2022-01-26",
       MaTT: ",1,16,",
       DuAn: ",132,268,",
-      inputSearch: "A-05-04",
+      inputSearch: "",
       Offset: 1,
       Limit: 10,
     };

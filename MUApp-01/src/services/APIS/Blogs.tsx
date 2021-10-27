@@ -2,13 +2,16 @@
 import { getCodeBody } from "services/helper";
 import { APIIMGAGE as API } from "../api";
 import { ResBlogs } from "../models";
+const body = { "company_code": getCodeBody() }
 
 let BlogsAPI = {
   getListBySlug(parameter: ResBlogs) {
-    return API().get(
-      `/web/blog?page=${parameter.page}&limit=${parameter.limit}&category_url=${
-        parameter.url
-      }&company_code=${getCodeBody()}`
+    const bodySlug = {
+      "MaLTin": Number(parameter.url),
+      "TenCTDKVT": getCodeBody()
+    }
+    return API().post(
+      `/api/TinTuc`,bodySlug
     );
   },
   getList(parameter: ResBlogs) {
@@ -19,15 +22,17 @@ let BlogsAPI = {
     );
   },
   getBlogBySlug(url: string) {
-    return API().get(
-      `/web/blog/` +
-        url +
-        `?company_code=${getCodeBody()}`
+        const bodySlug = {
+          "ID": Number(url),
+          "TenCTDKVT": getCodeBody()
+        }
+    return API().post(
+      `/api/ChiTietTinTuc`,bodySlug
     );
   },
   getCatBlog() {
-    return API().get(
-      `/web/category?company_code=${getCodeBody()}`
+    return API().post(
+      `/api/LoaiTinTuc`, body
     );
   },
 };

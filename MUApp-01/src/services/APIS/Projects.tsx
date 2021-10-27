@@ -27,11 +27,13 @@ let ProjectsAPI = {
     if (district) {
       params = params + `district=${district}&`;
     }
-    return APIIMGAGE().get(
-      `/web/project` +
-        `?${params}company_code=${getCodeBody()}`
+
+    let body = { "TenCTDKVT": getCodeBody() };
+    return APIIMGAGE().post(
+      `/api/beeland/get-project` , body
     );
   },
+
   getProjectBySlug(url: string) {
     return APIIMGAGE().get(
       `/web/project/${url}?company_code=${getCodeBody()}`

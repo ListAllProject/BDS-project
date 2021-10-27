@@ -122,6 +122,8 @@ export const Introduce = () => {
 
     BannersAPI.getList({ project_id: projectId })
       .then(res => {
+        console.log(res.data, 88)
+
         let result = res.data.data;
         setBanners(result);
       })
@@ -147,8 +149,10 @@ export const Introduce = () => {
     let city = data.city;
     ProjectsAPI.getListProjects(limit, page, city)
       .then(res => {
-        let result = res.data.data.list_projects;
-        setRelativeProjects(result);
+        console.log(res, 88);
+
+        // let result = res.data.data.list_projects;
+        // setRelativeProjects(result);
       })
   }
 

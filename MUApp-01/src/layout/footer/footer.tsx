@@ -17,7 +17,7 @@ export const FooterWrap = () => {
     InfoAPI.getList()
       .then((res) => {
         let result = res.data.data;
-        setInfo(result.list_company[0]);
+        setInfo(result[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -36,10 +36,10 @@ export const FooterWrap = () => {
       <div className="wrap-footer-content">
         <div className="top-content">
           <span className="title">
-            {info?.intro_footer?.title}
+            {info?.intro_footer ? info.intro_footer[0].title : ""}
           </span>
           <span className="description">
-            {info?.intro_footer?.sub_title}
+            {info?.intro_footer ? info.intro_footer[0].sub_title : ""}
           </span>
         </div>
         <div className="div-row-space" />

@@ -52,7 +52,7 @@ export const HeaderWrap = () => {
     InfoAPI.getList()
       .then((res) => {
         let result = res.data.data;
-        setInfo(result.list_company[0]);
+        setInfo(result[0]);
       })
       .catch((err) => console.log(err));
   };
@@ -61,7 +61,7 @@ export const HeaderWrap = () => {
     let page = 1;
     ProjectsAPI.getListProjects(limit, page)
       .then((res) => {
-        let result = res.data.data.list_projects;
+        let result = res.data.data;
         setProjects(result);
       })
       .catch((err) => console.log(err));
@@ -72,10 +72,10 @@ export const HeaderWrap = () => {
         return (
           <Link
             className="span-item"
-            key={e.id}
-            to={`/gioi-thieu-du-an/${e.url}/${e.id}`}
+            key={e.MaDA}
+            to={`/gioi-thieu-du-an/${e.url}/${e.MaDA}`}
           >
-            {e.main_title}
+            {e.TenDA}
           </Link>
         );
       })}
@@ -111,9 +111,9 @@ export const HeaderWrap = () => {
           <Link
             key={i}
             className="span-item"
-            to={"/danh-sach-tin-tuc/" + e.url}
+            to={"/danh-sach-tin-tuc/" + e.MaLoai}
           >
-            {e.name}
+            {e.TenLoai}
           </Link>
         );
       })}

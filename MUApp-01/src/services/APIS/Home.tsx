@@ -13,7 +13,8 @@ let HomeAPI = {
     if (limit) {
       params = params + `limit=${limit}&`;
     }
-    return API().get(`/web/banner?${params}type=home&company_code=${getCodeBody()}`);
+    let data = { "TenCTDKVT": getCodeBody() }
+    return API().post(`/api/banner`, data);
   },
   // getProvince() {
   //   return API().get(`/api/Province`);

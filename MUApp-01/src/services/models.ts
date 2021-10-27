@@ -34,6 +34,15 @@ export interface BlogObj {
   category_blog: number;
   is_outstanding: number;
   is_active: number;
+  NgayNhap?:string,
+  ngayNhap?: string,
+  noiDung?: string,
+  tieuDe?: string,
+  NoiDung?: string,
+  TieuDe?: string,
+  imgIcon?: string,
+  maTin?: number
+
 }
 
 export interface DetailProject {
@@ -48,6 +57,9 @@ export interface DetailProject {
   };
   district: string;
   id: number;
+  MaDA?: number;
+  icon?: string;
+  TenDA?: string;
   introduction: string;
   investor: string;
   is_active: number;

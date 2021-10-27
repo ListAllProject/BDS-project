@@ -40,10 +40,9 @@ export const BestSell: FC<{
     ).then((res) => {
       if (
         res.data.data &&
-        res.data.data.list_projects &&
-        res.data.data.list_projects.length !== 0
+        res.data.data.length !== 0
       ) {
-        setData(res.data.data.list_projects);
+        setData(res.data.data);
       } else {
         setData([]);
       }
@@ -63,16 +62,16 @@ export const BestSell: FC<{
         <div className="project-container">
           <Row className="item-row" gutter={0}>
             {data && data.length !== 0 ? (
-              data.map((item) => (
-                <Col className="item-col" key={item.id}>
-                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.id}`}>
+              data.slice(0, 3).map((item) => (
+                <Col className="item-col" key={item.MaDA}>
+                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.MaDA}`}>
                     <img
-                      alt={item.detail_project.title}
-                      src={item.detail_project.img}
+                      alt={item.TenDA}
+                      src={item.icon}
                       style={{ width: "100%", height: "200px" }}
                     />
                     <p className="item_title">
-                      {item.main_title.toLowerCase()}
+                      {item.main_title?.toLowerCase() || "title"} 
                     </p>
                     <Paragraph className="item_description" ellipsis={true}>
                       {item.introduction}

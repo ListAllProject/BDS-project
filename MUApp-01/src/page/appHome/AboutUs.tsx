@@ -20,21 +20,21 @@ export const AboutUs = () => {
     InfoAPI.getList()
       .then((res) => {
         let result = res.data.data;
-        setInfo(result.list_company[0]);
+        setInfo(result[0]);
       })
       .catch((err) => console.log(err));
   };
   return (
     <>
       <div className="homepage-container">
-        <h1>{infor?.intro_main?.title}</h1>
+        <h1>{infor?.intro_main ? infor.intro_main[0].title : ""}</h1>
         <Seperate
           widthPar={350}
           widthChil={80}
           style={{ marginBottom: "3%" }}
         />
         <p className="intro-line">
-          {ReactHtmlParser(infor?.intro_main?.sub_title)}
+          {ReactHtmlParser(infor?.intro_main ? infor.intro_main[0].sub_title : "")}
         </p>
 
         <div className="project-container">
