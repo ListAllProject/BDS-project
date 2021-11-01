@@ -3,34 +3,18 @@ import { APIIMGAGE } from "../api";
 
 let ProjectsAPI = {
   //k biet api nen tam thoi ghi ten zị
-  getListProjects(
-    limit: number,
-    page: number,
-    city?: string,
-    investor?: string,
-    district?: string
-  ) {
+  getListProjects(data : any) {
     let params = "";
 
-    if (limit) {
-      params = params + `limit=${limit}&`;
+    if (data?.limit) {
+      params = params + `limit=${data.limit}&`;
     }
-    if (page) {
-      params = params + `page=${page}&`;
+    if (!data) {
+      data = {}
     }
-    if (city) {
-      params = params + `city=${city}&`;
-    }
-    if (investor) {
-      params = params + `investor=${investor}&`;
-    }
-    if (district) {
-      params = params + `district=${district}&`;
-    }
-
-    let body = { "TenCTDKVT": getCodeBody() };
+    data.TenCTDKVT = getCodeBody() 
     return APIIMGAGE().post(
-      `/api/beeland/get-project` , body
+      `/api/beeland/get-project` , data
     );
   },
 
@@ -39,9 +23,31 @@ let ProjectsAPI = {
       `/web/project/${url}?company_code=${getCodeBody()}`
     );
   },
+  getProjectById(id: number) {
+    let data = { MaDA: 0 , TenCTDKVT: "beesky"}
+    data.MaDA = id;
+    data.TenCTDKVT = getCodeBody()
+    return APIIMGAGE().post(
+      `/api/projectDetail`, data
+    );
+  },
   getProjectFiltersList() {
-    return APIIMGAGE().get(
-      `/web/project/filters/list?company_code=${getCodeBody()}`
+    let body = { "TenCTDKVT": getCodeBody() };
+    return APIIMGAGE().post(
+      `/api/beeland/get-address`, body
+    );
+  },
+
+  getProjectFilter(data:any) {
+    data.TenCTDKVT = getCodeBody()
+    return APIIMGAGE().post(
+      `/api/beeland/get-project`, data
+    );
+  },
+   getProjectFiltersStatus() {
+    let body = { "company_code": getCodeBody() };
+    return APIIMGAGE().post(
+      `/api/projectStatus`, body
     );
   },
 };

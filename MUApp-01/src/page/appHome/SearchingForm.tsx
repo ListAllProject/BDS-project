@@ -10,9 +10,7 @@ export const SearchingForm: FC<{
   setFilterResult: React.Dispatch<
     React.SetStateAction<
       | {
-          city: string;
-          district: string;
-          investor: string;
+          MaTinh: number; MaHuyen: number; MaTT: number; isHome: number;
         }
       | undefined
     >
@@ -20,28 +18,66 @@ export const SearchingForm: FC<{
 }> = ({ setFilterResult }) => {
   const [form] = Form.useForm();
   const [sliderValue, setSliderValue] = useState<[number, number]>([0, 50]);
-  const [listFilters, setListFilters] = useState<ProjectFilterObj>();
+  const [tinh, setTinh] = useState(0);
+  const [huyen, setHuyen] = useState(0);
+  const [status, setStatus] = useState(0);
 
-  useEffect(() => {
+  const [listFilters, setListFilters] = useState<any[]>([]);
+  const [listDistrict, setListDistrict] = useState<any[]>([]);
+  const [listStatus, setListStatus] = useState<any[]>([]);
+ 
+  const Fetch = () => {
     ProjectsAPI.getProjectFiltersList().then((res) => {
+        if (res.data.data) {
+          setListFilters(res.data.data);
+        }
+      });
+  }
+  useEffect(() => {
+    Fetch();
+    ProjectsAPI.getProjectFiltersStatus().then((res) => {
       if (res.data.data) {
-        setListFilters(res.data.data);
+        setListStatus(res.data.data);
       }
     });
   }, []);
-
+  
+  // const onFinish = () => {
+  //   let data = {MaTinh : tinh, MaHuyen: huyen, MaTT: status}
+  //   ProjectsAPI.getProjectFilter(data).then((res) => {
+  //       if (res.data.data) {
+  //         setListFilters(res.data.data);
+  //       }
+  //      });
+  // }
   const onFinish = (values: {
-    city: string;
-    district: string;
-    investor: string;
+   MaTinh: number; MaHuyen: number; MaTT: number; isHome: number;
   }) => {
     setFilterResult((val) => ({
       ...val,
-      city: values.city === "all" ? "" : (values.city as string),
-      district: values.district === "all" ? "" : (values.district as string),
-      investor: values.investor === "all" ? "" : (values.investor as string),
+      MaTinh: tinh,
+      MaHuyen: huyen,
+      MaTT: status,
+      isHome : 0
+      // MaTinh: values.MaTinh === "all" ? "" : (values.MaTinh as number),
+      // district: values.district === "all" ? "" : (values.district as string),
+      // investor: values.investor === "all" ? "" : (values.investor as string),
     }));
   };
+  const onchangeProvice = (e:any) => {
+    setTinh(e)
+    listFilters.map(item => {
+      if (item.maTinh == e) {
+        setListDistrict(item.listHuyen)
+      }
+    })
+  }
+  const onchangeDis = (e:any) => {
+    setHuyen(e)
+  }
+   const onchangeStatus = (e:any) => {
+    setStatus(e)
+  }
 
   return (
     <>
@@ -60,24 +96,27 @@ export const SearchingForm: FC<{
                   <Select
                     style={{ width: "100%" }}
                     placeholder="Tỉnh / Thành phố"
+                    onChange={(e) => onchangeProvice(e)}
                   >
-                    {listFilters?.cities && listFilters?.cities.length > 0
-                      ? listFilters?.cities.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
+                    {listFilters && listFilters.length > 0
+                      ? listFilters.map(item => 
+                          <Option key={item.maTinh} value={item.maTinh}>
+                            {item.tenTinh}
                           </Option>
-                        ))
+                        )
                       : null}
                   </Select>
                 </Form.Item>
               </Col>
               <Col xxl={8} xl={8} lg={8} sm={8} xs={24}>
                 <Form.Item name="district">
-                  <Select style={{ width: "100%" }} placeholder="Quận / huyện">
-                    {listFilters?.districts && listFilters?.districts.length > 0
-                      ? listFilters?.districts.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
+                  <Select style={{ width: "100%" }} placeholder="Quận / huyện"
+                  onChange={(e) => onchangeDis(e)}
+                  >
+                    {listDistrict && listDistrict.length > 0
+                      ? listDistrict.map((item) => (
+                          <Option key={item.maHuyen} value={item.maHuyen}>
+                            {item.tenHuyen}
                           </Option>
                         ))
                       : null}
@@ -86,11 +125,13 @@ export const SearchingForm: FC<{
               </Col>
               <Col xxl={8} xl={8} lg={8} sm={8} xs={24}>
                 <Form.Item name="investor">
-                  <Select style={{ width: "100%" }} placeholder="Chủ đầu tư">
-                    {listFilters?.investors && listFilters?.investors.length > 0
-                      ? listFilters?.investors.map((item) => (
-                          <Option key={item} value={item}>
-                            {item}
+                  <Select style={{ width: "100%" }} placeholder="Trạng thái"
+                   onChange={(e) => onchangeStatus(e)}
+                  >
+                    {listStatus && listStatus.length > 0
+                      ? listStatus.map((item) => (
+                          <Option key={item.maTT} value={item.maTT}>
+                            {item.tenTT}
                           </Option>
                         ))
                       : null}

@@ -59,7 +59,7 @@ export const HeaderWrap = () => {
   const fetchData = () => {
     let limit = 8;
     let page = 1;
-    ProjectsAPI.getListProjects(limit, page)
+    ProjectsAPI.getListProjects({})
       .then((res) => {
         let result = res.data.data;
         setProjects(result);

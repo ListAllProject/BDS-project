@@ -66,6 +66,7 @@ export interface DetailProject {
   main_title: string;
   slogan: string;
   url: string;
+  sub_title?:string
 }
 
 export interface ProjectFilterObj {

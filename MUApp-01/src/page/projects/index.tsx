@@ -5,7 +5,12 @@ import { SearchingForm } from "./SearchingForm";
 
 export const Projects = () => {
   const [filterResult, setFilterResult] =
-    useState<{ city: string; district: string; investor: string }>();
+    useState<{
+      MaTinh: number;
+      MaHuyen: number;
+      MaTT: number;
+      isHome: number
+     }>();
   return (
     <div className="home">
       <div className="home-container">

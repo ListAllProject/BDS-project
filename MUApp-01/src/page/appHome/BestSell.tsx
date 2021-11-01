@@ -1,23 +1,21 @@
-import { Row, Col, Typography } from "antd";
-
-import lang_apec_golden_palaceson from "../../assets/images/lang_son_apec_golden_palace.png";
-import pcti_bbch1 from "../../assets/images/pcti_bbch1.png";
-import vincity_ocean_park_anh from "../../assets/images/vinCity.png";
-import "./home.scss";
-import { Seperate } from "../../components/seperate/seperate";
+import { Col, Row, Typography } from "antd";
 import { FC, useEffect, useState } from "react";
-import { DetailProject } from "services/models";
-import ProjectsAPI from "services/APIS/Projects";
 import { Link } from "react-router-dom";
+import ProjectsAPI from "services/APIS/Projects";
+import { DetailProject } from "services/models";
+import { Seperate } from "../../components/seperate/seperate";
+import "./home.scss";
+
 
 const { Paragraph } = Typography;
 
 export const BestSell: FC<{
   filterResult:
   | {
-    city: string;
-    district: string;
-    investor: string;
+    MaTinh: number;
+    MaHuyen: number;
+    MaTT: number;
+    isHome: number
   }
   | undefined;
 }> = ({ filterResult }) => {
@@ -32,12 +30,9 @@ export const BestSell: FC<{
 
   const handleLoadList = () => {
     ProjectsAPI.getListProjects(
-      3,
-      1,
-      filterResult?.city as string,
-      filterResult?.investor as string,
-      filterResult?.district as string
+      filterResult
     ).then((res) => {
+
       if (
         res.data.data &&
         res.data.data.length !== 0
@@ -71,7 +66,7 @@ export const BestSell: FC<{
                       style={{ width: "100%", height: "200px" }}
                     />
                     <p className="item_title">
-                      {item.main_title?.toLowerCase() || "title"} 
+                      {item.TenDA?.toLowerCase() || "title"} 
                     </p>
                     <Paragraph className="item_description" ellipsis={true}>
                       {item.introduction}

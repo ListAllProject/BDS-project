@@ -10,9 +10,7 @@ const { Paragraph } = Typography;
 export const List: FC<{
   filterResult:
     | {
-        city: string;
-        district: string;
-        investor: string;
+       MaTinh: number; MaHuyen: number; MaTT: number; isHome: number;
       }
     | undefined;
 }> = ({ filterResult }) => {
@@ -35,18 +33,14 @@ export const List: FC<{
   const handleLoadList = () => {
     const { limit, page } = pagination;
     ProjectsAPI.getListProjects(
-      limit,
-      page,
-      filterResult?.city as string,
-      filterResult?.investor as string,
-      filterResult?.district as string
+      filterResult
     ).then((res) => {
+
       if (
         res.data.data &&
-        res.data.data.list_projects &&
-        res.data.data.list_projects.length !== 0
+        res.data.data.length !== 0
       ) {
-        setData(res.data.data.list_projects);
+        setData(res.data.data);
         setPagination((ele) => ({
           ...ele,
           limit: res.data.data.limit,
@@ -75,7 +69,7 @@ export const List: FC<{
       reloadFlag: !ele.reloadFlag,
     }));
   };
-
+  console.log(data,98)
   return (
     <>
       <div className="homepage-container">
@@ -83,18 +77,18 @@ export const List: FC<{
           <Row className="item-row" gutter={0}>
             {data && data.length !== 0 ? (
               data.map((item) => (
-                <Col className="item-col" key={item.id}>
-                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.id}`}>
+                <Col className="item-col" key={item.MaDA}>
+                  <Link to={`/gioi-thieu-du-an/${item.MaDA}`}>
                     <img
-                      alt={item.detail_project.title}
-                      src={item.detail_project.img}
+                      alt={item.TenDA}
+                      src={item.icon}
                       style={{ width: "100%", height: "200px" }}
                     />
                     <p className="item_title">
-                      {item.main_title.toLowerCase()}
+                      {item?.TenDA ? item.TenDA.toLowerCase() : "" }
                     </p>
                     <Paragraph className="item_description" ellipsis={true}>
-                      {item.introduction}
+                      {item.sub_title}
                     </Paragraph>
                   </Link>
                   {/* <p ></p> */}
@@ -108,7 +102,7 @@ export const List: FC<{
         <div
           style={{ display: "flex", justifyContent: "center", marginTop: 20 }}
         >
-          <Button
+          {/* <Button
             className="primary-btn"
             size="large"
             onClick={handleAddMore}
@@ -119,7 +113,7 @@ export const List: FC<{
               className="fas fa-sort-down"
               style={{ margin: "0px 0px 5px 10px" }}
             ></i>
-          </Button>
+          </Button> */}
         </div>
       </div>
     </>

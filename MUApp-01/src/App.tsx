@@ -100,7 +100,7 @@ function App() {
         <Route path="/confirm-password">
           <ConfirmPassword />
         </Route>
-        <Route exact path="/gioi-thieu-du-an/:url/:id">
+        <Route exact path="/gioi-thieu-du-an/:id">
           <Introduce />
         </Route>
         <Route path="/tin-tuc/:url" component={News}></Route>

@@ -147,7 +147,7 @@ export const Introduce = () => {
     let limit = 4;
     let page = 1;
     let city = data.city;
-    ProjectsAPI.getListProjects(limit, page, city)
+    ProjectsAPI.getListProjects({})
       .then(res => {
         console.log(res, 88);
 

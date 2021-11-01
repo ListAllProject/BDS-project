@@ -14,7 +14,7 @@ import DoorDashFavorite from "../../components/loadBanner/loadBanner";
 export const Home = () => {
   const [banners, setBanners] = useState<Array<BannerObj>>();
   const [filterResult, setFilterResult] =
-    useState<{ city: string; district: string; investor: string }>();
+    useState<{ MaTinh: number; MaHuyen: number; MaTT: number; isHome: number; }>();
 
   useEffect(() => {
     HomeAPI.getBanners(1, 6).then((res) => {
@@ -22,7 +22,6 @@ export const Home = () => {
         setBanners(res.data.data);
       } else return;
     });
-
     // HomeAPI.getProvince().then((res) => console.log(res));
   }, []);
 
