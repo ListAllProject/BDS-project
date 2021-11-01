@@ -59,7 +59,7 @@ export const BestSell: FC<{
             {data && data.length !== 0 ? (
               data.slice(0, 3).map((item) => (
                 <Col className="item-col" key={item.MaDA}>
-                  <Link to={`/gioi-thieu-du-an/${item.url}/${item.MaDA}`}>
+                  <Link to={`/gioi-thieu-du-an/${item.MaDA}`}>
                     <img
                       alt={item.TenDA}
                       src={item.icon}

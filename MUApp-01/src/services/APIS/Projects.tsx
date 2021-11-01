@@ -23,6 +23,24 @@ let ProjectsAPI = {
       `/web/project/${url}?company_code=${getCodeBody()}`
     );
   },
+
+  getProjectImage(id: number) {
+    let data = { MaDA: 0 , TenCTDKVT: "beesky"}
+    data.MaDA = id;
+    data.TenCTDKVT = getCodeBody()
+    return APIIMGAGE().post(
+      `/api/HinhAnhDuAn`, data
+    );
+  },
+  
+   getProjectReason(id: number) {
+    let data = { MaDA: 0 , TenCTDKVT: "beesky"}
+    data.MaDA = id;
+    data.TenCTDKVT = getCodeBody()
+    return APIIMGAGE().post(
+      `/api/DuAn_GioiThieu`, data
+    );
+  },
   getProjectById(id: number) {
     let data = { MaDA: 0 , TenCTDKVT: "beesky"}
     data.MaDA = id;

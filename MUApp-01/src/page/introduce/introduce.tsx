@@ -19,6 +19,8 @@ import ImagesAPI from "../../services/APIS/Images";
 import ProjectsAPI from "../../services/APIS/Projects";
 import ReasonsAPI from "../../services/APIS/Reason";
 import { BannerObj, DetailProject, ImageObj, ReasonObj } from "../../services/models";
+import ReactHtmlParser from "react-html-parser";
+
 import "./introduce.scss";
 
 
@@ -65,7 +67,7 @@ export const Introduce = () => {
   const [images, setImages] = useState<ImageObj[]>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
   const [bigImage, setBigImage] = useState<string>("");
-  const [banners, setBanners] = useState<BannerObj[]>([]);
+  const [banners, setBanners] = useState<any[]>([]);
   const [relativeProjects, setRelativeProjects] = useState<DetailProject[]>([]);
   const [data, setData] = useState<DetailProject>({
     city: "",
@@ -93,15 +95,15 @@ export const Introduce = () => {
 
   function fetchData() {
     let projectId = parseInt(id)
-    ProjectsAPI.getProjectBySlug(url)
+    ProjectsAPI.getProjectById(projectId)
       .then((res) => {
         let result = { ...res.data.data };
         let dataTemp = { ...data };
 
         dataTemp.id = projectId;
-        dataTemp.introduction = result.introduction;
-        dataTemp.investor = result.investor;
-        dataTemp.slogan = result.slogan;
+        dataTemp.introduction = result.introduction || "1";
+        dataTemp.investor = result.investor || "1";
+        dataTemp.slogan = result.slogan || "1";
         dataTemp.detail_project = {
           img: result.detail_project.img,
           size: result.detail_project.size,
@@ -119,48 +121,70 @@ export const Introduce = () => {
         setData(dataTemp);
       })
       .catch((err) => console.log(err));
-
-    BannersAPI.getList({ project_id: projectId })
-      .then(res => {
-        console.log(res.data, 88)
-
+    
+    ProjectsAPI.getProjectImage(projectId)
+      .then((res) => {
         let result = res.data.data;
-        setBanners(result);
+        const banners: any[] = []
+        const listImage: any[] = []
+        result.map((item :any) => {
+          if (item.home == true) banners.push(item)
+          else listImage.push(item)
+        })
+        setBanners(banners);
+        setImages(listImage);
+        setBigImage(listImage[0].value)
       })
-      .catch(err => console.log(err))
-
-    ReasonsAPI.getListByProjectId(projectId)
-      .then(res => {
+      .catch((err) => console.log(err));
+    
+     ProjectsAPI.getProjectReason(projectId)
+      .then((res) => {
         let result = res.data.data;
         setReasons(result);
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err));
 
-    ImagesAPI.getList({ project_id: projectId })
-      .then(res => {
-        let result = res.data.data;
-        setImages(result);
-        setBigImage(result[0].value)
-      })
-      .catch(err => console.log(err))
+    // BannersAPI.getList({ project_id: projectId })
+    //   .then(res => {
+    //     // console.log(res.data, 88)
+
+    //     let result = res.data.data;
+    //     setBanners(result);
+    //   })
+    //   .catch(err => console.log(err))
+
+    // ReasonsAPI.getListByProjectId(projectId)
+    //   .then(res => {
+    //     let result = res.data.data;
+    //     setReasons(result);
+    //   })
+    //   .catch(err => console.log(err))
+
+    // ImagesAPI.getList({ project_id: projectId })
+    //   .then(res => {
+    //     let result = res.data.data;
+    //     setImages(result);
+    //     setBigImage(result[0].value)
+    //   })
+    //   .catch(err => console.log(err))
 
     let limit = 4;
     let page = 1;
     let city = data.city;
     ProjectsAPI.getListProjects({})
       .then(res => {
-        console.log(res, 88);
-
-        // let result = res.data.data.list_projects;
-        // setRelativeProjects(result);
+        let result = res.data.data;
+        setRelativeProjects(result);
       })
   }
 
   const bannerList: JSX.Element[] = [];
-  banners.forEach((b, i) => {
-    bannerList.push(<img key={i} src={b.value} alt="Room 01" />)
+  if (banners && banners.length != 0) {
+      banners.forEach((i) => {
+      bannerList.push(<img key={i.id} src={i.value} alt="Room 01" />)
   });
-
+  }
+  
   const reasonComponents: JSX.Element[] = [];
   reasons.forEach((e, i) => {
     let style: React.CSSProperties = {
@@ -169,7 +193,6 @@ export const Introduce = () => {
     if (i % 2 === 0) {
       style.flexDirection = "row-reverse"
     }
-
     reasonComponents.push(
       <div
         className="reason-item-container"
@@ -188,7 +211,7 @@ export const Introduce = () => {
             {e.title}
           </div>
           <div className="content_small_content">
-            {e.sub_title}
+            {ReactHtmlParser(e.sub_title)}
           </div>
         </div>
       </div>
@@ -216,23 +239,24 @@ export const Introduce = () => {
 
   let history = useHistory();
   function onClickRelativeProject(project_id: number, url: string) {
-    history.push("/gioi-thieu-du-an/" + url + '/' + project_id.toString());
+    history.push("/gioi-thieu-du-an/" + project_id.toString());
     window.scrollTo(0, 0)
   }
   const relativeProjectComponents: JSX.Element[] = [];
   for (let i = 0; i < relativeProjects.length; i++) {
-    if (relativeProjects[i].id.toString() !== id) {
+    console.log(relativeProjects[i])
+    if (relativeProjects[i].MaDA?.toString() !== id) {
       relativeProjectComponents.push(
-        <div key={i} className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].id, relativeProjects[i].url) }}>
+        <div key={i} className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].MaDA || 1, relativeProjects[i].url) }}>
           <span>
             <img
               style={{ width: "100%" }}
-              src={relativeProjects[i].detail_project.img}
+              src={relativeProjects[i].icon}
               alt="oder-imag1"
             />
           </span>
-          <div className="title-pj">{relativeProjects[i].main_title}</div>
-          <div className="description-pj">
+          <div className="title-pj">{relativeProjects[i].TenDA}</div>
+          <div className="description-pj ant-typography-ellipsis-single-line">
             {relativeProjects[i].introduction}
           </div>
         </div>

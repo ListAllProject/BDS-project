@@ -73,7 +73,7 @@ export const HeaderWrap = () => {
           <Link
             className="span-item"
             key={e.MaDA}
-            to={`/gioi-thieu-du-an/${e.url}/${e.MaDA}`}
+            to={`/gioi-thieu-du-an/${e.MaDA}`}
           >
             {e.TenDA}
           </Link>
@@ -94,7 +94,7 @@ export const HeaderWrap = () => {
           >
             <Link
               className="span-item"
-              to={`/gioi-thieu-du-an/${e.url}/${e.id}`}
+              to={`/gioi-thieu-du-an/${e.id}`}
             >
               {e.main_title}
             </Link>

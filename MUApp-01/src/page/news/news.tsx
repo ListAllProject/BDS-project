@@ -37,7 +37,7 @@ export const News = () => {
       })
       .catch((err) => console.log(err));
   }, []);
-
+console.log(newsContent)
   return (
     <div className="news-container">
       <Row>
@@ -48,15 +48,15 @@ export const News = () => {
             src={newsContent?.imgIcon}
           />
           <div className="content">
-            <h2 className="news-title">{newsContent?.TieuDe}</h2>
+            <h2 className="news-title">{newsContent?.tieuDe}</h2>
             <p className="news-datetime">
               <i className="far fa-clock"></i>{" "}
-              {customTime(newsContent?.NgayNhap, "HH:mm DD/MM/YYYY")}
+              {customTime(newsContent?.ngayNhap, "HH:mm DD/MM/YYYY")}
             </p>
             <div
               className="long-content"
               dangerouslySetInnerHTML={{
-                __html: newsContent?.NoiDung as string,
+                __html: newsContent?.noiDung as string,
               }}
             />
           </div>
