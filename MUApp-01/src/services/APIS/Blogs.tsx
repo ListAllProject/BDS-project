@@ -14,11 +14,40 @@ let BlogsAPI = {
       `/api/TinTuc`,bodySlug
     );
   },
-  getList(parameter: ResBlogs) {
-    return API().get(
-      `/web/blog?page=${parameter.page}&limit=${parameter.limit}&search=${
-        parameter.search
-      }&is_outstanding=${parameter.is_outstanding}&company_code=${getCodeBody()}`
+  getListById(id: number) {
+    const bodySlug = {
+      "MaLTin": id,
+      "TenCTDKVT": getCodeBody()
+    }
+    return API().post(
+      `/api/TinTuc`,bodySlug
+    );
+  },
+  getList() {
+    let data = {
+      "MaLTin": 0,
+      "isHome": true,
+      "TenCTDKVT": getCodeBody()
+    }
+    return API().post(
+      `/api/TinTuc`, data
+    );
+  },
+  // getList(parameter: ResBlogs) {
+  //   return API().get(
+  //     `/web/blog?page=${parameter.page}&limit=${parameter.limit}&search=${
+  //       parameter.search
+  //     }&is_outstanding=${parameter.is_outstanding}&company_code=${getCodeBody()}`
+  //   );
+  // },
+  getListNew() {
+    let data = {
+      "MaLTin": 0,
+      "isHome": true,
+      "TenCTDKVT": getCodeBody()
+    }
+    return API().post(
+      `/api/TinTuc`, data
     );
   },
   getBlogBySlug(url: string) {

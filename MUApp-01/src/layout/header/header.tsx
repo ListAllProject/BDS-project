@@ -94,9 +94,9 @@ export const HeaderWrap = () => {
           >
             <Link
               className="span-item"
-              to={`/gioi-thieu-du-an/${e.id}`}
+              to={`/gioi-thieu-du-an/${e.MaDA}`}
             >
-              {e.main_title}
+              {e.TenDA}
             </Link>
           </Menu.Item>
         );
@@ -125,14 +125,14 @@ export const HeaderWrap = () => {
       {catblogs.map((e, i) => {
         return (
           <Menu.Item
-            id={`blog_${e.id}`}
-            key={`blog_${e.id}`}
+            id={`blog_${e.MaLoai}`}
+            key={`blog_${e.MaLoai}`}
             onClick={() => {
               setVisible(false);
             }}
           >
-            <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.url}>
-              {e.name}
+            <Link className="span-item" to={"/danh-sach-tin-tuc/" + e.MaLoai}>
+              {e.TenLoai}
             </Link>
           </Menu.Item>
         );

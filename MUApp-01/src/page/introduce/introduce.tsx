@@ -99,24 +99,25 @@ export const Introduce = () => {
       .then((res) => {
         let result = { ...res.data.data };
         let dataTemp = { ...data };
+// console.log(result,8)
 
         dataTemp.id = projectId;
         dataTemp.introduction = result.introduction || "1";
         dataTemp.investor = result.investor || "1";
         dataTemp.slogan = result.slogan || "1";
         dataTemp.detail_project = {
-          img: result.detail_project.img,
-          size: result.detail_project.size,
-          title: result.detail_project.title,
-          sub_title: result.detail_project.sub_title,
-          building_density: result.detail_project.building_density,
+          img: result.img,
+          size: result.size,
+          title: result.tenDA,
+          sub_title: result.sub_title,
+          building_density: result.building_density,
         }
         dataTemp.main_title = result.main_title
         dataTemp.city = result.city
         dataTemp.district = result.district
         dataTemp.created_at = result.created_at
         dataTemp.is_active = result.is_active
-
+// console.log(dataTemp,8)
 
         setData(dataTemp);
       })
@@ -244,7 +245,6 @@ export const Introduce = () => {
   }
   const relativeProjectComponents: JSX.Element[] = [];
   for (let i = 0; i < relativeProjects.length; i++) {
-    console.log(relativeProjects[i])
     if (relativeProjects[i].MaDA?.toString() !== id) {
       relativeProjectComponents.push(
         <div key={i} className="square-pj" onClick={() => { onClickRelativeProject(relativeProjects[i].MaDA || 1, relativeProjects[i].url) }}>
