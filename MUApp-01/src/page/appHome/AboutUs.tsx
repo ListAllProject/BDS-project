@@ -27,14 +27,14 @@ export const AboutUs = () => {
   return (
     <>
       <div className="homepage-container">
-        <h1>{infor?.intro_main ? infor.intro_main[0].title : ""}</h1>
+        <h1>{infor?.intro_main ? infor.intro_main[0]?.title : ""}</h1>
         <Seperate
           widthPar={350}
           widthChil={80}
           style={{ marginBottom: "3%" }}
         />
         <p className="intro-line">
-          {ReactHtmlParser(infor?.intro_main ? infor.intro_main[0].sub_title : "")}
+          {ReactHtmlParser(infor?.intro_main ? infor.intro_main[0]?.sub_title : "")}
         </p>
 
         <div className="project-container">
