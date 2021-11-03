@@ -159,7 +159,7 @@ export const HeaderWrap = () => {
     <div className="container-header">
       <div className="logo">
         <Link to="/">
-          <img width="40" style={{maxWidth:"70px"}} alt="image" src={info.logo} />
+          <img width="40" style={{maxWidth:"70px"}} alt="image" src={info?.logo} />
         </Link>
       </div>
       <div className="wrap-right">
@@ -188,7 +188,7 @@ export const HeaderWrap = () => {
             Tư vấn
           </span>
           <a
-            href={`tel:${info.phone}`}
+            href={`tel:${info?.phone}`}
             style={{
               color: "#BE9355",
               fontWeight: "bold",
@@ -196,7 +196,7 @@ export const HeaderWrap = () => {
             }}
           >
             <i style={{ color: "#011769" }} className="fad fa-phone-volume"></i>{" "}
-            {info.phone}
+            {info?.phone}
           </a>
         </div>
         <div className="div-row-space"></div>
@@ -327,7 +327,7 @@ export const HeaderWrap = () => {
         title={
           <div>
             <Link to="/">
-              <img alt="image2" width="40" src={info.logo} />
+              <img alt="image2" width="40" src={info?.logo} />
             </Link>
           </div>
         }

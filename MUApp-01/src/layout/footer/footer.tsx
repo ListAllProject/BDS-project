@@ -36,10 +36,10 @@ export const FooterWrap = () => {
       <div className="wrap-footer-content">
         <div className="top-content">
           <span className="title">
-            {info?.intro_footer ? info.intro_footer[0].title : ""}
+            {info?.intro_footer ? info?.intro_footer[0].title : ""}
           </span>
           <span className="description">
-            {info?.intro_footer ? info.intro_footer[0].sub_title : ""}
+            {info?.intro_footer ? info?.intro_footer[0].sub_title : ""}
           </span>
         </div>
         <div className="div-row-space" />
@@ -52,23 +52,23 @@ export const FooterWrap = () => {
                 style={{ marginRight: 8 }}
                 className="fas fa-map-marker-alt"
               ></i>
-              Trụ sở: {info.locate}
+              Trụ sở: {info?.locate}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-phone-alt"></i>
-              {info.phone}
+              {info?.phone}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-fax"></i>
-              Fax: {info.fax}
+              Fax: {info?.fax}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-envelope"></i>
-              Email: {info.email}
+              Email: {info?.email}
             </span>
             <span className="item-infor ">
               <i style={{ marginRight: 8 }} className="fas fa-globe"></i>
-              Website: {info.website}
+              Website: {info?.website}
             </span>
           </div>
           <div className="ft-content-1">
@@ -94,7 +94,7 @@ export const FooterWrap = () => {
             <div className="f-space-row"></div>
             <span style={{ color: "#AAAAAA" }}>
               {`Hãy đăng ký để nhận những thông tin mới nhất về các sản phẩm dịch
-              của ${info.company_name}.`}
+              của ${info?.company_name}.`}
             </span>
             <Input
               style={{ marginTop: 20, backgroundColor: "#383838" }}
@@ -111,7 +111,7 @@ export const FooterWrap = () => {
         <div className="div-row-space" />
         <div className="bottom-content">
           <div className="text-end">
-            {ReactHtmlParser(info.copywrite)}
+            {ReactHtmlParser(info?.copywrite)}
           </div>
         </div>
       </div>
