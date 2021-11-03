@@ -10,10 +10,10 @@ declare global {
 window.Configs = {
   // apiBaseUrl: window.location.protocol + "//beesky-admin.ninja-it.asia",
   apiBaseUrl:
-    "https://lingsmoment.herokuapp.com/https://api-client.mybeeland.com",
+    "https://api-client.mybeeland.com",
   apiUpload:
-    "https://lingsmoment.herokuapp.com/https://apibeehomecore.appbeesky.com",
-  apiImageUrl: "https://beesky-admin.ninja-it.asia", // for-blog-image
+    "https://apibeehomecore.appbeesky.com",
+  apiImageUrl: "https://api-client.mybeeland.com", // for-blog-image
 };
 
 export const tenCTDKVT = window.location.href.split(".");
